@@ -1,0 +1,5 @@
+# Cloudflare Pages Redirects
+/home           /               301
+/index.html     /               301
+/en/index.html  /en             301
+/gulf/index.html /gulf          301
