@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": 1,
+    "article_id": 1,
+    "title": "ما هي التجارة الإلكترونية؟ الدليل الشامل",
+    "slug": "introduction-to-ecommerce",
+    "category": "basics",
+    "category_label": "أساسيات",
+    "description": "تعرف على التجارة الإلكترونية: التعريف الكامل، الأنواع، المميزات والعيوب. دليل عملي للمبتدئين في السوق العربي.",
+    "word_count": 1653,
+    "read_time": 7,
+    "published_date": "2026-08-25",
+    "featured_image": "introduction-to-ecommerce.png",
+    "url": "/blog/introduction-to-ecommerce"
+  }
+]
