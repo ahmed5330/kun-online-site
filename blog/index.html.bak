@@ -186,28 +186,6 @@ footer a{color:var(--lime)}
 
 <script>
 // Articles data - بيتحدث تلقائياً من GitHub
-
-var CAT_ICONS = {basics:'📚',research:'🔍',finance:'💰',store:'🏪',product:'📦',
-  ads:'📢',seo:'🔎',analytics:'📊',ops:'⚙️',growth:'🚀'};
-var CAT_LABELS = {basics:'أساسيات',research:'دراسة السوق',finance:'الإدارة المالية',
-  store:'بناء المتجر',product:'المنتجات',ads:'التسويق والإعلانات',seo:'السيو والمحتوى',
-  analytics:'التحليلات',ops:'إدارة العمليات',growth:'النمو والتوسع'};
-
-function normalizeArticle(a){
-  var cat = a.category || '';
-  return {
-    slug: a.slug,
-    title: a.title || '',
-    excerpt: a.excerpt || a.description || '',
-    category: cat,
-    categoryLabel: a.categoryLabel || a.category_label || CAT_LABELS[cat] || cat,
-    readTime: a.readTime || a.read_time || 5,
-    date: a.date_display || a.date || '',
-    icon: a.icon || CAT_ICONS[cat] || '📝',
-    image: a.image ? ('/blog/images/' + String(a.image).replace(/^\/?blog\/images\//,'')) : null
-  };
-}
-
 var ARTICLES_URL = '/blog/articles.json';
 
 var allArticles = [];
@@ -218,7 +196,7 @@ async function loadArticles() {
   try {
     var res = await fetch(ARTICLES_URL);
     if (!res.ok) throw new Error('no articles yet');
-    allArticles = (await res.json()).map(normalizeArticle);
+    allArticles = await res.json();
     renderArticles(allArticles);
     renderFeatured(allArticles[0]);
   } catch(e) {
@@ -246,8 +224,8 @@ function renderArticles(arts) {
   empty.style.display = 'none';
   grid.innerHTML = arts.map(function(art) {
     return '<article class="art-card" data-cat="' + art.category + '">' +
-      '<div class="art-thumb"' + (art.image ? ' style="background-image:url(\''+art.image+'\');background-size:cover;background-position:center"' : '') + '>' + (art.image ? '' : (art.icon||'📝')) +
-      '<span class="art-cat">' + (art.categoryLabel || getCatLabel(art.category)) + '</span></div>' +
+      '<div class="art-thumb">' + (art.icon||'📝') +
+      '<span class="art-cat">' + getCatLabel(art.category) + '</span></div>' +
       '<div class="art-body">' +
       '<div class="art-meta"><span class="art-date">📅 ' + art.date + '</span>' +
       '<span class="art-read">⏱️ ' + (art.readTime||5) + ' دقائق</span></div>' +

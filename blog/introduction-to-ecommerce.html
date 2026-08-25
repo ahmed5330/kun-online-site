@@ -61,6 +61,9 @@ nav{position:sticky;top:0;z-index:200;height:60px;padding:0 var(--pad);display:f
 .art-meta span{display:flex;align-items:center;gap:5px}
 .art-description{font-size:16px;color:var(--muted);line-height:1.9;padding:20px 24px;background:var(--dark2);border-right:3px solid var(--lime);border-radius:0 12px 12px 0;margin-bottom:32px}
 /* CONTENT */
+.art-featured{max-width:760px;margin:0 auto 32px;padding:0 var(--pad)}
+@media(min-width:820px){.art-featured{padding:0 5vw}}
+.art-featured img{width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.08);display:block}
 .art-content{max-width:760px;margin:0 auto;padding:0 var(--pad) 64px}
 @media(min-width:820px){.art-content{padding:0 5vw 80px}}
 .art-content h2{font-family:'Tajawal',sans-serif;font-weight:900;font-size:clamp(20px,4vw,28px);color:#fff;margin:36px 0 16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)}
@@ -111,6 +114,11 @@ footer a{color:var(--lime)}
     <span>✍️ كن أونلاين</span>
   </div>
   <p class="art-description">تعرف على التجارة الإلكترونية من الألف إلى الياء: التعريف الكامل، أنواعها، مميزاتها وعيوبها، والفرق بينها وبين التجارة التقليدية. دليل عملي شامل للمبتدئين.</p>
+</div>
+
+<div class="art-featured">
+  <img src="/blog/images/introduction-to-ecommerce.png" alt="ما هي التجارة الإلكترونية" loading="eager"
+       onerror="this.parentElement.style.display='none'">
 </div>
 
 <div class="art-content">
