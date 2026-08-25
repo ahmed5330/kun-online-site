@@ -6,11 +6,15 @@
     "slug": "introduction-to-ecommerce",
     "category": "basics",
     "category_label": "أساسيات",
-    "description": "تعرف على التجارة الإلكترونية: التعريف الكامل، الأنواع، المميزات والعيوب. دليل عملي للمبتدئين في السوق العربي.",
-    "word_count": 1653,
-    "read_time": 7,
-    "published_date": "2026-08-25",
-    "featured_image": "introduction-to-ecommerce.png",
-    "url": "/blog/introduction-to-ecommerce"
+    "primary_keyword": "التجارة الإلكترونية",
+    "description": "تعرف على التجارة الإلكترونية من الألف إلى الياء: التعريف الكامل، أنواعها، مميزاتها وعيوبها، والفرق بينها وبين التجارة التقليدية.",
+    "word_count": 1551,
+    "read_time": 8,
+    "date": "2026-08-25",
+    "date_display": "25 أغسطس 2026",
+    "author": "كن أونلاين",
+    "image": "introduction-to-ecommerce.png",
+    "published": true,
+    "status": "published"
   }
 ]
