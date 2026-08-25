@@ -24,3 +24,4 @@ GitHub Action يعمل كل يوم الساعة 8 صباحاً ويولد مقا
 
 ## الاستضافة
 Cloudflare Pages — ربط تلقائي بـ GitHub
+# test
