@@ -1,5 +1,20 @@
 [
   {
+    "slug": "customer-funnel-guide",
+    "title": "يعني إيه الـ Funnel؟ رحلة العميل من الإعلان للشراء",
+    "excerpt": "شرح مفصّل لـ Funnel والرحلة الشرائية للعميل — من الوعي (Awareness) إلى الاحتفاظ (Retention) مع أمثلة عملية وأرقام حقيقية في بيزنس التجارة الإلكترونية...",
+    "description": "تعرّف على رحلة العميل من الوعي بالمنتج إلى الشراء والاحتفاظ. شرح الـ Funnel والمراحل الأساسية (Awareness - Consideration - Conversion - Retention) مع أمثلة عملية وأرقام حقيقية.",
+    "category": "basics",
+    "categoryLabel": "أساسيات",
+    "keywords": "Funnel,رحلة العميل,Customer Journey,التحويل,ACVR,معدل التحويل",
+    "date": "29 أغسطس 2026",
+    "dateISO": "2026-08-29",
+    "readTime": 7,
+    "wordCount": 1566,
+    "icon": "🧭",
+    "image": "customer-funnel-guide.png"
+  },
+  {
     "slug": "product-marketing-operations-ecommerce",
     "title": "المنتج ولا التسويق ولا الموقع: إيه أهم حاجة في نجاح المتجر؟",
     "excerpt": "4 عناصر تحدد نجاح متجرك. ليس الإعلان وحده، والمنتج وحده مش كافي. اعرف الصيغة الصحيحة والمعادلة الكاملة لنجاح حقيقي.",
