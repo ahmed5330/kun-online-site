@@ -1,5 +1,34 @@
 [
   {
+    "slug": "essential-ecommerce-glossary",
+    "title": "أهم 25 مصطلح في التجارة الإلكترونية — هتسمعهم كل يوم",
+    "excerpt": "شرح بسيط وعملي لأهم 25 مصطلح في التجارة الإلكترونية: CAC, ROAS, LTV, CVR, AOV, وغيرها — كل مصطلح مع مثال من متجر حقيقي يساعدك تفهم الأرقام والقرارات.",
+    "description": "تعلم المصطلحات الأساسية في التجارة الإلكترونية: من CAC و LTV إلى Unit Economics و Funnel — كل مصطلح بشرح عملي وأمثلة أرقام من واقع المتاجر المصرية.",
+    "category": "basics",
+    "categoryLabel": "أساسيات",
+    "keywords": "مصطلحات التجارة الإلكترونية,CAC,ROAS,LTV,CVR,AOV,Unit Economics",
+    "date": "31 أغسطس 2026",
+    "dateISO": "2026-08-31",
+    "readTime": 12,
+    "wordCount": 1950,
+    "icon": "🧭",
+    "image": "essential-ecommerce-glossary.png",
+    "internal_links_out": [
+      {
+        "slug": "startup-budget-egypt",
+        "text": "محتاج كام جنيه عشان تبدأ متجرك"
+      },
+      {
+        "slug": "common-ecommerce-beginner-mistakes",
+        "text": "أول 10 أخطاء بتضيع فلوس"
+      },
+      {
+        "slug": "product-marketing-operations-ecommerce",
+        "text": "الفرق بين المنتج والتسويق"
+      }
+    ]
+  },
+  {
     "slug": "ecommerce-funnel-explained",
     "title": "الـ Funnel في التجارة الإلكترونية: شرح بسيط لرحلة العميل من أول إعلان",
     "excerpt": "فهم الـ Funnel معناها أنك تعرف تحسّن متجرك وتقلل خسارة العملاء في كل مرحلة. اكتشف المراحل الخمس: Awareness, Consideration, Conversion, Retention, Repeat Purchase مع أمثلة عملية من واقع التجارة الإلكترونية...",
@@ -12,7 +41,13 @@
     "readTime": 9,
     "wordCount": 1847,
     "icon": "🧭",
-    "image": "ecommerce-funnel-explained.png"
+    "image": "ecommerce-funnel-explained.png",
+    "internal_links_in": [
+      {
+        "slug": "essential-ecommerce-glossary",
+        "text": "شرح المصطلحات الأساسية المستخدمة في الـ Funnel"
+      }
+    ]
   },
   {
     "slug": "customer-funnel-guide",
@@ -47,7 +82,13 @@
     "readTime": "7",
     "wordCount": 768,
     "icon": "🎯",
-    "image": "product-marketing-operations-ecommerce.png"
+    "image": "product-marketing-operations-ecommerce.png",
+    "internal_links_in": [
+      {
+        "slug": "essential-ecommerce-glossary",
+        "text": "شرح المصطلحات الأساسية في النجاح"
+      }
+    ]
   },
   {
     "slug": "common-ecommerce-beginner-mistakes",
