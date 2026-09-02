@@ -1,5 +1,38 @@
 [
   {
+    "slug": "brand-vs-product-business",
+    "title": "هل لازم تعمل براند من أول يوم؟",
+    "excerpt": "دليل عملي يساعدك تحدد متى تستثمر في براند حقيقي وكم التكلفة. تعلم الفرق بين البراند والمنتج وإيه أهم حاجة في أول سنة لمتجرك الإلكتروني.",
+    "description": "متى تبدأ بناء براند وكم التكلفة — أمثلة عربية ومعايير واضحة لمتاجر DTC في الخليج ومصر",
+    "category": "basics",
+    "categoryLabel": "أساسيات",
+    "keywords": "بناء براند، هوية البراند، DTC brand، تكلفة البراند، Brand Identity",
+    "date": "2 سبتمبر 2026",
+    "dateISO": "2026-09-02",
+    "readTime": "5 دقائق",
+    "wordCount": 966,
+    "icon": "🧭",
+    "image": "brand-vs-product-business.png",
+    "internal_links_out": [
+      {
+        "slug": "ecommerce-complete-journey-guide",
+        "text": "الخريطة الكاملة من أول فكرة لأول طلب"
+      },
+      {
+        "slug": "startup-budget-egypt",
+        "text": "محتاج كام جنيه عشان تبدأ متجرك"
+      },
+      {
+        "slug": "common-ecommerce-beginner-mistakes",
+        "text": "أول 10 أخطاء بتضيع فلوس المبتدئين"
+      },
+      {
+        "slug": "product-marketing-operations-ecommerce",
+        "text": "الفرق بين المنتج والبراند والتسويق"
+      }
+    ]
+  },
+  {
     "slug": "owned-vs-rented-channels",
     "title": "متجر إلكتروني خاص بك أم تبيع عبر Facebook وMarketplace؟ الدليل الكامل للاختيار",
     "excerpt": "قارن بين متجر خاص بك وFacebook Shops وJumia وNoon والأمازون. تعرف الفرق بين Owned و Rented Channel وكيف تختار المنصة المناسبة لمشروعك — العمولات والتحكم والملكية...",
