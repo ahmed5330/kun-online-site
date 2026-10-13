@@ -62,6 +62,20 @@ test('Kun Commerce OS marketing content is reachable and consistent',()=>{
   assert.match(fs.readFileSync(path.join(root,'_redirects'),'utf8'),/\/system \/system\/ 301/);
   assert.match(fs.readFileSync(path.join(root,'sitemap.xml'),'utf8'),/https:\/\/kun-online\.com\/system\//);
 });
+test('Commerce OS does not interrupt the primary service narrative',()=>{
+  for(const name of ['index.html','en/index.html','gulf/index.html']){
+    const html=fs.readFileSync(path.join(root,name),'utf8');
+    const pos=(tag)=>html.indexOf(tag);
+    const required=['<!-- SERVICES -->','<!-- PACKAGES -->','<!-- FAQ -->','<!-- KUN COMMERCE OS -->','<!-- CTA BAND -->'];
+    const offsets=required.map(pos);
+    assert.ok(offsets.every((n,i)=>n>=0&&(i===0||n>offsets[i-1])),name);
+    if(name!=='gulf/index.html'){
+      assert.ok(pos('<!-- TESTIMONIALS -->')<pos('<!-- KUN COMMERCE OS -->'),name);
+      assert.ok(pos('<!-- APPROACH -->')<pos('<!-- WHY -->'),name);
+    }
+    assert.equal(html.split('id="kun-system"').length-1,1,name);
+  }
+});
 test('blog links remain available without JavaScript',()=>{
   const s=fs.readFileSync(path.join(root,'blog/index.html'),'utf8');
   const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
