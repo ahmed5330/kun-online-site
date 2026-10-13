@@ -20,8 +20,8 @@ test('all intended pages have one self canonical, title, description and H1',()=
     for(const json of s.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g))JSON.parse(json[1]);
   }
 });
-test('phone and organization are consistent and old contact never remains',()=>{
-  for(const p of pages){const s=fs.readFileSync(p,'utf8');assert.match(s,/tel:\+201021231619/,p);assert.match(s,/wa\.me\/201021231619/,p);assert.match(s,/ميدان الأزهر/,p);}
+test('WhatsApp-only contact and organization are consistent',()=>{
+  for(const p of pages){const s=fs.readFileSync(p,'utf8');assert.doesNotMatch(s,/tel:|mailto:/,p);assert.match(s,/wa\.me\/201021231619/,p);assert.match(s,/ميدان الأزهر/,p);}
 });
 test('blog links remain available without JavaScript',()=>{
   const s=fs.readFileSync(path.join(root,'blog/index.html'),'utf8');
