@@ -23,6 +23,16 @@ test('all intended pages have one self canonical, title, description and H1',()=
 test('WhatsApp-only contact and organization are consistent',()=>{
   for(const p of pages){const s=fs.readFileSync(p,'utf8');assert.doesNotMatch(s,/tel:|mailto:/,p);assert.match(s,/wa\.me\/201021231619/,p);assert.match(s,/ميدان الأزهر/,p);}
 });
+test('public pages show WhatsApp contact without rendering the phone number',()=>{
+  for(const p of [...pages,path.join(root,'blog/article-template.html')]){
+    const s=fs.readFileSync(p,'utf8');
+    const withoutWhatsAppDestination=s.replaceAll('https://wa.me/201021231619','');
+    assert.doesNotMatch(withoutWhatsAppDestination,/01021231619/,p);
+    assert.doesNotMatch(s,/href="tel:/i,p);
+  }
+  const contact=fs.readFileSync(path.join(root,'contact/index.html'),'utf8');
+  assert.match(contact,/>تواصل عبر واتساب<|>افتح محادثة واتساب</);
+});
 test('blog links remain available without JavaScript',()=>{
   const s=fs.readFileSync(path.join(root,'blog/index.html'),'utf8');
   const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
