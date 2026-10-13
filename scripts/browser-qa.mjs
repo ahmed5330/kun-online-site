@@ -29,8 +29,8 @@ for(const width of [390,1440]){
     const cta=document.querySelector('.cta-band');
     return {afterCore:!!(system&&previous&&(previous.compareDocumentPosition(system)&Node.DOCUMENT_POSITION_FOLLOWING)),beforeFinalCta:!!(system&&cta&&(system.compareDocumentPosition(cta)&Node.DOCUMENT_POSITION_FOLLOWING))};
    });
-   assert.ok(placement.afterCore,\`\${width} \${url}: system interrupted main sections\`);
-   assert.ok(placement.beforeFinalCta,\`\${width} \${url}: system section is beyond final CTA\`);
+   assert.ok(placement.afterCore,`${width} ${url}: system interrupted main sections`);
+   assert.ok(placement.beforeFinalCta,`${width} ${url}: system section is beyond final CTA`);
   }
   if(url==='/system/'){
    assert.ok(await page.getByRole('heading',{name:/خلّي تشغيل متجرك/}).count());
