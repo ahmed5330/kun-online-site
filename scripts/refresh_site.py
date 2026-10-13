@@ -67,7 +67,7 @@ def refresh(optimize=False):
         rel=path.relative_to(ROOT).as_posix()
         if rel in ('404.html','blog/article-template.html') or '.git' in rel:continue
         url='/' if rel=='index.html' else '/'+rel[:-10] if rel.endswith('index.html') else '/'+rel[:-5]
-        changed='2026-10-13'
+        changed='2026-10-14' if url=='/system/' else '2026-10-13'
         if url.startswith('/blog/') and not url.endswith('/'):
             a=next((a for a in articles if a['slug']==url.split('/')[-1]),None)
             if a:changed=a.get('dateModified',a.get('dateISO',changed))[:10]
