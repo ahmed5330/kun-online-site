@@ -22,6 +22,16 @@ for(const width of [390,1440]){
   const actual=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,h1:document.querySelectorAll('h1').length,phone:!!document.querySelector('a[href="https://wa.me/201021231619"]')&&!document.querySelector('a[href^="tel:"]'),hiddenTitles:Array.from(document.querySelectorAll('h1,h2')).filter(el=>Number(getComputedStyle(el).opacity)===0).map(el=>el.textContent)}));
   assert.ok(actual.scroll<=actual.width+2,`${width} ${url}: overflow ${actual.scroll}`);
   assert.equal(actual.h1,1);assert.ok(actual.phone);assert.equal(actual.hiddenTitles.length,0);
+  if(url==='/'||url==='/en/'||url==='/gulf/'){
+   const placement=await page.evaluate(()=>{
+    const system=document.querySelector('#kun-system');
+    const previous=document.querySelector('#testimonials')||document.querySelector('#faq');
+    const cta=document.querySelector('.cta-band');
+    return {afterCore:!!(system&&previous&&(previous.compareDocumentPosition(system)&Node.DOCUMENT_POSITION_FOLLOWING)),beforeFinalCta:!!(system&&cta&&(system.compareDocumentPosition(cta)&Node.DOCUMENT_POSITION_FOLLOWING))};
+   });
+   assert.ok(placement.afterCore,\`\${width} \${url}: system interrupted main sections\`);
+   assert.ok(placement.beforeFinalCta,\`\${width} \${url}: system section is beyond final CTA\`);
+  }
   if(url==='/system/'){
    assert.ok(await page.getByRole('heading',{name:/خلّي تشغيل متجرك/}).count());
    assert.ok(await page.locator('a[href="https://app.kun-online.com/v2/"]').count()>0);
