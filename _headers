@@ -2,11 +2,17 @@
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Cache-Control: public, max-age=3600
-
-/blog/*
+  Cache-Control: public, max-age=300, must-revalidate
+/assets/*
   Cache-Control: public, max-age=86400
-
+/blog/images/*
+  Cache-Control: public, max-age=86400
 /sitemap.xml
   Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=300, must-revalidate
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+/blog/article-template.html
+  X-Robots-Tag: noindex, nofollow
+/scripts/*
+  X-Robots-Tag: noindex, nofollow

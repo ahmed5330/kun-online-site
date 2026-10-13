@@ -1,8 +1,8 @@
 {
   "project": {
     "name": "kun-online SEO Content Project",
-    "site": "https://www.kun-online.com",
-    "blog_base": "https://www.kun-online.com/blog",
+    "site": "https://kun-online.com",
+    "blog_base": "https://kun-online.com/blog",
     "language": "ar",
     "total_articles": 100,
     "status": "IN_PROGRESS",

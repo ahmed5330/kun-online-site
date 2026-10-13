@@ -244,7 +244,7 @@ Cloudflare Pages ينشر خلال ~دقيقة.
 # الخطوة 11 — Post-Publish QA
 
 انتظر دقيقتين ثم تحقق:
-- [ ] `https://www.kun-online.com/blog/{slug}` يفتح بلا 404
+- [ ] `https://kun-online.com/blog/{slug}` يفتح بلا 404
 - [ ] المقال يظهر في `/blog`
 - [ ] الصورة تظهر
 - [ ] الروابط الداخلية تعمل
@@ -289,7 +289,7 @@ Cloudflare Pages ينشر خلال ~دقيقة.
 **Internal Linking:** PASS
 **SEO QA:** PASS
 
-**Published URL:** https://www.kun-online.com/blog/...
+**Published URL:** https://kun-online.com/blog/...
 **Publication Status:** PUBLISHED
 
 **Total Published:** 18 / 100
@@ -325,3 +325,4 @@ STOP UNTIL NEXT DAILY RUN
 # ملخص القاعدة النهائية
 
 > **Research deeply → Produce one excellent article → Optimize → Create image → Publish → QA → Stop.**
+

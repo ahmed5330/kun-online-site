@@ -8,6 +8,7 @@ import anthropic
 import json
 import os
 import re
+import html
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -171,6 +172,7 @@ def main():
         "{{KEYWORDS}}": keywords + ", " + cat_label + ", تجارة إلكترونية مصر",
         "{{SLUG}}": slug,
         "{{DATE}}": date_iso,
+        "{{MODIFIED_DATE}}": date_iso,
         "{{DATE_DISPLAY}}": date_display,
         "{{CATEGORY}}": cat_id,
         "{{CATEGORY_LABEL}}": cat_label,
@@ -178,8 +180,17 @@ def main():
         "{{WORD_COUNT}}": str(word_count),
         "{{CONTENT}}": content_html,
     }
+    def fill_json(match):
+        value = match.group(2)
+        for key, replacement in replacements.items():
+            if key == "{{CONTENT}}":
+                continue
+            escaped = str(replacement) if key == "{{WORD_COUNT}}" else json.dumps(str(replacement), ensure_ascii=False)[1:-1]
+            value = value.replace(key, escaped)
+        return match.group(1) + value.replace("</", "<\\/") + match.group(3)
+    article_html = re.sub(r'(<script type="application/ld\+json">)([\s\S]*?)(</script>)', fill_json, article_html)
     for k, v in replacements.items():
-        article_html = article_html.replace(k, v)
+        article_html = article_html.replace(k, v if k == "{{CONTENT}}" else html.escape(str(v), quote=True))
     
     # حفظ ملف المقالة
     article_file = BLOG_DIR / f"{slug}.html"
@@ -211,21 +222,10 @@ def main():
     print("🎉 تم بنجاح!")
 
 def update_sitemap(articles):
-    """تحديث sitemap.xml بالمقالات الجديدة"""
-    sitemap = '''<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.kun-online.com/</loc><priority>1.0</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.kun-online.com/en</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.kun-online.com/gulf</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.kun-online.com/blog</loc><priority>0.8</priority><changefreq>daily</changefreq></url>
-'''
-    for art in articles:
-        sitemap += f'  <url><loc>https://www.kun-online.com/blog/{art["slug"]}</loc><lastmod>{art["dateISO"][:10]}</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>\n'
-    
-    sitemap += '</urlset>'
-    
-    sitemap_file = SITE_ROOT / "sitemap.xml"
-    sitemap_file.write_text(sitemap, encoding="utf-8")
+    # Shared site refresh preserves service pages and server-rendered blog links.
+    import subprocess, sys
+    subprocess.run([sys.executable, str(SITE_ROOT / "scripts" / "refresh_site.py")], check=True)
 
 if __name__ == "__main__":
     main()
+
