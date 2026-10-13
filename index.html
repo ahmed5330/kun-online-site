@@ -411,13 +411,15 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
 /* Readable headings, pricing contrast and keyboard navigation. */
 .highlight-box :is(h2,h3,h4){font-family:Tajawal,system-ui,sans-serif;font-size:18px;line-height:1.5;color:var(--lime);margin-bottom:8px}.pt-h{color:#d4dce8}.tc h3{color:var(--lime);font-family:Tajawal,system-ui,sans-serif;font-size:22px;margin:0 0 12px}.hero-stats .sn{font-size:clamp(22px,4vw,38px)}
 </style><!-- shared-css:end -->
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://kun-online.com/#organization","name":"كن أونلاين","alternateName":"Kun Online","url":"https://kun-online.com/","address":{"@type":"PostalAddress","addressCountry":"EG","addressRegion":"أسيوط","addressLocality":"أسيوط","streetAddress":"ميدان الأزهر"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/201021231619","description":"WhatsApp messages only; no voice calls."},"sameAs":["https://www.facebook.com/KunOnlineAgency","https://www.instagram.com/kunonlin/"]}</script></head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://kun-online.com/#organization","name":"كن أونلاين","alternateName":"Kun Online","url":"https://kun-online.com/","address":{"@type":"PostalAddress","addressCountry":"EG","addressRegion":"أسيوط","addressLocality":"أسيوط","streetAddress":"ميدان الأزهر"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/201021231619","description":"WhatsApp messages only; no voice calls."},"sameAs":["https://www.facebook.com/KunOnlineAgency","https://www.instagram.com/kunonlin/"]}</script><link rel="stylesheet" href="/assets/system.css">
+</head>
 <body>
 <!-- NAV -->
 <nav id="nav">
   <div class="logo">كن <em>أونلاين</em></div>
   <ul class="nav-links">
     <li><a href="/services/">الخدمات</a></li>
+    <li><a href="/system/">السيستم</a></li>
     <li><a href="#approach">منهجيتنا</a></li>
     <li><a href="/pricing/">التسعير</a></li>
     <li><a href="#expand">التوسع</a></li>
@@ -436,6 +438,7 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
 <!-- MOBILE DRAWER -->
 <nav class="nav-drawer" id="drawer" role="navigation" aria-label="القائمة الرئيسية">
   <a href="/services/" onclick="closeMenu()">الخدمات</a>
+  <a href="/system/" onclick="closeMenu()">السيستم</a>
   <a href="#approach" onclick="closeMenu()">منهجيتنا</a>
   <a href="/pricing/" onclick="closeMenu()">التسعير</a>
   <a href="#expand" onclick="closeMenu()">التوسع</a>
@@ -563,6 +566,46 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
       <p class="srv-detail">بنعمل تحليل شامل لكل البيزنس من كل الجوانب ونقدم توصيات واضحة وقابلة للتنفيذ الفوري. مش استشارة تيوري على ورق، دعم عملي حقيقي بيشرف على التنفيذ ويتابع النتائج.</p>
       <div class="chips"><span>تحليل 360°</span><span>خطة تطوير</span><span>إشراف تنفيذي</span></div>
     </article>
+  </div>
+</section>
+
+
+<!-- KUN COMMERCE OS -->
+<section class="kos-feature" id="kun-system" aria-labelledby="kun-system-title">
+  <div class="kos-feature-wrap">
+    <div class="kos-feature-grid">
+      <div>
+        <span class="kos-tag">سيستم كن أونلاين | Commerce OS</span>
+        <h2 id="kun-system-title">كل عمليات متجرك <em>في سيستم واحد</em></h2>
+        <p class="kos-lead">إدارة الطلبات وخدمة العملاء والمخزون والطباعة والشحن والحسابات مش لازم تكون في أماكن متفرقة. كن أونلاين بيجمع مسار التشغيل في لوحة واحدة، من دخول الأوردر لحد التسليم أو المرتجع.</p>
+        <div class="kos-tags"><span>الطلبات وخدمة العملاء</span><span>المخزون والباركود</span><span>الشحن والمرتجعات</span><span>المالية والمحفظة</span><span>التكاملات والتحليلات</span></div>
+        <div class="kos-actions">
+          <a href="/system/" class="kos-btn kos-btn-primary">اكتشف مميزات السيستم ←</a>
+          <a href="https://app.kun-online.com/v2/" class="kos-btn kos-btn-secondary" target="_blank" rel="noopener noreferrer">الدخول إلى السيستم</a>
+        </div>
+        <p class="kos-note">إتاحة الأقسام والتكاملات تختلف حسب تفعيل المتجر وصلاحيات الفريق.</p>
+      </div>
+      <div class="kos-window" aria-label="عرض توضيحي لمسار تشغيل الأوردر">
+        <div class="kos-window-top"><strong>كن أونلاين — لوحة التشغيل</strong><span class="kos-pill">تصور توضيحي</span></div>
+        <div class="kos-window-inner">
+          <div class="kos-metrics">
+            <div class="kos-metric"><small>الطلبات</small><strong>تتبّع الحالات</strong></div>
+            <div class="kos-metric"><small>المخزون</small><strong>حركة القطع</strong></div>
+            <div class="kos-metric"><small>الحسابات</small><strong>تقارير وحركات</strong></div>
+          </div>
+          <div class="kos-flow"><div class="kos-flow-label">رحلة الأوردر</div>
+            <div class="kos-flow-steps"><span>طلب جديد</span><i aria-hidden="true">←</i><span>تأكيد</span><i aria-hidden="true">←</i><span>طباعة</span><i aria-hidden="true">←</i><span>شحن</span><i aria-hidden="true">←</i><span>تسليم / مرتجع</span></div>
+          </div>
+        </div>
+        <div class="kos-window-foot">شكل توضيحي لمسار العمل، وليس بيانات متجر حقيقية.</div>
+      </div>
+    </div>
+    <div class="kos-mini-grid" aria-label="أبرز وظائف السيستم">
+      <div class="kos-mini"><strong>📦 إدارة الأوردرات</strong><p>تنظيم الطلبات وحالاتها من أول الاستقبال.</p></div>
+      <div class="kos-mini"><strong>🏷️ المخزون</strong><p>تتبع المنتجات والقطع وربطها بالطلبات.</p></div>
+      <div class="kos-mini"><strong>🚚 الشحن</strong><p>متابعة البوليصات والمرتجعات.</p></div>
+      <div class="kos-mini"><strong>📊 الأرقام</strong><p>الحسابات والمحفظة والتحليلات في لوحة واحدة.</p></div>
+    </div>
   </div>
 </section>
 
@@ -828,6 +871,7 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
     <div>
       <h2 class="fct">الخدمات</h2>
       <ul class="fl">
+        <li><a href="/system/">سيستم كن أونلاين</a></li>
         <li><a href="/services/ecommerce-consulting/">دراسة السوق</a></li>
         <li><a href="/services/ecommerce-store-development/">بناء المتجر</a></li>
         <li><a href="/services/ecommerce-ads/">إدارة الإعلانات</a></li>
