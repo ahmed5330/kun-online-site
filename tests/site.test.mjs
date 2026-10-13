@@ -47,6 +47,21 @@ test('landing pages keep contact details in footer, not above navigation',()=>{
     assert.match(footer,relativePath==='en/index.html'?/Egypt — Asyut — Al-Azhar Square/:/مصر — أسيوط — ميدان الأزهر/,relativePath);
   }
 });
+test('Kun Commerce OS marketing content is reachable and consistent',()=>{
+  const system=fs.readFileSync(path.join(root,'system/index.html'),'utf8');
+  assert.match(system,/rel="canonical" href="https:\/\/kun-online\.com\/system\/"/);
+  assert.match(system,/https:\/\/app\.kun-online\.com\/v2\//);
+  for(const p of ['index.html','en/index.html','gulf/index.html']){
+    const html=fs.readFileSync(path.join(root,p),'utf8');
+    assert.match(html,/id="kun-system"/,p);
+    assert.match(html,/href="\/system\/"/,p);
+    assert.match(html,/href="\/assets\/system\.css"/,p);
+    const footer=html.split('<footer>')[1]||'';
+    assert.match(footer,/href="\/system\/"/,p);
+  }
+  assert.match(fs.readFileSync(path.join(root,'_redirects'),'utf8'),/\/system \/system\/ 301/);
+  assert.match(fs.readFileSync(path.join(root,'sitemap.xml'),'utf8'),/https:\/\/kun-online\.com\/system\//);
+});
 test('blog links remain available without JavaScript',()=>{
   const s=fs.readFileSync(path.join(root,'blog/index.html'),'utf8');
   const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));

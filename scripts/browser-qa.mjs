@@ -14,7 +14,7 @@ try{
 for(const width of [390,1440]){
  const page=await browser.newPage({viewport:{width,height:900}});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- for(const url of ['/','/blog/','/blog/essential-ecommerce-glossary','/services/','/services/ecommerce-management/','/pricing/','/contact/','/en/','/gulf/']){
+ for(const url of ['/','/blog/','/blog/essential-ecommerce-glossary','/services/','/services/ecommerce-management/','/pricing/','/contact/','/system/','/en/','/gulf/']){
   const response=await page.goto(base+url,{waitUntil:'domcontentloaded'});
   await page.locator('h1').waitFor();
   await page.evaluate(()=>document.fonts.ready);
@@ -22,6 +22,11 @@ for(const width of [390,1440]){
   const actual=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,h1:document.querySelectorAll('h1').length,phone:!!document.querySelector('a[href="https://wa.me/201021231619"]')&&!document.querySelector('a[href^="tel:"]'),hiddenTitles:Array.from(document.querySelectorAll('h1,h2')).filter(el=>Number(getComputedStyle(el).opacity)===0).map(el=>el.textContent)}));
   assert.ok(actual.scroll<=actual.width+2,`${width} ${url}: overflow ${actual.scroll}`);
   assert.equal(actual.h1,1);assert.ok(actual.phone);assert.equal(actual.hiddenTitles.length,0);
+  if(url==='/system/'){
+   assert.ok(await page.getByRole('heading',{name:/خلّي تشغيل متجرك/}).count());
+   assert.ok(await page.locator('a[href="https://app.kun-online.com/v2/"]').count()>0);
+   assert.equal(await page.locator('.kos-card').count(),12);
+  }
   if(url==='/blog/'){
    assert.equal(await page.locator('.blog-card').count(),11);
    await page.locator('#blog-search').fill('مصطلحات');

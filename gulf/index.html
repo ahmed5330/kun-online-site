@@ -256,7 +256,8 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
 /* Readable headings, pricing contrast and keyboard navigation. */
 .highlight-box :is(h2,h3,h4){font-family:Tajawal,system-ui,sans-serif;font-size:18px;line-height:1.5;color:var(--lime);margin-bottom:8px}.pt-h{color:#d4dce8}.tc h3{color:var(--lime);font-family:Tajawal,system-ui,sans-serif;font-size:22px;margin:0 0 12px}.hero-stats .sn{font-size:clamp(22px,4vw,38px)}
 </style><!-- shared-css:end -->
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://kun-online.com/#organization","name":"كن أونلاين","alternateName":"Kun Online","url":"https://kun-online.com/","address":{"@type":"PostalAddress","addressCountry":"EG","addressRegion":"أسيوط","addressLocality":"أسيوط","streetAddress":"ميدان الأزهر"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/201021231619","description":"WhatsApp messages only; no voice calls."},"sameAs":["https://www.facebook.com/KunOnlineAgency","https://www.instagram.com/kunonlin/"]}</script></head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://kun-online.com/#organization","name":"كن أونلاين","alternateName":"Kun Online","url":"https://kun-online.com/","address":{"@type":"PostalAddress","addressCountry":"EG","addressRegion":"أسيوط","addressLocality":"أسيوط","streetAddress":"ميدان الأزهر"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/201021231619","description":"WhatsApp messages only; no voice calls."},"sameAs":["https://www.facebook.com/KunOnlineAgency","https://www.instagram.com/kunonlin/"]}</script><link rel="stylesheet" href="/assets/system.css">
+</head>
 <body>
 <!-- NAV -->
 <nav id="nav">
@@ -264,6 +265,7 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
   <ul class="nav-links">
     <li><a href="#why-gulf">لماذا الخليج؟</a></li>
     <li><a href="/services/">خدماتنا</a></li>
+    <li><a href="/system/">السيستم</a></li>
     <li><a href="#packages">الباقات</a></li>
     <li><a href="#faq">الأسئلة</a></li>
     <li><a href="https://kun-online.com/blog">المدونة</a></li>
@@ -282,6 +284,7 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
 <nav class="nav-drawer" id="drawer">
   <a href="#why-gulf" onclick="closeMenu()">لماذا الخليج؟</a>
   <a href="/services/" onclick="closeMenu()">خدماتنا</a>
+  <a href="/system/" onclick="closeMenu()">السيستم</a>
   <a href="#packages" onclick="closeMenu()">الباقات</a>
   <a href="#faq" onclick="closeMenu()">الأسئلة الشائعة</a>
   <a href="https://kun-online.com" onclick="closeMenu()">🇪🇬 النسخة المصرية</a>
@@ -427,6 +430,18 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
   </div>
 </section>
 
+<!-- KUN COMMERCE OS -->
+<section class="kos-feature" id="kun-system" aria-labelledby="kun-system-title">
+  <div class="kos-feature-wrap kos-feature-grid">
+    <div><span class="kos-tag">سيستم كن أونلاين | Commerce OS</span><h2 id="kun-system-title">شغّل متجرك <em>من مكان واحد</em></h2><p class="kos-lead">طلبات المتجر والمخزون والطباعة والشحن وخدمة العملاء والحسابات والمحفظة في منظومة واحدة تساعد فريقك في التشغيل اليومي.</p>
+      <div class="kos-tags"><span>الطلبات وخدمة العملاء</span><span>المخزون</span><span>الشحن والمرتجعات</span><span>المالية والمحفظة</span><span>التكاملات</span></div>
+      <div class="kos-actions"><a class="kos-btn kos-btn-primary" href="/system/">استكشف مميزات السيستم ←</a><a class="kos-btn kos-btn-secondary" href="https://app.kun-online.com/v2/" target="_blank" rel="noopener noreferrer">الدخول إلى السيستم</a></div>
+      <p class="kos-note">تفعيل الأقسام والتكاملات يختلف بحسب إعداد المتجر والصلاحيات.</p>
+    </div>
+    <div class="kos-window"><div class="kos-window-top"><strong>كن أونلاين — لوحة التشغيل</strong><span class="kos-pill">تصور توضيحي</span></div><div class="kos-window-inner"><div class="kos-metrics"><div class="kos-metric"><small>الطلبات</small><strong>متابعة الحالات</strong></div><div class="kos-metric"><small>المخزون</small><strong>حركة القطع</strong></div><div class="kos-metric"><small>المالية</small><strong>تقارير وحركات</strong></div></div><div class="kos-flow"><div class="kos-flow-label">رحلة الأوردر</div><div class="kos-flow-steps"><span>طلب جديد</span><i aria-hidden="true">←</i><span>تأكيد</span><i aria-hidden="true">←</i><span>طباعة</span><i aria-hidden="true">←</i><span>شحن</span><i aria-hidden="true">←</i><span>تسليم / مرتجع</span></div></div></div><div class="kos-window-foot">تصور توضيحي لمسار العمل، وليس بيانات متجر حقيقية.</div></div>
+  </div>
+</section>
+
 <!-- PACKAGES -->
 <section class="sec pkgs-sec" id="packages" aria-labelledby="pkg-h">
   <div class="fi2">
@@ -557,6 +572,7 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
     <div>
       <h2 class="fct">خدماتنا</h2>
       <ul class="fl">
+        <li><a href="/system/">سيستم كن أونلاين</a></li>
         <li><a href="/services/">دراسة السوق الخليجي</a></li>
         <li><a href="/services/ecommerce-store-development/">بناء المتجر</a></li>
         <li><a href="/services/">إعلانات سناب شات</a></li>
