@@ -25,6 +25,15 @@ def article_cards(articles):
     return ''.join(cards)
 
 def refresh(optimize=False):
+    # Keep critical shared styles in the three landing pages in sync.
+    shared_css=(ROOT/'assets/site.css').read_text(encoding='utf-8')
+    for home in ('index.html','en/index.html','gulf/index.html'):
+        page=ROOT/home
+        source=page.read_text(encoding='utf-8')
+        source=re.sub(r'<!-- shared-css:start -->[\s\S]*?<!-- shared-css:end -->',
+                      lambda _: '<!-- shared-css:start --><style>'+shared_css+'</style><!-- shared-css:end -->',
+                      source)
+        page.write_text(source,encoding='utf-8')
     articles=json.loads((ROOT/'blog/articles.json').read_text(encoding='utf-8'))
     if optimize:
         from PIL import Image
