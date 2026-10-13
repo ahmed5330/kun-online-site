@@ -326,13 +326,15 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
 /* Readable headings, pricing contrast and keyboard navigation. */
 .highlight-box :is(h2,h3,h4){font-family:Tajawal,system-ui,sans-serif;font-size:18px;line-height:1.5;color:var(--lime);margin-bottom:8px}.pt-h{color:#d4dce8}.tc h3{color:var(--lime);font-family:Tajawal,system-ui,sans-serif;font-size:22px;margin:0 0 12px}.hero-stats .sn{font-size:clamp(22px,4vw,38px)}
 </style><!-- shared-css:end -->
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://kun-online.com/#organization","name":"كن أونلاين","alternateName":"Kun Online","url":"https://kun-online.com/","address":{"@type":"PostalAddress","addressCountry":"EG","addressRegion":"أسيوط","addressLocality":"أسيوط","streetAddress":"ميدان الأزهر"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/201021231619","description":"WhatsApp messages only; no voice calls."},"sameAs":["https://www.facebook.com/KunOnlineAgency","https://www.instagram.com/kunonlin/"]}</script></head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://kun-online.com/#organization","name":"كن أونلاين","alternateName":"Kun Online","url":"https://kun-online.com/","address":{"@type":"PostalAddress","addressCountry":"EG","addressRegion":"أسيوط","addressLocality":"أسيوط","streetAddress":"ميدان الأزهر"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/201021231619","description":"WhatsApp messages only; no voice calls."},"sameAs":["https://www.facebook.com/KunOnlineAgency","https://www.instagram.com/kunonlin/"]}</script><link rel="stylesheet" href="/assets/system.css">
+</head>
 <body>
 <!-- NAV -->
 <nav id="nav">
   <div class="logo">Kun <em>Online</em></div>
   <ul class="nav-links">
     <li><a href="/services/">Services</a></li>
+    <li><a href="/system/">System</a></li>
     <li><a href="#approach">Our Approach</a></li>
     <li><a href="/pricing/">Pricing</a></li>
     <li><a href="#expand">Expansion</a></li>
@@ -351,6 +353,7 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
 <!-- MOBILE DRAWER -->
 <nav class="nav-drawer" id="drawer" role="navigation" aria-label="Main Navigation">
   <a href="/services/" onclick="closeMenu()">Services</a>
+  <a href="/system/" onclick="closeMenu()">System</a>
   <a href="#approach" onclick="closeMenu()">Our Approach</a>
   <a href="/pricing/" onclick="closeMenu()">Pricing</a>
   <a href="#expand" onclick="closeMenu()">Gulf Expansion</a>
@@ -477,6 +480,32 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
       <p class="srv-detail">We conduct a comprehensive analysis of your entire business across all dimensions — marketing, operations, financial, and technical — and provide clear, immediately actionable recommendations. Not theoretical consulting on paper, but real practical support that oversees execution and monitors results.</p>
       <div class="chips"><span>360° Analysis</span><span>Development Plan</span><span>Executive Oversight</span></div>
     </article>
+  </div>
+</section>
+
+
+<!-- KUN COMMERCE OS -->
+<section class="kos-feature" id="kun-system" aria-labelledby="kun-system-title">
+  <div class="kos-feature-wrap kos-feature-grid">
+    <div>
+      <span class="kos-tag">Kun Online Commerce OS</span>
+      <h2 id="kun-system-title">Keep your store operations <em>connected</em></h2>
+      <p class="kos-lead">Orders, inventory, fulfillment, shipping, finance and integrations in one workspace, with a clearer workflow for your team.</p>
+      <div class="kos-tags"><span>Orders and service</span><span>Inventory and barcodes</span><span>Shipping and returns</span><span>Finance and wallet</span><span>Integrations</span></div>
+      <div class="kos-actions">
+        <a class="kos-btn kos-btn-primary" href="/system/">Explore system features ←</a>
+        <a class="kos-btn kos-btn-secondary" href="https://app.kun-online.com/v2/" target="_blank" rel="noopener noreferrer">Open Kun Online</a>
+      </div>
+      <p class="kos-note">Available modules vary by store setup and team access.</p>
+    </div>
+    <div class="kos-window">
+      <div class="kos-window-top"><strong>Kun Online Commerce OS</strong><span class="kos-pill">Illustrative view</span></div>
+      <div class="kos-window-inner">
+        <div class="kos-metrics"><div class="kos-metric"><small>Orders</small><strong>Track progress</strong></div><div class="kos-metric"><small>Inventory</small><strong>Manage items</strong></div><div class="kos-metric"><small>Finance</small><strong>Track movements</strong></div></div>
+        <div class="kos-flow"><div class="kos-flow-label">Order journey</div><div class="kos-flow-steps"><span>New order</span><i aria-hidden="true">←</i><span>Confirm</span><i aria-hidden="true">←</i><span>Pack</span><i aria-hidden="true">←</i><span>Ship</span><i aria-hidden="true">←</i><span>Deliver / return</span></div></div>
+      </div>
+      <div class="kos-window-foot">Illustrative workflow; not live store data.</div>
+    </div>
   </div>
 </section>
 
@@ -742,6 +771,7 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
     <div>
       <h2 class="fct">Services</h2>
       <ul class="fl">
+        <li><a href="/system/">Kun Online System</a></li>
         <li><a href="/services/">Market Research</a></li>
         <li><a href="/services/">Store Development</a></li>
         <li><a href="/services/">Ads Management</a></li>
