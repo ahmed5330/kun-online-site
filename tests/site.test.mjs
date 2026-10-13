@@ -33,6 +33,20 @@ test('public pages show WhatsApp contact without rendering the phone number',()=
   const contact=fs.readFileSync(path.join(root,'contact/index.html'),'utf8');
   assert.match(contact,/>تواصل عبر واتساب<|>افتح محادثة واتساب</);
 });
+test('landing pages keep contact details in footer, not above navigation',()=>{
+  for(const relativePath of ['index.html','en/index.html','gulf/index.html']){
+    const html=fs.readFileSync(path.join(root,relativePath),'utf8');
+    assert.match(html,/<body>\s*<!-- NAV -->/,relativePath);
+    assert.doesNotMatch(html,/site-phone-strip/,relativePath);
+    const footer=html.split('<footer>')[1]?.split('</footer>')[0];
+    assert.ok(footer,relativePath);
+    assert.match(footer,/https:\/\/wa\.me\/201021231619/,relativePath);
+    assert.match(footer,/href="\/services\//,relativePath);
+    assert.match(footer,/href="\/about\//,relativePath);
+    assert.match(footer,/href="\/contact\//,relativePath);
+    assert.match(footer,relativePath==='en/index.html'?/Egypt — Asyut — Al-Azhar Square/:/مصر — أسيوط — ميدان الأزهر/,relativePath);
+  }
+});
 test('blog links remain available without JavaScript',()=>{
   const s=fs.readFileSync(path.join(root,'blog/index.html'),'utf8');
   const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
