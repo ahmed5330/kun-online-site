@@ -212,3 +212,20 @@ test('order confirmation service distinguishes fulfillment states and agency vs 
   assert.match(html,/href="\/pricing\/"/);
   assert.match(html,/https:\/\/wa\.me\/201021231619/);
 });
+
+test('SEO-23 ads service separates advertising metrics from delivered-order profitability',()=>{
+  const html=fs.readFileSync(path.join(root,'services/ecommerce-ads/index.html'),'utf8');
+  assert.match(html,/<title>إدارة إعلانات المتاجر الإلكترونية في مصر \| كن أونلاين<\/title>/);
+  assert.match(html,/rel="canonical" href="https:\/\/kun-online\.com\/services\/ecommerce-ads\/"/);
+  assert.match(html,/<h1>إدارة إعلانات المتاجر الإلكترونية<\/h1>/);
+  for(const term of ['Meta','TikTok','تكلفة الطلب المؤكد','تكلفة الطلب المُسلّم','ROAS','هامش المساهمة','CAC']){
+    assert.ok(html.includes(term),'missing ads-service term: '+term);
+  }
+  assert.match(html,/إزاي نقيس تكلفة الطلب والعائد الإعلاني والربحية؟/);
+  assert.match(html,/خدمة تشغيل وتأكيد طلبات مستقلة/);
+  for(const href of ['/blog/customer-funnel-guide','/blog/essential-ecommerce-glossary','/services/order-management/','/pricing/','/system/']){
+    assert.ok(html.includes('href="'+href+'"'),'missing internal link '+href);
+  }
+  assert.match(html,/href="https:\/\/wa\.me\/201021231619"/);
+  assert.doesNotMatch(html,/ضمان مبيعات|مبيعات مضمونة|أرباح مضمونة/);
+});
