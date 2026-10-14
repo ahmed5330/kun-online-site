@@ -1,0 +1,361 @@
+{
+  "project": "Kun Online public marketing website",
+  "generatedOn": "2026-10-14",
+  "source": "GitHub page titles, copy and existing routes; demand metrics unverified without Search Console/Semrush",
+  "metricsAvailable": false,
+  "fields": {
+    "intent": "commercial comparison, transactional request, informational learning, navigational brand",
+    "priority": "P0=direct acquisition or technical core; P1=supporting; P2=long term"
+  },
+  "pages": [
+    {
+      "path": "/",
+      "primary": "بناء وإدارة المتاجر الإلكترونية",
+      "secondary": [
+        "وكالة تجارة إلكترونية",
+        "إدارة متجر إلكتروني بالكامل",
+        "شركة إدارة متاجر إلكترونية"
+      ],
+      "market": "EG+GCC",
+      "pillar": "agency",
+      "intent": "commercial",
+      "priority": "P0",
+      "notes": "الصفحة الرئيسية تجمع الوكالة؛ لا تستهدف كلمة برنامج إدارة الطلبات الأساسية."
+    },
+    {
+      "path": "/en/",
+      "primary": "ecommerce agency in Egypt",
+      "secondary": [
+        "online store management Egypt",
+        "ecommerce operations agency",
+        "ecommerce marketing services"
+      ],
+      "market": "EN/EG+GCC",
+      "pillar": "agency",
+      "intent": "commercial",
+      "priority": "P1",
+      "notes": "ترجمة ملائمة للجمهور الناطق بالإنجليزية؛ لا تستهدف نفس عبارات الصفحة العربية لفظيًا."
+    },
+    {
+      "path": "/gulf/",
+      "primary": "وكالة تجارة إلكترونية في الخليج",
+      "secondary": [
+        "إدارة المتاجر الإلكترونية في السعودية",
+        "وكالة تجارة إلكترونية الإمارات",
+        "إعلانات سناب شات للمتاجر"
+      ],
+      "market": "GCC",
+      "pillar": "agency",
+      "intent": "commercial",
+      "priority": "P1",
+      "notes": "صفحة إقليمية عامة؛ افصل صفحات الدول فقط عند توافر خدمة ومحتوى محلي أصيل."
+    },
+    {
+      "path": "/services/",
+      "primary": "خدمات إدارة المتاجر الإلكترونية",
+      "secondary": [
+        "خدمات التجارة الإلكترونية",
+        "بناء وإدارة المتاجر",
+        "التسويق وتشغيل المتاجر"
+      ],
+      "market": "EG+GCC",
+      "pillar": "agency",
+      "intent": "commercial",
+      "priority": "P1",
+      "notes": "صفحة فهرس تدعم صفحات الخدمات التفصيلية، لا تنافسها على عبارات محددة."
+    },
+    {
+      "path": "/services/ecommerce-management/",
+      "primary": "إدارة المتاجر الإلكترونية في مصر",
+      "secondary": [
+        "شركة إدارة متجر إلكتروني",
+        "إدارة متجر إلكتروني بالكامل",
+        "تشغيل المتاجر الإلكترونية"
+      ],
+      "market": "EG",
+      "pillar": "agency",
+      "intent": "transactional",
+      "priority": "P0",
+      "notes": "وضح نطاق العمل والمسؤوليات والمخرجات والتقارير الحقيقية."
+    },
+    {
+      "path": "/services/ecommerce-store-development/",
+      "primary": "تصميم متجر إلكتروني في مصر",
+      "secondary": [
+        "إنشاء متجر إلكتروني",
+        "شركة تصميم متجر إلكتروني",
+        "بناء متجر شوبيفاي وسلة"
+      ],
+      "market": "EG",
+      "pillar": "agency",
+      "intent": "transactional",
+      "priority": "P1",
+      "notes": "التركيز على الخدمة وخطوات التسليم لا برنامج إدارة المتاجر."
+    },
+    {
+      "path": "/services/ecommerce-ads/",
+      "primary": "إدارة إعلانات المتاجر الإلكترونية",
+      "secondary": [
+        "إدارة إعلانات فيسبوك للمتاجر",
+        "إعلانات ميتا للمتاجر",
+        "تكلفة الطلب من الإعلانات"
+      ],
+      "market": "EG",
+      "pillar": "agency",
+      "intent": "transactional",
+      "priority": "P1",
+      "notes": "ميز بين الخدمة المدفوعة وبين أدوات التقارير داخل السيستم."
+    },
+    {
+      "path": "/services/order-management/",
+      "primary": "خدمة تأكيد الطلبات للمتاجر الإلكترونية",
+      "secondary": [
+        "شركة تأكيد أوردرات",
+        "خدمة عملاء المتاجر الإلكترونية",
+        "متابعة الطلبات والشحن"
+      ],
+      "market": "EG",
+      "pillar": "agency",
+      "intent": "transactional",
+      "priority": "P0",
+      "notes": "نية تعاقد فريق لتأكيد الطلبات، تختلف عن صفحة برنامج إدارة الطلبات القادمة."
+    },
+    {
+      "path": "/services/ecommerce-consulting/",
+      "primary": "استشارات التجارة الإلكترونية",
+      "secondary": [
+        "استشاري تجارة إلكترونية",
+        "دراسة سوق متجر إلكتروني",
+        "استشارة تشغيل متجر"
+      ],
+      "market": "EG+GCC",
+      "pillar": "agency",
+      "intent": "transactional",
+      "priority": "P1",
+      "notes": "حدد مخرجات الدراسة وحدود الخدمة والأمثلة الحقيقية."
+    },
+    {
+      "path": "/system/",
+      "primary": "برنامج إدارة المتاجر الإلكترونية",
+      "secondary": [
+        "سيستم إدارة متجر إلكتروني",
+        "برنامج إدارة الطلبات والمخزون",
+        "كن أونلاين سيستم"
+      ],
+      "market": "EG",
+      "pillar": "software",
+      "intent": "transactional",
+      "priority": "P0",
+      "notes": "نية استخدام/شراء منتج برمجي؛ وظائف النظام فقط بعد التحقق الفعلي من استخدامها."
+    },
+    {
+      "path": "/pricing/",
+      "primary": "تكلفة إدارة المتاجر الإلكترونية",
+      "secondary": [
+        "أسعار إدارة المتاجر الإلكترونية",
+        "تكلفة خدمة تأكيد الطلبات",
+        "تكلفة تشغيل متجر إلكتروني"
+      ],
+      "market": "EG",
+      "pillar": "agency",
+      "intent": "commercial",
+      "priority": "P0",
+      "notes": "شرح معايير التسعير والشروط، ولا تخلط بتسعير اشتراك السيستم."
+    },
+    {
+      "path": "/about/",
+      "primary": "عن كن أونلاين",
+      "secondary": [
+        "شركة كن أونلاين",
+        "وكالة كن أونلاين",
+        "فريق كن أونلاين"
+      ],
+      "market": "EG+GCC",
+      "pillar": "brand",
+      "intent": "navigational",
+      "priority": "P2",
+      "notes": "إشارات الثقة والمعلومات القابلة للتحقق."
+    },
+    {
+      "path": "/contact/",
+      "primary": "التواصل مع كن أونلاين",
+      "secondary": [
+        "واتساب كن أونلاين",
+        "تواصل مع فريق كن أونلاين"
+      ],
+      "market": "EG+GCC",
+      "pillar": "brand",
+      "intent": "navigational",
+      "priority": "P2",
+      "notes": "واتساب فقط دون إظهار رقم هاتف في النص."
+    },
+    {
+      "path": "/blog/",
+      "primary": "مدونة التجارة الإلكترونية",
+      "secondary": [
+        "تعلم التجارة الإلكترونية",
+        "أدلة إدارة المتاجر الإلكترونية",
+        "مقالات التجارة الإلكترونية"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "صفحة فهرس لمجموعات محتوى ذات صلة بالشراء والعمليات."
+    },
+    {
+      "path": "/blog/brand-vs-product-business",
+      "primary": "متى تبدأ بناء براند",
+      "secondary": [
+        "الفرق بين البراند والمنتج",
+        "تكلفة بناء براند",
+        "هوية المتجر الإلكتروني"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P2",
+      "notes": "ربط طبيعي بخدمة بناء المتاجر والهوية."
+    },
+    {
+      "path": "/blog/common-ecommerce-beginner-mistakes",
+      "primary": "أخطاء التجارة الإلكترونية للمبتدئين",
+      "secondary": [
+        "أخطاء بدء متجر إلكتروني",
+        "مشاكل البيع أونلاين",
+        "نصائح التجارة الإلكترونية"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P2",
+      "notes": "رابط إلى دليل البداية والتكاليف."
+    },
+    {
+      "path": "/blog/customer-funnel-guide",
+      "primary": "تحسين معدل تحويل المتجر الإلكتروني",
+      "secondary": [
+        "تحليل رحلة العميل",
+        "CRO للمتاجر الإلكترونية",
+        "تسرب خطوات الشراء"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "ربط بمراجعة الإعلانات والتشغيل عند وجود مثال عملي."
+    },
+    {
+      "path": "/blog/ecommerce-complete-journey-guide",
+      "primary": "كيفية بدء التجارة الإلكترونية في مصر",
+      "secondary": [
+        "بدء متجر إلكتروني من الصفر",
+        "من الفكرة لأول طلب",
+        "خطوات التجارة الإلكترونية"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "صفحة دليل طويل تجمع الروابط الداخلية الخاصة بالمبتدئين."
+    },
+    {
+      "path": "/blog/ecommerce-evolution-history",
+      "primary": "تطور التجارة الإلكترونية",
+      "secondary": [
+        "تاريخ التجارة الإلكترونية",
+        "مستقبل التجارة الإلكترونية",
+        "نمو التسوق الإلكتروني"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P2",
+      "notes": "الأولوية أقل من المحتوى الذي يحل مشاكل العملاء حاليًا."
+    },
+    {
+      "path": "/blog/ecommerce-funnel-explained",
+      "primary": "قمع المبيعات في التجارة الإلكترونية",
+      "secondary": [
+        "funnel ecommerce",
+        "مراحل رحلة العميل",
+        "قمع التحويل للمتاجر"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "تجنب منافسة مقال CRO؛ هنا تعريف المراحل، وهناك تحليل التسرب."
+    },
+    {
+      "path": "/blog/essential-ecommerce-glossary",
+      "primary": "مصطلحات التجارة الإلكترونية",
+      "secondary": [
+        "CAC وROAS وAOV",
+        "هامش المساهمة",
+        "مؤشرات أداء المتاجر الإلكترونية"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "مرجع تعليمي يربط بصفحة الحسابات دون ادعاء أرقام أداء."
+    },
+    {
+      "path": "/blog/owned-vs-rented-channels",
+      "primary": "متجر إلكتروني أم منصات البيع",
+      "secondary": [
+        "البيع على فيسبوك أم متجر إلكتروني",
+        "مميزات المتجر المستقل",
+        "البيع عبر ماركت بليس"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P2",
+      "notes": "مقارنة تشرح الملكية والتكلفة."
+    },
+    {
+      "path": "/blog/product-marketing-operations-ecommerce",
+      "primary": "عوامل نجاح المتجر الإلكتروني",
+      "secondary": [
+        "المنتج والتسويق والتشغيل",
+        "أسباب فشل المتاجر",
+        "تحسين أرباح المتاجر"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "جسر طبيعي بين خدمات الوكالة والسيستم."
+    },
+    {
+      "path": "/blog/startup-budget-egypt",
+      "primary": "تكلفة بدء التجارة الإلكترونية في مصر",
+      "secondary": [
+        "تكلفة فتح متجر إلكتروني",
+        "ميزانية بدء مشروع أونلاين",
+        "رأس مال التجارة الإلكترونية"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "commercial",
+      "priority": "P1",
+      "notes": "نية بحث تعليمية/مالية، لا تكرر صفحة تسعير خدمات الوكالة."
+    },
+    {
+      "path": "/blog/what-is-ecommerce",
+      "primary": "ما هي التجارة الإلكترونية",
+      "secondary": [
+        "تعريف التجارة الإلكترونية",
+        "أنواع التجارة الإلكترونية",
+        "كيف تعمل التجارة الإلكترونية"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P2",
+      "notes": "صفحة تأسيسية تربط بالأدلة التفصيلية."
+    }
+  ]
+}
