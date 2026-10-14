@@ -246,3 +246,20 @@ test('SEO-24 store-building page has platform choices, acceptance criteria and h
   assert.match(html,/مش جزءًا تلقائيًا من أي مشروع بناء متجر/);
   assert.doesNotMatch(html,/مبيعات مضمونة|أرباح مضمونة|رقم واحد يناسب كل/);
 });
+
+test('SEO-25 consulting page separates research, feasibility and execution with scoped deliverables',()=>{
+  const html=fs.readFileSync(path.join(root,'services/ecommerce-consulting/index.html'),'utf8');
+  assert.match(html,/<title>استشارات التجارة الإلكترونية ودراسة السوق في مصر \| كن أونلاين<\/title>/);
+  assert.match(html,/rel="canonical" href="https:\/\/kun-online\.com\/services\/ecommerce-consulting\/"/);
+  assert.match(html,/<h1>استشارات التجارة الإلكترونية ودراسة السوق<\/h1>/);
+  for(const term of ['دراسة السوق ودراسة الجدوى','العميل المستهدف','المنافسون والبدائل','منهج العمل','ما المخرجات التي يمكن أن تستلمها','نموذج مبدئي للتكلفة والهامش','سيناريو','استطلاع رأي','سيستم كن أونلاين']){
+    assert.ok(html.includes(term),'missing consulting scope term '+term);
+  }
+  for(const href of ['/blog/startup-budget-egypt','/blog/essential-ecommerce-glossary','/services/ecommerce-store-development/','/services/ecommerce-management/','/services/ecommerce-ads/','/pricing/','/gulf/','/system/']){
+    assert.ok(html.includes('href="'+href+'"'),'missing consulting internal link '+href);
+  }
+  assert.match(html,/href="https:\/\/wa\.me\/201021231619"/);
+  assert.match(html,/لا نفترض تقديم دراسة جدوى استثمارية أو قانونية شاملة/);
+  assert.match(html,/الخدمات الأخرى|خدمات أخرى|مش تلقائيًا/);
+  assert.doesNotMatch(html,/مبيعات مضمونة|أرباح مضمونة|نجاح مضمون/);
+});
