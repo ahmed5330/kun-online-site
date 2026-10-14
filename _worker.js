@@ -5,7 +5,7 @@ const LEGACY = new Set([
   '/كن-أونلاين-ايجنسي-تجارة-الكترونية',
   '/الصفحة-الرئيسية_1', '/home'
 ]);
-const DIRECTORIES = new Set(['/blog', '/en', '/gulf', '/services', '/pricing', '/about', '/contact',
+const DIRECTORIES = new Set(['/blog', '/en', '/gulf', '/services', '/pricing', '/about', '/contact', '/system',
   '/services/ecommerce-management', '/services/ecommerce-store-development',
   '/services/ecommerce-ads', '/services/order-management', '/services/ecommerce-consulting']);
 export function canonicalLocation(requestUrl) {

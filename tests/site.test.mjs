@@ -99,6 +99,9 @@ test('canonical redirects preserve paths and queries with no loops',()=>{
     ['https://www.kun-online.com/blog?utm_source=test','https://kun-online.com/blog/?utm_source=test'],
     ['http://www.kun-online.com/services/ecommerce-ads','https://kun-online.com/services/ecommerce-ads/'],
     ['https://kun-online.com/en/index.html','https://kun-online.com/en/'],
+    ['https://kun-online.com/system','https://kun-online.com/system/'],
+    ['https://kun-online.com/system/index.html','https://kun-online.com/system/'],
+    ['http://www.kun-online.com/system?source=seo','https://kun-online.com/system/?source=seo'],
     ['https://kun-online.com/blog/what-is-ecommerce.html?q=1','https://kun-online.com/blog/what-is-ecommerce?q=1'],
     ['https://www.kun-online.com/الصفحة-الرئيسية_1?x=2','https://kun-online.com/?x=2'],
     ['https://kun-online.com/blog/what-is-ecommerce/','https://kun-online.com/blog/what-is-ecommerce']
