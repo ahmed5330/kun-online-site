@@ -14,7 +14,7 @@ try{
 for(const width of [390,1440]){
  const page=await browser.newPage({viewport:{width,height:900}});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- for(const url of ['/','/blog/','/blog/essential-ecommerce-glossary','/services/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/pricing/','/contact/','/system/','/en/','/gulf/']){
+ for(const url of ['/','/blog/','/blog/essential-ecommerce-glossary','/services/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/services/ecommerce-consulting/','/pricing/','/contact/','/system/','/en/','/gulf/']){
   const response=await page.goto(base+url,{waitUntil:'domcontentloaded'});
   await page.locator('h1').waitFor();
   await page.evaluate(()=>document.fonts.ready);
@@ -41,6 +41,12 @@ for(const width of [390,1440]){
    assert.equal(await page.getByRole('heading',{name:'بناء وتصميم متجر إلكتروني في مصر',level:1}).count(),1);
    assert.ok(await page.getByRole('heading',{name:/قائمة استلام المتجر/}).count());
    assert.ok(await page.getByRole('heading',{name:/مراحل إنشاء المتجر الإلكتروني/}).count());
+   assert.ok(await page.locator('a[href="/pricing/"]').count());
+  }
+  if(url==='/services/ecommerce-consulting/'){
+   assert.equal(await page.getByRole('heading',{name:'استشارات التجارة الإلكترونية ودراسة السوق',level:1}).count(),1);
+   assert.ok(await page.getByRole('heading',{name:/ما المخرجات التي يمكن أن تستلمها/}).count());
+   assert.ok(await page.getByRole('heading',{name:/الفرق بين دراسة السوق ودراسة الجدوى/}).count());
    assert.ok(await page.locator('a[href="/pricing/"]').count());
   }
   if(url==='/system/'){
