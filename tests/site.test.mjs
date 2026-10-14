@@ -130,6 +130,9 @@ test('canonical redirects preserve paths and queries with no loops',()=>{
     ['https://kun-online.com/system/order-management/index.html','https://kun-online.com/system/order-management/'],
     ['https://kun-online.com/system/inventory','https://kun-online.com/system/inventory/'],
     ['https://kun-online.com/system/inventory/index.html','https://kun-online.com/system/inventory/'],
+    ['https://kun-online.com/system/shipping','https://kun-online.com/system/shipping/'],
+    ['https://kun-online.com/system/shipping/index.html','https://kun-online.com/system/shipping/'],
+    ['http://www.kun-online.com/system/shipping?utm=shipping','https://kun-online.com/system/shipping/?utm=shipping'],
     ['http://www.kun-online.com/system/inventory?utm=inventory','https://kun-online.com/system/inventory/?utm=inventory'],
     ['http://www.kun-online.com/system/order-management?utm=orders','https://kun-online.com/system/order-management/?utm=orders'],
     ['http://www.kun-online.com/system?source=seo','https://kun-online.com/system/?source=seo'],
@@ -152,7 +155,7 @@ test('sitemap uses verified editorial lastmod dates and no fabricated defaults',
   const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
   const mapped=new Map(articles.map(a=>[a.slug,a.dateModified]));
   const entries=[...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(x=>x[1]);
-  assert.equal(entries.length,27);
+  assert.equal(entries.length,28);
   for(const entry of entries){
     const url=entry.match(/<loc>([^<]+)<\/loc>/)?.[1];
     const lastmod=entry.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];
@@ -366,4 +369,32 @@ test('SEO-29 inventory barcode page is software intent with real deployment qual
   const map=JSON.parse(fs.readFileSync(path.join(root,'seo/keyword-map.json'),'utf8'));
   assert.equal(map.pages.find(p=>p.path==='/system/inventory/').pillar,'software');
   assert.doesNotMatch(inventory,/ماسح يعمل على كل هاتف|جميع المزايا منشورة|مبيعات مضمونة/);
+});
+
+test('SEO-30 shipping software page distinguishes carrier APIs, sheets and COD settlement',()=>{
+  const html=fs.readFileSync(path.join(root,'system/shipping/index.html'),'utf8');
+  const system=fs.readFileSync(path.join(root,'system/index.html'),'utf8');
+  const orders=fs.readFileSync(path.join(root,'system/order-management/index.html'),'utf8');
+  assert.match(html,/<title>برنامج إدارة الشحن والبوليصات والمرتجعات \| كن أونلاين<\/title>/);
+  assert.match(html,/rel="canonical" href="https:\/\/kun-online\.com\/system\/shipping\/"/);
+  assert.match(html,/<h1 id="shipping-title">برنامج إدارة الشحن/);
+  assert.equal((html.match(/<h1\b/g)||[]).length,1);
+  for(const term of ['J&amp;T','AWB','CSV','XLSX','COD','المرتجعات','بوليصة',
+     'برنامج إدارة الشحن غير التعاقد مع شركة شحن','قائمة تحقق لربط الشحن والبوليصات بأمان',
+     'قوالب استيراد','لا يُعد إثباتًا للتسليم','التحصيل']){
+    assert.ok(html.includes(term),'missing shipping statement '+term);
+  }
+  for(const link of ['/system/','/system/order-management/','/system/inventory/',
+    '/services/ecommerce-management/','/pricing/']){
+    assert.ok(html.includes('href="'+link+'"'),'missing related page '+link);
+  }
+  assert.ok(system.includes('href="/system/shipping/"'));
+  assert.ok(orders.includes('href="/system/shipping/"'));
+  assert.match(html,/href="https:\/\/app\.kun-online\.com\/v2\/"/);
+  assert.match(html,/href="https:\/\/wa\.me\/201021231619"/);
+  assert.match(fs.readFileSync(path.join(root,'_redirects'),'utf8'),/\/system\/shipping \/system\/shipping\/ 301/);
+  assert.match(fs.readFileSync(path.join(root,'sitemap.xml'),'utf8'),/<loc>https:\/\/kun-online\.com\/system\/shipping\/<\/loc>/);
+  const map=JSON.parse(fs.readFileSync(path.join(root,'seo/keyword-map.json'),'utf8'));
+  assert.equal(map.pages.find(p=>p.path==='/system/shipping/').pillar,'software');
+  assert.doesNotMatch(html,/كل شركات الشحن مربوطة تلقائيًا|شحن مجاني مضمون|تحصيل مضمون/);
 });
