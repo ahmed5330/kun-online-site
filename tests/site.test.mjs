@@ -173,3 +173,18 @@ test('article template uses crawlable noindex instead of conflicting robots bloc
   assert.match(robots,/Sitemap:\s*https:\/\/kun-online\.com\/sitemap\.xml/);
   assert.doesNotMatch(robots,/Disallow:\s*\/assets\//);
 });
+
+test('keyword targeting map covers every indexable URL and separates software from agency',()=>{
+  const map=JSON.parse(fs.readFileSync(path.join(root,'seo/keyword-map.json'),'utf8'));
+  assert.equal(map.metricsAvailable,false,'Do not invent GSC, demand, CPC, or keyword difficulty');
+  const intended=pages.filter(p=>!p.endsWith('404.html')).map(p=>{
+    const html=fs.readFileSync(p,'utf8');
+    return new URL(html.match(/rel="canonical" href="([^"]+)"/)[1]).pathname;
+  });
+  const listed=map.pages.map(p=>p.path);
+  assert.equal(new Set(listed).size,listed.length,'duplicate URL targeting');
+  assert.deepEqual([...listed].sort(),intended.sort(),'all indexable pages must be mapped exactly once');
+  assert.ok(map.pages.every(p=>p.primary&&p.secondary.length&&p.intent&&p.priority));
+  assert.equal(map.pages.find(p=>p.path==='/system/').pillar,'software');
+  assert.equal(map.pages.find(p=>p.path==='/services/order-management/').pillar,'agency');
+});
