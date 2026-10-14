@@ -14,7 +14,7 @@ try{
 for(const width of [390,1440]){
  const page=await browser.newPage({viewport:{width,height:900}});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- for(const url of ['/','/blog/','/blog/essential-ecommerce-glossary','/services/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/services/ecommerce-consulting/','/pricing/','/contact/','/system/','/system/order-management/','/system/inventory/','/en/','/gulf/']){
+ for(const url of ['/','/blog/','/blog/essential-ecommerce-glossary','/services/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/services/ecommerce-consulting/','/pricing/','/contact/','/system/','/system/order-management/','/system/inventory/','/system/shipping/','/en/','/gulf/']){
   const response=await page.goto(base+url,{waitUntil:'domcontentloaded'});
   await page.locator('h1').waitFor();
   await page.evaluate(()=>document.fonts.ready);
@@ -83,6 +83,13 @@ for(const width of [390,1440]){
     assert.equal(await page.locator('.kos-checklist li').count(),8);
     assert.ok(await page.locator('a[href="/system/order-management/"]').count());
     assert.ok(await page.locator('a[href="https://app.kun-online.com/v2/"]').count());
+  }
+  if(url==='/system/shipping/'){
+    assert.equal(await page.getByRole('heading',{name:/برنامج إدارة الشحن/,level:1}).count(),1);
+    assert.ok(await page.getByRole('heading',{name:/قائمة تحقق لربط الشحن والبوليصات بأمان/}).count());
+    assert.ok(await page.getByRole('heading',{name:/تكامل J&T المباشر مختلف عن استيراد شيت شركة الشحن/}).count());
+    assert.equal(await page.locator('.kos-checklist li').count(),8);
+    assert.ok(await page.locator('a[href="/system/inventory/"]').count());
   }
   if(url==='/blog/'){
    assert.equal(await page.locator('.blog-card').count(),11);
