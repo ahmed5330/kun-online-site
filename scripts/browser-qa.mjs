@@ -19,6 +19,16 @@ for(const width of [390,1440]){
   await page.locator('h1').waitFor();
   await page.evaluate(()=>document.fonts.ready);
   assert.equal(response.status(),200,url);
+  if(url==='/system/'||url.startsWith('/system/')){
+    const approvals=JSON.parse(fs.readFileSync(path.join(root,'seo/system-screenshots.json'),'utf8')).screenshots.filter(s=>s.page===url);
+    assert.equal(await page.locator('.kos-real-capture').count(),approvals.length,url+' authentic screenshot approval mismatch');
+    if(approvals.length){
+      for(const img of await page.locator('.kos-real-capture img').all()){
+        const loaded=await img.evaluate(el=>el.complete&&el.naturalWidth>0);
+        assert.ok(loaded,url+' screenshot asset must load');
+      }
+    }
+  }
   const actual=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,h1:document.querySelectorAll('h1').length,phone:!!document.querySelector('a[href="https://wa.me/201021231619"]')&&!document.querySelector('a[href^="tel:"]'),hiddenTitles:Array.from(document.querySelectorAll('h1,h2')).filter(el=>Number(getComputedStyle(el).opacity)===0).map(el=>el.textContent)}));
   assert.ok(actual.scroll<=actual.width+2,`${width} ${url}: overflow ${actual.scroll}`);
   assert.equal(actual.h1,1);assert.ok(actual.phone);assert.equal(actual.hiddenTitles.length,0);
