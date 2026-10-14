@@ -73,7 +73,7 @@ def refresh(optimize=False):
         changed=None
         if url.startswith('/blog/') and not url.endswith('/'):
             article=next((a for a in articles if a['slug']==url.split('/')[-1]),None)
-            if article and re.fullmatch(r'\\d{4}-\\d{2}-\\d{2}',str(article.get('dateModified',''))):
+            if article and re.fullmatch(r'\d{4}-\d{2}-\d{2}',str(article.get('dateModified',''))):
                 changed=article['dateModified']
         entry='  <url><loc>'+escape(BASE+url)+'</loc>'
         if changed:
