@@ -80,3 +80,10 @@
 .kos-checklist li{min-width:0;padding:18px 19px;border:1px solid rgba(255,255,255,.13);border-radius:14px;background:#172338;color:#c7d6e1;font-size:13px;line-height:1.95}
 .kos-checklist li strong{display:block;color:#fff;margin-bottom:4px;font-size:14px}
 @media(max-width:650px){.kos-checklist{grid-template-columns:1fr}.kos-checklist li{padding:16px}}
+
+/* SEO-32: verified app screenshot gallery, populated only after approval. */
+.kos-real-captures-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:24px}
+.kos-real-capture{margin:0;min-width:0;border:1px solid rgba(255,255,255,.14);border-radius:16px;overflow:hidden;background:#111b2d}
+.kos-real-capture img{display:block;width:100%;height:auto;object-fit:contain}
+.kos-real-capture figcaption{padding:12px 15px;color:#c8d7e6;font-size:13px;line-height:1.8}
+@media(max-width:720px){.kos-real-captures-grid{grid-template-columns:1fr}}
