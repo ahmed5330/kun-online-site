@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ar-EG" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0f1e">
+<title>ربط Easy Orders مع كن أونلاين | مزامنة الطلبات والباندلز</title>
+<meta name="description" content="دليل ربط Easy Orders بسيستم كن أونلاين: استيراد ومزامنة الأوردرات وWebhook وتشخيص وصول الطلبات واستيراد المنتجات وربط الباندلز بالمخزون، بحسب التفعيل والاختبار.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://kun-online.com/system/easy-orders/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_EG">
+<meta property="og:title" content="ربط Easy Orders مع كن أونلاين | مزامنة الطلبات والباندلز">
+<meta property="og:description" content="دليل ربط Easy Orders بسيستم كن أونلاين: استيراد ومزامنة الأوردرات وWebhook وتشخيص وصول الطلبات واستيراد المنتجات وربط الباندلز بالمخزون، بحسب التفعيل والاختبار.">
+<meta property="og:url" content="https://kun-online.com/system/easy-orders/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@700;800;900&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@700;800;900&display=optional" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/system.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"https://kun-online.com/system/easy-orders/#page","url":"https://kun-online.com/system/easy-orders/","name":"ربط Easy Orders مع كن أونلاين | مزامنة الطلبات والباندلز","description":"دليل ربط Easy Orders بسيستم كن أونلاين: استيراد ومزامنة الأوردرات وWebhook وتشخيص وصول الطلبات واستيراد المنتجات وربط الباندلز بالمخزون، بحسب التفعيل والاختبار.","inLanguage":"ar-EG","isPartOf":{"@id":"https://kun-online.com/#website"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"https://kun-online.com/"},{"@type":"ListItem","position":2,"name":"برنامج إدارة المتاجر","item":"https://kun-online.com/system/"},{"@type":"ListItem","position":3,"name":"تكامل Easy Orders","item":"https://kun-online.com/system/easy-orders/"}]}</script>
+</head>
+<body>
+<nav class="site-nav" aria-label="التنقل الرئيسي">
+  <a class="brand" href="/">كن <em>أونلاين</em></a>
+  <div class="site-links">
+    <a href="/">الرئيسية</a>
+    <a href="/system/">السيستم</a>
+    <a href="/services/">الخدمات</a>
+    <a href="/pricing/">التسعير</a>
+    <a href="/about/">من نحن</a>
+    <a href="/contact/">تواصل معنا</a>
+  </div>
+  <a class="phone" href="https://wa.me/201021231619" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">تواصل عبر واتساب</a>
+</nav>
+
+<main class="kos-page">
+<section class="kos-hero" aria-labelledby="easy-title"><div class="kos-container kos-hero-grid"><div>
+<span class="kos-tag">كن أونلاين | تكامل Easy Orders</span>
+<h1 id="easy-title">ربط Easy Orders مع كن أونلاين <em>للطلبات والمنتجات والباندلز</em></h1>
+<p class="kos-lead">لو مبيعات متجرك بتدخل من Easy Orders، الربط مع كن أونلاين بيساعدك تجمع الأوردرات والمعلومات المطلوبة للتأكيد والتجهيز والمخزون. كود السيستم يتضمن إعداد مزامنة الطلبات واستقبال Webhook واستيراد المنتجات، مع اختيار ربط مكونات الباندل من المخزون بدون تغيير المنتج الأصلي في Easy Orders.</p>
+<div class="kos-tags"><span>مزامنة الأوردرات</span><span>Webhook</span><span>معاينة المنتجات</span><span>الباندلز</span><span>تشخيص واستكمال</span></div>
+<div class="kos-actions"><a class="kos-btn kos-btn-primary" href="https://app.kun-online.com/v2/" target="_blank" rel="noopener noreferrer">الدخول إلى السيستم</a><a class="kos-btn kos-btn-secondary" href="https://wa.me/201021231619" target="_blank" rel="noopener">استفسر عن ربط متجرك</a></div>
+<p class="kos-note">وجود الوظائف في المصدر لا يثبت أن الربط مفعل أو أن كل طلب وصل بنجاح لمتجر معين. اختبار Webhook والتجهيز والرصيد والمخزون على حسابك ضروري قبل التشغيل المعتمد.</p></div>
+<div class="kos-window" aria-label="مخطط توضيحي لمسار المزامنة وليس لقطة شاشة حقيقية"><div class="kos-window-top"><strong>مسار طلب Easy Orders</strong><span class="kos-pill">مخطط توضيحي</span></div>
+<div class="kos-window-inner"><div class="kos-metrics"><div class="kos-metric"><small>المصدر</small><strong>Easy Orders</strong></div><div class="kos-metric"><small>الحدث</small><strong>Webhook</strong></div><div class="kos-metric"><small>التجهيز</small><strong>أوردر + قطع</strong></div></div>
+<div class="kos-flow"><div class="kos-flow-label">الرحلة المتوقعة عند نجاح الربط</div><div class="kos-flow-steps"><span>طلب</span><i aria-hidden="true">←</i><span>مزامنة</span><i aria-hidden="true">←</i><span>تأكيد</span><i aria-hidden="true">←</i><span>منتجات</span><i aria-hidden="true">←</i><span>تجهيز</span></div></div></div>
+<div class="kos-window-foot">لا يعرض المخطط بيانات عملاء أو نتائج تكامل حي.</div></div></div></section>
+<section class="kos-section" id="features" aria-labelledby="easy-features"><div class="kos-container">
+<span class="kos-tag">الوظائف الموجودة في كود التطبيق</span><h2 id="easy-features">إيه اللي تقدر تراجعه في تكامل Easy Orders؟</h2>
+<p class="kos-section-sub">الوصف مبني على وحدات مزامنة الأوردرات واستيراد المنتجات واستعادة الفجوات وربط الباندلز في مستودع السيستم. نجاح هذه الخطوات في الإنتاج يحتاج تفعيلًا وتحققًا على بيانات المتجر.</p>
+<div class="kos-card-grid"><article class="kos-card"><b aria-hidden="true">🔗</b><h3>ربط المتجر والصلاحيات</h3><p>واجهات لعرض مزوّد التجارة المتصل وإعداد مصدر الطلبات، مع نطاق صلاحيات مرتبط بحساب ومتجر محددين. وجود زر الربط مش معناه إن مفتاح التكامل صالح أو فعّال تلقائيًا.</p></article>
+<article class="kos-card"><b aria-hidden="true">📥</b><h3>مزامنة واستيراد الأوردرات</h3><p>مسارات لاستيراد طلبات Easy Orders ومراجعة بيانات العميل والمنتج والمبلغ والحالة، بالإضافة لخيار ملف CSV أو XLSX. يلزم اختبار المعرفات ومنع تكرار الطلب.</p></article>
+<article class="kos-card"><b aria-hidden="true">📡</b><h3>Webhook لاستقبال الطلبات</h3><p>خطوات لإعداد رابط Webhook الفريد، وحفظ السر ومراجعة التشخيص. اختبار فتح الرابط لا يثبت وصول POST لأوردر حقيقي؛ لازم تظهر نتيجة الاستقبال في سجل التشخيص.</p></article>
+<article class="kos-card"><b aria-hidden="true">🛠️</b><h3>استكمال الفجوات عند انقطاع المزامنة</h3><p>واجهة لمراقبة حالة الاسترجاع والمتبقي وحدود API وإعادة المحاولة، بحسب حالة الربط والإعداد. لا نعد بسرعة ثابتة أو عدم فقد بيانات دون مقارنة أعداد الطلبات.</p></article>
+<article class="kos-card"><b aria-hidden="true">🛍️</b><h3>معاينة استيراد المنتجات</h3><p>واجهة لسحب المنتجات إلى معاينة قبل المزامنة، ثم اختيار منتجات محددة أو الكل، مع عناصر لبيانات التكلفة المطلوبة بحسب طريقة الاستيراد.</p></article>
+<article class="kos-card"><b aria-hidden="true">🎁</b><h3>ربط منتجات الباندل بالمخزون</h3><p>منطق اختياري لتحديد مكونات الباندل وكمياتها من مخزون نفس المتجر عند الاستيراد. المنتج غير المعدل يظل كما هو، والربط الداخلي لا يغيّر المنتج على Easy Orders.</p></article></div></div></section>
+<section class="kos-section alt" id="webhook" aria-labelledby="easy-webhook"><div class="kos-container">
+<span class="kos-tag">استقبال الأوردرات ومراقبتها</span><h2 id="easy-webhook">Webhook مش مجرد رابط: إزاي تتأكد إن الأوردر وصل؟</h2>
+<p class="kos-section-sub">واجهة إعداد Easy Orders بتعرض عنوان Webhook مخصصًا للربط وإمكانية حفظ السر وفحص التشخيص. كمان بتفرّق بين وصول طلب POST فعلي وبين نجاح فحص HEAD للرابط. الاختبار لازم يثبت قبول البيانات وتطابق رقم الطلب الخارجي مع الأوردر المسجل داخل النظام.</p>
+<div class="kos-card-grid">
+<article class="kos-card"><b aria-hidden="true">🔐</b><h3>عنوان وسر الربط</h3><p>رابط Webhook وSecret مخصصان لإعداد التكامل، ولا يجب إظهار السر للعامة أو مشاركته في لقطات الشاشة.</p></article>
+<article class="kos-card"><b aria-hidden="true">🧪</b><h3>فحص HEAD لا يساوي استقبال الطلب</h3><p>نجاح فتح الرابط بيأكد إمكانية الوصول له فقط. وصول طلب POST ومعالجة محتواه له نتيجة مستقلة داخل تشخيص Webhook.</p></article>
+<article class="kos-card"><b aria-hidden="true">🔁</b><h3>فجوات المزامنة وحدود API</h3><p>إذا توقفت الطلبات أو ظهرت حالة rate limited، توجد أدوات لعرض التقدم ومحاولة الاستكمال، لكن من المهم التحقق من الأرقام والطلب المفقود بدل اعتبار كل الطلبات وصلت تلقائيًا.</p></article>
+</div>
+<p class="kos-callout">الاختبار المفيد: أنشئ أوردر تجربة بإذن صاحب المتجر، راجع وصول Webhook ومصدره ورقم الطلب، ثم طابق محتوى الأوردر داخل <a href="/system/order-management/">برنامج إدارة الطلبات</a> قبل تشغيل الفريق.</p>
+</div></section>
+<section class="kos-section" id="products" aria-labelledby="easy-products"><div class="kos-container">
+<span class="kos-tag">المنتجات والباندل</span><h2 id="easy-products">ربط منتجات Easy Orders بالمخزون من غير تغيير منتجات المنصة</h2>
+<p class="kos-section-sub">أحيانًا الباندل على Easy Orders بيظهر كمنتج واحد بينما تنفيذه من مخزون المتجر محتاج قطعتين أو أكثر. وحدة الاستيراد في كن أونلاين تحتوي على اختيار اختياري لمكونات المنتج وكميات كل مكون من مخزون نفس المتجر.</p>
+<div class="kos-card-grid">
+<article class="kos-card"><b aria-hidden="true">📥</b><h3>استيراد من غير تعديل</h3><p>لو المنتج المستورد ما اتعدّلش، تفضل بيانات الربط القديمة بدون تغيير مقصود. المزامنة لا يفترض أنها تعيد تعريف كل المنتجات كباندلز تلقائيًا.</p></article>
+<article class="kos-card"><b aria-hidden="true">🎁</b><h3>باندل من مكونات محددة</h3><p>اختار صنفًا أو أكثر وكمياتهم من <a href="/system/inventory/">مخزون كن أونلاين</a>، واعتمد تعديل المكونات بعد مراجعة التوافر والـSKU.</p></article>
+<article class="kos-card"><b aria-hidden="true">🧾</b><h3>تجهيز وطباعة حسب المكونات</h3><p>المطلوب عند التنفيذ هو مطابقة القطع الفعلية مع ما في الطلب، وليس الاكتفاء باسم الباندل المستورد. نجاح تخصيص المخزون والطباعة يحتاج اختبارًا عمليًا.</p></article>
+</div>
+<p class="kos-callout">الربط هنا <strong>داخلي في كن أونلاين</strong>؛ اختيار مكونات الباندل لا يغيّر المنتج نفسه في Easy Orders ولا يمنح سيستم كن أونلاين صلاحيات التحكم الكامل في المنصة.</p>
+</div></section>
+<section class="kos-section alt" id="workflow" aria-labelledby="easy-flow"><div class="kos-container">
+<span class="kos-tag">خطوات الربط</span><h2 id="easy-flow">مسار إعداد Easy Orders خطوة بخطوة</h2><p class="kos-section-sub">الترتيب ده إطار للمراجعة والتفعيل، ومش تعهد بتكامل جاهز تلقائيًا من أول محاولة.</p><div class="kos-timeline"><div class="kos-step"><span class="number">01</span><h3>تحديد المتجر الصحيح</h3><p>التأكد من المتجر وحساب العميل والصلاحيات ومصدر المنتجات والطلبات.</p></div><div class="kos-step"><span class="number">02</span><h3>فحص الاتصال</h3><p>مراجعة الربط وبيانات الاعتماد والـWebhook Secret والرابط الفريد.</p></div><div class="kos-step"><span class="number">03</span><h3>استيراد تجريبي</h3><p>مطابقة طلب تجريبي ومنتجاته ومتغيراته ومعرفه الخارجي.</p></div><div class="kos-step"><span class="number">04</span><h3>اختيار مكونات الباندل</h3><p>ربط المكونات اختياريًا من المخزون إذا كان المنتج مركبًا.</p></div><div class="kos-step"><span class="number">05</span><h3>مراقبة المزامنة</h3><p>مراجعة آخر Webhook وفجوات الاستيراد وحالات retry قبل الاعتماد.</p></div></div></div></section>
+<section class="kos-section" id="readiness" aria-labelledby="easy-readiness"><div class="kos-container">
+<span class="kos-tag">قبل تشغيل المتجر على التكامل</span><h2 id="easy-readiness">قائمة تحقق لاختبار ربط Easy Orders</h2>
+<p class="kos-section-sub">قبل الاعتماد على الربط يوميًا، لازم اختبار قبول على متجر محدد وبصلاحيات مناسبة. ما نعتمدش على مجرد وجود التكامل في واجهة الإعدادات.</p>
+<ol class="kos-checklist"><li><strong>تحديد الحساب والمتجر:</strong> التحقق من أن الربط يخص المتجر المقصود، دون اختلاط الطلبات بين المتاجر.</li><li><strong>صلاحيات الربط:</strong> مراجعة مفاتيح الوصول وحقول القراءة والصلاحيات المطلوبة، وعدم إدخال الأسرار في صفحات عامة.</li><li><strong>Webhook:</strong> إثبات وصول POST حقيقي واختبار صحة التوقيع أو السر ورصد الاستجابات والأخطاء.</li><li><strong>عدم تكرار الطلب:</strong> مقارنة معرف الطلب الخارجي عبر المزامنة وWebhook والاستيراد من ملف.</li><li><strong>معلومات الطلب:</strong> مطابقة العميل والعنوان والمنتج والمتغير والكمية والقيمة وحالة الدفع.</li><li><strong>المنتجات والتكلفة:</strong> مراجعة المعاينة وتكلفة المنتج وربط كل SKU بمنتج المخزون الصحيح.</li><li><strong>مكونات الباندل:</strong> اختبار منتج عادي كما هو، ومنتج باندل مكوّن من قطعتين أو أكثر.</li><li><strong>استرجاع الفجوات:</strong> اختبار حدود API وانقطاع الاتصال وتحقق الطلبات المتبقية بعد الاستكمال.</li><li><strong>مراجعة دورة الأوردر:</strong> التأكد من ظهور الطلب بمسار التأكيد والتجهيز والطباعة وعدم خصم المخزون مرتين.</li></ol>
+<p class="kos-callout">لا يُفترض إنشاء طلبات حقيقية أو تغيير منتجات أو خصم مخزون أو تعديل إعدادات الإنتاج بدون إذن صاحب المتجر وخطة تراجع واضحة.</p>
+</div></section>
+<section class="kos-section alt" id="scope" aria-labelledby="easy-scope"><div class="kos-container"><span class="kos-tag">حدود التكامل</span>
+<h2 id="easy-scope">ربط الطلبات مش معناه التحكم الكامل في Easy Orders</h2>
+<p class="kos-section-sub">المسارات الموثقة بتساعد على قراءة البيانات واستيرادها وربطها بمخزون كن أونلاين. أي تعديل عكسي على المتجر الأصلي أو تغيير منتجاته أو إعداداته يحتاج دعمًا صريحًا في الـAPI وصلاحيات واختبارات منفصلة. ما نعرضش إمكانيات غير مثبتة باعتبارها متاحة تلقائيًا.</p>
+<p class="kos-callout">برنامج كن أونلاين أداة لإدارة التشغيل. <a href="/services/order-management/">خدمة تأكيد الأوردرات</a> و<a href="/services/ecommerce-management/">تشغيل المتجر بواسطة فريق</a> خدمات بشرية منفصلة. <a href="/pricing/">أسعار خدمات الوكالة</a> لا تحدد تلقائيًا تكلفة ترخيص التكامل أو السيستم.</p>
+</div></section>
+<section class="kos-section" id="faq" aria-labelledby="easy-faq"><div class="kos-container kos-faq"><span class="kos-tag">أسئلة شائعة</span>
+<h2 id="easy-faq">أسئلة عن ربط Easy Orders بكن أونلاين</h2><details><summary>هل كن أونلاين يسحب أوردرات Easy Orders تلقائيًا؟</summary><p>يوجد مسار لاستقبال Webhook ومزامنة الطلبات، لكن التشغيل يعتمد على الربط والصلاحيات ووصول الأحداث فعليًا. لازم اختبار الاستقبال ومطابقة عدد الأوردرات.</p></details>
+<details><summary>هل اختبار رابط Webhook يثبت إن الأوردرات وصلت؟</summary><p>لا. فحص الرابط أو استجابة HEAD مش نفس استقبال POST يحتوي بيانات طلب. لوحة التشخيص تفرق بين إمكانية الوصول للرابط وحدث أوردر مقبول أو مرفوض.</p></details>
+<details><summary>ماذا يحدث لو كان Easy Orders فيه باندل كمنتج واحد؟</summary><p>في استيراد المنتجات يمكن اختيار مكونات من مخزون كن أونلاين وكميتها لكل باندل. الربط اختياري وداخلي، ولا يغير تركيب المنتج على Easy Orders.</p></details>
+<details><summary>لو ما عدلتش مكونات المنتج، هل بيتغير؟</summary><p>المنطق البرمجي بيحافظ على المنتج غير المعدّل كما هو، ولا يغير الربط السابق إلا عندما يتم تعديل المكونات صراحةً ثم اعتمادها.</p></details>
+<details><summary>هل أقدر أستورد المنتجات وأحدد تكلفتها؟</summary><p>يوجد مسار لمعاينة المنتجات وتحديد ما سيتم استيراده، وحقول تكلفة حسب آلية الاستيراد. صحة التكلفة والمنتجات تُراجع قبل المزامنة.</p></details>
+<details><summary>هل يمكن معالجة الطلبات اللي فاتت أثناء تعطل الربط؟</summary><p>توجد واجهة لاستكمال فجوات المزامنة وعرض حالتها وحدود معدل طلبات API. لكن يجب التأكد من نطاق الطلبات وتواريخها وعدم التكرار، ولا يوجد ضمان مطلق للاسترجاع.</p></details>
+<details><summary>هل الربط بيغيّر المنتجات والأوردرات في Easy Orders؟</summary><p>المسارات الموصوفة مخصصة أساسًا لجلب البيانات وربطها داخل كن أونلاين. لا تفترض صلاحية تعديل بيانات Easy Orders أو التحكم الكامل فيها قبل تحديد الصلاحيات واختبار العملية المطلوبة.</p></details>
+<details><summary>هل اشتراك السيستم يشمل إدارة الطلبات بواسطة موظفين؟</summary><p>التكامل أداة داخل البرنامج. <a href="/services/order-management/">خدمة تأكيد الأوردرات بفريق</a> و<a href="/services/ecommerce-management/">خدمة إدارة المتجر</a> تعاقدات منفصلة، و<a href="/pricing/">تسعير خدمات الوكالة</a> لا يحدد تلقائيًا اشتراك السيستم.</p></details></div></section>
+<section class="kos-section alt" aria-labelledby="easy-cta"><div class="kos-container kos-cta">
+<span class="kos-tag">تفعيل وتجربة</span><h2 id="easy-cta">محتاج تربط Easy Orders بالطلبات والمخزون؟</h2>
+<p>ابعت عدد المتاجر وطبيعة الطلبات وهل فيه منتجات باندل وطريقة الربط الحالية. نراجع مدى جاهزية التكامل والاختبارات المطلوبة قبل الاعتماد عليه.</p>
+<div class="kos-actions"><a class="kos-btn kos-btn-primary" href="https://wa.me/201021231619" target="_blank" rel="noopener">استفسر عبر واتساب</a><a class="kos-btn kos-btn-secondary" href="/system/">تعرف على سيستم كن أونلاين</a></div>
+</div></section>
+</main>
+<footer class="site-footer">
+  <p>كن أونلاين — بناء وإدارة وتشغيل المتاجر الإلكترونية في مصر والخليج.</p>
+  <p>مصر — أسيوط — ميدان الأزهر</p>
+  <p><a href="/system/">سيستم كن أونلاين</a> · <a href="/services/">الخدمات</a> · <a href="/about/">من نحن</a> · <a href="/contact/">التواصل</a></p>
+  <p><a href="https://wa.me/201021231619" target="_blank" rel="noopener">تواصل عبر واتساب</a></p>
+  <p>© 2026 كن أونلاين — جميع الحقوق محفوظة</p>
+  <p class="social-links" aria-label="حسابات كن أونلاين الرسمية">تابع كن أونلاين: <a href="https://www.facebook.com/KunOnlineAgency" target="_blank" rel="noopener noreferrer">فيسبوك</a> · <a href="https://www.instagram.com/kunonlin/" target="_blank" rel="noopener noreferrer">إنستجرام</a></p>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
