@@ -188,3 +188,15 @@ test('keyword targeting map covers every indexable URL and separates software fr
   assert.equal(map.pages.find(p=>p.path==='/system/').pillar,'software');
   assert.equal(map.pages.find(p=>p.path==='/services/order-management/').pillar,'agency');
 });
+
+test('store-management service explains deliverables, KPIs, and service-vs-software intent',()=>{
+  const html=fs.readFileSync(path.join(root,'services/ecommerce-management/index.html'),'utf8');
+  assert.match(html,/إمتى تحتاج شركة لإدارة متجرك الإلكتروني؟/);
+  assert.match(html,/ماذا تشمل خدمة إدارة المتاجر الإلكترونية؟/);
+  assert.match(html,/الأرقام اللي لازم نقيسها بوضوح/);
+  assert.match(html,/إدارة المتجر كخدمة ولا سيستم/);
+  assert.match(html,/href="\/system\/"/);
+  assert.match(html,/href="\/services\/order-management\/"/);
+  assert.match(html,/href="\/pricing\/"/);
+  assert.match(html,/https:\/\/wa\.me\/201021231619/);
+});
