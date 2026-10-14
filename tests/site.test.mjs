@@ -200,3 +200,15 @@ test('store-management service explains deliverables, KPIs, and service-vs-softw
   assert.match(html,/href="\/pricing\/"/);
   assert.match(html,/https:\/\/wa\.me\/201021231619/);
 });
+
+test('order confirmation service distinguishes fulfillment states and agency vs software',()=>{
+  const html=fs.readFileSync(path.join(root,'services/order-management/index.html'),'utf8');
+  assert.match(html,/خدمة تأكيد الطلبات وخدمة العملاء للمتاجر الإلكترونية/);
+  assert.match(html,/مراحل الأوردر/);
+  assert.match(html,/إزاي نقيس أداء تأكيد الطلبات بصدق/);
+  assert.match(html,/من المسؤول عن ماذا؟/);
+  assert.match(html,/href="\/system\/"/);
+  assert.match(html,/href="\/services\/ecommerce-management\/"/);
+  assert.match(html,/href="\/pricing\/"/);
+  assert.match(html,/https:\/\/wa\.me\/201021231619/);
+});
