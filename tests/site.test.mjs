@@ -94,6 +94,31 @@ test('language annotations are reciprocal and exclude unrelated blog home',()=>{
   }
   assert.doesNotMatch(fs.readFileSync(path.join(root,'blog/index.html'),'utf8'),/hreflang="en"/);
 });
+test('hreflang URLs are exact, reciprocal and align with sitemap',()=>{
+  const expected={
+    'ar-EG':'https://kun-online.com/',
+    'ar-SA':'https://kun-online.com/gulf/',
+    'ar-AE':'https://kun-online.com/gulf/',
+    'ar-KW':'https://kun-online.com/gulf/',
+    'en':'https://kun-online.com/en/',
+    'x-default':'https://kun-online.com/'
+  };
+  const xml=fs.readFileSync(path.join(root,'sitemap.xml'),'utf8');
+  for(const page of ['index.html','en/index.html','gulf/index.html']){
+    const html=fs.readFileSync(path.join(root,page),'utf8');
+    const links=[...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">/g)];
+    assert.equal(links.length,6,page);
+    assert.deepEqual(Object.fromEntries(links.map(m=>[m[1],m[2]])),expected,page);
+    const canonical=html.match(/rel="canonical" href="([^"]+)"/)?.[1];
+    assert.ok(Object.values(expected).includes(canonical),page);
+    const entry=[...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].find(m=>m[1].includes('<loc>'+canonical+'</loc>'))?.[1];
+    assert.ok(entry,'sitemap missing locale: '+page);
+    for(const [lang,url] of Object.entries(expected)){
+      assert.ok(entry.includes('hreflang="'+lang+'" href="'+url+'"'),'sitemap hreflang mismatch: '+lang+' '+page);
+    }
+  }
+});
+
 test('canonical redirects preserve paths and queries with no loops',()=>{
   for(const [source,target] of [
     ['https://www.kun-online.com/blog?utm_source=test','https://kun-online.com/blog/?utm_source=test'],
