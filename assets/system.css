@@ -73,3 +73,10 @@
 @media(max-width:950px){.kos-feature-grid,.kos-hero-grid{grid-template-columns:1fr}.kos-mini-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kos-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kos-timeline{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:600px){.kos-feature{padding:56px 18px}.kos-page .kos-hero{padding:55px 18px 45px}.kos-section{padding:48px 18px}.kos-card-grid,.kos-mini-grid,.kos-integrations{grid-template-columns:1fr}.kos-timeline{grid-template-columns:1fr}.kos-window-inner{padding:12px}.kos-metrics{gap:6px}.kos-metric{padding:13px 8px}.kos-metric small{font-size:10px}.kos-metric strong{font-size:12px}.kos-flow-steps{gap:5px}.kos-cta{padding:24px}.kos-actions .kos-btn{width:100%}}
 @media(prefers-reduced-motion:reduce){.kos-btn{transition:none!important}}
+
+/* SEO-27: product intent, readiness checklist and readable contextual links. */
+.kos-page .kos-card p a,.kos-page .kos-faq a,.kos-page .kos-section p a{color:#b8f08e;text-decoration:underline;text-underline-offset:3px}
+.kos-checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;list-style:none;margin:22px 0;padding:0}
+.kos-checklist li{min-width:0;padding:18px 19px;border:1px solid rgba(255,255,255,.13);border-radius:14px;background:#172338;color:#c7d6e1;font-size:13px;line-height:1.95}
+.kos-checklist li strong{display:block;color:#fff;margin-bottom:4px;font-size:14px}
+@media(max-width:650px){.kos-checklist{grid-template-columns:1fr}.kos-checklist li{padding:16px}}
