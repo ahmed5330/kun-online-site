@@ -14,7 +14,7 @@ try{
 for(const width of [390,1440]){
  const page=await browser.newPage({viewport:{width,height:900}});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- for(const url of ['/','/blog/','/blog/essential-ecommerce-glossary','/services/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/services/ecommerce-consulting/','/pricing/','/contact/','/system/','/en/','/gulf/']){
+ for(const url of ['/','/blog/','/blog/essential-ecommerce-glossary','/services/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/services/ecommerce-consulting/','/pricing/','/contact/','/system/','/system/order-management/','/en/','/gulf/']){
   const response=await page.goto(base+url,{waitUntil:'domcontentloaded'});
   await page.locator('h1').waitFor();
   await page.evaluate(()=>document.fonts.ready);
@@ -69,6 +69,13 @@ for(const width of [390,1440]){
    assert.ok(await page.locator('a[href="https://app.kun-online.com/v2/"]').count()>0);
    assert.equal(await page.locator('#features .kos-card').count(),9);
    assert.ok((await page.locator('.kos-card').count())>=12);
+  }
+  if(url==='/system/order-management/'){
+    assert.equal(await page.getByRole('heading',{name:/برنامج إدارة الطلبات/ ,level:1}).count(),1);
+    assert.ok(await page.getByRole('heading',{name:/برنامج إدارة الطلبات أم خدمة تأكيد الطلبات/}).count());
+    assert.equal(await page.locator('.kos-checklist li').count(),6);
+    assert.ok(await page.locator('a[href="/services/order-management/"]').count());
+    assert.ok(await page.locator('a[href="https://app.kun-online.com/v2/"]').count());
   }
   if(url==='/blog/'){
    assert.equal(await page.locator('.blog-card').count(),11);
