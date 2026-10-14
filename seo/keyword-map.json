@@ -193,6 +193,22 @@
       "notes": "صفحة وظائف برنامج الشحن، مختلفة عن شركة النقل أو خدمة تشغيل المتجر. إنشاء J&T يحتاج اختبارًا حيًا، وقوالب ملفات CSV/XLSX ليست تكاملات API مباشرة."
     },
     {
+      "path": "/system/easy-orders/",
+      "primary": "ربط Easy Orders مع كن أونلاين",
+      "secondary": [
+        "تكامل Easy Orders وإدارة الطلبات",
+        "مزامنة أوردرات Easy Orders",
+        "ربط منتجات Easy Orders بالمخزون",
+        "باندلز Easy Orders",
+        "إعداد Webhook Easy Orders"
+      ],
+      "market": "EG",
+      "pillar": "software",
+      "intent": "transactional",
+      "priority": "P1",
+      "notes": "صفحة تكامل برمجي لا تمثّل خدمة وكالة؛ تشخيص استقبال Webhook وإصلاح فجوات المزامنة وربط الباندل الاختياري يتطلب إعدادًا واختبارًا عمليًا. لا تعد بتحكم كامل في منصة Easy Orders."
+    },
+    {
       "path": "/pricing/",
       "primary": "تكلفة إدارة المتاجر الإلكترونية",
       "secondary": [

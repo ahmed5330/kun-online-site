@@ -14,7 +14,7 @@ try{
 for(const width of [390,1440]){
  const page=await browser.newPage({viewport:{width,height:900}});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- for(const url of ['/','/blog/','/blog/essential-ecommerce-glossary','/services/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/services/ecommerce-consulting/','/pricing/','/contact/','/system/','/system/order-management/','/system/inventory/','/system/shipping/','/en/','/gulf/']){
+ for(const url of ['/','/blog/','/blog/essential-ecommerce-glossary','/services/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/services/ecommerce-consulting/','/pricing/','/contact/','/system/','/system/order-management/','/system/inventory/','/system/shipping/','/system/easy-orders/','/en/','/gulf/']){
   const response=await page.goto(base+url,{waitUntil:'domcontentloaded'});
   await page.locator('h1').waitFor();
   await page.evaluate(()=>document.fonts.ready);
@@ -90,6 +90,15 @@ for(const width of [390,1440]){
     assert.ok(await page.getByRole('heading',{name:/تكامل J&T المباشر مختلف عن استيراد شيت شركة الشحن/}).count());
     assert.equal(await page.locator('.kos-checklist li').count(),8);
     assert.ok(await page.locator('a[href="/system/inventory/"]').count());
+  }
+  if(url==='/system/easy-orders/'){
+    assert.equal(await page.getByRole('heading',{name:/ربط Easy Orders مع كن أونلاين/,level:1}).count(),1);
+    assert.ok(await page.getByRole('heading',{name:/Webhook مش مجرد رابط/}).count());
+    assert.ok(await page.getByRole('heading',{name:/ربط منتجات Easy Orders بالمخزون/}).count());
+    assert.ok(await page.getByRole('heading',{name:/قائمة تحقق لاختبار ربط Easy Orders/}).count());
+    assert.equal(await page.locator('.kos-checklist li').count(),9);
+    assert.ok(await page.locator('a[href="/system/inventory/"]').count());
+    assert.ok(await page.locator('a[href="https://app.kun-online.com/v2/"]').count());
   }
   if(url==='/blog/'){
    assert.equal(await page.locator('.blog-card').count(),11);
