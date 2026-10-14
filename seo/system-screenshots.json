@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "policy": "Only reviewed captures from the actual deployed/authorized Kun Online app, never AI mockups or customer-identifiable data",
+  "screenshots": [],
+  "pendingTargets": [
+    "/system/",
+    "/system/order-management/",
+    "/system/inventory/",
+    "/system/shipping/",
+    "/system/easy-orders/"
+  ]
+}
