@@ -14,7 +14,7 @@ try{
 for(const width of [390,1440]){
  const page=await browser.newPage({viewport:{width,height:900}});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- for(const url of ['/','/blog/','/blog/essential-ecommerce-glossary','/services/','/services/ecommerce-management/','/pricing/','/contact/','/system/','/en/','/gulf/']){
+ for(const url of ['/','/blog/','/blog/essential-ecommerce-glossary','/services/','/services/ecommerce-management/','/services/ecommerce-ads/','/pricing/','/contact/','/system/','/en/','/gulf/']){
   const response=await page.goto(base+url,{waitUntil:'domcontentloaded'});
   await page.locator('h1').waitFor();
   await page.evaluate(()=>document.fonts.ready);
@@ -31,6 +31,11 @@ for(const width of [390,1440]){
    });
    assert.ok(placement.afterCore,`${width} ${url}: system interrupted main sections`);
    assert.ok(placement.beforeFinalCta,`${width} ${url}: system section is beyond final CTA`);
+  }
+  if(url==='/services/ecommerce-ads/'){
+   assert.ok(await page.getByRole('heading',{name:'إدارة إعلانات المتاجر الإلكترونية',level:1}).count());
+   assert.ok(await page.getByRole('heading',{name:/إزاي نقيس تكلفة الطلب والعائد الإعلاني/}).count());
+   assert.ok(await page.locator('a[href="/services/order-management/"]').count());
   }
   if(url==='/system/'){
    assert.ok(await page.getByRole('heading',{name:/خلّي تشغيل متجرك/}).count());
