@@ -128,6 +128,9 @@ test('canonical redirects preserve paths and queries with no loops',()=>{
     ['https://kun-online.com/system/index.html','https://kun-online.com/system/'],
     ['https://kun-online.com/system/order-management','https://kun-online.com/system/order-management/'],
     ['https://kun-online.com/system/order-management/index.html','https://kun-online.com/system/order-management/'],
+    ['https://kun-online.com/system/inventory','https://kun-online.com/system/inventory/'],
+    ['https://kun-online.com/system/inventory/index.html','https://kun-online.com/system/inventory/'],
+    ['http://www.kun-online.com/system/inventory?utm=inventory','https://kun-online.com/system/inventory/?utm=inventory'],
     ['http://www.kun-online.com/system/order-management?utm=orders','https://kun-online.com/system/order-management/?utm=orders'],
     ['http://www.kun-online.com/system?source=seo','https://kun-online.com/system/?source=seo'],
     ['https://kun-online.com/blog/what-is-ecommerce.html?q=1','https://kun-online.com/blog/what-is-ecommerce?q=1'],
@@ -149,7 +152,7 @@ test('sitemap uses verified editorial lastmod dates and no fabricated defaults',
   const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
   const mapped=new Map(articles.map(a=>[a.slug,a.dateModified]));
   const entries=[...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(x=>x[1]);
-  assert.equal(entries.length,26);
+  assert.equal(entries.length,27);
   for(const entry of entries){
     const url=entry.match(/<loc>([^<]+)<\/loc>/)?.[1];
     const lastmod=entry.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];
@@ -337,4 +340,30 @@ test('SEO-28 order management software landing is distinct from order confirmati
   assert.equal(map.pages.find(p=>p.path==='/services/order-management/').pillar,'agency');
   assert.ok(fs.readFileSync(path.join(root,'sitemap.xml'),'utf8').includes('<loc>https://kun-online.com/system/order-management/</loc>'));
   assert.doesNotMatch(software,/مبيعات مضمونة|جميع المزايا مفعلة|لقطة شاشة فعلية/);
+});
+
+test('SEO-29 inventory barcode page is software intent with real deployment qualifications',()=>{
+  const inventory=fs.readFileSync(path.join(root,'system/inventory/index.html'),'utf8');
+  const system=fs.readFileSync(path.join(root,'system/index.html'),'utf8');
+  const orders=fs.readFileSync(path.join(root,'system/order-management/index.html'),'utf8');
+  assert.match(inventory,/<title>برنامج إدارة المخزون والباركود للمتاجر الإلكترونية \| كن أونلاين<\/title>/);
+  assert.match(inventory,/rel="canonical" href="https:\/\/kun-online\.com\/system\/inventory\/"/);
+  assert.match(inventory,/<h1 id="inventory-title">برنامج إدارة المخزون/);
+  assert.equal((inventory.match(/<h1\b/g)||[]).length,1);
+  for(const term of ['QR','SKU','الباندلز','Easy Orders','الماسح','الجرد',
+    'المرتجعات','تكويد','باركود','قائمة تحقق لتفعيل باركود المخزون',
+    'توثيق الإصدار البرمجي لا يثبت نشر جميع عمليات المخزن']){
+    assert.ok(inventory.includes(term),'missing scoped inventory subject '+term);
+  }
+  assert.match(system,/href="\/system\/inventory\/"/);
+  assert.match(orders,/href="\/system\/inventory\/"/);
+  assert.match(inventory,/href="\/system\/order-management\/"/);
+  assert.match(inventory,/href="\/services\/ecommerce-management\/"/);
+  assert.match(inventory,/href="https:\/\/app\.kun-online\.com\/v2\/"/);
+  assert.match(inventory,/href="https:\/\/wa\.me\/201021231619"/);
+  assert.match(fs.readFileSync(path.join(root,'_redirects'),'utf8'),/\/system\/inventory \/system\/inventory\/ 301/);
+  assert.match(fs.readFileSync(path.join(root,'sitemap.xml'),'utf8'),/<loc>https:\/\/kun-online\.com\/system\/inventory\/<\/loc>/);
+  const map=JSON.parse(fs.readFileSync(path.join(root,'seo/keyword-map.json'),'utf8'));
+  assert.equal(map.pages.find(p=>p.path==='/system/inventory/').pillar,'software');
+  assert.doesNotMatch(inventory,/ماسح يعمل على كل هاتف|جميع المزايا منشورة|مبيعات مضمونة/);
 });
