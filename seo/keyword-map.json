@@ -118,7 +118,7 @@
       "pillar": "agency",
       "intent": "transactional",
       "priority": "P0",
-      "notes": "نية تعاقد فريق لتأكيد الطلبات، تختلف عن صفحة برنامج إدارة الطلبات القادمة."
+      "notes": "نية التعاقد مع فريق بشري لتأكيد ومتابعة الأوردرات؛ تختلف عن صفحة برنامج إدارة الطلبات /system/order-management/."
     },
     {
       "path": "/services/ecommerce-consulting/",
@@ -147,6 +147,20 @@
       "intent": "transactional",
       "priority": "P0",
       "notes": "نية استخدام/شراء منتج برمجي؛ وظائف النظام فقط بعد التحقق الفعلي من استخدامها."
+    },
+    {
+      "path": "/system/order-management/",
+      "primary": "برنامج إدارة الطلبات للمتاجر الإلكترونية",
+      "secondary": [
+        "سيستم إدارة الأوردرات",
+        "برنامج متابعة حالات الطلبات",
+        "نظام إدارة طلبات المتجر"
+      ],
+      "market": "EG",
+      "pillar": "software",
+      "intent": "transactional",
+      "priority": "P1",
+      "notes": "نية استخدام برنامج وإدارة بيانات وحالات الأوردرات، تختلف عن /services/order-management/ التي تعرض خدمة فريق بشري لتأكيد الطلبات؛ توافر التكاملات يحتاج اختبارًا فعليًا."
     },
     {
       "path": "/pricing/",
