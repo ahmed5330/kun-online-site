@@ -136,3 +136,12 @@ test('pages expose main content and defer optional font styles without fake test
   for(const p of pages){const s=fs.readFileSync(p,'utf8');assert.match(s,/<main\b/,p);const active=s.replace(/<noscript>[\s\S]*?<\/noscript>/g,'');for(const font of active.matchAll(/<link\b[^>]*fonts\.googleapis[^>]*>/g)){if(font[0].includes('stylesheet'))assert.match(font[0],/media="print"/,p);} }
   for(const home of ['index.html','en/index.html','gulf/index.html']){const s=fs.readFileSync(path.join(root,home),'utf8');assert.doesNotMatch(s,/class="tstars"|<em>150<\/em>|8\+ Years of Field Experience/);}
 });
+
+test('article template uses crawlable noindex instead of conflicting robots block',()=>{
+  const robots=fs.readFileSync(path.join(root,'robots.txt'),'utf8');
+  const template=fs.readFileSync(path.join(root,'blog/article-template.html'),'utf8');
+  assert.doesNotMatch(robots,/Disallow:\s*\/blog\/article-template\.html/);
+  assert.match(template,/<meta name="robots" content="noindex, follow">/);
+  assert.match(robots,/Sitemap:\s*https:\/\/kun-online\.com\/sitemap\.xml/);
+  assert.doesNotMatch(robots,/Disallow:\s*\/assets\//);
+});
