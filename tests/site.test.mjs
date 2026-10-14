@@ -381,7 +381,7 @@ test('SEO-30 shipping software page distinguishes carrier APIs, sheets and COD s
   assert.equal((html.match(/<h1\b/g)||[]).length,1);
   for(const term of ['J&amp;T','AWB','CSV','XLSX','COD','المرتجعات','بوليصة',
      'برنامج إدارة الشحن غير التعاقد مع شركة شحن','قائمة تحقق لربط الشحن والبوليصات بأمان',
-     'قوالب استيراد','لا يُعد إثباتًا للتسليم','التحصيل']){
+     'قوالب استيراد','إثباتًا للتسليم دون بيانات ناقل موثوقة','التحصيل']){
     assert.ok(html.includes(term),'missing shipping statement '+term);
   }
   for(const link of ['/system/','/system/order-management/','/system/inventory/',
