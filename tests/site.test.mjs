@@ -126,6 +126,9 @@ test('canonical redirects preserve paths and queries with no loops',()=>{
     ['https://kun-online.com/en/index.html','https://kun-online.com/en/'],
     ['https://kun-online.com/system','https://kun-online.com/system/'],
     ['https://kun-online.com/system/index.html','https://kun-online.com/system/'],
+    ['https://kun-online.com/system/order-management','https://kun-online.com/system/order-management/'],
+    ['https://kun-online.com/system/order-management/index.html','https://kun-online.com/system/order-management/'],
+    ['http://www.kun-online.com/system/order-management?utm=orders','https://kun-online.com/system/order-management/?utm=orders'],
     ['http://www.kun-online.com/system?source=seo','https://kun-online.com/system/?source=seo'],
     ['https://kun-online.com/blog/what-is-ecommerce.html?q=1','https://kun-online.com/blog/what-is-ecommerce?q=1'],
     ['https://www.kun-online.com/الصفحة-الرئيسية_1?x=2','https://kun-online.com/?x=2'],
@@ -146,7 +149,7 @@ test('sitemap uses verified editorial lastmod dates and no fabricated defaults',
   const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
   const mapped=new Map(articles.map(a=>[a.slug,a.dateModified]));
   const entries=[...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(x=>x[1]);
-  assert.equal(entries.length,25);
+  assert.equal(entries.length,26);
   for(const entry of entries){
     const url=entry.match(/<loc>([^<]+)<\/loc>/)?.[1];
     const lastmod=entry.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];
@@ -308,4 +311,30 @@ test('SEO-27 Commerce OS product page separates software from service and requir
   assert.match(html,/href="https:\/\/app\.kun-online\.com\/v2\/"/);
   assert.match(html,/href="https:\/\/wa\.me\/201021231619"/);
   assert.doesNotMatch(html,/اشتراك مجاني|جميع الميزات مفعّلة|نتائج مضمونة/);
+});
+
+test('SEO-28 order management software landing is distinct from order confirmation agency service',()=>{
+  const software=fs.readFileSync(path.join(root,'system/order-management/index.html'),'utf8');
+  const service=fs.readFileSync(path.join(root,'services/order-management/index.html'),'utf8');
+  const system=fs.readFileSync(path.join(root,'system/index.html'),'utf8');
+  assert.match(software,/<title>برنامج إدارة الطلبات للمتاجر الإلكترونية \| كن أونلاين<\/title>/);
+  assert.match(software,/<h1 id="order-software-heading">برنامج إدارة الطلبات/);
+  assert.match(software,/rel="canonical" href="https:\/\/kun-online\.com\/system\/order-management\/"/);
+  assert.match(service,/rel="canonical" href="https:\/\/kun-online\.com\/services\/order-management\/"/);
+  for(const phrase of ['برنامج إدارة الطلبات أم خدمة تأكيد الطلبات','CSV','XLSX',
+    'Easy Orders','التأكيد','الشحن','المرتجعات','قائمة تحقق لتفعيل إدارة الطلبات',
+    'مخطط توضيحي','التفعيل والاختبار الفعلي مطلوبان']){
+    assert.ok(software.includes(phrase),'missing documented order-software scope '+phrase);
+  }
+  assert.match(system,/href="\/system\/order-management\/"/);
+  assert.match(service,/href="\/system\/order-management\/"/);
+  assert.match(software,/href="\/services\/order-management\/"/);
+  assert.match(software,/href="https:\/\/app\.kun-online\.com\/v2\/"/);
+  assert.match(software,/href="https:\/\/wa\.me\/201021231619"/);
+  assert.match(fs.readFileSync(path.join(root,'_redirects'),'utf8'),/\/system\/order-management \/system\/order-management\/ 301/);
+  const map=JSON.parse(fs.readFileSync(path.join(root,'seo/keyword-map.json'),'utf8'));
+  assert.equal(map.pages.find(p=>p.path==='/system/order-management/').pillar,'software');
+  assert.equal(map.pages.find(p=>p.path==='/services/order-management/').pillar,'agency');
+  assert.ok(fs.readFileSync(path.join(root,'sitemap.xml'),'utf8').includes('<loc>https://kun-online.com/system/order-management/</loc>'));
+  assert.doesNotMatch(software,/مبيعات مضمونة|جميع المزايا مفعلة|لقطة شاشة فعلية/);
 });
