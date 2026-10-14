@@ -132,6 +132,9 @@ test('canonical redirects preserve paths and queries with no loops',()=>{
     ['https://kun-online.com/system/inventory/index.html','https://kun-online.com/system/inventory/'],
     ['https://kun-online.com/system/shipping','https://kun-online.com/system/shipping/'],
     ['https://kun-online.com/system/shipping/index.html','https://kun-online.com/system/shipping/'],
+    ['https://kun-online.com/system/easy-orders','https://kun-online.com/system/easy-orders/'],
+    ['https://kun-online.com/system/easy-orders/index.html','https://kun-online.com/system/easy-orders/'],
+    ['http://www.kun-online.com/system/easy-orders?utm=integration','https://kun-online.com/system/easy-orders/?utm=integration'],
     ['http://www.kun-online.com/system/shipping?utm=shipping','https://kun-online.com/system/shipping/?utm=shipping'],
     ['http://www.kun-online.com/system/inventory?utm=inventory','https://kun-online.com/system/inventory/?utm=inventory'],
     ['http://www.kun-online.com/system/order-management?utm=orders','https://kun-online.com/system/order-management/?utm=orders'],
@@ -155,7 +158,7 @@ test('sitemap uses verified editorial lastmod dates and no fabricated defaults',
   const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
   const mapped=new Map(articles.map(a=>[a.slug,a.dateModified]));
   const entries=[...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(x=>x[1]);
-  assert.equal(entries.length,28);
+  assert.equal(entries.length,29);
   for(const entry of entries){
     const url=entry.match(/<loc>([^<]+)<\/loc>/)?.[1];
     const lastmod=entry.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];
@@ -397,4 +400,35 @@ test('SEO-30 shipping software page distinguishes carrier APIs, sheets and COD s
   const map=JSON.parse(fs.readFileSync(path.join(root,'seo/keyword-map.json'),'utf8'));
   assert.equal(map.pages.find(p=>p.path==='/system/shipping/').pillar,'software');
   assert.doesNotMatch(html,/كل شركات الشحن مربوطة تلقائيًا|شحن مجاني مضمون|تحصيل مضمون/);
+});
+
+test('SEO-31 Easy Orders integration targets software buyers without unsupported control claims',()=>{
+  const page=fs.readFileSync(path.join(root,'system/easy-orders/index.html'),'utf8');
+  const home=fs.readFileSync(path.join(root,'system/index.html'),'utf8');
+  const orders=fs.readFileSync(path.join(root,'system/order-management/index.html'),'utf8');
+  const stock=fs.readFileSync(path.join(root,'system/inventory/index.html'),'utf8');
+  assert.match(page,/<title>ربط Easy Orders مع كن أونلاين \| مزامنة الطلبات والباندلز<\/title>/);
+  assert.match(page,/rel="canonical" href="https:\/\/kun-online\.com\/system\/easy-orders\/"/);
+  assert.match(page,/<h1 id="easy-title">ربط Easy Orders مع كن أونلاين/);
+  assert.equal((page.match(/<h1\b/g)||[]).length,1);
+  for(const term of ['Webhook','POST','HEAD','Secret','استكمال الفجوات','حدود API',
+    'معاينة استيراد المنتجات','منتجات الباندل','مخزون نفس المتجر','المنتج غير المعدل',
+    'لا يغيّر المنتج نفسه في Easy Orders','ربط الطلبات مش معناه التحكم الكامل',
+    'قائمة تحقق لاختبار ربط Easy Orders']){
+    assert.ok(page.includes(term),'missing scoped integration qualification '+term);
+  }
+  for(const href of ['/system/','/system/order-management/','/system/inventory/',
+    '/services/order-management/','/services/ecommerce-management/','/pricing/']){
+    assert.ok(page.includes('href="'+href+'"'),'missing related page '+href);
+  }
+  for(const existing of [home,orders,stock]){
+    assert.ok(existing.includes('href="/system/easy-orders/"'),'missing integration backlink');
+  }
+  assert.match(page,/href="https:\/\/app\.kun-online\.com\/v2\/"/);
+  assert.match(page,/href="https:\/\/wa\.me\/201021231619"/);
+  assert.match(fs.readFileSync(path.join(root,'_redirects'),'utf8'),/\/system\/easy-orders \/system\/easy-orders\/ 301/);
+  assert.match(fs.readFileSync(path.join(root,'sitemap.xml'),'utf8'),/<loc>https:\/\/kun-online\.com\/system\/easy-orders\/<\/loc>/);
+  const map=JSON.parse(fs.readFileSync(path.join(root,'seo/keyword-map.json'),'utf8'));
+  assert.equal(map.pages.find(p=>p.path==='/system/easy-orders/').pillar,'software');
+  assert.doesNotMatch(page,/تحكم كامل ومضمون|كل أوردر يصل دائمًا|تكامل يعمل بدون إعداد/);
 });
