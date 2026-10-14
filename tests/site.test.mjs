@@ -229,3 +229,20 @@ test('SEO-23 ads service separates advertising metrics from delivered-order prof
   assert.match(html,/href="https:\/\/wa\.me\/201021231619"/);
   assert.doesNotMatch(html,/ضمان مبيعات|مبيعات مضمونة|أرباح مضمونة/);
 });
+
+test('SEO-24 store-building page has platform choices, acceptance criteria and honest scope',()=>{
+  const html=fs.readFileSync(path.join(root,'services/ecommerce-store-development/index.html'),'utf8');
+  assert.match(html,/<title>بناء وتصميم متجر إلكتروني في مصر \| كن أونلاين<\/title>/);
+  assert.match(html,/rel="canonical" href="https:\/\/kun-online\.com\/services\/ecommerce-store-development\/"/);
+  assert.match(html,/<h1>بناء وتصميم متجر إلكتروني في مصر<\/h1>/);
+  for(const phrase of ['Shopify','WooCommerce','سلة','زد','مراحل إنشاء المتجر الإلكتروني','قائمة استلام المتجر','الدفع والشحن','أساسيات السيو','تكلفة إنشاء متجر إلكتروني','بعد إطلاق المتجر']){
+    assert.ok(html.includes(phrase),'missing store-development topic '+phrase);
+  }
+  for(const href of ['/gulf/','/pricing/','/blog/startup-budget-egypt','/blog/owned-vs-rented-channels','/services/ecommerce-management/','/system/']){
+    assert.ok(html.includes('href="'+href+'"'),'missing contextual internal link '+href);
+  }
+  assert.match(html,/href="https:\/\/wa\.me\/201021231619"/);
+  assert.match(html,/لا يوجد ضمان لترتيب معين/);
+  assert.match(html,/مش جزءًا تلقائيًا من أي مشروع بناء متجر/);
+  assert.doesNotMatch(html,/مبيعات مضمونة|أرباح مضمونة|رقم واحد يناسب كل/);
+});
