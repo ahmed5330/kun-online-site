@@ -58,9 +58,17 @@ for(const width of [390,1440]){
    assert.ok(await page.locator('a[href="/services/ecommerce-management/"]').count());
   }
   if(url==='/system/'){
+   assert.ok(await page.getByRole('heading',{name:/برنامج إدارة المتاجر الإلكترونية/}).count());
+   assert.ok(await page.getByRole('heading',{name:/الفرق بين سيستم إدارة المتاجر الإلكترونية وخدمة إدارة المتجر/}).count());
+   assert.ok(await page.getByRole('heading',{name:/المزايا اللي شغالة على متجرك فعلًا/}).count());
+   assert.equal(await page.locator('.kos-checklist li').count(),6);
+   assert.ok(await page.locator('a[href="/services/ecommerce-management/"]').count());
+  }
+  if(url==='/system/'){
    assert.ok(await page.getByRole('heading',{name:/خلّي تشغيل متجرك/}).count());
    assert.ok(await page.locator('a[href="https://app.kun-online.com/v2/"]').count()>0);
-   assert.equal(await page.locator('.kos-card').count(),12);
+   assert.equal(await page.locator('#features .kos-card').count(),9);
+   assert.ok((await page.locator('.kos-card').count())>=12);
   }
   if(url==='/blog/'){
    assert.equal(await page.locator('.blog-card').count(),11);

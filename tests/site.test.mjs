@@ -286,3 +286,26 @@ test('SEO-26 pricing page preserves stated rates and clearly discloses scope and
   assert.doesNotMatch(html,/مبيعات مضمونة|أرباح مضمونة/);
   assert.doesNotMatch(html,/كل ما المبيعات زادت، التكلفة للأوردر الواحد بتقل/);
 });
+
+test('SEO-27 Commerce OS product page separates software from service and requires real readiness',()=>{
+  const html=fs.readFileSync(path.join(root,'system/index.html'),'utf8');
+  assert.match(html,/<title>برنامج إدارة المتاجر الإلكترونية والطلبات والمخزون \| كن أونلاين<\/title>/);
+  assert.match(html,/rel="canonical" href="https:\/\/kun-online\.com\/system\/"/);
+  assert.match(html,/<h1 id="kos-hero-title">برنامج إدارة المتاجر الإلكترونية:/);
+  assert.equal((html.match(/<h1\b/g)||[]).length,1);
+  for(const term of ['برنامج إدارة المخزون للمتاجر','برنامج كن أونلاين','Easy Orders','J&amp;T','Microsoft Clarity',
+    'برنامج ولا فريق إدارة؟','سيناريوهات الاستخدام','إزاي نعرف المزايا اللي شغالة على متجرك فعلًا؟',
+    'المحفظة','الباندل','الحملات والتحليلات']){
+    assert.ok(html.includes(term),'missing software-intent term '+term);
+  }
+  for(const href of ['/services/ecommerce-management/','/services/order-management/','/services/ecommerce-ads/','/pricing/']){
+    assert.ok(html.includes('href="'+href+'"'),'missing service-versus-product link '+href);
+  }
+  for(const warning of ['وجود قسم أو تكامل في واجهة النظام لا يعني إنه مفعّل','لا يثبت إن الحساب مربوط',
+    'لا تعتبر الأرقام نهائية من غير مطابقة','لا يثبت وحده مَن تسبب في الشراء']){
+    assert.ok(html.includes(warning),'missing safe capability qualification '+warning);
+  }
+  assert.match(html,/href="https:\/\/app\.kun-online\.com\/v2\/"/);
+  assert.match(html,/href="https:\/\/wa\.me\/201021231619"/);
+  assert.doesNotMatch(html,/اشتراك مجاني|جميع الميزات مفعّلة|نتائج مضمونة/);
+});
