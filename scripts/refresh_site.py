@@ -67,11 +67,17 @@ def refresh(optimize=False):
         rel=path.relative_to(ROOT).as_posix()
         if rel in ('404.html','blog/article-template.html') or '.git' in rel:continue
         url='/' if rel=='index.html' else '/'+rel[:-10] if rel.endswith('index.html') else '/'+rel[:-5]
-        changed='2026-10-14' if url=='/system/' else '2026-10-13'
+        # A fabricated default lastmod is worse than omitting the optional tag.
+        # Only an editor-maintained dateModified is suitable evidence here; an
+        # article's original publication date is not automatically an edit date.
+        changed=None
         if url.startswith('/blog/') and not url.endswith('/'):
-            a=next((a for a in articles if a['slug']==url.split('/')[-1]),None)
-            if a:changed=a.get('dateModified',a.get('dateISO',changed))[:10]
-        entry='  <url><loc>'+escape(BASE+url)+'</loc><lastmod>'+escape(changed)+'</lastmod>'
+            article=next((a for a in articles if a['slug']==url.split('/')[-1]),None)
+            if article and re.fullmatch(r'\\d{4}-\\d{2}-\\d{2}',str(article.get('dateModified',''))):
+                changed=article['dateModified']
+        entry='  <url><loc>'+escape(BASE+url)+'</loc>'
+        if changed:
+            entry+='<lastmod>'+escape(changed)+'</lastmod>'
         if url in ('/','/en/','/gulf/'):
             entry+=''.join('<xhtml:link rel="alternate" hreflang="'+lang+'" href="'+BASE+p+'"/>' for lang,p in languages)
         entries.append(entry+'</url>')
