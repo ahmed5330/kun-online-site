@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /blog/article-template.html
 Disallow: /scripts/
 
 Sitemap: https://kun-online.com/sitemap.xml
