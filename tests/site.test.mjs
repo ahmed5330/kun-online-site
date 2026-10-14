@@ -117,16 +117,16 @@ test('sitemap uses verified editorial lastmod dates and no fabricated defaults',
   const xml=fs.readFileSync(path.join(root,'sitemap.xml'),'utf8');
   const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
   const mapped=new Map(articles.map(a=>[a.slug,a.dateModified]));
-  const entries=[...xml.matchAll(/<url>([\\s\\S]*?)<\\/url>/g)].map(x=>x[1]);
+  const entries=[...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(x=>x[1]);
   assert.equal(entries.length,25);
   for(const entry of entries){
-    const url=entry.match(/<loc>([^<]+)<\\/loc>/)?.[1];
-    const lastmod=entry.match(/<lastmod>([^<]+)<\\/lastmod>/)?.[1];
+    const url=entry.match(/<loc>([^<]+)<\/loc>/)?.[1];
+    const lastmod=entry.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];
     assert.ok(url?.startsWith('https://kun-online.com/'),entry);
     const slug=url?.split('/blog/')[1];
     if(slug&&mapped.has(slug)){
       assert.equal(lastmod,mapped.get(slug),url);
-      assert.match(lastmod,/^\\d{4}-\\d{2}-\\d{2}$/);
+      assert.match(lastmod,/^\d{4}-\d{2}-\d{2}$/);
     }else{
       assert.equal(lastmod,undefined,'non-article dates must have an explicit editorial source: '+url);
     }
