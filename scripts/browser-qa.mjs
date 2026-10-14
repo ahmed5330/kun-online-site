@@ -67,7 +67,8 @@ for(const width of [390,1440]){
   if(url==='/system/'){
    assert.ok(await page.getByRole('heading',{name:/خلّي تشغيل متجرك/}).count());
    assert.ok(await page.locator('a[href="https://app.kun-online.com/v2/"]').count()>0);
-   assert.equal(await page.locator('.kos-card').count(),12);
+   assert.equal(await page.locator('#features .kos-card').count(),9);
+   assert.ok((await page.locator('.kos-card').count())>=12);
   }
   if(url==='/blog/'){
    assert.equal(await page.locator('.blog-card').count(),11);
