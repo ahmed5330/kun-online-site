@@ -432,3 +432,25 @@ test('SEO-31 Easy Orders integration targets software buyers without unsupported
   assert.equal(map.pages.find(p=>p.path==='/system/easy-orders/').pillar,'software');
   assert.doesNotMatch(page,/تحكم كامل ومضمون|كل أوردر يصل دائمًا|تكامل يعمل بدون إعداد/);
 });
+
+test('SEO-32 real product screen galleries stay hidden until authorized image evidence exists',()=>{
+  const manifest=JSON.parse(fs.readFileSync(path.join(root,'seo/system-screenshots.json'),'utf8'));
+  assert.equal(manifest.version,1);
+  const pages=['/system/','/system/order-management/','/system/inventory/',
+    '/system/shipping/','/system/easy-orders/'];
+  assert.deepEqual(manifest.pendingTargets,pages);
+  for(const route of pages){
+    const html=fs.readFileSync(path.join(root,route.slice(1),'index.html'),'utf8');
+    assert.equal((html.match(/<!-- genuine-app-screenshots:start -->/g)||[]).length,1,route);
+    assert.equal((html.match(/<!-- genuine-app-screenshots:end -->/g)||[]).length,1,route);
+    assert.match(html,/توضيحي|توضيحية/,route+' illustrative UI must not impersonate a real screenshot');
+    assert.equal((html.match(/class="kos-real-capture"/g)||[]).length,
+      manifest.screenshots.filter(s=>s.page===route).length,route+' gallery must contain approved items only');
+  }
+  for(const s of manifest.screenshots){
+    assert.ok(pages.includes(s.page),'unrecognized marketing screenshot page');
+    assert.equal(s.realUiVerified,true);
+    assert.equal(s.privacyReviewed,true);
+    assert.equal(s.captureAuthorized,true);
+  }
+});
