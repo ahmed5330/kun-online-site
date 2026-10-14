@@ -113,6 +113,25 @@ test('all intended pages are in the sitemap and template is excluded',()=>{
 });
 
 
+test('sitemap uses verified editorial lastmod dates and no fabricated defaults',()=>{
+  const xml=fs.readFileSync(path.join(root,'sitemap.xml'),'utf8');
+  const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
+  const mapped=new Map(articles.map(a=>[a.slug,a.dateModified]));
+  const entries=[...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(x=>x[1]);
+  assert.equal(entries.length,25);
+  for(const entry of entries){
+    const url=entry.match(/<loc>([^<]+)<\/loc>/)?.[1];
+    const lastmod=entry.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];
+    assert.ok(url?.startsWith('https://kun-online.com/'),entry);
+    const slug=url?.split('/blog/')[1];
+    if(slug&&mapped.has(slug)){
+      assert.equal(lastmod,mapped.get(slug),url);
+      assert.match(lastmod,/^\d{4}-\d{2}-\d{2}$/);
+    }else{
+      assert.equal(lastmod,undefined,'non-article dates must have an explicit editorial source: '+url);
+    }
+  }
+});
 test('pages expose main content and defer optional font styles without fake testimonials',()=>{
   for(const p of pages){const s=fs.readFileSync(p,'utf8');assert.match(s,/<main\b/,p);const active=s.replace(/<noscript>[\s\S]*?<\/noscript>/g,'');for(const font of active.matchAll(/<link\b[^>]*fonts\.googleapis[^>]*>/g)){if(font[0].includes('stylesheet'))assert.match(font[0],/media="print"/,p);} }
   for(const home of ['index.html','en/index.html','gulf/index.html']){const s=fs.readFileSync(path.join(root,home),'utf8');assert.doesNotMatch(s,/class="tstars"|<em>150<\/em>|8\+ Years of Field Experience/);}
