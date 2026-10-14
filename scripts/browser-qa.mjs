@@ -49,6 +49,14 @@ for(const width of [390,1440]){
    assert.ok(await page.getByRole('heading',{name:/الفرق بين دراسة السوق ودراسة الجدوى/}).count());
    assert.ok(await page.locator('a[href="/pricing/"]').count());
   }
+  if(url==='/pricing/'){
+   assert.equal(await page.getByRole('heading',{name:'تكلفة إدارة المتاجر الإلكترونية والتسويق والعمليات',level:1}).count(),1);
+   assert.ok(await page.getByRole('heading',{name:/أسعار إدارة المتاجر الإلكترونية: إزاي تقرأ جدول التسعير/}).count());
+   assert.ok(await page.getByRole('heading',{name:/إيه المشمول وغير المشمول/}).count());
+   assert.ok(await page.getByRole('heading',{name:/أسئلة شائعة عن تكلفة إدارة المتاجر الإلكترونية/}).count());
+   assert.ok(await page.locator('.ptable .pt-r').count()===2);
+   assert.ok(await page.locator('a[href="/services/ecommerce-management/"]').count());
+  }
   if(url==='/system/'){
    assert.ok(await page.getByRole('heading',{name:/خلّي تشغيل متجرك/}).count());
    assert.ok(await page.locator('a[href="https://app.kun-online.com/v2/"]').count()>0);

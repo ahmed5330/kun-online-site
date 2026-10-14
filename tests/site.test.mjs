@@ -263,3 +263,26 @@ test('SEO-25 consulting page separates research, feasibility and execution with 
   assert.match(html,/الخدمات الأخرى|خدمات أخرى|مش تلقائيًا/);
   assert.doesNotMatch(html,/مبيعات مضمونة|أرباح مضمونة|نجاح مضمون/);
 });
+
+test('SEO-26 pricing page preserves stated rates and clearly discloses scope and billing rules',()=>{
+  const html=fs.readFileSync(path.join(root,'pricing/index.html'),'utf8');
+  assert.match(html,/<title>تكلفة إدارة المتاجر الإلكترونية \| كن أونلاين<\/title>/);
+  assert.match(html,/<h1>تكلفة إدارة المتاجر الإلكترونية والتسويق والعمليات<\/h1>/);
+  assert.match(html,/rel="canonical" href="https:\/\/kun-online\.com\/pricing\/"/);
+  // Never silently change commercial figures as part of editorial SEO updates.
+  for(const rate of ['$1K–10K','$10K–50K','$50K–150K','+$150K','$1','$0.75','$0.5']){
+    assert.ok(html.includes(rate),'missing existing pricing tier/rate '+rate);
+  }
+  for(const item of ['التسويق لكل تسليمة','العمليات لكل تسليمة','رسوم العمليات ثابتة','تعريف التسليمة المؤهلة',
+    'العملة والفاتورة','إيه المشمول وغير المشمول','المرتجعات','الإنفاق المدفوع لمنصات الإعلانات',
+    'سيستم كن أونلاين','هل توجد رسوم ثابتة أو حد أدنى أو ضريبة؟']){
+    assert.ok(html.includes(item),'missing pricing disclosure '+item);
+  }
+  for(const href of ['/system/','/services/ecommerce-management/','/services/ecommerce-ads/',
+    '/services/order-management/','/services/ecommerce-consulting/','/services/ecommerce-store-development/']){
+    assert.ok(html.includes('href="'+href+'"'),'missing commercial funnel link '+href);
+  }
+  assert.match(html,/https:\/\/wa\.me\/201021231619/);
+  assert.doesNotMatch(html,/مبيعات مضمونة|أرباح مضمونة/);
+  assert.doesNotMatch(html,/كل ما المبيعات زادت، التكلفة للأوردر الواحد بتقل/);
+});
