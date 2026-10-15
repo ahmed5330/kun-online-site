@@ -125,5 +125,18 @@ for(const width of [390,1440]){
 }
 const nojs=await browser.newPage({javaScriptEnabled:false});await nojs.goto(base+'/blog/');assert.equal(await nojs.locator('.blog-card a').count(),JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8')).length);
 const missing=await nojs.goto(base+'/unknown-page');assert.equal(missing.status(),404);await nojs.close();
+const consentPage=await browser.newPage();
+await consentPage.goto(base+'/');
+assert.equal(await consentPage.locator('script[src*="googletagmanager.com/gtag/js"]').count(),0,'No GA4 before consent');
+assert.equal(await consentPage.locator('#kun-analytics-consent').count(),1,'Consent controls visible');
+await consentPage.getByRole('button',{name:'رفض'}).click();
+assert.equal(await consentPage.locator('script[src*="googletagmanager.com/gtag/js"]').count(),0,'Denial must not load GA4');
+await consentPage.reload();
+assert.equal(await consentPage.locator('#kun-analytics-consent').count(),0,'Rejection persisted');
+assert.equal(await consentPage.locator('script[src*="googletagmanager.com/gtag/js"]').count(),0,'Denied visit does not load GA4');
+await consentPage.evaluate(()=>localStorage.setItem('kun_online_analytics_consent_v1','granted'));
+await consentPage.reload();
+assert.equal(await consentPage.locator('script[src*="googletagmanager.com/gtag/js"]').count(),1,'Accepted visit loads one GA4 tag');
+await consentPage.close();
 fs.writeFileSync(path.join(dir,'browser-qa.json'),JSON.stringify(results,null,2));console.log(JSON.stringify({passed:results.length,noJavaScriptBlog:true,notFound404:true}));
 }finally{await browser.close();await new Promise(r=>server.close(r));}
