@@ -4,6 +4,7 @@
  * Run by GitHub Actions after main changes or manually via workflow_dispatch.
  */
 import fs from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 
 const base = (process.env.SEO_LIVE_BASE || 'https://kun-online.com').replace(/\/$/, '');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -35,6 +36,9 @@ function check(name, predicate, evidence = '') {
   if (!passed) failures.push(name);
 }
 async function run() {
+  const source=await fs.readFile('assets/site.js','utf8');
+  const sourceHash=createHash('sha1').update(Buffer.from('blob '+Buffer.byteLength(source)+'\0')).update(source).digest('hex').slice(0,12);
+  const versionedSource='/assets/site.js?v='+sourceHash;
   const records = new Map();
   for (const page of pages) {
     try {
@@ -50,6 +54,8 @@ async function run() {
         check('No meta keywords: ' + page,
           !/<meta\s+name=["']keywords["'][^>]*>/i.test(r.body));
         check('No public phone link: ' + page, !/href=["']tel:/i.test(r.body));
+        check('Live page references current JS bundle: ' + page,
+          r.body.includes('src="'+versionedSource+'"'));
       }
     } catch (error) {
       check('HTTP 200: ' + page, false, error.message);
@@ -107,6 +113,8 @@ async function run() {
           !/<meta[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(r.body));
         check('Sitemap page has no obsolete keywords meta: '+target.pathname,
           !/<meta\s+name=["']keywords["'][^>]*>/i.test(r.body));
+        check('Sitemap page references current JS bundle: '+target.pathname,
+          r.body.includes('src="'+versionedSource+'"'));
       }
     } catch(error) {check('Sitemap route HTTP 200: '+target.pathname,false,error.message);}
   }
@@ -131,7 +139,20 @@ async function run() {
     cro.includes('ابنِ لوحة قياس واحدة') &&
     cro.includes('أحداث GA4 المناسبة') &&
     cro.includes('2026-10-15'));
-  const js = records.get('/assets/site.js')?.body || '';
+  const unversionedJs=records.get('/assets/site.js')?.body || '';
+  let js=unversionedJs;
+  try {
+    const live=await inspect(versionedSource);
+    check('Versioned analytics script returns HTTP 200',
+      live.response.status===200,'status='+live.response.status);
+    check('Versioned analytics script matches published GitHub source',
+      live.body===source, 'expectedSourceBytes='+Buffer.byteLength(source)+
+      ' liveBytes='+Buffer.byteLength(live.body));
+    check('Consent script has a short browser cache policy',
+      /max-age=(?:[0-9]{1,2}|[12][0-9]{2}|300)(?:\b|,)/i.test(live.response.headers.get('cache-control')||''),
+      'cache-control='+(live.response.headers.get('cache-control')||''));
+    if(live.response.ok) js=live.body;
+  } catch(error) { check('Versioned script fetch succeeds',false,error.message); }
   check('Published consent gate and WhatsApp event',
     js.includes('kun_online_analytics_consent_v1') &&
     js.includes('whatsapp_click') &&
