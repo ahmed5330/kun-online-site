@@ -55,6 +55,34 @@ const lines = [
   'Comparison across runs requires matching lab settings and enough repeated samples.',
   ''
 ];
+// PR builds measure main and the candidate from localhost on the *same runner*.
+// This removes the production-vs-local mismatch. A single run still varies.
+try {
+  const baseline = JSON.parse(await fs.readFile('test-results/lighthouse-baseline-mobile.json', 'utf8'));
+  if (!baseline.categories?.performance) throw new Error('Invalid baseline LHR');
+  const changed = results.find(r => r.mode === 'mobile');
+  const baseScore = Math.round(baseline.categories.performance.score * 100);
+  const baseLcp = baseline.audits['largest-contentful-paint']?.numericValue;
+  const baseTbt = baseline.audits['total-blocking-time']?.numericValue;
+  const baseCls = baseline.audits['cumulative-layout-shift']?.numericValue;
+  const ms = (value) => value == null ? 'N/A' : Math.round(value) + ' ms';
+  lines.push(
+    '',
+    '### Same-runner PR comparison: branch versus main',
+    '| Metric | Main baseline | Candidate |',
+    '|---|---:|---:|',
+    '| Mobile performance | ' + baseScore + '/100 | ' + changed.performanceScore + '/100 |',
+    '| Mobile LCP | ' + ms(baseLcp) + ' | ' + ms(changed.metrics.LCP) + ' |',
+    '| Mobile TBT | ' + ms(baseTbt) + ' | ' + ms(changed.metrics.TBT) + ' |',
+    '| Mobile CLS | ' + (baseCls ?? 'N/A') + ' | ' + (changed.metrics.CLS ?? 'N/A') + ' |',
+    '',
+    'Comparison uses a local static server for both revisions and is NOT equivalent to Cloudflare production.',
+    'Do not ship if CLS/UX regresses; rerun to confirm any performance difference.'
+  );
+} catch (error) {
+  if (process.env.GITHUB_EVENT_NAME === 'pull_request') throw error;
+}
+
 const markdown = lines.join('\n');
 console.log(markdown);
 if (process.env.GITHUB_STEP_SUMMARY) await fs.appendFile(process.env.GITHUB_STEP_SUMMARY, markdown);
