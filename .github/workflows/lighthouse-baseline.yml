@@ -52,16 +52,26 @@ jobs:
         run: |
           node --check scripts/lighthouse-summary.mjs
           which google-chrome || which google-chrome-stable || which chromium
-      - name: Measure mobile
-        run: |
-          npx --yes lighthouse@12.8.2 "$AUDIT_URL" --only-categories=performance,seo --output=json --output-path=./test-results/lighthouse-mobile.json --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
-      - name: Measure desktop
-        run: |
-          npx --yes lighthouse@12.8.2 "$AUDIT_URL" --preset=desktop --only-categories=performance,seo --output=json --output-path=./test-results/lighthouse-desktop.json --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
-      - name: Measure main-branch mobile baseline under same PR conditions
+      # ABBA sequencing reduces the warm-run advantage previously given to main.
+      # Both candidates are measured on the same localhost runner, never concurrently.
+      - name: Mobile main baseline A1
         if: github.event_name == 'pull_request'
         run: |
           npx --yes lighthouse@12.8.2 "$BASELINE_URL" --only-categories=performance,seo --output=json --output-path=./test-results/lighthouse-baseline-mobile.json --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
+      - name: Mobile candidate B1
+        run: |
+          npx --yes lighthouse@12.8.2 "$AUDIT_URL" --only-categories=performance,seo --output=json --output-path=./test-results/lighthouse-mobile.json --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
+      - name: Mobile candidate B2
+        if: github.event_name == 'pull_request'
+        run: |
+          npx --yes lighthouse@12.8.2 "$AUDIT_URL" --only-categories=performance,seo --output=json --output-path=./test-results/lighthouse-mobile-repeat.json --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
+      - name: Mobile main baseline A2
+        if: github.event_name == 'pull_request'
+        run: |
+          npx --yes lighthouse@12.8.2 "$BASELINE_URL" --only-categories=performance,seo --output=json --output-path=./test-results/lighthouse-baseline-mobile-repeat.json --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
+      - name: Measure desktop
+        run: |
+          npx --yes lighthouse@12.8.2 "$AUDIT_URL" --preset=desktop --only-categories=performance,seo --output=json --output-path=./test-results/lighthouse-desktop.json --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
       - name: Summarize laboratory metrics; distinguish field INP
         run: node scripts/lighthouse-summary.mjs
       - uses: actions/upload-artifact@v4
