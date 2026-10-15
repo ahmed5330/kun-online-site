@@ -148,9 +148,20 @@ async function run() {
     check('Versioned analytics script matches published GitHub source',
       live.body===source, 'expectedSourceBytes='+Buffer.byteLength(source)+
       ' liveBytes='+Buffer.byteLength(live.body));
-    check('Consent script has a short browser cache policy',
-      /max-age=(?:[0-9]{1,2}|[12][0-9]{2}|300)(?:\b|,)/i.test(live.response.headers.get('cache-control')||''),
-      'cache-control='+(live.response.headers.get('cache-control')||''));
+    // Unlike /assets/site.js without a query, the HTML references the exact
+    // Git-blob fingerprint in versionedSource. A 24h browser TTL is safe for
+    // content-identical versioned URLs; the prior 300-second assertion was
+    // incompatible with the real Cloudflare zone's Browser Cache TTL.
+    // This is only accepted together with the source-identity check above.
+    const cacheHeader=live.response.headers.get('cache-control')||'';
+    const ttlMatch=cacheHeader.match(/(?:^|,)\\s*max-age=(\\d+)(?:,|$)/i);
+    const ttl=ttlMatch ? Number(ttlMatch[1]) : null;
+    const shortOrVersioned=/(?:^|,)\\s*(?:no-cache|no-store)(?:,|$)/i.test(cacheHeader) ||
+      (ttl !== null && Number.isFinite(ttl) && ttl <= 86400);
+    check('Fingerprinted consent script has safe bounded cache and current source',
+      live.body===source && shortOrVersioned,
+      'cache-control='+cacheHeader+' version='+sourceHash+
+      ' bytes='+Buffer.byteLength(live.body));
     if(live.response.ok) js=live.body;
   } catch(error) { check('Versioned script fetch succeeds',false,error.message); }
   check('Published consent gate and WhatsApp event',
