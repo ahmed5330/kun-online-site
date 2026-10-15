@@ -31,6 +31,9 @@ try {
           pathPresent:u.searchParams.has('dl'),
           sent:false
         });
+        // A browser-level block may make gtag disable later telemetry.
+        // Emulate a successful no-content response without contacting Google.
+        return route.fulfill({status:204,headers:{'access-control-allow-origin':'*'},body:''});
       }
     } catch {}
     return route.abort('blockedbyclient');
@@ -58,6 +61,12 @@ try {
     return true;
   });
   await page.waitForTimeout(4000);
+  const debug=await page.evaluate(()=>({
+    started:Boolean(window.__kunGa4Started),
+    gtagAvailable:typeof window.gtag==='function',
+    dataLayerEvents:(window.dataLayer||[]).slice(-8).map(item=>
+      item?.event || (item?.length ? String(item[0])+':'+String(item[1]) : 'other'))
+  }));
   const pageView=observed.some(x=>x.name==='page_view' && x.property===measurementId);
   const whatsapp=observed.some(x=>x.name==='whatsapp_click' && x.property===measurementId);
   const result={
@@ -66,6 +75,7 @@ try {
     measurementId,
     scriptsBefore,eventsBefore,tagInserted,tagLoaded,clicked,
     events:observed,
+    debug,
     errors,
     noSyntheticHitsSent:true,
     success:scriptsBefore===0 && eventsBefore===0 && tagInserted===1 &&
