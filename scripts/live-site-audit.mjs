@@ -19,12 +19,12 @@ const pages = [
 const newArticles = pages.filter(p => p.startsWith('/blog/') && p !== '/blog/');
 const checks = [];
 const failures = [];
-async function inspect(path, { redirects = 'follow' } = {}) {
+async function inspect(path, { redirects = 'follow', userAgent = 'KunOnlineSEO-LiveAudit/1.0 (+GitHub Actions)' } = {}) {
   const url = path.startsWith('https:') ? path : base + path;
   const response = await fetch(url, {
     redirect: redirects,
     signal: AbortSignal.timeout(18000),
-    headers: { 'user-agent': 'KunOnlineSEO-LiveAudit/1.0 (+GitHub Actions)' }
+    headers: { 'user-agent': userAgent }
   });
   const body = await response.text();
   return { response, body, url };
@@ -72,6 +72,56 @@ async function run() {
     } catch (error) { check('Published ' + path, false, error.message); }
   }
   const sitemap = records.get('/sitemap.xml')?.body || '';
+  // Search Console may lag behind deployment. Independently crawl every one
+  // of the *published* sitemap's canonical URLs, not just the small smoke list.
+  const sitemapUrls=[...sitemap.matchAll(/<loc>\s*(https:\/\/[^<]+)\s*<\/loc>/g)].map(m=>m[1]);
+  const declared=JSON.parse(await fs.readFile('seo/keyword-map.json','utf8')).pages;
+  const expected=declared.map(p=>base+p.path);
+  check('Sitemap contains each and only each declared indexable URL',
+    sitemapUrls.length===expected.length && expected.every(url=>sitemapUrls.includes(url)),
+    'actual='+sitemapUrls.length+' mapped='+expected.length);
+  check('Sitemap has no duplicate canonical URLs',
+    sitemapUrls.length===new Set(sitemapUrls).size);
+  for (const url of sitemapUrls) {
+    let target;
+    try { target=new URL(url); } catch(error) {
+      check('Valid sitemap URL: '+url,false,error.message);continue;
+    }
+    // Do not fetch arbitrary remote hosts supplied by a live XML response.
+    if(target.origin!==base) {
+      check('Sitemap URL stays on canonical origin: '+url,false);continue;
+    }
+    if(pages.includes(target.pathname)) continue; // Existing smoke checks above
+    try {
+      const r=await inspect(url);
+      check('Sitemap route HTTP 200: '+target.pathname,
+        r.response.status===200 && r.response.url===url,
+        'status='+r.response.status+' final='+r.response.url);
+      if(r.response.status===200) {
+        check('Sitemap page self-canonical: '+target.pathname,
+          r.body.includes('rel="canonical" href="'+url+'"'));
+        check('Sitemap page has title and single H1: '+target.pathname,
+          /<title>[^<]+<\/title>/i.test(r.body) &&
+          (r.body.match(/<h1\b/gi)||[]).length===1);
+        check('Sitemap page is not noindex: '+target.pathname,
+          !/<meta[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(r.body));
+        check('Sitemap page has no obsolete keywords meta: '+target.pathname,
+          !/<meta\s+name=["']keywords["'][^>]*>/i.test(r.body));
+      }
+    } catch(error) {check('Sitemap route HTTP 200: '+target.pathname,false,error.message);}
+  }
+  // Parity audit catches accidental Cloudflare challenges targeting crawlers.
+  // A forged User-Agent is only a smoke test, NOT proof that Google indexed it.
+  for (const pathname of ['/', '/services/', '/system/', '/blog/real-cost-per-delivered-order']) {
+    try {
+      const r=await inspect(pathname,{userAgent:'Googlebot'});
+      check('Googlebot user-agent receives indexable 200: '+pathname,
+        r.response.status===200 &&
+        r.body.includes('rel="canonical" href="'+base+pathname+'"') &&
+        !/<meta[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(r.body),
+        'status='+r.response.status);
+    } catch(error) {check('Googlebot user-agent receives indexable 200: '+pathname,false,error.message);}
+  }
   for (const article of newArticles) {
     check('Sitemap contains ' + article,
       sitemap.includes('<loc>' + base + article + '</loc>'));
