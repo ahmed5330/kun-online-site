@@ -42,6 +42,17 @@
       if (value) info[key] = value;
     }
     window.dataLayer.push(info);
+    // Explicit gtag event is sent only after visitor opt-in. A dataLayer
+    // object alone is not a GA4 hit without a configured GTM container.
+    if (window.__kunGa4Started && typeof window.gtag === 'function') {
+      window.gtag('event', 'whatsapp_click', {
+        page_path: info.page_path,
+        service_type: info.service_type,
+        ...(info.utm_source ? {utm_source: info.utm_source} : {}),
+        ...(info.utm_medium ? {utm_medium: info.utm_medium} : {}),
+        ...(info.utm_campaign ? {utm_campaign: info.utm_campaign} : {})
+      });
+    }
     // A WhatsApp click is an intent signal, NOT a verified or qualified lead.
   });
 }());
