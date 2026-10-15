@@ -127,3 +127,71 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', askConsent);
   else askConsent();
 }());
+
+
+/* Persistent, accessible choice control. People can withdraw analytics
+ * permission after their initial answer; no analytics is sent after reload. */
+(function () {
+  'use strict';
+  const footer = typeof document.querySelector === 'function' ? document.querySelector('footer') : null;
+  if (!footer || !window.localStorage) return;
+  const isEnglish = /^en\b/i.test(document.documentElement.lang || '');
+  const key = 'kun_online_analytics_consent_v1';
+  const labels = isEnglish
+    ? { settings: 'Analytics preferences', explanation: 'You can change your analytics choice at any time. Declining does not affect website access.', allow: 'Allow analytics', deny: 'Decline analytics' }
+    : { settings: 'إعدادات التحليلات', explanation: 'تقدر تغيّر موافقتك على قياس الزيارات في أي وقت، ورفض القياس مش هيمنع استخدام الموقع.', allow: 'السماح بالتحليلات', deny: 'رفض التحليلات' };
+  const trigger = document.createElement('button');
+  trigger.id = 'kun-analytics-preferences';
+  trigger.type = 'button';
+  trigger.textContent = labels.settings;
+  Object.assign(trigger.style, {
+    display: 'inline-block', cursor: 'pointer', font: 'inherit',
+    fontSize: '12px', border: '1px solid #72849a', borderRadius: '8px',
+    color: '#e4eaf2', background: 'transparent', padding: '6px 12px', margin: '10px'
+  });
+  trigger.setAttribute('aria-haspopup', 'dialog');
+  function closePanel() { document.getElementById('kun-analytics-preferences-dialog')?.remove(); }
+  function save(value) {
+    try { window.localStorage.setItem(key, value); }
+    catch (_) { return; }
+    // Reload discards any initialized analytics libraries and stops future hits.
+    // Historic GA data cannot be recalled by this client-side setting.
+    window.location.reload();
+  }
+  trigger.addEventListener('click', function () {
+    const existing = document.getElementById('kun-analytics-preferences-dialog');
+    if (existing) { closePanel(); return; }
+    const panel = document.createElement('div');
+    panel.id = 'kun-analytics-preferences-dialog';
+    panel.setAttribute('role', 'dialog');
+    panel.setAttribute('aria-label', labels.settings);
+    Object.assign(panel.style, {
+      position: 'fixed', inset: 'auto 12px 12px auto', zIndex: '10001',
+      direction: isEnglish ? 'ltr' : 'rtl', background: '#15233a',
+      color: '#fff', border: '1px solid #7a8ca4', borderRadius: '14px',
+      maxWidth: 'min(430px, calc(100vw - 24px))', padding: '18px', lineHeight: '1.7',
+      boxShadow: '0 8px 32px rgba(0,0,0,.28)'
+    });
+    const copy = document.createElement('p');
+    copy.textContent = labels.explanation;
+    copy.style.margin = '0 0 13px';
+    panel.appendChild(copy);
+    for (const [label, value] of [[labels.allow, 'granted'], [labels.deny, 'denied']]) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = label;
+      Object.assign(button.style, {
+        font: 'inherit', fontWeight: '700', fontSize: '13px',
+        cursor: 'pointer', padding: '8px 13px', margin: '4px',
+        borderRadius: '8px', border: '1px solid #7a8ca4',
+        background: value === 'granted' ? '#7dc242' : 'transparent',
+        color: value === 'granted' ? '#0a0f1e' : '#fff'
+      });
+      button.addEventListener('click', () => save(value));
+      panel.appendChild(button);
+    }
+    document.body.appendChild(panel);
+    panel.querySelector('button')?.focus();
+  });
+  footer.appendChild(trigger);
+}());
