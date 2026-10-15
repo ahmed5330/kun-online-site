@@ -1,5 +1,9 @@
 name: Live Lighthouse mobile and desktop
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/lighthouse-baseline.yml'
+      - 'scripts/lighthouse-summary.mjs'
   push:
     branches: [main]
     paths:
