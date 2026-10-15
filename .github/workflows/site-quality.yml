@@ -25,6 +25,8 @@ jobs:
         run: python scripts/refresh_site.py --optimize-images
       - name: Syntax check live release auditor
         run: node --check scripts/live-site-audit.mjs
+      - name: Show actual Cloudflare cache headers (diagnostic only)
+        run: node scripts/cache-probe.mjs
       - name: Static SEO and redirect checks
         run: npm test
       - name: Future publisher metadata regression
