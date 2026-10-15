@@ -454,3 +454,17 @@ test('SEO-32 real product screen galleries stay hidden until authorized image ev
     assert.equal(s.captureAuthorized,true);
   }
 });
+
+
+test('SEO-09: homepage LocalBusiness links publisher ID without unverified hours or price',()=>{
+  const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+  const schemas=[...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(x=>JSON.parse(x[1]));
+  const entity=schemas.find(s=>s['@type']==='LocalBusiness');
+  const website=schemas.find(s=>s['@type']==='WebSite');
+  assert.ok(entity,'Homepage must keep a real publisher entity');
+  assert.equal(entity['@id'],'https://kun-online.com/#organization');
+  assert.equal(website?.publisher?.['@id'],entity['@id']);
+  assert.equal(entity.openingHoursSpecification,undefined,'Do not claim opening hours absent owner verification');
+  assert.equal(entity.priceRange,undefined,'Do not infer local business price tier');
+  assert.match(entity.contactPoint?.url || '',/^https:\/\/wa\.me\//);
+});
