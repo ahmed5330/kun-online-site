@@ -20,17 +20,18 @@ test('SEO-19: all public HTML content uses titles and copy, not meta keywords', 
   }
 });
 
-function runClick({ href, pathname, search = '', service = null }) {
+function runClick({ href, pathname, search = '', service = null, button = false, consent = false }) {
   const script = readFileSync(join(root, 'assets/site.js'), 'utf8');
   let handler;
   const document = { addEventListener: (type, fn) => {
     assert.equal(type, 'click');
     handler = fn;
   }};
-  const window = { location: { pathname, search }, dataLayer: [] };
+  const window = { location: { pathname, search }, dataLayer: [], __kunGa4Started: consent };
+  if (consent) window.gtag = (...args) => window.dataLayer.push(args);
   vm.runInNewContext(script, { document, window, URLSearchParams });
-  const anchor = { getAttribute: () => href, closest: () => service && ({ getAttribute: () => service }) };
-  handler({ target: { closest: selector => selector === 'a[href]' ? anchor : null } });
+  const anchor = { getAttribute: name => name === 'href' ? (button ? null : href) : name === 'data-contact-channel' ? (button ? 'whatsapp' : null) : null, closest: () => service && ({ getAttribute: () => service }) };
+  handler({ target: { closest: selector => selector === 'a[href],button[data-contact-channel="whatsapp"]' ? anchor : null } });
   return JSON.parse(JSON.stringify(window.dataLayer));
 }
 
