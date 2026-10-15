@@ -79,6 +79,36 @@ try {
     'Comparison uses a local static server for both revisions and is NOT equivalent to Cloudflare production.',
     'Do not ship if CLS/UX regresses; rerun to confirm any performance difference.'
   );
+  // Counter-balanced ABBA comparison: first/last are baseline, middle
+  // runs are candidate. Shows both observations; two runs are still not
+  // statistically robust and the test should be repeated before claiming gains.
+  const baselineRepeat=JSON.parse(await fs.readFile('test-results/lighthouse-baseline-mobile-repeat.json','utf8'));
+  const candidateFirst=JSON.parse(await fs.readFile('test-results/lighthouse-mobile.json','utf8'));
+  const candidateRepeat=JSON.parse(await fs.readFile('test-results/lighthouse-mobile-repeat.json','utf8'));
+  const pairs=[
+    {label:'Main',runs:[baseline,baselineRepeat]},
+    {label:'Candidate',runs:[candidateFirst,candidateRepeat]}
+  ];
+  const average=(values)=>values.reduce((a,b)=>a+b,0)/values.length;
+  const score=(lhr)=>Math.round(lhr.categories.performance.score*100);
+  const lcp=(lhr)=>lhr.audits['largest-contentful-paint']?.numericValue;
+  const cls=(lhr)=>lhr.audits['cumulative-layout-shift']?.numericValue;
+  lines.push(
+    '',
+    '### Counter-balanced A-B-B-A comparison (two mobile runs each)',
+    '| Variant | Run 1 score | Run 2 score | Mean score | Mean LCP | Max CLS |',
+    '|---|---:|---:|---:|---:|---:|',
+    ...pairs.map(p=>[
+      p.label, score(p.runs[0]), score(p.runs[1]),
+      average(p.runs.map(score)).toFixed(1),
+      Math.round(average(p.runs.map(lcp)))+' ms',
+      Math.max(...p.runs.map(cls)).toFixed(3)
+    ].join(' | ')).map(x=>'| '+x+' |'),
+    '',
+    'Interpretation: GitHub-hosted Lighthouse lab readings can vary significantly.',
+    'The live production and CrUX results remain separate release gates.'
+  );
+
 } catch (error) {
   if (process.env.GITHUB_EVENT_NAME === 'pull_request') throw error;
 }
