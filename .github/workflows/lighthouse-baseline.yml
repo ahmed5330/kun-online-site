@@ -31,18 +31,38 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-      - name: Check audit parser syntax and Chrome availability
+      - name: Checkout main as comparable laboratory baseline
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          path: baseline-site
+      - name: Configure matching test environments
+        run: |
+          mkdir -p test-results
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            python3 -m http.server 8765 --directory . > /tmp/seo-current-server.log 2>&1 &
+            python3 -m http.server 8766 --directory baseline-site > /tmp/seo-baseline-server.log 2>&1 &
+            echo "AUDIT_URL=http://127.0.0.1:8765/" >> "$GITHUB_ENV"
+            echo "BASELINE_URL=http://127.0.0.1:8766/" >> "$GITHUB_ENV"
+          else
+            echo "AUDIT_URL=https://kun-online.com/" >> "$GITHUB_ENV"
+          fi
+      - name: Check summary parser syntax and Chrome availability
         run: |
           node --check scripts/lighthouse-summary.mjs
           which google-chrome || which google-chrome-stable || which chromium
-      - name: Measure mobile — clean first visit
+      - name: Measure mobile
         run: |
-          mkdir -p test-results
-          npx --yes lighthouse@12.8.2 https://kun-online.com/ --only-categories=performance,seo --output=json --output-path=./test-results/lighthouse-mobile.json --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
-      - name: Measure desktop — clean first visit
+          npx --yes lighthouse@12.8.2 "$AUDIT_URL" --only-categories=performance,seo --output=json --output-path=./test-results/lighthouse-mobile.json --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
+      - name: Measure desktop
         run: |
-          npx --yes lighthouse@12.8.2 https://kun-online.com/ --preset=desktop --only-categories=performance,seo --output=json --output-path=./test-results/lighthouse-desktop.json --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
-      - name: Summarize lab metrics and explicitly distinguish field INP
+          npx --yes lighthouse@12.8.2 "$AUDIT_URL" --preset=desktop --only-categories=performance,seo --output=json --output-path=./test-results/lighthouse-desktop.json --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
+      - name: Measure main-branch mobile baseline under same PR conditions
+        if: github.event_name == 'pull_request'
+        run: |
+          npx --yes lighthouse@12.8.2 "$BASELINE_URL" --only-categories=performance,seo --output=json --output-path=./test-results/lighthouse-baseline-mobile.json --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
+      - name: Summarize laboratory metrics; distinguish field INP
         run: node scripts/lighthouse-summary.mjs
       - uses: actions/upload-artifact@v4
         if: always()
