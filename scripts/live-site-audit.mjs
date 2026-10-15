@@ -88,7 +88,7 @@ async function run() {
     js.includes('G-F2XBVGWB5X'));
   for (const region of ['/', '/en/', '/gulf/']) {
     const html = records.get(region)?.body || '';
-    const marked = (html.match(/<button[^>]*data-contact-channel="whatsapp"[^>]*onclick="wa\\(/g) || []).length;
+    const marked = (html.match(/<button[^>]*data-contact-channel="whatsapp"[^>]*onclick="wa\(/g) || []).length;
     check('All five WhatsApp buttons tagged for attribution: ' + region,
       marked === 5, 'found=' + marked + '; expected=5');
   }
