@@ -1,0 +1,30 @@
+name: Live GA4 consent network dry-run
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/live-ga4-network-audit.mjs'
+      - '.github/workflows/live-ga4-network-audit.yml'
+      - 'assets/site.js'
+      - 'index.html'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-analytics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts --no-package-lock
+      - run: npx playwright install --with-deps chromium
+      - name: Check real gtag network without transmitting synthetic events
+        run: node scripts/live-ga4-network-audit.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-ga4-network-diagnostic
+          path: test-results/live-ga4-network-audit.json
