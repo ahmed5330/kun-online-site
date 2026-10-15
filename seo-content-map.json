@@ -139,13 +139,14 @@
       "search_intent": null,
       "slug": null,
       "url": null,
-      "status": "queued",
+      "status": "needs_review",
       "published_date": null,
       "word_count": null,
       "internal_links_out": [],
       "internal_links_in": [],
-      "failure_reason": null,
-      "attempts": 0
+      "failure_reason": "Editorial draft prepared; not published. Requires SERP/keyword audit, original approved 1200x630 featured image, external daily lock check, source QA, and mobile live publication tests.",
+      "attempts": 0,
+      "draft_file": "docs/editorial-drafts/002-is-ecommerce-right-for-you.md"
     },
     {
       "article_id": 3,
