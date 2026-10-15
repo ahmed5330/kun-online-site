@@ -2,6 +2,7 @@ name: Live Lighthouse mobile and desktop
 on:
   pull_request:
     paths:
+      - 'index.html'
       - '.github/workflows/lighthouse-baseline.yml'
       - 'scripts/lighthouse-summary.mjs'
   push:
