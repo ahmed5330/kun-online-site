@@ -491,6 +491,6 @@ test('SEO-33: practical operations guides are linked contextually from relevant 
     assert.ok(links.length>=2,slug+': guide must contain at least two sibling topical links');
     const linkingPillars=pillars.filter(p=>fs.readFileSync(path.join(root,p),'utf8').includes('href="/blog/'+slug+'"'));
     assert.ok(linkingPillars.length>=2,slug+': guide must be linked from two relevant service/system pillars');
-    assert.match(guide,/<h1\\b/i,slug);
+    assert.match(guide,/<h1\b/i,slug);
   }
 });
