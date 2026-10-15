@@ -53,16 +53,21 @@ try {
   await page.getByRole('button',{name:'موافق',exact:true}).click();
   await page.waitForTimeout(8500);
   const tagInserted=await page.locator('script[src*="googletagmanager.com/gtag/js"]').count();
-  const clicked=await page.evaluate(()=>{
+  await page.evaluate(()=>{
     window.wa=()=>{}; // prevent external WhatsApp tab and message
-    const cta=document.querySelector('button[data-contact-channel="whatsapp"]');
-    if(!cta) return false;
-    cta.click();
-    return true;
+    window.__gaProbeClickTrusted=false;
+    document.addEventListener('click',e=>{
+      if(e.target.closest('button[data-contact-channel="whatsapp"]'))
+        window.__gaProbeClickTrusted=e.isTrusted;
+    },{once:true});
   });
-  await page.waitForTimeout(4000);
+  const cta=page.locator('button[data-contact-channel="whatsapp"]').first();
+  const clicked=(await cta.count())>0;
+  if(clicked) await cta.click({timeout:9000}); // real browser input, not element.click()
+  await page.waitForTimeout(5500);
   const debug=await page.evaluate(()=>({
     started:Boolean(window.__kunGa4Started),
+    trustedClick:Boolean(window.__gaProbeClickTrusted),
     gtagAvailable:typeof window.gtag==='function',
     dataLayerEvents:(window.dataLayer||[]).slice(-8).map(item=>
       item?.event || (item?.length ? String(item[0])+':'+String(item[1]) : 'other'))
