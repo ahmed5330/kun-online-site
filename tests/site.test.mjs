@@ -574,3 +574,39 @@ test('SEO-34: ecommerce history avoids unsupported national performance percenta
   assert.ok(html.includes('سوق مصر أو السعودية'));
   assert.ok(html.includes('سياسة استبدال واسترجاع واضحة'));
 });
+
+
+test('SEO-34: blog category filter exposes every actual published category', () => {
+  const html=fs.readFileSync(path.join(root,'blog/index.html'),'utf8');
+  const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
+  const choices=[...html.matchAll(/<option value="([^"]+)"/g)].map(m=>m[1]);
+  assert.equal(new Set(choices).size,choices.length,'duplicate filter values');
+  assert.ok(choices.includes('all'),'category reset must exist');
+  const missing=[...new Set(articles.map(a=>a.category))].filter(category=>!choices.includes(category));
+  assert.deepEqual(missing,[],'published article category inaccessible through blog filter');
+});
+
+test('SEO-34: new operations guides have actual word counts and non-misleading reading time', () => {
+  const index=fs.readFileSync(path.join(root,'blog/index.html'),'utf8');
+  const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
+  for(const slug of [
+    'real-cost-per-delivered-order',
+    'cod-shipping-returns-reconciliation',
+    'inventory-barcode-bundle-tracking',
+    'order-confirmation-delivery-rate'
+  ]){
+    const item=articles.find(a=>a.slug===slug);
+    assert.ok(item,slug);
+    const html=fs.readFileSync(path.join(root,'blog',slug+'.html'),'utf8');
+    const article=html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1];
+    assert.ok(article,slug+' missing article body');
+    const words=article.replace(/<[^>]*>/g,' ').replace(/&(?:[a-z]+|#\d+);/gi,' ')
+      .trim().split(/\s+/).filter(Boolean).length;
+    assert.equal(item.wordCount,words,slug+' wordCount metadata must match article');
+    assert.equal(item.readTime,Math.ceil(words/170),slug+' read time is an approximation at 170 wpm');
+    const card=index.match(new RegExp('<article class="card blog-card"[^>]*>[\\s\\S]*?<a href="/blog/'+slug+'">'));
+    assert.ok(card,slug+' not linked in index');
+    assert.ok(index.includes(item.categoryLabel+' · '+item.date+' · '+item.readTime+' دقائق'),
+      slug+' index reading label out of sync');
+  }
+});
