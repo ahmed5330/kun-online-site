@@ -158,7 +158,7 @@ test('sitemap uses verified editorial lastmod dates and no fabricated defaults',
   const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
   const mapped=new Map(articles.map(a=>[a.slug,a.dateModified]));
   const entries=[...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(x=>x[1]);
-  assert.equal(entries.length,29);
+  assert.equal(entries.length,pages.filter(p=>!p.endsWith('404.html')).length);
   for(const entry of entries){
     const url=entry.match(/<loc>([^<]+)<\/loc>/)?.[1];
     const lastmod=entry.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];

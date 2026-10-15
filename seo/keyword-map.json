@@ -416,6 +416,58 @@
       "intent": "informational",
       "priority": "P2",
       "notes": "صفحة تأسيسية تربط بالأدلة التفصيلية."
+    },
+    {
+      "path": "/blog/cod-shipping-returns-reconciliation",
+      "primary": "تسوية تحصيل شركات الشحن",
+      "secondary": [
+        "تسوية شركات الشحن",
+        "مطابقة COD والمرتجعات"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "دليل تعليمي بمثال توضيحي وروابط للوظيفة المرتبطة، لا يضمن توفير كل خصائص التطبيق لكل متجر."
+    },
+    {
+      "path": "/blog/inventory-barcode-bundle-tracking",
+      "primary": "إدارة المخزون بالباركود",
+      "secondary": [
+        "باركود كل قطعة",
+        "إدارة باندل المخزون"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "دليل تعليمي بمثال توضيحي وروابط للوظيفة المرتبطة، لا يضمن توفير كل خصائص التطبيق لكل متجر."
+    },
+    {
+      "path": "/blog/order-confirmation-delivery-rate",
+      "primary": "نسبة تأكيد الطلبات",
+      "secondary": [
+        "نسبة تسليم الطلبات",
+        "قياس تأكيد الأوردرات"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "دليل تعليمي بمثال توضيحي وروابط للوظيفة المرتبطة، لا يضمن توفير كل خصائص التطبيق لكل متجر."
+    },
+    {
+      "path": "/blog/real-cost-per-delivered-order",
+      "primary": "تكلفة الطلب الفعلية",
+      "secondary": [
+        "تكلفة الطلب المسلّم",
+        "حساب تكلفة الأوردر من الإعلان للتسليم"
+      ],
+      "market": "EG",
+      "pillar": "informational",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "دليل تعليمي بمثال توضيحي وروابط للوظيفة المرتبطة، لا يضمن توفير كل خصائص التطبيق لكل متجر."
     }
   ]
 }

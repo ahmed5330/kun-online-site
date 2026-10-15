@@ -111,7 +111,7 @@ for(const width of [390,1440]){
     assert.ok(await page.locator('a[href="https://app.kun-online.com/v2/"]').count());
   }
   if(url==='/blog/'){
-   assert.equal(await page.locator('.blog-card').count(),11);
+   assert.equal(await page.locator('.blog-card').count(),JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8')).length);
    await page.locator('#blog-search').fill('مصطلحات');
    assert.ok(await page.locator('.blog-card:not([hidden])').count()>0);
    await page.locator('#blog-search').fill('zzzz-not-present');
@@ -123,7 +123,7 @@ for(const width of [390,1440]){
  }
  assert.deepEqual(errors,[]);await page.close();
 }
-const nojs=await browser.newPage({javaScriptEnabled:false});await nojs.goto(base+'/blog/');assert.equal(await nojs.locator('.blog-card a').count(),11);
+const nojs=await browser.newPage({javaScriptEnabled:false});await nojs.goto(base+'/blog/');assert.equal(await nojs.locator('.blog-card a').count(),JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8')).length);
 const missing=await nojs.goto(base+'/unknown-page');assert.equal(missing.status(),404);await nojs.close();
 fs.writeFileSync(path.join(dir,'browser-qa.json'),JSON.stringify(results,null,2));console.log(JSON.stringify({passed:results.length,noJavaScriptBlog:true,notFound404:true}));
 }finally{await browser.close();await new Promise(r=>server.close(r));}
