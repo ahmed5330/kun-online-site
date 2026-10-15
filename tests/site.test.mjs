@@ -468,3 +468,29 @@ test('SEO-09: homepage LocalBusiness links publisher ID without unverified hours
   assert.equal(entity.priceRange,undefined,'Do not infer local business price tier');
   assert.match(entity.contactPoint?.url || '',/^https:\/\/wa\.me\//);
 });
+
+
+test('SEO-33: practical operations guides are linked contextually from relevant pillars and each other',()=>{
+  const slugs=[
+    'real-cost-per-delivered-order',
+    'order-confirmation-delivery-rate',
+    'inventory-barcode-bundle-tracking',
+    'cod-shipping-returns-reconciliation'
+  ];
+  const pillars=[
+    'services/ecommerce-ads/index.html',
+    'services/order-management/index.html',
+    'services/ecommerce-management/index.html',
+    'system/inventory/index.html',
+    'system/shipping/index.html',
+    'system/order-management/index.html'
+  ];
+  for(const slug of slugs){
+    const guide=fs.readFileSync(path.join(root,'blog',slug+'.html'),'utf8');
+    const links=slugs.filter(other=>other!==slug && guide.includes('href="/blog/'+other+'"'));
+    assert.ok(links.length>=2,slug+': guide must contain at least two sibling topical links');
+    const linkingPillars=pillars.filter(p=>fs.readFileSync(path.join(root,p),'utf8').includes('href="/blog/'+slug+'"'));
+    assert.ok(linkingPillars.length>=2,slug+': guide must be linked from two relevant service/system pillars');
+    assert.match(guide,/<h1\b/i,slug);
+  }
+});
