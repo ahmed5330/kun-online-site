@@ -126,6 +126,13 @@ for(const width of [390,1440]){
 const nojs=await browser.newPage({javaScriptEnabled:false});await nojs.goto(base+'/blog/');assert.equal(await nojs.locator('.blog-card a').count(),JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8')).length);
 const missing=await nojs.goto(base+'/unknown-page');assert.equal(missing.status(),404);await nojs.close();
 const consentPage=await browser.newPage();
+// Never send synthetic localhost page views or CTA events to the real GA4
+// property. This still tests tag initialization, DOM consent behavior and
+// dataLayer dispatch while replacing the third-party script with a stub.
+await consentPage.route(/^https:\/\/www\.googletagmanager\.com\/gtag\/js(?:\?|$)/,
+  route=>route.fulfill({status:200,contentType:'application/javascript',body:'/* analytics isolated in browser QA */'}));
+await consentPage.route(/^https:\/\/(?:www\.)?google-analytics\.com\//,
+  route=>route.abort());
 await consentPage.goto(base+'/');
 assert.equal(await consentPage.locator('script[src*="googletagmanager.com/gtag/js"]').count(),0,'No GA4 before consent');
 assert.equal(await consentPage.locator('#kun-analytics-consent').count(),1,'Consent controls visible');
