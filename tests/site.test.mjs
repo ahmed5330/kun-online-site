@@ -522,3 +522,14 @@ test('advanced Pages worker explicitly shortens only analytics script cache life
   const ordinary=await worker.fetch(new Request('https://kun-online.com/assets/site.css'),env);
   assert.equal(ordinary.headers.get('cache-control'),'public, max-age=86400');
 });
+
+
+test('Cloudflare Pages asset rules do not mask the short analytics bundle TTL',()=>{
+  const headers=fs.readFileSync(path.join(root,'_headers'),'utf8');
+  assert.doesNotMatch(headers,/^\/assets\/\*\s*\n\s*Cache-Control:\s*public,\s*max-age=86400/m,
+    'A blanket long-lived asset cache can override the analytics-only rule');
+  assert.match(headers,/^\/assets\/site\.js\s*\n\s*Cache-Control:\s*public,\s*max-age=300,\s*must-revalidate/m);
+  for(const name of ['blog.js','site.css','system.css']){
+    assert.match(headers,new RegExp('^/assets/'+name.replace('.','\\.')+'\\s*\\n\\s*Cache-Control:\\s*public,\\s*max-age=86400','m'));
+  }
+});
