@@ -36,6 +36,18 @@ export default {
       const location = canonicalLocation(request.url);
       if (location) return new Response(null, {status:301, headers:{Location:location}});
     }
-    return env.ASSETS.fetch(request);
+    const response = await env.ASSETS.fetch(request);
+    // site.js is a high-impact consent/measurement entrypoint. Force short
+    // browser freshness even when the default static asset cache is longer.
+    // This header is applied here because Pages advanced-mode _worker.js
+    // responses do not reliably inherit rules from _headers.
+    if (new URL(request.url).pathname !== '/assets/site.js') return response;
+    const headers = new Headers(response.headers);
+    headers.set('Cache-Control', 'public, max-age=300, must-revalidate');
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers
+    });
   }
 };
