@@ -533,3 +533,28 @@ test('Cloudflare Pages asset rules do not mask the short analytics bundle TTL',(
     assert.match(headers,new RegExp('^/assets/'+name.replace('.','\\.')+'\\s*\\n\\s*Cache-Control:\\s*public,\\s*max-age=86400','m'));
   }
 });
+
+
+test('SEO-34: revised editorial pages carry verified modification dates and labeled examples',()=>{
+  for (const slug of ['startup-budget-egypt','product-marketing-operations-ecommerce']) {
+    const html=fs.readFileSync(path.join(root,'blog',slug+'.html'),'utf8');
+    const scripts=html.split('<script type="application/ld+json">').slice(1);
+    const schemas=scripts.map(s=>JSON.parse(s.split('</script>')[0]));
+    const posting=schemas.find(x=>x['@type']==='BlogPosting');
+    assert.ok(posting,slug+' must have article structured data');
+    assert.equal(posting.dateModified,'2026-10-16');
+    assert.equal(posting.url,'https://kun-online.com/blog/'+slug);
+    assert.ok(html.includes('rel="canonical" href="https://kun-online.com/blog/'+slug+'"'));
+    assert.ok(html.includes('افتراضي') || html.includes('افتراضية'),slug);
+    assert.ok(!html.includes('1000% طلب'));
+    assert.ok(!html.includes('Shopify من 29$'));
+  }
+  const budget=fs.readFileSync(path.join(root,'blog/startup-budget-egypt.html'),'utf8');
+  const ops=fs.readFileSync(path.join(root,'blog/product-marketing-operations-ecommerce.html'),'utf8');
+  assert.ok(budget.includes('هامش المساهمة'));
+  assert.ok(budget.includes('https://www.shopify.com/pricing'));
+  assert.ok(budget.includes('support.google.com/merchants/answer/13889434'));
+  assert.ok(budget.includes('href="/blog/real-cost-per-delivered-order"'));
+  assert.ok(ops.includes('نقرة واتساب ليست عميلًا مؤهلًا'));
+  assert.ok(ops.includes('href="/blog/order-confirmation-delivery-rate"'));
+});
