@@ -153,6 +153,20 @@ const trackedCta = await consentPage.evaluate(() => {
 assert.equal(trackedCta.found,true,'Expected an instrumented homepage WhatsApp button');
 assert.equal(trackedCta.intentEvents,1,'Clicking the homepage CTA records one contact intent');
 assert.equal(trackedCta.gaHits,1,'Opted-in homepage CTA sends one GA4 event');
+await consentPage.getByRole('button',{name:'إعدادات التحليلات'}).click();
+assert.equal(await consentPage.locator('#kun-analytics-preferences-dialog').count(),1);
+await consentPage.getByRole('button',{name:'رفض التحليلات'}).click();
+await consentPage.waitForLoadState('domcontentloaded');
+assert.equal(await consentPage.locator('script[src*="googletagmanager.com/gtag/js"]').count(),0,'Analytics stops after withdrawing consent');
+assert.equal(await consentPage.locator('#kun-analytics-consent').count(),0,'Previously rejected choice stays persisted');
+await consentPage.getByRole('button',{name:'إعدادات التحليلات'}).click();
+await consentPage.getByRole('button',{name:'السماح بالتحليلات'}).click();
+await consentPage.waitForLoadState('domcontentloaded');
+assert.equal(await consentPage.locator('script[src*="googletagmanager.com/gtag/js"]').count(),1,'Analytics can be re-enabled after explicit approval');
 await consentPage.close();
+const englishPrivacy=await browser.newPage();
+await englishPrivacy.goto(base+'/en/');
+assert.equal(await englishPrivacy.getByRole('button',{name:'Analytics preferences'}).count(),1,'English visitors see translated analytics preferences');
+await englishPrivacy.close();
 fs.writeFileSync(path.join(dir,'browser-qa.json'),JSON.stringify(results,null,2));console.log(JSON.stringify({passed:results.length,noJavaScriptBlog:true,notFound404:true}));
 }finally{await browser.close();await new Promise(r=>server.close(r));}
