@@ -533,3 +533,22 @@ test('Cloudflare Pages asset rules do not mask the short analytics bundle TTL',(
     assert.match(headers,new RegExp('^/assets/'+name.replace('.','\\.')+'\\s*\\n\\s*Cache-Control:\\s*public,\\s*max-age=86400','m'));
   }
 });
+
+
+test('SEO-34: revised budgeting and operations guides do not present speculative fees or sales guarantees',()=>{
+  const budget=fs.readFileSync(path.join(root,'blog/startup-budget-egypt.html'),'utf8');
+  const ops=fs.readFileSync(path.join(root,'blog/product-marketing-operations-ecommerce.html'),'utf8');
+  for(const html of [budget,ops]){
+    const article=JSON.parse([...html.matchAll(/<script type="application\\/ld\\+json">([\\s\\S]*?)<\\/script>/g)].map(x=>x[1]).find(s=>s.includes('"BlogPosting"')));
+    assert.equal(article.dateModified,'2026-10-16');
+    assert.match(html,/rel="canonical" href="https:\\/\\/kun-online\\.com\\/blog\\//);
+    assert.match(html,/افتراضي|افتراضية/,'Explicit hypothetical example labeling required');
+    assert.doesNotMatch(html,/1000% طلب|1000\\+ طلب|1500 جنيه تغطي منتج|Shopify من 29\\$/);
+  }
+  assert.match(budget,/هامش المساهمة/);
+  assert.match(budget,/https:\\/\\/www\\.shopify\\.com\\/pricing/);
+  assert.match(budget,/https:\\/\\/support\\.google\\.com\\/merchants\\/answer\\/13889434/);
+  assert.match(budget,/href="\\/blog\\/real-cost-per-delivered-order"/);
+  assert.match(ops,/نقرة واتساب ليست عميلًا مؤهلًا/);
+  assert.match(ops,/href="\\/blog\\/order-confirmation-delivery-rate"/);
+});
