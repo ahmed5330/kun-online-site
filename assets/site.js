@@ -45,3 +45,72 @@
     // A WhatsApp click is an intent signal, NOT a verified or qualified lead.
   });
 }());
+
+
+/* Privacy-first GA4 for the verified Kun Online stream.
+ * Analytics scripts and cookies are never initialized before opt-in. */
+(function () {
+  'use strict';
+  if (!document.createElement || !document.body || !window.localStorage) return;
+  const measurementId = 'G-F2XBVGWB5X';
+  const storageKey = 'kun_online_analytics_consent_v1';
+  const storage = window.localStorage;
+  let choice = null;
+  try { choice = storage.getItem(storageKey); } catch (_) { return; }
+  function startAnalytics() {
+    if (window.__kunGa4Started) return;
+    window.__kunGa4Started = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', measurementId, { send_page_view: true });
+    const tag = document.createElement('script');
+    tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId);
+    document.head.appendChild(tag);
+  }
+  if (choice === 'granted') { startAnalytics(); return; }
+  if (choice === 'denied') return;
+  function askConsent() {
+    if (!document.body || document.getElementById('kun-analytics-consent')) return;
+    const banner = document.createElement('aside');
+    banner.id = 'kun-analytics-consent';
+    banner.setAttribute('role', 'region');
+    banner.setAttribute('aria-label', 'تفضيلات تحليلات الموقع');
+    Object.assign(banner.style, {
+      position:'fixed', inset:'auto 13px 13px auto', maxWidth:'min(440px, calc(100vw - 26px))',
+      padding:'18px', background:'#15233a', color:'#fff', border:'1px solid #54667a',
+      borderRadius:'14px', boxShadow:'0 8px 30px rgba(0,0,0,.28)',
+      zIndex:'10000', direction:'rtl', fontFamily:'Cairo, sans-serif', lineHeight:'1.8'
+    });
+    const message = document.createElement('p');
+    message.textContent = 'هل توافق على استخدام Google Analytics لقياس زيارات الموقع وتحسينه؟ الرفض لن يمنع تصفح الموقع. لا نرسل بيانات التحليلات قبل موافقتك.';
+    Object.assign(message.style, { margin:'0 0 12px', fontSize:'13px' });
+    const controls = document.createElement('div');
+    Object.assign(controls.style, { display:'flex', flexWrap:'wrap', gap:'9px' });
+    function button(label, value, primary) {
+      const el = document.createElement('button');
+      el.type = 'button';
+      el.textContent = label;
+      Object.assign(el.style, {
+        cursor:'pointer', border:'1px solid #9fb1c4',
+        borderRadius:'9px', padding:'8px 15px', fontFamily:'inherit',
+        background:primary ? '#7dc242' : 'transparent',
+        color:primary ? '#0a0f1e' : '#fff', fontWeight:'700'
+      });
+      el.addEventListener('click', function () {
+        try { storage.setItem(storageKey, value); } catch (_) { return; }
+        banner.remove();
+        if (value === 'granted') startAnalytics();
+      });
+      controls.appendChild(el);
+    }
+    button('موافق', 'granted', true);
+    button('رفض', 'denied', false);
+    banner.appendChild(message);
+    banner.appendChild(controls);
+    document.body.appendChild(banner);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', askConsent);
+  else askConsent();
+}());
