@@ -558,3 +558,19 @@ test('SEO-34: revised editorial pages carry verified modification dates and labe
   assert.ok(ops.includes('نقرة واتساب ليست عميلًا مؤهلًا'));
   assert.ok(ops.includes('href="/blog/order-confirmation-delivery-rate"'));
 });
+
+test('SEO-34: ecommerce history avoids unsupported national performance percentages',()=>{
+  const html=fs.readFileSync(path.join(root,'blog/ecommerce-evolution-history.html'),'utf8');
+  for(const falseClaim of [
+    'أكثر من 90% من المتاجر الجديدة',
+    'نسبة النمو السنوية للسوق العربي تتراوح بين 15 إلى 20%',
+    '80% من متاجر الموضة',
+    'Facebook/Instashop تأخذ 20%',
+    '80% من المتاجر الجديدة تصرف',
+    '90% من الزيارات للمتاجر الإلكترونية',
+    'جلب 500 جنيه يوميًا في شهرك الأول'
+  ]) assert.ok(!html.includes(falseClaim),'Unverified claim reappeared: '+falseClaim);
+  assert.ok(html.includes('"dateModified":"2026-10-16"'));
+  assert.ok(html.includes('سوق مصر أو السعودية'));
+  assert.ok(html.includes('سياسة استبدال واسترجاع واضحة'));
+});
