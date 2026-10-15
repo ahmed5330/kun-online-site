@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "reviewedOn": "2026-10-16",
+  "purpose": "Manually reviewed one-to-one correspondence of existing public articles with the planned 100-article educational series. A live article can be published yet still require editorial improvements.",
+  "seriesMatches": [
+    {
+      "article_id": 1,
+      "slug": "ecommerce-complete-journey-guide",
+      "reason": "Full beginner roadmap from idea to first order"
+    },
+    {
+      "article_id": 3,
+      "slug": "startup-budget-egypt",
+      "reason": "Startup ecommerce budget in Egypt"
+    },
+    {
+      "article_id": 4,
+      "slug": "common-ecommerce-beginner-mistakes",
+      "reason": "Ten beginner ecommerce mistakes"
+    },
+    {
+      "article_id": 5,
+      "slug": "product-marketing-operations-ecommerce",
+      "reason": "Interaction of product, marketing and operations"
+    },
+    {
+      "article_id": 6,
+      "slug": "ecommerce-funnel-explained",
+      "reason": "Introductory ecommerce funnel"
+    },
+    {
+      "article_id": 7,
+      "slug": "essential-ecommerce-glossary",
+      "reason": "25 ecommerce terms glossary"
+    },
+    {
+      "article_id": 8,
+      "slug": "owned-vs-rented-channels",
+      "reason": "Own store versus social networks or marketplaces"
+    },
+    {
+      "article_id": 9,
+      "slug": "brand-vs-product-business",
+      "reason": "When to build a brand versus test a product"
+    },
+    {
+      "article_id": 73,
+      "slug": "customer-funnel-guide",
+      "reason": "Diagnose customer journey drop-off using actual funnel measurement"
+    }
+  ],
+  "supplementalPublished": [
+    {
+      "slug": "what-is-ecommerce",
+      "reason": "Evergreen definition; not a one-to-one replacement for a queue topic"
+    },
+    {
+      "slug": "ecommerce-evolution-history",
+      "reason": "History and opportunity perspective; not a one-to-one replacement"
+    },
+    {
+      "slug": "real-cost-per-delivered-order",
+      "reason": "Useful specialized guide but not a full substitute for planned CAC/unit-economics chapters"
+    },
+    {
+      "slug": "order-confirmation-delivery-rate",
+      "reason": "Specialized metric guide, not full order lifecycle"
+    },
+    {
+      "slug": "inventory-barcode-bundle-tracking",
+      "reason": "Specific barcode/bundle guide, not full inventory working capital topic"
+    },
+    {
+      "slug": "cod-shipping-returns-reconciliation",
+      "reason": "Shipping finance reconciliation rather than broader shipping choice or returns diagnosis"
+    }
+  ]
+}
