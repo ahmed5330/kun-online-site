@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import {canonicalLocation} from '../_worker.js';
+import worker, {canonicalLocation} from '../_worker.js';
+import {createHash} from 'node:crypto';
 const root = path.resolve(import.meta.dirname, '..');
 function all(dir) {return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.name==='.git'?[]:e.isDirectory()?all(path.join(dir,e.name)):[path.join(dir,e.name)]);}
 const pages = all(root).filter(p=>p.endsWith('.html')&&!p.endsWith('article-template.html'));
@@ -496,4 +497,28 @@ test('SEO-33: practical operations guides are linked contextually from relevant 
     assert.ok(linkingPillars.length>=2,slug+': guide must be linked from two relevant service/system pillars');
     assert.match(guide,/<h1\b/i,slug);
   }
+});
+
+
+test('all HTML pages use a content-addressed analytics script reference',()=>{
+  const script=fs.readFileSync(path.join(root,'assets/site.js'));
+  const tag=createHash('sha1').update(Buffer.from('blob '+script.length+'\0')).update(script).digest('hex').slice(0,12);
+  const expected='/assets/site.js?v='+tag;
+  for(const filename of [...pages,path.join(root,'blog/article-template.html')]){
+    const html=fs.readFileSync(filename,'utf8');
+    assert.ok(html.includes('src="'+expected+'"'),filename+': stale or missing analytics script version');
+    assert.equal((html.match(/src="\/assets\/site\.js\?/g)||[]).length,1,
+      filename+': duplicate or missing analytics bundle');
+  }
+});
+
+test('advanced Pages worker explicitly shortens only analytics script cache lifetime',async()=>{
+  const env={ASSETS:{fetch:async()=>new Response('ok',{
+    headers:{'Content-Type':'application/javascript','Cache-Control':'public, max-age=86400'}
+  })}};
+  const js=await worker.fetch(new Request('https://kun-online.com/assets/site.js'),env);
+  assert.equal(js.status,200);
+  assert.equal(js.headers.get('cache-control'),'public, max-age=300, must-revalidate');
+  const ordinary=await worker.fetch(new Request('https://kun-online.com/assets/site.css'),env);
+  assert.equal(ordinary.headers.get('cache-control'),'public, max-age=86400');
 });
