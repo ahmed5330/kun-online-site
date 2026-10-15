@@ -1,0 +1,26 @@
+name: Live Cloudflare SEO release audit
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: live-cloudflare-audit-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify-public:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Check real public domain, redirects, sitemap and GA4 asset
+        run: node scripts/live-site-audit.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-cloudflare-seo-audit
+          path: test-results/live-site-audit.json
