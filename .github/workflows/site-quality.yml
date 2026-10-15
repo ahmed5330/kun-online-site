@@ -27,6 +27,8 @@ jobs:
         run: node --check scripts/live-site-audit.mjs
       - name: Show actual Cloudflare cache headers (diagnostic only)
         run: node scripts/cache-probe.mjs
+      - name: Syntax check live analytics dry-run
+        run: node --check scripts/live-ga4-network-audit.mjs
       - name: Static SEO and redirect checks
         run: npm test
       - name: Future publisher metadata regression
