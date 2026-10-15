@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test tests/site.test.mjs && node scripts/system-screenshots.mjs --check"
+    "test": "node --test tests/site.test.mjs tests/seo-completion.test.mjs && node scripts/system-screenshots.mjs --check"
   },
   "devDependencies": {
     "playwright": "1.56.1"
