@@ -1,5 +1,9 @@
 name: Live GA4 consent network dry-run
 on:
+  pull_request:
+    paths:
+      - 'scripts/live-ga4-network-audit.mjs'
+      - '.github/workflows/live-ga4-network-audit.yml'
   push:
     branches: [main]
     paths:
