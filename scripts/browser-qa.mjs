@@ -111,7 +111,7 @@ for(const width of [390,1440]){
     assert.ok(await page.locator('a[href="https://app.kun-online.com/v2/"]').count());
   }
   if(url==='/blog/'){
-   assert.equal(await page.locator('.blog-card').count(),11);
+   assert.equal(await page.locator('.blog-card').count(),JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8')).length);
    await page.locator('#blog-search').fill('مصطلحات');
    assert.ok(await page.locator('.blog-card:not([hidden])').count()>0);
    await page.locator('#blog-search').fill('zzzz-not-present');
