@@ -398,6 +398,21 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
 .fi2{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
 .fi2.vis{opacity:1;transform:translateY(0)}
 @media(prefers-reduced-motion:reduce){.fi2{opacity:1;transform:none;transition:none}}
+
+/* Mobile CWV: avoid early layout/paint work for sections that begin far below
+   the first viewport. Keep hero, navigation and main service links eager.
+   Fallback browsers ignore this enhancement; intrinsic sizes preserve scroll
+   space before the sections first render. */
+@supports (content-visibility: auto) {
+  @media (max-width: 760px) {
+    main#main-content > :is(#expand, #packages, #faq, #testimonials, #kun-system, .seo-bot) {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 960px;
+    }
+    main#main-content > #kun-system { contain-intrinsic-size: auto 680px; }
+    main#main-content > .seo-bot { contain-intrinsic-size: auto 360px; }
+  }
+}
 </style>
 <link rel="alternate" hreflang="ar-EG" href="https://kun-online.com/"><link rel="alternate" hreflang="ar-SA" href="https://kun-online.com/gulf/"><link rel="alternate" hreflang="ar-AE" href="https://kun-online.com/gulf/"><link rel="alternate" hreflang="ar-KW" href="https://kun-online.com/gulf/"><link rel="alternate" hreflang="en" href="https://kun-online.com/en/"><link rel="alternate" hreflang="x-default" href="https://kun-online.com/">
 <!-- shared-css:start --><style>
