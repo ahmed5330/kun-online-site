@@ -10,6 +10,9 @@ const DIRECTORIES = new Set(['/blog', '/en', '/gulf', '/services', '/pricing', '
   '/services/ecommerce-ads', '/services/order-management', '/services/ecommerce-consulting', '/system/order-management', '/system/inventory', '/system/shipping', '/system/easy-orders']);
 export function canonicalLocation(requestUrl) {
   const url = new URL(requestUrl);
+  // Only rewrite the two public marketing hosts. Preview/custom Pages domains
+  // must retain their original paths for safe preproduction verification.
+  if (url.hostname !== 'kun-online.com' && url.hostname !== 'www.kun-online.com') return null;
   let changed = false;
   if (url.hostname === 'www.kun-online.com') { url.hostname = 'kun-online.com'; changed = true; }
   if (['kun-online.com', 'www.kun-online.com'].includes(url.hostname) && url.protocol !== 'https:') {
