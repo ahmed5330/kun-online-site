@@ -5,6 +5,7 @@
  */
 import fs from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { safeVersionedCachePolicy } from './asset-cache-policy.mjs';
 
 const base = (process.env.SEO_LIVE_BASE || 'https://kun-online.com').replace(/\/$/, '');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -148,18 +149,11 @@ async function run() {
     check('Versioned analytics script matches published GitHub source',
       live.body===source, 'expectedSourceBytes='+Buffer.byteLength(source)+
       ' liveBytes='+Buffer.byteLength(live.body));
-    // Unlike /assets/site.js without a query, the HTML references the exact
-    // Git-blob fingerprint in versionedSource. A 24h browser TTL is safe for
-    // content-identical versioned URLs; the prior 300-second assertion was
-    // incompatible with the real Cloudflare zone's Browser Cache TTL.
-    // This is only accepted together with the source-identity check above.
+    // The actual Cloudflare cache is 24 hours for this versioned resource.
+    // Accept only a bounded TTL and only if bytes match the Git fingerprint.
     const cacheHeader=live.response.headers.get('cache-control')||'';
-    const ttlMatch=cacheHeader.match(/(?:^|,)\\s*max-age=(\\d+)(?:,|$)/i);
-    const ttl=ttlMatch ? Number(ttlMatch[1]) : null;
-    const shortOrVersioned=/(?:^|,)\\s*(?:no-cache|no-store)(?:,|$)/i.test(cacheHeader) ||
-      (ttl !== null && Number.isFinite(ttl) && ttl <= 86400);
     check('Fingerprinted consent script has safe bounded cache and current source',
-      live.body===source && shortOrVersioned,
+      safeVersionedCachePolicy(cacheHeader,live.body===source),
       'cache-control='+cacheHeader+' version='+sourceHash+
       ' bytes='+Buffer.byteLength(live.body));
     if(live.response.ok) js=live.body;

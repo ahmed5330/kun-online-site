@@ -94,3 +94,17 @@ test('SEO-40: all homepage language variants mark every JavaScript WhatsApp CTA'
     assert.equal(tagged,total,p + ' untracked CTA');
   }
 });
+
+
+test('SEO-44: versioned analytics cache respects exact bytes and bounded Cloudflare TTL', async () => {
+  const { safeVersionedCachePolicy } = await import('../scripts/asset-cache-policy.mjs');
+  assert.equal(safeVersionedCachePolicy('public, max-age=86400, must-revalidate', true), true);
+  assert.equal(safeVersionedCachePolicy('public, max-age=14400, must-revalidate', true), true);
+  assert.equal(safeVersionedCachePolicy('public, max-age=300, must-revalidate', true), true);
+  assert.equal(safeVersionedCachePolicy('no-cache, must-revalidate', true), true);
+  assert.equal(safeVersionedCachePolicy('public, max-age=86400, must-revalidate', false), false);
+  assert.equal(safeVersionedCachePolicy('public, max-age=86401', true), false);
+  assert.equal(safeVersionedCachePolicy('public, max-age=31536000, immutable', true), false);
+  assert.equal(safeVersionedCachePolicy('', true), false);
+  assert.equal(safeVersionedCachePolicy('public', true), false);
+});
