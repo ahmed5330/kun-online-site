@@ -137,6 +137,22 @@ assert.equal(await consentPage.locator('script[src*="googletagmanager.com/gtag/j
 await consentPage.evaluate(()=>localStorage.setItem('kun_online_analytics_consent_v1','granted'));
 await consentPage.reload();
 assert.equal(await consentPage.locator('script[src*="googletagmanager.com/gtag/js"]').count(),1,'Accepted visit loads one GA4 tag');
+const trackedCta = await consentPage.evaluate(() => {
+  const hits=[];
+  window.gtag=(...args)=>hits.push(args);
+  window.wa=()=>{}; // Avoid opening an external WhatsApp tab during QA.
+  const button=document.querySelector('button[data-contact-channel="whatsapp"]');
+  if (!button) return { found:false };
+  button.click();
+  return {
+    found:true,
+    intentEvents:window.dataLayer.filter(item=>item?.event==='whatsapp_click').length,
+    gaHits:hits.filter(item=>item[0]==='event' && item[1]==='whatsapp_click').length
+  };
+});
+assert.equal(trackedCta.found,true,'Expected an instrumented homepage WhatsApp button');
+assert.equal(trackedCta.intentEvents,1,'Clicking the homepage CTA records one contact intent');
+assert.equal(trackedCta.gaHits,1,'Opted-in homepage CTA sends one GA4 event');
 await consentPage.close();
 fs.writeFileSync(path.join(dir,'browser-qa.json'),JSON.stringify(results,null,2));console.log(JSON.stringify({passed:results.length,noJavaScriptBlog:true,notFound404:true}));
 }finally{await browser.close();await new Promise(r=>server.close(r));}
