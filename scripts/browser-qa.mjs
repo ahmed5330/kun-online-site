@@ -112,6 +112,10 @@ for(const width of [390,1440]){
   }
   if(url==='/blog/'){
    assert.equal(await page.locator('.blog-card').count(),JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8')).length);
+   await page.locator('#blog-category').selectOption('ops');
+   assert.equal(await page.locator('.blog-card:not([hidden])').count(),2,'Operations category must show both operational guides');
+   assert.ok(await page.locator('.blog-card:not([hidden]) a[href="/blog/inventory-barcode-bundle-tracking"]').count(),'Inventory guide must be discoverable');
+   await page.locator('#blog-category').selectOption('all');
    await page.locator('#blog-search').fill('مصطلحات');
    assert.ok(await page.locator('.blog-card:not([hidden])').count()>0);
    await page.locator('#blog-search').fill('zzzz-not-present');
