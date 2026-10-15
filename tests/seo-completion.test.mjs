@@ -71,3 +71,26 @@ test('SEO-40: a telephone link is not counted as a WhatsApp intent', () => {
   assert.equal(result[0].event, 'contact_click');
   assert.equal(result[0].contact_channel, 'phone');
 });
+
+test('SEO-40: homepage and regional WhatsApp buttons are counted', () => {
+  const result = runClick({button: true, pathname: '/gulf/', search: '?utm_campaign=saudi'});
+  assert.deepEqual(result.map(x => x.event), ['contact_click', 'whatsapp_click']);
+  assert.equal(result[1].utm_campaign, 'saudi');
+});
+
+test('SEO-40: opted-in WhatsApp button passes a single explicit hit to gtag', () => {
+  const result = runClick({button: true, consent: true, pathname: '/services/ecommerce-ads/'});
+  const hits = result.filter(x => Array.isArray(x) && x[0] === 'event' && x[1] === 'whatsapp_click');
+  assert.equal(hits.length, 1);
+  assert.equal(hits[0][2].service_type, 'ads_management');
+});
+
+test('SEO-40: all homepage language variants mark every JavaScript WhatsApp CTA', () => {
+  for (const p of ['index.html','en/index.html','gulf/index.html']) {
+    const html = readFileSync(join(root,p),'utf8');
+    const total = (html.match(/<button[^>]*onclick="wa\(/g)||[]).length;
+    const tagged = (html.match(/<button[^>]*data-contact-channel="whatsapp"[^>]*onclick="wa\(/g)||[]).length;
+    assert.ok(total>0, p + ' should have JavaScript CTA buttons');
+    assert.equal(tagged,total,p + ' untracked CTA');
+  }
+});
