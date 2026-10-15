@@ -144,6 +144,9 @@ test('canonical redirects preserve paths and queries with no loops',()=>{
     ['https://kun-online.com/blog/what-is-ecommerce/','https://kun-online.com/blog/what-is-ecommerce']
   ]){assert.equal(canonicalLocation(source),target);assert.equal(canonicalLocation(target),null);}
   assert.equal(canonicalLocation('https://preview.pages.dev/blog/'),null);
+  assert.equal(canonicalLocation('https://preview.pages.dev/blog'),null);
+  assert.equal(canonicalLocation('https://preview.pages.dev/الصفحة-الرئيسية_1'),null);
+  assert.equal(canonicalLocation('https://preview.pages.dev/system/index.html'),null);
   assert.equal(canonicalLocation('https://kun-online.com/api/not-found'),null);
 });
 test('all intended pages are in the sitemap and template is excluded',()=>{
