@@ -9,6 +9,7 @@ const base = (process.env.SEO_LIVE_BASE || 'https://kun-online.com').replace(/\/
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const pages = [
   '/', '/services/', '/system/', '/system/order-management/',
+  '/blog/customer-funnel-guide',
   '/system/inventory/', '/system/shipping/', '/system/easy-orders/',
   '/blog/', '/blog/real-cost-per-delivered-order',
   '/blog/order-confirmation-delivery-rate',
@@ -75,6 +76,11 @@ async function run() {
     check('Sitemap contains ' + article,
       sitemap.includes('<loc>' + base + article + '</loc>'));
   }
+  const cro = records.get('/blog/customer-funnel-guide')?.body || '';
+  check('Revised CRO guide actually deployed',
+    cro.includes('ابنِ لوحة قياس واحدة') &&
+    cro.includes('أحداث GA4 المناسبة') &&
+    cro.includes('2026-10-15'));
   const js = records.get('/assets/site.js')?.body || '';
   check('Published consent gate and WhatsApp event',
     js.includes('kun_online_analytics_consent_v1') &&
