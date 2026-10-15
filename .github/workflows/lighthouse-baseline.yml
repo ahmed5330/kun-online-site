@@ -1,0 +1,50 @@
+name: Live Lighthouse mobile and desktop
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/lighthouse-baseline.yml'
+      - 'scripts/lighthouse-summary.mjs'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/lighthouse-baseline.yml'
+      - 'scripts/lighthouse-summary.mjs'
+      - 'assets/**'
+      - 'index.html'
+      - 'services/**'
+      - 'system/**'
+  schedule:
+    - cron: '17 5 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: kun-lighthouse-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Check audit parser syntax and Chrome availability
+        run: |
+          node --check scripts/lighthouse-summary.mjs
+          which google-chrome || which google-chrome-stable || which chromium
+      - name: Measure mobile — clean first visit
+        run: |
+          mkdir -p test-results
+          npx --yes lighthouse@12.8.2 https://kun-online.com/ --only-categories=performance,seo --output=json --output-path=./test-results/lighthouse-mobile.json --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
+      - name: Measure desktop — clean first visit
+        run: |
+          npx --yes lighthouse@12.8.2 https://kun-online.com/ --preset=desktop --only-categories=performance,seo --output=json --output-path=./test-results/lighthouse-desktop.json --quiet --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
+      - name: Summarize lab metrics and explicitly distinguish field INP
+        run: node scripts/lighthouse-summary.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kun-online-lighthouse-baseline
+          path: test-results/lighthouse-*.json
