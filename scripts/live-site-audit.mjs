@@ -171,6 +171,31 @@ async function run() {
   check('Published JavaScript delegates to WhatsApp anchors and buttons',
     js.includes('button[data-contact-channel="whatsapp"]') &&
     js.includes("window.gtag('event', 'whatsapp_click'"));
+  const editorChecks = [
+    { path: '/blog/startup-budget-egypt',
+      required: ['سيولة الاحتياط', 'هامش المساهمة', 'shopify.com/pricing', '"dateModified":"2026-10-16"'],
+      forbidden: ['1500 جنيه تغطي منتج'] },
+    { path: '/blog/product-marketing-operations-ecommerce',
+      required: ['نقرة واتساب ليست عميلًا مؤهلًا', '300 جنيه', '"dateModified":"2026-10-16"'],
+      forbidden: ['1000% طلب عليه'] },
+    { path: '/blog/ecommerce-evolution-history',
+      required: ['ما فيش نسبة موثوقة واحدة', 'سوق مصر أو السعودية', '"dateModified":"2026-10-16"'],
+      forbidden: ['أكثر من 90% من المتاجر الجديدة', '80% من متاجر الموضة', '90% من الزيارات للمتاجر الإلكترونية'] }
+  ];
+  for (const entry of editorChecks) {
+    try {
+      const r=await inspect(entry.path);
+      check('Revised editorial page deployed: '+entry.path,
+        r.response.status===200 &&
+        entry.required.every(phrase=>r.body.includes(phrase)) &&
+        entry.forbidden.every(phrase=>!r.body.includes(phrase)),
+        'status='+r.response.status+' bytes='+r.body.length);
+      check('Updated lastmod published: '+entry.path,
+        sitemap.includes('<loc>'+base+entry.path+'</loc><lastmod>2026-10-16</lastmod>'));
+    } catch(error) {
+      check('Revised editorial page deployed: '+entry.path,false,error.message);
+    }
+  }
   const old = [
     ['https://www.kun-online.com/', base + '/'],
     [base + '/system', base + '/system/'],
