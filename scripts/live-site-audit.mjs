@@ -8,7 +8,7 @@ import fs from 'node:fs/promises';
 const base = (process.env.SEO_LIVE_BASE || 'https://kun-online.com').replace(/\/$/, '');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const pages = [
-  '/', '/services/', '/system/', '/system/order-management/',
+  '/', '/en/', '/gulf/', '/services/', '/system/', '/system/order-management/',
   '/blog/customer-funnel-guide',
   '/system/inventory/', '/system/shipping/', '/system/easy-orders/',
   '/blog/', '/blog/real-cost-per-delivered-order',
@@ -86,6 +86,15 @@ async function run() {
     js.includes('kun_online_analytics_consent_v1') &&
     js.includes('whatsapp_click') &&
     js.includes('G-F2XBVGWB5X'));
+  for (const region of ['/', '/en/', '/gulf/']) {
+    const html = records.get(region)?.body || '';
+    const marked = (html.match(/<button[^>]*data-contact-channel="whatsapp"[^>]*onclick="wa\(/g) || []).length;
+    check('All five WhatsApp buttons tagged for attribution: ' + region,
+      marked === 5, 'found=' + marked + '; expected=5');
+  }
+  check('Published JavaScript delegates to WhatsApp anchors and buttons',
+    js.includes('button[data-contact-channel="whatsapp"]') &&
+    js.includes("window.gtag('event', 'whatsapp_click'"));
   const old = [
     ['https://www.kun-online.com/', base + '/'],
     [base + '/system', base + '/system/'],
