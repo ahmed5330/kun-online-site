@@ -133,7 +133,7 @@
  * permission after their initial answer; no analytics is sent after reload. */
 (function () {
   'use strict';
-  const footer = document.querySelector('footer');
+  const footer = typeof document.querySelector === 'function' ? document.querySelector('footer') : null;
   if (!footer || !window.localStorage) return;
   const isEnglish = /^en\b/i.test(document.documentElement.lang || '');
   const key = 'kun_online_analytics_consent_v1';
