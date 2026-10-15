@@ -20,10 +20,12 @@
     return 'general_agency';
   }
   document.addEventListener('click', function (event) {
-    const link = event.target.closest('a[href]');
+    const link = event.target.closest('a[href],button[data-contact-channel="whatsapp"]');
     if (!link) return;
     const href = link.getAttribute('href') || '';
-    const channel = href.startsWith('tel:') ? 'phone' :
+    const declaredChannel = link.getAttribute('data-contact-channel');
+    const channel = declaredChannel === 'whatsapp' ? 'whatsapp' :
+      href.startsWith('tel:') ? 'phone' :
       /^https:\/\/(?:api\.|web\.)?wa\.me\//i.test(href) ? 'whatsapp' : null;
     if (!channel) return;
     const path = window.location.pathname;
