@@ -171,6 +171,85 @@ async function run() {
   check('Published JavaScript delegates to WhatsApp anchors and buttons',
     js.includes('button[data-contact-channel="whatsapp"]') &&
     js.includes("window.gtag('event', 'whatsapp_click'"));
+  // Verify real editorial releases, not just an HTTP-200 page with old text.
+  // These guides previously contained unsupported pricing and market claims.
+  const editorialPages = [
+    {
+      path: '/blog/startup-budget-egypt',
+      expected: ['سيولة الاحتياط', 'هامش المساهمة', 'shopify.com/pricing', '"dateModified":"2026-10-16"'],
+      removed: ['1500 جنيه تغطي منتج', 'Shopify من 29
+    ['https://www.kun-online.com/', base + '/'],
+    [base + '/system', base + '/system/'],
+    [base + '/blog/what-is-ecommerce.html', base + '/blog/what-is-ecommerce'],
+    [base + '/الصفحة-الرئيسية_1', base + '/']
+  ];
+  for (const [from, expected] of old) {
+    try {
+      const r = await inspect(from, { redirects: 'manual' });
+      const location = r.response.headers.get('location');
+      check('301 redirect: ' + from, r.response.status === 301 &&
+        new URL(location || '', from).href === expected,
+        'status=' + r.response.status + ' location=' + location);
+    } catch (error) { check('301 redirect: ' + from, false, error.message); }
+  }
+  const result = { checkedAt: new Date().toISOString(), base, count: checks.length,
+    passed: checks.filter(x => x.passed).length, failures, checks };
+  await fs.mkdir('test-results', { recursive: true });
+  await fs.writeFile('test-results/live-site-audit.json', JSON.stringify(result, null, 2));
+  const summary = [
+    '## Cloudflare live SEO release verification',
+    '',
+    'Checked: ' + result.checkedAt,
+    'Domain: ' + base,
+    'Passed: **' + result.passed + '/' + result.count + '**',
+    '',
+    ...(failures.length ? ['### Failed', ...failures.map(x => '- ' + x)] : ['All expected public routes, redirects and measurement assets passed.']),
+    '',
+    'This is HTTP/source verification only; Google URL Inspection and GA4 Realtime still require separate evidence.'
+  ].join('\n') + '\n';
+  if (process.env.GITHUB_STEP_SUMMARY)
+    await fs.appendFile(process.env.GITHUB_STEP_SUMMARY, summary);
+  console.log(summary);
+  if (failures.length) process.exitCode = 1;
+}
+const attempts = Math.max(1, Number(process.env.SEO_LIVE_ATTEMPTS || '6'));
+for (let runIndex = 0; runIndex < attempts; runIndex++) {
+  failures.length = 0; checks.length = 0;
+  await run();
+  if (!failures.length) break;
+  if (runIndex < attempts - 1) {
+    console.log('Deployment might be propagating; retry ' + (runIndex + 2) + '/' + attempts);
+    process.exitCode = 0;
+    await sleep(20000);
+  }
+}
+]
+    },
+    {
+      path: '/blog/product-marketing-operations-ecommerce',
+      expected: ['نقرة واتساب ليست عميلًا مؤهلًا', '300 جنيه', '"dateModified":"2026-10-16"'],
+      removed: ['1000% طلب عليه']
+    },
+    {
+      path: '/blog/ecommerce-evolution-history',
+      expected: ['ما فيش نسبة موثوقة واحدة', 'سوق مصر أو السعودية', '"dateModified":"2026-10-16"'],
+      removed: ['أكثر من 90% من المتاجر الجديدة', '80% من متاجر الموضة', '90% من الزيارات للمتاجر الإلكترونية']
+    }
+  ];
+  for (const entry of editorialPages) {
+    try {
+      const r=await inspect(entry.path);
+      check('Revised SEO-34 article deployed: ' + entry.path,
+        r.response.status===200 &&
+        entry.expected.every(phrase=>r.body.includes(phrase)) &&
+        entry.removed.every(phrase=>!r.body.includes(phrase)),
+        'status='+r.response.status+' bytes='+r.body.length);
+      check('Revised SEO-34 article lastmod in sitemap: '+entry.path,
+        sitemap.includes('<loc>'+base+entry.path+'</loc><lastmod>2026-10-16</lastmod>'));
+    } catch(error) {
+      check('Revised SEO-34 article deployed: ' + entry.path,false,error.message);
+    }
+  }
   const old = [
     ['https://www.kun-online.com/', base + '/'],
     [base + '/system', base + '/system/'],
