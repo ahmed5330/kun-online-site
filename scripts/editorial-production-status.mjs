@@ -13,7 +13,8 @@ const published=new Set(articles.map(x=>x.slug));
 const logged=new Set(log.map(x=>x.slug));
 const pending=entries.filter(x=>!published.has(x.slug)&&!logged.has(x.slug));
 const done=new Set((read('seo/published-series-mapping.json').seriesMatches||[]).map(x=>x.article_id));
-const next=plan.queue.find(x=>!done.has(x.article_id)&&x.status!=='published');
+const preparedIds=new Set(pending.map(x=>x.article_id));
+const next=plan.queue.find(x=>!done.has(x.article_id)&&!preparedIds.has(x.article_id)&&x.status!=='published');
 const result={
   generatedAt:new Date().toISOString(),
   nextArticle:next ? {
@@ -21,7 +22,7 @@ const result={
     research_space:next.research_space,chapter:next.chapter,
     currentStatus:next.status,draft_file:next.draft_file||null
   }:null,
-  approvedReady:pending.length,approvedSlugs:pending.map(x=>x.slug),
+  approvedReady:pending.length,approvedSlugs:pending.map(x=>x.slug),approvedUpcoming:pending.map(x=>({article_id:x.article_id,slug:x.slug,eligibleFrom:x.eligibleFrom})).sort((a,b)=>a.article_id-b.article_id),
   totalPublicArticles:articles.length,totalSeriesPublished:done.size,
   checklist:[
     'Fresh research and primary sources; avoid unsupported claims or fabricated numbers',
