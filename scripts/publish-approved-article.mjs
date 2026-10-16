@@ -12,6 +12,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
+import { pendingApprovedBundles } from './approved-queue.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const approvedDir = path.join(root, 'content/approved');
@@ -132,7 +133,10 @@ if (approved.length === 0) {
   console.log('NO PUBLICATION: there are no editorially approved bundles in content/approved/.');
   process.exit(0);
 }
-const ready = approved.filter(bundle => bundle.meta.eligibleFrom <= cairoDate);
+// Published approved files remain for audit. Do not treat them as new candidates
+// on a later Cairo day, but fail closed if their history is inconsistent.
+const ready = pendingApprovedBundles(approved, log, blog, mapping)
+  .filter(bundle => bundle.meta.eligibleFrom <= cairoDate);
 if (ready.length === 0) {
   console.log('NO PUBLICATION: approved articles are not eligible yet.');
   process.exit(0);
