@@ -1,0 +1,64 @@
+name: VPS-free blog publisher
+
+on:
+  schedule:
+    - cron: '17 9 * * *'
+      timezone: 'Africa/Cairo'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Preview eligible approved articles without publishing'
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kun-online-daily-blog-publication
+  cancel-in-progress: false
+
+jobs:
+  approved-publication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout main, not an expired VPS
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Sync latest main to avoid stale publisher state
+        run: git pull --ff-only origin main
+      - name: Respect approval and one-publication-per-Cairo-day lock
+        env:
+          MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && 'check' || 'publish' }}
+        run: node scripts/publish-approved-article.mjs --"$MODE"
+      - name: Refresh blog HTML cards and sitemap
+        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && !inputs.dry_run) }}
+        run: python scripts/refresh_site.py
+      - name: Validate content plan, links and SEO
+        run: npm test
+      - name: Commit at most one approved and tested article
+        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && !inputs.dry_run) }}
+        run: |
+          set -euo pipefail
+          git add blog/ seo-content-map.json seo/keyword-map.json seo/published-series-mapping.json sitemap.xml content/publication-log.json
+          if git diff --cached --quiet; then
+            echo 'Nothing approved and eligible today; no publication.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'blog: publish one pre-approved article (Cairo date guard)'
+          git push origin HEAD:main
+          echo 'Published to main; existing Cloudflare and live audit workflows verify deployment.'
