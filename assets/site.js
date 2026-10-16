@@ -9,6 +9,7 @@
   function section(path, link) {
     const explicit = link.closest('[data-service-type]')?.getAttribute('data-service-type');
     if (explicit && /^[a-z0-9_-]{1,50}$/.test(explicit)) return explicit;
+    if (path.startsWith('/consultations/')) return 'specialist_consulting';
     if (path.startsWith('/system/')) return 'commerce_software';
     if (path.startsWith('/services/ecommerce-ads/')) return 'ads_management';
     if (path.startsWith('/services/order-management/')) return 'order_confirmation_service';
