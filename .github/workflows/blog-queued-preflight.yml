@@ -36,10 +36,10 @@ jobs:
             .map(x=>JSON.parse(fs.readFileSync('content/approved/'+x,'utf8')))
             .filter(x=>x.approved&&!done.has(x.slug)).sort((a,b)=>a.eligibleFrom.localeCompare(b.eligibleFrom));
           if (pending.length) {
-            const date=pending[0].eligibleFrom;
+            const date=pending.at(-1).eligibleFrom;
             fs.appendFileSync(process.env.GITHUB_ENV,'EDITORIAL_PREVIEW_CAIRO_DATE='+date+'\n');
             fs.appendFileSync(process.env.GITHUB_ENV,'EDITORIAL_CAIRO_DATE='+date+'\n');
-            console.log('Previewing approved article:',pending[0].slug,'eligible:',date);
+            console.log('Previewing all approved articles through:',date,'count:',pending.length);
           } else console.log('No unpublished approved bundle to preview');
           NODE
       - name: Render 1200x630 Arabic covers and check queue
