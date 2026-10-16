@@ -1,0 +1,58 @@
+name: Blog editorial production and continuity
+on:
+  schedule:
+    - cron: '12 7 * * *'
+      timezone: 'Africa/Cairo'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  editorial-readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Inspect live article inventory and canonical 100-topic plan
+        id: status
+        run: |
+          set -euo pipefail
+          node scripts/editorial-production-status.mjs --json > editorial-status.json
+          node -e "const s=require('./editorial-status.json'); if (!Number.isInteger(s.approvedReady)) process.exit(1); console.log(s)"
+          echo "count=$(node -p "require('./editorial-status.json').approvedReady")" >> "$GITHUB_OUTPUT"
+      - name: Upload production status report
+        uses: actions/upload-artifact@v4
+        with:
+          name: editorial-production-status
+          path: editorial-status.json
+      - name: Open/update production work item if queue is low
+        if: ${{ steps.status.outputs.count < 3 }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          title='Blog editorial queue needs approved articles'
+          body=$(node - <<'NODE'
+          const s=require('./editorial-status.json');
+          const n=s.nextArticle;
+          console.log(['# Editorial production queue',
+          'Ready unpublished articles: '+s.approvedReady,
+          'Public blog articles: '+s.totalPublicArticles,
+          'Published series topics: '+s.totalSeriesPublished+' / 100',
+          n ? 'Next planned topic #'+n.article_id+': '+n.original_title : 'No remaining planned topics',
+          n ? 'Brief: '+n.brief : '',
+          n ? 'Research: '+n.research_space : '',
+          '## Approval and publication gates',
+          ...s.checklist.map(t=>'- [ ] '+t),
+          'This issue tracks production needs, and does not represent permission for unreviewed automatic publication.'].join('\n\n'));
+          NODE
+          )
+          number=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$title in:title" --json number,title --jq '.[] | select(.title=="Blog editorial queue needs approved articles") | .number' | head -1)
+          if [ -n "$number" ]; then
+            gh issue edit "$number" --repo "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body "$body"
+          fi
