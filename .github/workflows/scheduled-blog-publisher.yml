@@ -20,6 +20,7 @@ on:
 permissions:
   contents: write
   actions: write
+  issues: write
 
 concurrency:
   group: kun-online-daily-blog-publication
@@ -86,3 +87,32 @@ jobs:
               "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/$workflow/dispatches"
             echo "Dispatched $workflow on main"
           done
+
+      - name: Surface failed publication as a GitHub issue
+        if: ${{ failure() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          title="Blog publishing pipeline failure"
+          count=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$title in:title" --json number --jq 'length' || echo 0)
+          if [ "$count" = "0" ]; then
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" \
+              --body "The blog publisher failed. Review run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID. No successful new publication should be claimed until the public URL and sitemap are verified." || true
+          fi
+      - name: Warn if the approved editorial queue is exhausted
+        if: ${{ success() && github.event_name == 'schedule' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          remaining=$(node -e "const fs=require('fs'); const log=JSON.parse(fs.readFileSync('content/publication-log.json','utf8')); const done=new Set(log.map(x=>x.slug)); const names=fs.readdirSync('content/approved').filter(x=>x.endsWith('.json')).map(x=>x.slice(0,-5)); console.log(names.filter(x=>!done.has(x)).length)")
+          if [ "$remaining" = "0" ]; then
+            echo "::warning::The approved queue is empty. The scheduler cannot write articles by itself."
+            title="Blog editorial queue needs approved articles"
+            count=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$title in:title" --json number --jq 'length' || echo 0)
+            if [ "$count" = "0" ]; then
+              gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" \
+                --body "All approved articles have been published. Add new reviewed HTML, metadata and cover to content/approved/. The daily scheduler does not generate new articles. Run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" || true
+            fi
+          fi
