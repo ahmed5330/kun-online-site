@@ -39,8 +39,7 @@
     const url = "https://wa.me/201021231619?text=" + encodeURIComponent(values.join("\n"));
     const status = document.getElementById("consultSubmitStatus");
     status.textContent = "سيُفتح واتساب برسالة جاهزة. اضغط «إرسال» داخل واتساب لإكمال الطلب؛ إرسال النموذج وحده لا يؤكد الحجز.";
-    const opened = window.open(url, "_blank", "noopener,noreferrer");
-    if (!opened) window.location.assign(url);
+    window.location.assign(url);
   });
   const share = document.getElementById("consultShare");
   share?.addEventListener("click", async () => {
