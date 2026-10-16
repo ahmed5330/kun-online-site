@@ -159,7 +159,8 @@ async function run() {
   check('Revised CRO guide actually deployed',
     cro.includes('ابنِ لوحة قياس واحدة') &&
     cro.includes('أحداث GA4 المناسبة') &&
-    cro.includes('2026-10-15'));
+    cro.includes('مؤشرات لا يمكن استنتاجها من Clarity وحده') &&
+    cro.includes('"dateModified":"2026-10-16"'));
   const unversionedJs=records.get('/assets/site.js')?.body || '';
   let js=unversionedJs;
   try {
