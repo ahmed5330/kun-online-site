@@ -177,9 +177,24 @@ test('sitemap uses verified editorial lastmod dates and no fabricated defaults',
     }
   }
 });
-test('pages expose main content and defer optional font styles without fake testimonials',()=>{
-  for(const p of pages){const s=fs.readFileSync(p,'utf8');assert.match(s,/<main\b/,p);const active=s.replace(/<noscript>[\s\S]*?<\/noscript>/g,'');for(const font of active.matchAll(/<link\b[^>]*fonts\.googleapis[^>]*>/g)){if(font[0].includes('stylesheet'))assert.match(font[0],/media="print"/,p);} }
-  for(const home of ['index.html','en/index.html','gulf/index.html']){const s=fs.readFileSync(path.join(root,home),'utf8');assert.doesNotMatch(s,/class="tstars"|<em>150<\/em>|8\+ Years of Field Experience/);}
+test('all pages load brand-font CSS on first visit and allow late swap without refresh',()=>{
+  for(const page of pages){
+    const html=fs.readFileSync(page,'utf8');
+    assert.match(html,/<main\b/,page);
+    const fontLinks=[...html.matchAll(/<link\b[^>]*fonts\.googleapis\.com\/css2[^>]*>/g)].map(x=>x[0]);
+    assert.equal(fontLinks.length,1,'Expected one active Google Fonts CSS file: '+page);
+    for(const link of fontLinks){
+      assert.match(link,/rel="stylesheet"/,page);
+      assert.match(link,/display=swap/,page);
+      assert.doesNotMatch(link,/display=optional|media="print"|onload=|as="style"/,page);
+    }
+    assert.doesNotMatch(html,/<noscript>\s*<link[^>]*fonts\.googleapis\.com/,page);
+    assert.match(html,/rel="preconnect" href="https:\/\/fonts\.gstatic\.com" crossorigin/,page);
+  }
+  for(const home of ['index.html','en/index.html','gulf/index.html']){
+    const html=fs.readFileSync(path.join(root,home),'utf8');
+    assert.doesNotMatch(html,/class="tstars"|<em>150<\/em>|8\+ Years of Field Experience/);
+  }
 });
 
 test('article template uses crawlable noindex instead of conflicting robots block',()=>{
