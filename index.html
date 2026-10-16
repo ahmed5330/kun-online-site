@@ -411,6 +411,7 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
 .highlight-box :is(h2,h3,h4){font-family:Tajawal,system-ui,sans-serif;font-size:18px;line-height:1.5;color:var(--lime);margin-bottom:8px}.pt-h{color:#d4dce8}.tc h3{color:var(--lime);font-family:Tajawal,system-ui,sans-serif;font-size:22px;margin:0 0 12px}.hero-stats .sn{font-size:clamp(22px,4vw,38px)}
 </style><!-- shared-css:end -->
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://kun-online.com/#organization","name":"كن أونلاين","alternateName":"Kun Online","url":"https://kun-online.com/","address":{"@type":"PostalAddress","addressCountry":"EG","addressRegion":"أسيوط","addressLocality":"أسيوط","streetAddress":"ميدان الأزهر"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/201021231619","description":"WhatsApp messages only; no voice calls."},"sameAs":["https://www.facebook.com/KunOnlineAgency","https://www.instagram.com/kunonlin/"]}</script><link rel="stylesheet" href="/assets/system.css">
+<link rel="stylesheet" href="/assets/reviews.css">
 </head>
 <body>
 <!-- NAV -->
@@ -419,6 +420,7 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
   <ul class="nav-links">
     <li><a href="/services/">الخدمات</a></li>
     <li><a href="/consultations/">الاستشارات</a></li>
+    <li><a href="#reviews">التقييمات</a></li>
     <li><a href="/system/">السيستم</a></li>
     <li><a href="#approach">منهجيتنا</a></li>
     <li><a href="/pricing/">التسعير</a></li>
@@ -439,6 +441,7 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
 <nav class="nav-drawer" id="drawer" role="navigation" aria-label="القائمة الرئيسية">
   <a href="/services/" onclick="closeMenu()">الخدمات</a>
   <a href="/consultations/" onclick="closeMenu()">الاستشارات</a>
+  <a href="#reviews" onclick="closeMenu()">التقييمات</a>
   <a href="/system/" onclick="closeMenu()">السيستم</a>
   <a href="#approach" onclick="closeMenu()">منهجيتنا</a>
   <a href="/pricing/" onclick="closeMenu()">التسعير</a>
@@ -783,6 +786,62 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
 <!-- TESTIMONIALS -->
 <section class="sec" id="testimonials" aria-labelledby="tst-h"><h2 class="sh" id="tst-h">قبل ما نبدأ الشغل</h2><p class="sp">بيانات واضحة تساعدنا نحدد الخدمة المناسبة لمتجرك.</p><div class="tgrid"><article class="tc"><h3>نفهم مشروعك</h3><p class="ttxt">نوع المنتجات، السوق المستهدف، ورابط المتجر الحالي إن كان موجودًا.</p></article><article class="tc"><h3>نحدد الأولويات</h3><p class="ttxt">المشكلة الحالية والخدمات المطلوبة، وما الذي تريد قياسه وتحسينه.</p></article><article class="tc"><h3>نتفق على نطاق العمل</h3><p class="ttxt">التسليمات والمسؤوليات والميزانية ومواعيد المراجعة تتحدد قبل بدء التنفيذ.</p></article></div></section>
 
+<!-- KUN VERIFIED-PUBLIC REVIEWS WIDGET -->
+<section class="ko-reviews" id="reviews" aria-labelledby="reviews-title" data-kun-reviews>
+  <div class="rv-wrap">
+    <span class="rv-kicker">آراء وتجارب عملاء كن أونلاين</span>
+    <h2 id="reviews-title">رأيك يهمّنا، <em>وشهادتك تفرق</em></h2>
+    <p class="rv-lead">شارك تجربتك الحقيقية مع خدمات كن أونلاين أو الاستشارات المتخصصة. التقييم بالنجوم وكتابة رأيك، مع إضافة صورتك لو حابب. بنراجع التقييمات قبل نشرها، من غير إضافة تقييمات افتراضية أو تعديل كلامك.</p>
+    <div class="rv-main">
+      <div class="rv-card" id="write-review">
+        <h3 class="rv-title">اكتب تقييمك</h3>
+        <p class="rv-small">الاسم ونوع الخدمة والنجوم ونص التقييم مطلوبين، والصورة اختيارية.</p>
+        <form class="rv-form" data-review-form>
+          <div class="rv-field"><label for="rv-name">اسمك *</label><input id="rv-name" name="name" type="text" autocomplete="name" minlength="2" maxlength="70" required placeholder="اكتب اسمك الظاهر مع التقييم"></div>
+          <div class="rv-field"><label for="rv-category">بتقيّم إيه؟ *</label>
+            <select id="rv-category" name="category" required>
+              <option value="services">خدمات كن أونلاين</option>
+              <option value="consultations">استشارات كن أونلاين</option>
+            </select>
+          </div>
+          <fieldset class="rv-stars"><legend>تقييمك بالنجوم *</legend>
+            <div class="rv-starrow" role="group" aria-label="اختر من نجمة إلى خمس نجوم">
+              <button type="button" class="rv-star" data-review-star="1" aria-label="نجمة واحدة" aria-pressed="false">★</button>
+              <button type="button" class="rv-star" data-review-star="2" aria-label="نجمتان" aria-pressed="false">★</button>
+              <button type="button" class="rv-star" data-review-star="3" aria-label="ثلاث نجوم" aria-pressed="false">★</button>
+              <button type="button" class="rv-star" data-review-star="4" aria-label="أربع نجوم" aria-pressed="false">★</button>
+              <button type="button" class="rv-star" data-review-star="5" aria-label="خمس نجوم" aria-pressed="false">★</button>
+            </div><p class="rv-small" data-rating-status role="status">اختر عدد النجوم</p>
+          </fieldset>
+          <div class="rv-field"><label for="rv-text">اكتب تجربتك *</label><textarea id="rv-text" name="reviewText" required minlength="15" maxlength="900" placeholder="قولنا إيه اللي عجبك وإيه اللي ممكن يتحسن..."></textarea></div>
+          <div class="rv-field"><label for="rv-photo">صورتك (اختياري)</label><input id="rv-photo" type="file" name="photo" accept="image/jpeg,image/png,image/webp"><span class="rv-small">صورة شخصية JPEG أو PNG أو WebP حتى 5 ميجابايت، هتتصغّر قبل الإرسال. الصورة المنشورة تظهر فقط بعد موافقة الإدارة.</span></div>
+          <div class="rv-hidden-honeypot" aria-hidden="true"><label for="rv-website">Website</label><input id="rv-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+          <label class="rv-consent"><input name="reviewConsent" type="checkbox" required><span>أوافق على حفظ تقييمي ونشر اسمي ونص رأيي والصورة إن أضفتها، بعد مراجعة الإدارة. يمكن طلب إزالة التقييم بالتواصل عبر واتساب.</span></label>
+          <button class="rv-btn" type="submit">إرسال التقييم للمراجعة ←</button>
+          <p class="rv-status" data-review-status aria-live="polite" role="status">مش هننشر تقييمك قبل مراجعة الإدارة.</p>
+        </form>
+      </div>
+      <div class="rv-card" aria-labelledby="published-reviews-title">
+        <h3 class="rv-title" id="published-reviews-title">تجارب منشورة بعد مراجعة الإدارة</h3>
+        <div class="rv-filters" role="group" aria-label="تصفية التقييمات">
+          <button type="button" class="rv-filter" data-review-filter="all" aria-pressed="true">الكل</button>
+          <button type="button" class="rv-filter" data-review-filter="services" aria-pressed="false">الخدمات</button>
+          <button type="button" class="rv-filter" data-review-filter="consultations" aria-pressed="false">الاستشارات</button>
+        </div>
+        <p class="rv-small" data-review-load role="status" aria-live="polite">جاري جلب التقييمات المعتمدة…</p>
+        <div class="rv-list" data-review-list><p class="rv-muted">التقييمات اللي وافقت الإدارة على نشرها هتظهر هنا.</p></div>
+        <div class="rv-actions">
+          <button type="button" class="rv-btn rv-outline" data-review-share>مشاركة لينك التقييم <span aria-hidden="true">↗</span></button>
+          <a class="rv-btn rv-outline" href="/reviews/#write-review" style="text-decoration:none;display:inline-flex;align-items:center">افتح صفحة التقييمات</a>
+        </div>
+        <input hidden data-review-link aria-label="رابط التقييم للنسخ" readonly>
+        <p class="rv-small" data-review-share-status aria-live="polite" role="status"></p>
+        <p class="rv-source">رابط التقييم للمشاركة: <a href="/reviews/#write-review" style="color:#b6e68f">kun-online.com/reviews/</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- KUN COMMERCE OS -->
 <section class="kos-feature" id="kun-system" aria-labelledby="kun-system-title">
   <div class="kos-feature-wrap">
@@ -885,6 +944,7 @@ footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);paddin
         <li><a href="/system/">سيستم كن أونلاين</a></li>
         <li><a href="/services/ecommerce-consulting/">دراسة السوق</a></li>
         <li><a href="/consultations/">استشارات التجارة الإلكترونية</a></li>
+        <li><a href="/reviews/">آراء وتقييمات العملاء</a></li>
         <li><a href="/services/ecommerce-store-development/">بناء المتجر</a></li>
         <li><a href="/services/ecommerce-ads/">إدارة الإعلانات</a></li>
         <li><a href="/services/order-management/">إدارة العمليات</a></li>
@@ -984,5 +1044,6 @@ if('IntersectionObserver' in window){
   document.querySelectorAll('.fi2').forEach(function(el){el.classList.add('vis')});
 }
 </script>
-<script src="/assets/site.js?v=5a700dfc0ebe" defer></script></body>
+<script src="/assets/site.js?v=5a700dfc0ebe" defer></script><script src="/assets/reviews.js" defer></script>
+</body>
 </html>

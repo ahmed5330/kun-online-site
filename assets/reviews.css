@@ -1,0 +1,49 @@
+/* Independent reviews, in Kun Online's dark green/navy identity */
+.ko-reviews{--rv-green:#7dc242;--rv-bg:#0e1929;--rv-edge:#33495e;--rv-fg:#f3f6fb;--rv-muted:#c6d1df;padding:65px 0;background:linear-gradient(135deg,rgba(17,33,54,.98),rgba(9,16,32,.98));color:var(--rv-fg);border-top:1px solid #293a4f;border-bottom:1px solid #293a4f}
+.ko-reviews *{box-sizing:border-box}
+.ko-reviews .rv-wrap{max-width:1130px;margin:0 auto;padding:0 23px}
+.ko-reviews .rv-kicker{display:inline-block;border:1px solid #6a9d52;color:#bbe79d;background:rgba(125,194,66,.08);border-radius:30px;padding:7px 14px;font-size:12px;font-weight:700}
+.ko-reviews h2{font:900 clamp(28px,4vw,41px)/1.4 Tajawal,Cairo,system-ui,sans-serif;margin:13px 0;color:white}
+.ko-reviews .rv-lead{max-width:820px;color:var(--rv-muted);font-size:15px;line-height:2}
+.ko-reviews .rv-main{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:25px;margin-top:27px;align-items:start}
+.ko-reviews .rv-card{border:1px solid var(--rv-edge);background:#152339;border-radius:18px;padding:25px;min-width:0}
+.ko-reviews .rv-title{font:800 23px/1.5 Tajawal,Cairo,system-ui,sans-serif;margin:0 0 9px;color:white}
+.ko-reviews .rv-form{display:grid;gap:15px;margin-top:13px}
+.ko-reviews .rv-field{display:flex;flex-direction:column;gap:6px}
+.ko-reviews .rv-field label,.ko-reviews .rv-stars legend{color:#f1f5f9;font-size:13px;font-weight:700}
+.ko-reviews :is(input[type=text],textarea,select){display:block;width:100%;padding:12px 13px;background:#0b1524;border:1px solid #586c7d;border-radius:10px;color:white;font:500 14px Cairo,system-ui,sans-serif}
+.ko-reviews textarea{resize:vertical;min-height:110px}
+.ko-reviews :is(input,textarea,select,button,a):focus-visible{outline:3px solid #abe587;outline-offset:3px}
+.ko-reviews input::placeholder,.ko-reviews textarea::placeholder{color:#a6b5c7}
+.ko-reviews .rv-stars{border:0;padding:0;margin:0}
+.ko-reviews .rv-starrow{display:flex;gap:8px;direction:ltr;justify-content:flex-end;margin:7px 0}
+.ko-reviews .rv-star{font-size:31px;line-height:1;min-width:38px;min-height:42px;border:0;background:none;color:#708196;cursor:pointer;padding:3px;transition:color .12s}
+.ko-reviews .rv-star[data-filled=true]{color:#ffd166}
+.ko-reviews .rv-star:hover{color:#ffda79}
+.ko-reviews .rv-small{color:#c1ccdb;font-size:12px;line-height:1.8}
+.ko-reviews input[type=file]{width:100%;font-size:12px;max-width:100%;color:#dce6ef}
+.ko-reviews input[type=file]::file-selector-button{background:#263c4f;color:white;border:1px solid #718493;border-radius:8px;padding:9px 14px;margin-inline-end:10px;cursor:pointer}
+.ko-reviews .rv-consent{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:#cbd5e1;line-height:1.9}
+.ko-reviews .rv-consent input{height:19px;width:19px;flex:none;accent-color:#7dc242;margin-top:4px}
+.ko-reviews .rv-btn{border:1px solid transparent;border-radius:11px;background:#7dc242;color:#102114;padding:12px 20px;font:800 14px Cairo,system-ui,sans-serif;cursor:pointer;min-height:45px}
+.ko-reviews .rv-btn:hover{background:#ade47c}
+.ko-reviews .rv-btn:disabled{opacity:.65;cursor:wait}
+.ko-reviews .rv-btn.rv-outline{background:transparent;border-color:#8aba63;color:#c2f1a2}
+.ko-reviews .rv-actions{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}
+.ko-reviews .rv-list{display:grid;gap:15px;margin-top:15px}
+.ko-reviews .rv-quote{border:1px solid #30465e;border-radius:13px;padding:17px;background:#101b2d}
+.ko-reviews .rv-person{display:flex;align-items:center;gap:11px;margin-bottom:10px}
+.ko-reviews .rv-avatar{display:grid;place-items:center;flex:0 0 43px;height:43px;width:43px;border-radius:50%;background:#244835;color:#cbf3ad;font-weight:700}
+.ko-reviews .rv-person img{width:43px;height:43px;border-radius:50%;object-fit:cover}
+.ko-reviews .rv-quote strong{display:block;color:#f6fafc}
+.ko-reviews .rv-quote small{display:block;color:#c1cbdb;font-size:11px}
+.ko-reviews .rv-quote .rv-rate{color:#ffd166;font-size:18px;letter-spacing:1px}
+.ko-reviews .rv-quote p{white-space:pre-wrap;overflow-wrap:anywhere;color:#dce4ee;font-size:13px;margin:8px 0 0;line-height:1.9}
+.ko-reviews .rv-filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 9px}
+.ko-reviews .rv-filter{border:1px solid #425970;border-radius:999px;background:#18283a;color:#d3dce7;padding:7px 14px;font:700 12px Cairo,system-ui,sans-serif;cursor:pointer}
+.ko-reviews .rv-filter[aria-pressed=true]{background:#365a30;border-color:#7dc242;color:#fff}
+.ko-reviews .rv-status{font-size:13px;color:#d3e4d0;line-height:1.8;margin:0}
+.ko-reviews .rv-muted{color:#afbdcc;font-size:13px}
+.ko-reviews .rv-source{margin-top:12px;font-size:12px;color:#aebdcc}
+.ko-reviews .rv-hidden-honeypot{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden;white-space:nowrap;opacity:0;pointer-events:none}
+@media(max-width:760px){.ko-reviews{padding:45px 0}.ko-reviews .rv-main{grid-template-columns:1fr}.ko-reviews .rv-card{padding:20px}.ko-reviews .rv-wrap{padding:0 15px}}
