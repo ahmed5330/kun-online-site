@@ -9,6 +9,10 @@ on:
   schedule:
     - cron: '17 9 * * *'
       timezone: 'Africa/Cairo'
+    # GitHub scheduled runs can be delayed or skipped during heavy load.
+    # The Cairo-date publication lock prevents duplicates on fallback runs.
+    - cron: '37 15 * * *'
+      timezone: 'Africa/Cairo'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -101,11 +105,12 @@ jobs:
               --body "The blog publisher failed. Review run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID. No successful new publication should be claimed until the public URL and sitemap are verified." || true
           fi
       - name: Warn if the approved editorial queue is exhausted
-        if: ${{ success() && github.event_name == 'schedule' }}
+        if: ${{ success() && (github.event_name == 'schedule' || steps.publish.outputs.published == 'true') }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          git pull --ff-only origin main
           remaining=$(node -e "const fs=require('fs'); const log=JSON.parse(fs.readFileSync('content/publication-log.json','utf8')); const done=new Set(log.map(x=>x.slug)); const names=fs.readdirSync('content/approved').filter(x=>x.endsWith('.json')).map(x=>x.slice(0,-5)); console.log(names.filter(x=>!done.has(x)).length)")
           if [ "$remaining" = "0" ]; then
             echo "::warning::The approved queue is empty. The scheduler cannot write articles by itself."
