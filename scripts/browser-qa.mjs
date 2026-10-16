@@ -17,6 +17,16 @@ for(const width of [390,1440]){
  for(const url of ['/','/blog/','/blog/essential-ecommerce-glossary','/blog/real-cost-per-delivered-order','/blog/order-confirmation-delivery-rate','/blog/inventory-barcode-bundle-tracking','/blog/cod-shipping-returns-reconciliation','/services/','/reviews/','/consultations/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/services/ecommerce-consulting/','/pricing/','/contact/','/system/','/system/order-management/','/system/inventory/','/system/shipping/','/system/easy-orders/','/en/','/gulf/']){
   const response=await page.goto(base+url,{waitUntil:'domcontentloaded'});
   await page.locator('h1').waitFor();
+  // Verify initial navigation, before any reload, has an active blocking
+  // brand-font stylesheet. Deferred print-media CSS + optional used to trap
+  // slow first-time visitors on fallback fonts until the next navigation.
+  const firstViewFonts=await page.evaluate(()=>{
+    const links=[...document.querySelectorAll('link[href*="fonts.googleapis.com/css2"]')];
+    return {count:links.length,swap:links.every(link=>link.href.includes('display=swap')),
+      renderBlocking:links.every(link=>!link.hasAttribute('media')&&!link.hasAttribute('onload'))};
+  });
+  assert.equal(firstViewFonts.count,1, width+' '+url+': brand font CSS must be linked exactly once');
+  assert.ok(firstViewFonts.swap && firstViewFonts.renderBlocking,width+' '+url+': font CSS must load for first paint without reload');
   await page.evaluate(()=>document.fonts.ready);
   assert.equal(response.status(),200,url);
   if(url==='/system/'||url.startsWith('/system/')){
