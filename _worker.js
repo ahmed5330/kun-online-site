@@ -1,5 +1,20 @@
 // Pages advanced-mode Worker: redirects only the marketing domain; serves the
 // exact built assets for all other requests, including Preview deployments.
+// These are repository-only editorial/source paths, not part of the public
+// marketing site. Drafts must not be crawled, indexed, or shown as live articles.
+// Return a real 404 rather than relying on robots.txt: disallow alone does
+// not reliably remove a known URL from search results.
+const PRIVATE_PREFIXES = ['/content/', '/docs/', '/seo/', '/scripts/', '/tests/', '/.github/'];
+const PRIVATE_FILES = new Set(['/SKILL.md', '/seo-content-map.json', '/package.json', '/package-lock.json']);
+export function isPrivatePublicPath(requestUrl) {
+  const url = new URL(requestUrl);
+  if (url.hostname !== 'kun-online.com' && url.hostname !== 'www.kun-online.com') return false;
+  let path;
+  try { path = decodeURIComponent(url.pathname); } catch { path = url.pathname; }
+  const normalized = path.replace(/\\/g, '/').replace(/\/+/g, '/');
+  return PRIVATE_PREFIXES.some(prefix => normalized.startsWith(prefix)) ||
+    PRIVATE_FILES.has(normalized);
+}
 const LEGACY = new Set([
   '/كن-اونلاين-إيجنسي-تجارة-الكترونية-في-مصر-والوطن-العربي',
   '/كن-أونلاين-ايجنسي-تجارة-الكترونية',
@@ -32,6 +47,12 @@ export function canonicalLocation(requestUrl) {
 }
 export default {
   async fetch(request, env) {
+    if (isPrivatePublicPath(request.url)) {
+      return new Response(null, {
+        status: 404,
+        headers: {'Cache-Control':'no-store', 'X-Robots-Tag':'noindex, nofollow'}
+      });
+    }
     if (request.method === 'GET' || request.method === 'HEAD') {
       const location = canonicalLocation(request.url);
       if (location) return new Response(null, {status:301, headers:{Location:location}});
