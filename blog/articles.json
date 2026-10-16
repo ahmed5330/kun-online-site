@@ -81,8 +81,8 @@
     "keywords": "بناء براند، هوية البراند، DTC brand، تكلفة البراند، Brand Identity",
     "date": "2 سبتمبر 2026",
     "dateISO": "2026-09-02",
-    "readTime": 5,
-    "wordCount": 1017,
+    "readTime": 10,
+    "wordCount": 1659,
     "icon": "🧭",
     "image": "brand-vs-product-business.png",
     "internal_links_out": [
@@ -103,7 +103,7 @@
         "text": "الفرق بين المنتج والبراند والتسويق"
       }
     ],
-    "dateModified": "2026-10-13"
+    "dateModified": "2026-10-16"
   },
   {
     "slug": "owned-vs-rented-channels",
@@ -131,8 +131,8 @@
     "keywords": "مصطلحات التجارة الإلكترونية,CAC,ROAS,LTV,CVR,AOV,Unit Economics",
     "date": "31 أغسطس 2026",
     "dateISO": "2026-08-31",
-    "readTime": 7,
-    "wordCount": 1274,
+    "readTime": 10,
+    "wordCount": 1616,
     "icon": "🧭",
     "image": "essential-ecommerce-glossary.png",
     "internal_links_out": [
@@ -149,7 +149,7 @@
         "text": "الفرق بين المنتج والتسويق"
       }
     ],
-    "dateModified": "2026-10-13"
+    "dateModified": "2026-10-16"
   },
   {
     "slug": "ecommerce-funnel-explained",
@@ -161,8 +161,8 @@
     "keywords": "Funnel التجارة الإلكترونية,Customer Journey,مراحل البيع,قمع التسويق,تحويل الزائر إلى عميل",
     "date": "30 أغسطس 2026",
     "dateISO": "2026-08-30",
-    "readTime": 5,
-    "wordCount": 1064,
+    "readTime": 10,
+    "wordCount": 1614,
     "icon": "🧭",
     "image": "ecommerce-funnel-explained.png",
     "internal_links_in": [
@@ -171,7 +171,7 @@
         "text": "شرح المصطلحات الأساسية المستخدمة في الـ Funnel"
       }
     ],
-    "dateModified": "2026-10-13"
+    "dateModified": "2026-10-16"
   },
   {
     "slug": "customer-funnel-guide",
@@ -183,11 +183,11 @@
     "keywords": "Funnel,رحلة العميل,Customer Journey,التحويل,ACVR,معدل التحويل",
     "date": "29 أغسطس 2026",
     "dateISO": "2026-08-29",
-    "readTime": 8,
-    "wordCount": 951,
+    "readTime": 10,
+    "wordCount": 1549,
     "icon": "🧭",
     "image": "customer-funnel-guide.png",
-    "dateModified": "2026-10-15"
+    "dateModified": "2026-10-16"
   },
   {
     "slug": "product-marketing-operations-ecommerce",
@@ -204,8 +204,8 @@
     ],
     "date": "28 أغسطس 2026",
     "dateISO": "2026-08-28",
-    "readTime": 5,
-    "wordCount": 664,
+    "readTime": 10,
+    "wordCount": 1533,
     "icon": "🎯",
     "image": "product-marketing-operations-ecommerce.png",
     "internal_links_in": [
@@ -230,11 +230,11 @@
     ],
     "date": "28 أغسطس 2026",
     "dateISO": "2026-08-28",
-    "readTime": 6,
-    "wordCount": 1107,
+    "readTime": 11,
+    "wordCount": 1712,
     "icon": "⚠️",
     "image": "common-ecommerce-beginner-mistakes.png",
-    "dateModified": "2026-10-13"
+    "dateModified": "2026-10-16"
   },
   {
     "slug": "startup-budget-egypt",
@@ -251,8 +251,8 @@
     ],
     "date": "27 أغسطس 2026",
     "dateISO": "2026-08-27",
-    "readTime": 6,
-    "wordCount": 773,
+    "readTime": 10,
+    "wordCount": 1658,
     "icon": "💰",
     "image": "startup-budget-egypt.png",
     "dateModified": "2026-10-16"
