@@ -8,6 +8,8 @@ from PIL import Image, ImageDraw, ImageFont
 from bidi.algorithm import get_display
 import arabic_reshaper
 import json, math, os, subprocess
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
 APPROVED = ROOT / "content" / "approved"
@@ -89,7 +91,10 @@ def generate(meta, overwrite=False):
     return True
 
 if __name__ == "__main__":
+    cairo_today=os.getenv("EDITORIAL_CAIRO_DATE") or datetime.now(ZoneInfo("Africa/Cairo")).date().isoformat()
+    log_path=ROOT/"content"/"publication-log.json"
+    logged={entry["slug"] for entry in json.loads(log_path.read_text(encoding="utf-8"))}
     for item in sorted(APPROVED.glob("*.json")):
         meta=json.loads(item.read_text(encoding="utf-8"))
-        if meta.get("approved") is True:
+        if meta.get("approved") is True and meta.get("eligibleFrom","9999-12-31")<=cairo_today and meta["slug"] not in logged:
             generate(meta)
