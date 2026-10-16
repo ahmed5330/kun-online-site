@@ -1,0 +1,24 @@
+{
+  "slug": "is-ecommerce-right-for-you",
+  "article_id": 2,
+  "approved": true,
+  "eligibleFrom": "2026-10-16",
+  "editorialApproval": "2026-10-16: ChatGPT editorial verification of article body and official references; user instructed continuation",
+  "title": "هل التجارة الإلكترونية مناسبة لك؟ اختبر قرار بدء متجرك",
+  "description": "اختبر مدى ملاءمة التجارة الإلكترونية لوقتك وميزانيتك ومهاراتك. قارن المتجر المستقل والمنصات وتقديم الخدمات، واستخدم مصفوفة قرار قبل بدء مشروعك.",
+  "primaryKeyword": "هل التجارة الإلكترونية مناسبة لي",
+  "secondaryKeywords": [
+    "هل ابدأ متجر إلكتروني",
+    "مشروع تجارة إلكترونية من الصفر",
+    "البيع على Marketplace",
+    "بدائل إنشاء متجر إلكتروني"
+  ],
+  "category": "store",
+  "categoryLabel": "بناء المتجر",
+  "image": "is-ecommerce-right-for-you.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "ecommerce-complete-journey-guide",
+    "startup-budget-egypt"
+  ]
+}
