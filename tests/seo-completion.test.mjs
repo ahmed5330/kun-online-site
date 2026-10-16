@@ -108,3 +108,14 @@ test('SEO-44: versioned analytics cache respects exact bytes and bounded Cloudfl
   assert.equal(safeVersionedCachePolicy('', true), false);
   assert.equal(safeVersionedCachePolicy('public', true), false);
 });
+
+
+test('SEO-45: published editorial copy has no injected literal backtick-comma artifacts', () => {
+  const articles = JSON.parse(readFileSync(join(root, 'blog/articles.json'), 'utf8'));
+  const marker = String.fromCharCode(96, 44, 96);
+  for (const article of articles) {
+    const file = join(root, 'blog', article.slug + '.html');
+    assert.ok(!readFileSync(file, 'utf8').includes(marker),
+      file + ' contains a literal punctuation artifact in customer-facing copy');
+  }
+});
