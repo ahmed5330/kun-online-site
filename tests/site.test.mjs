@@ -610,3 +610,40 @@ test('SEO-34: new operations guides have actual word counts and non-misleading r
       slug+' index reading label out of sync');
   }
 });
+
+
+test('SEO: four existing operations guides have real distinct 1200x630 featured images and correct image metadata',()=>{
+  const slugs=[
+    'cod-shipping-returns-reconciliation',
+    'inventory-barcode-bundle-tracking',
+    'order-confirmation-delivery-rate',
+    'real-cost-per-delivered-order'
+  ];
+  const registry=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
+  const hashes=new Set();
+  for(const slug of slugs){
+    const data=registry.find(item=>item.slug===slug);
+    assert.ok(data,'missing operations guide registry record: '+slug);
+    assert.equal(data.image,slug+'.png');
+    assert.equal(data.dateISO,'2026-10-15','original publication date must not change');
+    assert.equal(data.dateModified,'2026-10-16','cover modification must have authentic date');
+    const buffer=fs.readFileSync(path.join(root,'blog/images',data.image));
+    assert.equal(buffer.subarray(0,8).toString('hex'),'89504e470d0a1a0a','PNG signature required');
+    assert.equal(buffer.readUInt32BE(16),1200,'cover width');
+    assert.equal(buffer.readUInt32BE(20),630,'cover height');
+    const hash=createHash('sha256').update(buffer).digest('hex');
+    assert.ok(!hashes.has(hash),'covers must be genuinely unique and topic specific');
+    hashes.add(hash);
+    const html=fs.readFileSync(path.join(root,'blog',slug+'.html'),'utf8');
+    assert.ok(html.includes('src="/blog/images/'+data.image+'"'),'featured image must render in the page');
+    assert.ok(html.includes('property="og:image" content="https://kun-online.com/blog/images/'+data.image+'"'),'share preview must use the real cover');
+    assert.ok(html.includes('name="twitter:card" content="summary_large_image"'),'X/Twitter preview must have appropriate card');
+    const article=html.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)?.[1];
+    assert.ok(article,'article JSON-LD missing');
+    const structured=JSON.parse(article);
+    assert.equal(structured['@type'],'BlogPosting');
+    assert.equal(structured.image,'https://kun-online.com/blog/images/'+data.image);
+    assert.equal(structured.datePublished,'2026-10-15');
+    assert.equal(structured.dateModified,'2026-10-16');
+  }
+});
