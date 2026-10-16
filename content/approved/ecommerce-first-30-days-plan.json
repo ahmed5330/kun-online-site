@@ -1,0 +1,23 @@
+{
+  "slug": "ecommerce-first-30-days-plan",
+  "article_id": 10,
+  "approved": true,
+  "eligibleFrom": "2026-10-18",
+  "editorialApproval": "2026-10-17: ChatGPT original editorial composition checked against canonical series topic, internal links and evergreen public source pages; user authorized unattended series production",
+  "title": "خطة أول 30 يوم لبدء التجارة الإلكترونية من الصفر",
+  "description": "خطة تنفيذية لأول 30 يوم في التجارة الإلكترونية من اختيار المنتج والمورد إلى التسعير والمتجر والإعلانات والشحن، مع مؤشرات قرار عملية لكل أسبوع.",
+  "primaryKeyword": "خطة أول 30 يوم للتجارة الإلكترونية",
+  "secondaryKeywords": [
+    "بدء مشروع تجارة إلكترونية",
+    "خطة إنشاء متجر إلكتروني",
+    "خطوات إطلاق متجر أونلاين"
+  ],
+  "category": "store",
+  "categoryLabel": "بناء المتجر",
+  "image": "ecommerce-first-30-days-plan.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "ecommerce-complete-journey-guide",
+    "startup-budget-egypt"
+  ]
+}
