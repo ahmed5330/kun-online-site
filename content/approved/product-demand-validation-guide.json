@@ -1,0 +1,23 @@
+{
+  "slug": "product-demand-validation-guide",
+  "article_id": 12,
+  "approved": true,
+  "eligibleFrom": "2026-10-20",
+  "editorialApproval": "2026-10-17: ChatGPT original editorial composition, reviewed against Google Trends data FAQ, official Google Ads Keyword Planner forecast and GA4 ecommerce event guidance; user authorized continuing daily series workflow",
+  "title": "كيف تتحقق من وجود طلب حقيقي على منتج قبل شرائه؟",
+  "description": "تعرف على طريقة التحقق من الطلب على المنتجات باستخدام Google Trends وKeyword Planner وأسئلة العملاء وتجارب البيع الصغيرة، وتجنب الخلط بين البحث والمبيعات.",
+  "primaryKeyword": "التحقق من الطلب على المنتجات",
+  "secondaryKeywords": [
+    "اختبار طلب السوق على منتج",
+    "Google Trends لاختيار منتج",
+    "قياس الطلب قبل شراء المخزون"
+  ],
+  "category": "store",
+  "categoryLabel": "بناء المتجر",
+  "image": "product-demand-validation-guide.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "ecommerce-complete-journey-guide",
+    "startup-budget-egypt"
+  ]
+}
