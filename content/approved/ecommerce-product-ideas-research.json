@@ -1,0 +1,23 @@
+{
+  "slug": "ecommerce-product-ideas-research",
+  "article_id": 11,
+  "approved": true,
+  "eligibleFrom": "2026-10-19",
+  "editorialApproval": "2026-10-17: ChatGPT original editorial composition and review of tool limitations, verified Google Trends and Keyword Planner documentation; user authorized continuing daily editorial workflow",
+  "title": "10 طرق لاكتشاف أفكار منتجات للتجارة الإلكترونية",
+  "description": "اكتشف عشر طرق عملية للعثور على أفكار منتجات قابلة للاختبار، من المراجعات وGoogle Trends إلى TikTok وMeta Ads Library، مع طريقة تقييم قبل شراء المخزون.",
+  "primaryKeyword": "أفكار منتجات للتجارة الإلكترونية",
+  "secondaryKeywords": [
+    "اكتشاف منتجات جديدة",
+    "كيفية اختيار منتج للبيع",
+    "البحث عن المنتجات الرابحة"
+  ],
+  "category": "store",
+  "categoryLabel": "بناء المتجر",
+  "image": "ecommerce-product-ideas-research.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "ecommerce-complete-journey-guide",
+    "startup-budget-egypt"
+  ]
+}
