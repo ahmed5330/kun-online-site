@@ -9,6 +9,7 @@ import json
 import os
 import re
 import html
+import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -92,7 +93,7 @@ def generate_article(title, category_id, category_label, keywords):
 "{title}"
 
 متطلبات المقالة:
-- الطول: 800-1200 كلمة
+- الطول: 1500-2200 كلمة
 - الأسلوب: عملي ومباشر، بالعامية المصرية البسيطة
 - الكلمات المفتاحية للسيو: {keywords}
 - اذكر "كن أونلاين" بشكل طبيعي مرة أو مرتين كمرجع
@@ -111,7 +112,7 @@ def generate_article(title, category_id, category_label, keywords):
 
     message = client.messages.create(
         model="claude-haiku-4-5",
-        max_tokens=4000,
+        max_tokens=8000,
         messages=[{"role": "user", "content": prompt}]
     )
     
@@ -156,7 +157,8 @@ def main():
     
     # إعداد البيانات
     now = datetime.now(timezone.utc)
-    slug = slugify(title) + "-" + now.strftime("%Y%m%d")
+    # Stable Latin draft slug; no generated article can bypass reviewed publication.
+    slug = "editorial-draft-" + hashlib.sha256(title.encode("utf-8")).hexdigest()[:12] + "-" + now.strftime("%Y%m%d")
     date_iso = now.strftime("%Y-%m-%dT%H:%M:%SZ")
     date_display = now.strftime("%d/%m/%Y")
     excerpt = re.sub(r'<[^>]+>', '', content_html)[:200].strip() + "..."
@@ -192,39 +194,32 @@ def main():
     for k, v in replacements.items():
         article_html = article_html.replace(k, v if k == "{{CONTENT}}" else html.escape(str(v), quote=True))
     
-    # حفظ ملف المقالة
-    article_file = BLOG_DIR / f"{slug}.html"
-    article_file.write_text(article_html, encoding="utf-8")
-    print(f"✅ ملف المقالة: {article_file}")
-    
-    # تحديث articles.json
-    articles = load_articles()
-    articles.insert(0, {
-        "slug": slug,
+    # Security/quality: this legacy generator MAY ONLY create private drafts.
+    # GitHub Actions publishes solely reviewed content/approved bundles.
+    drafts = SITE_ROOT / "docs" / "editorial-drafts"
+    drafts.mkdir(parents=True, exist_ok=True)
+    draft_file = drafts / f"{slug}.html.review"
+    draft_file.write_text(article_html, encoding="utf-8")
+    review = {
         "title": title,
-        "description": description,
-        "excerpt": excerpt,
         "category": cat_id,
-        "categoryLabel": cat_label,
-        "keywords": keywords,
-        "date": date_display,
-        "dateISO": date_iso,
-        "readTime": read_time,
+        "description": description,
+        "suggested_keywords": keywords,
         "wordCount": word_count,
-        "icon": ICONS.get(cat_id, "📝")
-    })
-    save_articles(articles)
-    print(f"✅ articles.json محدّث — إجمالي المقالات: {len(articles)}")
-    
-    # تحديث sitemap
-    update_sitemap(articles)
-    print("✅ sitemap.xml محدّث")
-    print("🎉 تم بنجاح!")
+        "status": "DRAFT_REQUIRES_EDITORIAL_REVIEW",
+        "review_required": [
+            "Check 1500–2200 words, claims, primary sources and internal links",
+            "Create an original 1200×630 cover and verified SEO metadata",
+            "Map the next unused article_id from seo-content-map.json",
+            "Prepare content/approved/<latin-slug>.html.ready and .json",
+            "Use only the guarded GitHub Actions publisher"
+        ]
+    }
+    (drafts / f"{slug}.review.json").write_text(
+        json.dumps(review, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8"
+    )
+    print(f"REVIEW ONLY: {draft_file}. No blog registry, sitemap, or public HTML was changed.")
 
-def update_sitemap(articles):
-    # Shared site refresh preserves service pages and server-rendered blog links.
-    import subprocess, sys
-    subprocess.run([sys.executable, str(SITE_ROOT / "scripts" / "refresh_site.py")], check=True)
 
 if __name__ == "__main__":
     raise SystemExit(
