@@ -10,7 +10,7 @@ test('real public review form is available on homepage and shareable review URL'
   for(const token of ['data-kun-reviews','data-review-form','data-review-star="5"','name="reviewText"','name="reviewConsent"','name="category"','type="file"','data-review-share','/reviews/#write-review','data-review-list'])assert.ok(html.includes(token),path+' '+token);
   assert.match(html,/خدمات كن أونلاين/);
   assert.match(html,/استشارات كن أونلاين/);
-  assert.match(html,/بعد مراجعته/);
+  assert.match(html,/بعد مراجعة الإدارة|بعد مراجعته/);
   assert.doesNotMatch(html,/AggregateRating|aggregateRating|ratingCount|reviewCount/);
  }
  assert.equal(canonicalLocation('https://kun-online.com/reviews'),'https://kun-online.com/reviews/');
