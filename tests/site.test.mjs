@@ -678,3 +678,32 @@ test('SEO: internal editorial plans, pending content and source files return unc
   assert.equal(isPrivatePublicPath('https://preview.pages.dev/docs/editorial-drafts/a.md'),false,'preview host excluded by design');
   assert.equal(called,0,'ASSETS must not receive sensitive requests');
 });
+
+
+test('SEO: sitewide keyword targeting has unique primary intents across all sitemap pages',()=>{
+  const mapping=JSON.parse(fs.readFileSync(path.join(root,'seo/keyword-map.json'),'utf8'));
+  const xml=fs.readFileSync(path.join(root,'sitemap.xml'),'utf8');
+  const mapped=mapping.pages.map(page=>'https://kun-online.com'+page.path);
+  const urls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
+  assert.equal(mapped.length,urls.length,'all indexable canonical URLs must be mapped');
+  assert.deepEqual([...new Set(urls)].sort(),[...new Set(mapped)].sort(),'Sitemap and keyword map must agree');
+  const keywordToPath=new Map();
+  for(const page of mapping.pages){
+    assert.ok(page.primary && page.primary.trim().length>3,'missing primary term on '+page.path);
+    assert.ok(['P0','P1','P2'].includes(page.priority),'bad priority for '+page.path);
+    assert.ok(page.intent,'search intent missing on '+page.path);
+    const kw=page.primary.toLocaleLowerCase('ar').trim().replace(/\s+/g,' ');
+    assert.ok(!keywordToPath.has(kw),
+      'Duplicate primary keyword assigned to '+keywordToPath.get(kw)+' and '+page.path);
+    keywordToPath.set(kw,page.path);
+  }
+  const service=mapping.pages.find(p=>p.path==='/services/order-management/');
+  const software=mapping.pages.find(p=>p.path==='/system/order-management/');
+  assert.ok(service && software);
+  assert.equal(service.pillar,'agency','service intent is distinct from product SaaS intent');
+  assert.equal(software.pillar,'software');
+  const doc=fs.readFileSync(path.join(root,'docs/seo-sitewide-indexing-audit-2026-10-16.md'),'utf8');
+  assert.match(doc,/indexed.*deprecated|deprecated.*indexed/i,
+    'Audit must acknowledge the deprecated indexed field rather than claim zero indexed');
+  assert.match(doc,/غير قابل للجزم/, 'Do not invent a total Google-indexed count');
+});
