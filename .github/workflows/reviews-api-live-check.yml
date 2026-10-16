@@ -1,0 +1,30 @@
+name: Live reviews API connectivity
+on:
+  pull_request:
+    paths:
+      - 'reviews/**'
+      - 'assets/reviews.js'
+      - 'assets/reviews.css'
+      - 'index.html'
+      - '.github/workflows/reviews-api-live-check.yml'
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify public API and real CORS headers
+        run: |
+          set -euo pipefail
+          curl -fsS --retry 4 --retry-delay 2 \
+            -H 'Origin: https://kun-online.com' \
+            -D /tmp/kun-review-headers.txt \
+            'https://app.kun-online.com/api/public-reviews' -o /tmp/kun-reviews.json
+          node -e "const d=require('/tmp/kun-reviews.json');if(d.ok!==true||!Array.isArray(d.reviews))process.exit(1);console.log('Public reviews API responds with '+d.reviews.length+' approved entries')"
+          grep -iq '^access-control-allow-origin: https://kun-online.com' /tmp/kun-review-headers.txt
+          curl -sS -o /dev/null -D /tmp/kun-review-preflight.txt -X OPTIONS \
+            -H 'Origin: https://kun-online.com' \
+            -H 'Access-Control-Request-Method: POST' \
+            -H 'Access-Control-Request-Headers: content-type' \
+            'https://app.kun-online.com/api/public-reviews'
+          grep -iq '^access-control-allow-methods: .*POST' /tmp/kun-review-preflight.txt
+          echo 'Live reviews API + CORS verified'
