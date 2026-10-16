@@ -1,5 +1,10 @@
 name: Blog editorial production and continuity
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/blog-editorial-production.yml'
+      - 'scripts/editorial-production-status.mjs'
   schedule:
     - cron: '12 7 * * *'
       timezone: 'Africa/Cairo'
