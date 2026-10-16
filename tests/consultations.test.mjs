@@ -1,0 +1,40 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {resolve,join} from 'node:path';
+import {canonicalLocation} from '../_worker.js';
+const root=resolve(import.meta.dirname,'..');
+const read=path=>readFileSync(join(root,path),'utf8');
+test('specialist consultation landing is independently navigable and indexable',()=>{
+ const page=read('consultations/index.html');
+ assert.match(page,/<h1>قرارات أفضل لم/);
+ assert.match(page,/rel="canonical" href="https:\/\/kun-online\.com\/consultations\/"/);
+ assert.match(read('sitemap.xml'),/<loc>https:\/\/kun-online\.com\/consultations\/<\/loc>/);
+ assert.match(read('_redirects'),/\/consultations \/consultations\/ 301/);
+ assert.equal(canonicalLocation('https://kun-online.com/consultations'),'https://kun-online.com/consultations/');
+ for(const file of ['index.html','en/index.html','gulf/index.html','services/index.html'])assert.match(read(file),/href="\/consultations\/"/,file);
+});
+test('free service-discovery session is never presented as specialist consulting',()=>{
+ const home=read('index.html');
+ const page=read('consultations/index.html');
+ assert.match(home,/جلسة تعريفية مجانية للتعرف على كن أونلاين/);
+ assert.match(page,/مش هي نفس الاستشارة المتخصصة/);
+ assert.match(page,/الجلسة التعريفية المجانية/);
+ assert.match(page,/مش حجز مؤكد/);
+ assert.doesNotMatch(page,/تأكيد حجزك تم|ادفع الآن|مواعيد متاحة الآن|نجوم العملاء/);
+});
+test('every specialist topic offers an explicit form choice and accessible consent',()=>{
+ const page=read('consultations/index.html');
+ const js=read('assets/consultations.js');
+ const selections=[...page.matchAll(/data-choose-topic="([^"]+)"/g)].map(x=>x[1]);
+ const options=[...page.matchAll(/<option value="([^"]+)">/g)].map(x=>x[1]);
+ assert.equal(selections.length,8);
+ assert.equal(new Set(selections).size,8);
+ for(const selection of selections)assert.ok(options.includes(selection),selection);
+ for(const field of ['name','whatsapp','country','stage','topic','store','problem','goal'])assert.match(page,new RegExp('name="'+field+'"'));
+ assert.match(page,/<input type="checkbox" required>/);
+ assert.match(page,/role="status" aria-live="polite"/);
+ assert.match(js,/encodeURIComponent\(values\.join\("\\n"\)\)/);
+ assert.match(js,/window\.location\.assign\(url\)/);
+ assert.doesNotMatch(js,/fetch\(|localStorage|sessionStorage|document\.cookie/);
+});

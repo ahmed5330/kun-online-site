@@ -1,0 +1,75 @@
+
+/* Kun Online — standalone, specialist e-commerce consultations */
+:root{--consult-green:#7dc242;--consult-bg:#0a0f1e;--consult-panel:#111827;--consult-border:#293b4d;--consult-muted:#b5c1cf}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body.consult-body{background:#0a0f1e;color:#f4f7fb}
+.consult-body .site-nav{position:sticky;top:0;z-index:30;background:rgba(10,15,30,.96);backdrop-filter:blur(14px)}
+.consult-body .site-links{align-items:center}
+.consult-body .site-links a[aria-current="page"]{color:#7dc242;font-weight:700}
+.consult-shell{max-width:1190px;margin:0 auto;padding:0 22px}
+.consult-hero{padding:80px 0 65px;position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid #203247}
+.consult-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 84% 15%,rgba(36,80,139,.36),transparent 58%),radial-gradient(ellipse at 12% 85%,rgba(125,194,66,.13),transparent 54%)}
+.consult-label{display:inline-flex;gap:9px;align-items:center;padding:7px 14px;border-radius:999px;border:1px solid rgba(125,194,66,.35);background:rgba(125,194,66,.1);color:#a9e47a;font-size:13px;font-weight:700}
+.consult-hero h1{font:900 clamp(34px,5vw,68px)/1.21 Tajawal,Cairo,system-ui,sans-serif;letter-spacing:-.035em;max-width:850px;margin:22px 0}
+.consult-hero h1 em{color:var(--consult-green)}
+.consult-intro{max-width:750px;color:#cbd5e1;font-size:clamp(16px,2vw,19px);line-height:2}
+.consult-hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0}
+.consult-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 23px;border:1px solid transparent;border-radius:12px;font:700 15px Cairo,system-ui,sans-serif;min-height:48px;text-decoration:none;cursor:pointer}
+.consult-btn-primary{color:#102018;background:#7dc242}
+.consult-btn-primary:hover{background:#a0dc72}
+.consult-btn-outline{border-color:#587246;color:#ebfae2;background:rgba(125,194,66,.07)}
+.consult-btn-outline:hover{border-color:#9ddc64}
+.consult-pill-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}
+.consult-pill{border:1px solid #34465b;border-radius:999px;padding:8px 14px;color:#cbd5e1;font-size:12px}
+.consult-section{padding:68px 0 10px}
+.consult-section-title{font:900 clamp(25px,3vw,38px)/1.35 Tajawal,Cairo,system-ui,sans-serif;margin:10px 0 12px}
+.consult-section-lead{max-width:790px;color:#bdcadd;font-size:15px;line-height:2}
+.consult-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:27px 0}
+.consult-topic{min-width:0;padding:23px;background:linear-gradient(150deg,#152239,#101824);border:1px solid #293b4d;border-radius:18px;display:flex;flex-direction:column;gap:12px;transition:border-color .2s,transform .2s}
+.consult-topic:hover,.consult-topic:focus-within{border-color:#7dc242;transform:translateY(-2px)}
+.consult-topic-ico{display:grid;place-items:center;width:42px;height:42px;background:rgba(125,194,66,.12);border:1px solid rgba(125,194,66,.21);border-radius:12px;font-size:22px}
+.consult-topic h3{font:700 19px/1.5 Tajawal,Cairo,system-ui,sans-serif;margin:0;color:#fff}
+.consult-topic p{color:#b9c6d4;line-height:1.9;font-size:13px;margin:0;flex:1}
+.consult-topic button{align-self:flex-start;border:0;background:none;color:#a4de7a;font:700 13px Cairo,system-ui,sans-serif;padding:7px 0;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.consult-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:24px}
+.consult-flow article{border:1px solid #2b3d51;border-radius:16px;padding:23px;background:#101a2a}
+.consult-flow b{color:#7dc242;font-size:21px}
+.consult-flow h3{color:#fff;margin:5px 0;font-size:17px}
+.consult-flow p{margin:0;color:#bec9d7;font-size:13px}
+.consult-free-note{background:#15263b;border:1px solid #35506b;border-radius:18px;padding:25px;margin:40px 0 0}
+.consult-free-note h2{font:900 22px Tajawal,Cairo,system-ui,sans-serif;margin:0 0 8px;color:#fff}
+.consult-free-note p{margin:0 0 10px;color:#cfd8e3}
+.consult-free-note a{color:#b3e88a;font-weight:700}
+.consult-form-wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:28px;margin-top:24px;align-items:start}
+.consult-info{background:#16253a;border:1px solid #2f4660;border-radius:20px;padding:30px}
+.consult-info h3{color:#fff;font-size:21px;margin:0 0 12px}
+.consult-info ul{padding-inline-start:22px;color:#cbd4e0}
+.consult-info li{margin-bottom:12px}
+.consult-form{border:1px solid #344858;border-radius:20px;padding:28px;background:#111d2c;display:grid;gap:17px}
+.consult-fields{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.consult-field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.consult-field-full{grid-column:1 / -1}
+.consult-field label{font-size:13px;font-weight:700;color:#e7ebf1}
+.consult-field :is(input,select,textarea){width:100%;background:#0b1524;color:#fff;border:1px solid #496073;border-radius:10px;padding:12px 13px;font:500 14px Cairo,system-ui,sans-serif;min-height:46px}
+.consult-field textarea{min-height:112px;resize:vertical}
+.consult-field :is(input,select,textarea):focus{outline:2px solid #7dc242;outline-offset:1px}
+.consult-field select option{background:#111827}
+.consult-help{font-size:12px;color:#b6c5d3}
+.consult-consent{display:flex;gap:10px;align-items:flex-start;color:#d2dbe6;font-size:13px;line-height:1.8}
+.consult-consent input{width:19px;height:19px;margin-top:4px;accent-color:#7dc242;flex:none}
+.consult-submit-note{margin:0;font-size:13px;color:#b6c9d4}
+.consult-faq{margin-top:18px;display:grid;gap:12px}
+.consult-faq details{background:#132034;border:1px solid #2d4156;border-radius:13px;padding:14px 19px}
+.consult-faq summary{font-weight:700;cursor:pointer;list-style-position:inside;color:#f3f6fc}
+.consult-faq p{margin:12px 0 0;color:#bdcad8}
+.consult-cta-bottom{margin:54px 0 70px;padding:30px;border-radius:20px;border:1px solid rgba(125,194,66,.27);background:linear-gradient(110deg,#14253d,#153021);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.consult-cta-bottom h2{font:900 25px Tajawal,Cairo,system-ui,sans-serif;margin:0 0 7px}
+.consult-cta-bottom p{margin:0;color:#d2dce8}
+.consult-divider{border:0;border-top:1px solid #2c4055;margin:52px 0 0}
+.consult-body .site-footer{padding:34px 20px}
+.consult-body .site-footer a{margin:0 5px}
+.consult-body :focus-visible{outline:3px solid #7dc242;outline-offset:3px}
+@media(max-width:1050px){.consult-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.consult-hero{padding:48px 0}.consult-form-wrap{grid-template-columns:1fr}.consult-flow{grid-template-columns:1fr}.consult-section{padding-top:50px}.consult-info{padding:22px}.consult-form{padding:20px}.consult-cta-bottom{margin:40px 0}}
+@media(max-width:540px){.consult-shell{padding:0 16px}.consult-grid{grid-template-columns:1fr}.consult-fields{grid-template-columns:1fr}.consult-hero-actions .consult-btn{width:100%}.consult-free-note{padding:20px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.consult-topic{transition:none}}
