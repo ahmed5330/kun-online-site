@@ -168,8 +168,9 @@
       "url": "https://kun-online.com/blog/startup-budget-egypt",
       "status": "published",
       "published_date": "2026-08-27",
-      "word_count": 773,
+      "word_count": 1658,
       "internal_links_out": [
+        "https://kun-online.com/blog/cod-shipping-returns-reconciliation",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/order-confirmation-delivery-rate",
@@ -205,10 +206,11 @@
       "url": "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
       "status": "published",
       "published_date": "2026-08-28",
-      "word_count": 1107,
+      "word_count": 1712,
       "internal_links_out": [
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
       "internal_links_in": [
@@ -239,11 +241,12 @@
       "url": "https://kun-online.com/blog/product-marketing-operations-ecommerce",
       "status": "published",
       "published_date": "2026-08-28",
-      "word_count": 664,
+      "word_count": 1533,
       "internal_links_out": [
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-funnel-guide",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/inventory-barcode-bundle-tracking",
         "https://kun-online.com/blog/order-confirmation-delivery-rate",
         "https://kun-online.com/blog/real-cost-per-delivered-order"
       ],
@@ -269,10 +272,11 @@
       "url": "https://kun-online.com/blog/ecommerce-funnel-explained",
       "status": "published",
       "published_date": "2026-08-30",
-      "word_count": 1064,
+      "word_count": 1614,
       "internal_links_out": [
         "https://kun-online.com/blog/customer-funnel-guide",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/order-confirmation-delivery-rate",
         "https://kun-online.com/blog/what-is-ecommerce"
       ],
       "internal_links_in": [
@@ -297,10 +301,12 @@
       "url": "https://kun-online.com/blog/essential-ecommerce-glossary",
       "status": "published",
       "published_date": "2026-08-31",
-      "word_count": 1274,
+      "word_count": 1616,
       "internal_links_out": [
+        "https://kun-online.com/blog/cod-shipping-returns-reconciliation",
         "https://kun-online.com/blog/customer-funnel-guide",
         "https://kun-online.com/blog/product-marketing-operations-ecommerce",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
       "internal_links_in": [
@@ -329,7 +335,7 @@
       "url": "https://kun-online.com/blog/owned-vs-rented-channels",
       "status": "published",
       "published_date": "2026-09-01",
-      "word_count": 1681,
+      "word_count": 1685,
       "internal_links_out": [
         "https://kun-online.com/blog/brand-vs-product-business",
         "https://kun-online.com/blog/startup-budget-egypt",
@@ -360,7 +366,7 @@
       "url": "https://kun-online.com/blog/brand-vs-product-business",
       "status": "published",
       "published_date": "2026-09-02",
-      "word_count": 1017,
+      "word_count": 1659,
       "internal_links_out": [
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/owned-vs-rented-channels",
@@ -1775,7 +1781,7 @@
       "url": "https://kun-online.com/blog/customer-funnel-guide",
       "status": "published",
       "published_date": "2026-08-29",
-      "word_count": 951,
+      "word_count": 1549,
       "internal_links_out": [
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/ecommerce-funnel-explained",
