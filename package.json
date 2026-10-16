@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --check scripts/publish-approved-article.mjs && node scripts/publish-approved-article.mjs --check && node scripts/reconcile-content-plan.mjs --check && node --test tests/site.test.mjs tests/consultations.test.mjs tests/seo-completion.test.mjs tests/approved-queue.test.mjs && node scripts/system-screenshots.mjs --check"
+    "test": "node --check scripts/publish-approved-article.mjs && node scripts/publish-approved-article.mjs --check && node scripts/reconcile-content-plan.mjs --check && node --test tests/site.test.mjs tests/reviews.test.mjs tests/consultations.test.mjs tests/seo-completion.test.mjs tests/approved-queue.test.mjs && node scripts/system-screenshots.mjs --check"
   },
   "devDependencies": {
     "playwright": "1.56.1"
