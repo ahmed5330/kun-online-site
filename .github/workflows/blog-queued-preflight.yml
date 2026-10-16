@@ -1,0 +1,50 @@
+name: Blog queued article preflight
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/approved/**'
+      - 'scripts/publish-approved-article.mjs'
+      - 'scripts/generate-approved-covers.py'
+      - '.github/workflows/blog-queued-preflight.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the same Arabic cover dependencies as the publisher
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-core
+          python -m pip install --disable-pip-version-check pillow arabic-reshaper python-bidi
+      - name: Resolve next unpublished approved article eligibility date
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const done=new Set(JSON.parse(fs.readFileSync('content/publication-log.json','utf8')).map(x=>x.slug));
+          const pending=fs.readdirSync('content/approved').filter(x=>x.endsWith('.json'))
+            .map(x=>JSON.parse(fs.readFileSync('content/approved/'+x,'utf8')))
+            .filter(x=>x.approved&&!done.has(x.slug)).sort((a,b)=>a.eligibleFrom.localeCompare(b.eligibleFrom));
+          if (pending.length) {
+            const date=pending[0].eligibleFrom;
+            fs.appendFileSync(process.env.GITHUB_ENV,'EDITORIAL_PREVIEW_CAIRO_DATE='+date+'\n');
+            fs.appendFileSync(process.env.GITHUB_ENV,'EDITORIAL_CAIRO_DATE='+date+'\n');
+            console.log('Previewing approved article:',pending[0].slug,'eligible:',date);
+          } else console.log('No unpublished approved bundle to preview');
+          NODE
+      - name: Render 1200x630 Arabic covers and check queue
+        run: |
+          python scripts/generate-approved-covers.py
+          node scripts/publish-approved-article.mjs --check
+      - name: Run all site and editorial tests
+        run: npm test
