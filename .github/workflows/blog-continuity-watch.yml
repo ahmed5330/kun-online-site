@@ -1,0 +1,73 @@
+name: Blog continuity watchdog and recovery
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/blog-continuity-watch.yml'
+      - 'scripts/blog-continuity-watch.mjs'
+  schedule:
+    - cron: '24 18 * * *'
+      timezone: 'Africa/Cairo'
+    - cron: '16 22 * * *'
+      timezone: 'Africa/Cairo'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: write
+  issues: write
+concurrency:
+  group: kun-online-blog-continuity-watch
+  cancel-in-progress: false
+jobs:
+  audit-and-recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Inspect Cairo date, eligible backlog and live Cloudflare state
+        id: audit
+        run: node scripts/blog-continuity-watch.mjs
+      - name: Retry eligible missed publication once
+        if: ${{ steps.audit.outputs.verdict == 'missed_eligible_publication' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          echo "::warning::An eligible blog article was not published today; retry requested."
+          gh workflow run scheduled-blog-publisher.yml \
+            --repo "$GITHUB_REPOSITORY" \
+            --ref main \
+            -f dry_run=false
+      - name: Open an incident for missing publication or broken live page
+        if: ${{ steps.audit.outputs.verdict == 'missed_eligible_publication' || steps.audit.outputs.verdict == 'published_but_not_live' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          title='Blog publishing continuity incident'
+          body="Blog continuity audit on ${GITHUB_RUN_ID} detected ${{ steps.audit.outputs.verdict }}. Check https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID. The watcher requested a publication retry when a bundle was eligible. This is NOT evidence of Google indexing."
+          number=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open \
+            --json number,title --jq '.[] | select(.title=="Blog publishing continuity incident") | .number' | head -1)
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --repo "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body "$body"
+          fi
+      - name: Close resolved continuity incident after verified live publication
+        if: ${{ steps.audit.outputs.verdict == 'published_and_live' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          number=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open \
+            --json number,title --jq '.[] | select(.title=="Blog publishing continuity incident") | .number' | head -1)
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --repo "$GITHUB_REPOSITORY" \
+              --body "Recovered: today's post returns HTTP 200 and is listed with self-canonical in the public sitemap. Google indexing is a separate check."
+            gh issue close "$number" --repo "$GITHUB_REPOSITORY" --reason completed
+          fi
