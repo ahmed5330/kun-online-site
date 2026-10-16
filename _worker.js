@@ -22,7 +22,7 @@ const LEGACY = new Set([
 ]);
 const DIRECTORIES = new Set(['/blog', '/en', '/gulf', '/services', '/pricing', '/about', '/contact', '/system',
   '/services/ecommerce-management', '/services/ecommerce-store-development',
-  '/services/ecommerce-ads', '/services/order-management', '/services/ecommerce-consulting', '/system/order-management', '/system/inventory', '/system/shipping', '/system/easy-orders']);
+  '/services/ecommerce-ads', '/services/order-management', '/services/ecommerce-consulting', '/consultations', '/system/order-management', '/system/inventory', '/system/shipping', '/system/easy-orders']);
 export function canonicalLocation(requestUrl) {
   const url = new URL(requestUrl);
   // Only rewrite the two public marketing hosts. Preview/custom Pages domains
