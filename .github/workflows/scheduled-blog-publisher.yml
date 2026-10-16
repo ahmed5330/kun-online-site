@@ -1,6 +1,10 @@
 name: VPS-free blog publisher
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/scheduled-blog-publisher.yml'
   schedule:
     - cron: '17 9 * * *'
       timezone: 'Africa/Cairo'
@@ -45,7 +49,7 @@ jobs:
           MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && 'check' || 'publish' }}
         run: node scripts/publish-approved-article.mjs --"$MODE"
       - name: Refresh blog HTML cards and sitemap
-        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && !inputs.dry_run) }}
+        if: ${{ github.event_name == 'schedule' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && !inputs.dry_run) }}
         run: python scripts/refresh_site.py
       - name: Validate content plan, links and SEO
         run: npm test
