@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import worker, {canonicalLocation} from '../_worker.js';
+import worker, {canonicalLocation, isPrivatePublicPath} from '../_worker.js';
 import {createHash} from 'node:crypto';
 const root = path.resolve(import.meta.dirname, '..');
 function all(dir) {return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.name==='.git'?[]:e.isDirectory()?all(path.join(dir,e.name)):[path.join(dir,e.name)]);}
@@ -646,4 +646,35 @@ test('SEO: four existing operations guides have real distinct 1200x630 featured 
     assert.equal(structured.datePublished,'2026-10-15');
     assert.equal(structured.dateModified,'2026-10-16');
   }
+});
+
+
+test('SEO: internal editorial plans, pending content and source files return uncrawlable 404 without leaking drafts',async()=>{
+  const restricted=[
+    '/content/approved/is-ecommerce-right-for-you.html.ready',
+    '/content/approved/is-ecommerce-right-for-you.json',
+    '/content/publication-log.json',
+    '/docs/editorial-drafts/002-is-ecommerce-right-for-you.md',
+    '/seo/keyword-map.json', '/seo-content-map.json',
+    '/tests/site.test.mjs', '/scripts/refresh_site.py', '/.github/workflows/site-quality.yml',
+    '/SKILL.md', '/package.json'
+  ];
+  let called=0;
+  const env={ASSETS:{fetch:async()=>{called++;return new Response('asset published',{status:200})}}};
+  for(const route of restricted){
+    for(const host of ['kun-online.com','www.kun-online.com']){
+      const url='https://'+host+route;
+      assert.equal(isPrivatePublicPath(url),true,'must classify sensitive path '+url);
+      const result=await worker.fetch(new Request(url),env);
+      assert.equal(result.status,404,'internal source must not be publicly served: '+url);
+      assert.equal(result.headers.get('x-robots-tag'),'noindex, nofollow','internal response must clearly refuse indexing');
+      assert.equal(result.headers.get('cache-control'),'no-store');
+    }
+  }
+  for(const route of ['/','/blog/','/robots.txt','/sitemap.xml','/blog/what-is-ecommerce','/assets/site.js']){
+    const url='https://kun-online.com'+route;
+    assert.equal(isPrivatePublicPath(url),false,'never block a customer-facing page: '+route);
+  }
+  assert.equal(isPrivatePublicPath('https://preview.pages.dev/docs/editorial-drafts/a.md'),false,'preview host excluded by design');
+  assert.equal(called,0,'ASSETS must not receive sensitive requests');
 });
