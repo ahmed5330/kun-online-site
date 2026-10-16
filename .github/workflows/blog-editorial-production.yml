@@ -61,3 +61,16 @@ jobs:
           else
             gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body "$body"
           fi
+
+      - name: Close depleted-queue issue once editorial buffer is healthy
+        if: ${{ steps.status.outputs.count >= 3 }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          title='Blog editorial queue needs approved articles'
+          number=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$title in:title" --json number,title --jq '.[] | select(.title=="Blog editorial queue needs approved articles") | .number' | head -1)
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --repo "$GITHUB_REPOSITORY" --body "Resolved: editorial queue now has at least 3 approved unpublished bundles. The daily readiness workflow will reopen tracking when the buffer falls below 3."
+            gh issue close "$number" --repo "$GITHUB_REPOSITORY" --reason completed
+          fi
