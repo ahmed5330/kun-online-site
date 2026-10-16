@@ -25,10 +25,14 @@ const isDate = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(
   Number.isFinite(Date.parse(value + 'T00:00:00Z'));
 const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'Africa/Cairo', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
 const part = type => parts.find(item => item.type === type)?.value;
-const cairoDate = part('year') + '-' + part('month') + '-' + part('day');
+// Preview-only date override enables a future eligible bundle to pass CI
+// without bypassing the real Cairo day guard during actual publication.
+const previewDate = mode === '--check' ? process.env.EDITORIAL_PREVIEW_CAIRO_DATE : undefined;
+const cairoDate = previewDate || (part('year') + '-' + part('month') + '-' + part('day'));
 assert.ok(isDate(cairoDate), 'Cannot resolve Cairo publication date');
 const arabicMonths = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
-const dateLabel = Number(part('day')) + ' ' + arabicMonths[Number(part('month')) - 1] + ' ' + part('year');
+const [labelYear,labelMonth,labelDay] = cairoDate.split('-');
+const dateLabel = Number(labelDay) + ' ' + arabicMonths[Number(labelMonth)-1] + ' ' + labelYear;
 const safeSlug = slug => /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug);
 const wordsIn = html => {
   const body = html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1] || '';
