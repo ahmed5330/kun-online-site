@@ -707,3 +707,44 @@ test('SEO: sitewide keyword targeting has unique primary intents across all site
     'Audit must acknowledge the deprecated indexed field rather than claim zero indexed');
   assert.match(doc,/غير قابل للجزم/, 'Do not invent a total Google-indexed count');
 });
+
+
+test('SEO: all 15 public guides pass the editorial depth, asset, schema and metadata consistency gate',()=>{
+  const registry=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
+  const sitemap=fs.readFileSync(path.join(root,'sitemap.xml'),'utf8');
+  assert.equal(registry.length,15,'baseline audit: review changed article count before updating this check');
+  const titles=new Set();
+  for(const item of registry){
+    const file=path.join(root,'blog',item.slug+'.html');
+    const html=fs.readFileSync(file,'utf8');
+    const core=html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1] ||
+      html.match(/<div class="art-content">([\s\S]*?)<section class="related-static">/)?.[1];
+    assert.ok(core,'guide needs a substantive content body: '+item.slug);
+    const words=core.replace(/<[^>]*>/g,' ').replace(/&(?:[a-z]+|#\d+);/gi,' ')
+      .trim().split(/\s+/).filter(Boolean).length;
+    assert.ok(words>=1500,'Internal editorial standard: substantial original coverage; '+item.slug+' = '+words);
+    assert.equal(item.wordCount,words,'registry length drift: '+item.slug);
+    assert.equal(item.readTime,Math.ceil(words/170),'reading time drift: '+item.slug);
+    const schema=[...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+      .map(m=>JSON.parse(m[1])).find(x=>x['@type']==='BlogPosting');
+    assert.ok(schema,'blog structured data absent: '+item.slug);
+    assert.equal(schema.wordCount,words,'schema word count mismatch: '+item.slug);
+    assert.equal(schema.timeRequired,'PT'+item.readTime+'M','schema timeRequired mismatch: '+item.slug);
+    assert.ok(schema.datePublished,'keep original publication date: '+item.slug);
+    assert.equal(schema.dateModified,item.dateModified,'revision date mismatch: '+item.slug);
+    assert.ok(typeof item.image==='string' && item.image.endsWith('.png'),'cover missing: '+item.slug);
+    assert.ok(fs.existsSync(path.join(root,'blog/images',item.image)),'cover asset missing: '+item.slug);
+    assert.ok(html.includes('/blog/images/'+item.image),'article does not visibly reference cover: '+item.slug);
+    const primary=html.match(/<title>([^<]+)<\/title>/)?.[1];
+    assert.ok(primary && !titles.has(primary),'duplicate or missing SEO title: '+item.slug);
+    titles.add(primary);
+    const outgoing=[...new Set([...core.matchAll(/href=["']\/blog\/([a-z0-9-]+)/g)]
+      .map(m=>m[1]).filter(s=>s!==item.slug))];
+    assert.ok(outgoing.length>=2,'need contextual internal reading links: '+item.slug);
+    const canonical='https://kun-online.com/blog/'+item.slug;
+    assert.ok(html.includes('rel="canonical" href="'+canonical+'"'),'self-canonical missing: '+item.slug);
+    assert.ok(sitemap.includes('<loc>'+canonical+'</loc>'),'article omitted from sitemap: '+item.slug);
+    assert.ok(sitemap.includes('<loc>'+canonical+'</loc><lastmod>'+item.dateModified+'</lastmod>'),
+      'updated sitemap modification date missing: '+item.slug);
+  }
+});
