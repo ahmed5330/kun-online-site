@@ -483,6 +483,21 @@
       "intent": "transactional",
       "priority": "P1",
       "notes": "بوابة مستقلة لاختيار تخصص الاستشارة وإرسال طلب مراجعة على واتساب. لا تمثل الجلسة التعريفية المجانية، ولا تعرض مواعيد أو أسعار غير معتمدة."
+    },
+    {
+      "path": "/blog/is-ecommerce-right-for-you",
+      "primary": "هل التجارة الإلكترونية مناسبة لي",
+      "secondary": [
+        "هل ابدأ متجر إلكتروني",
+        "مشروع تجارة إلكترونية من الصفر",
+        "البيع على Marketplace",
+        "بدائل إنشاء متجر إلكتروني"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }

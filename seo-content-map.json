@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 9,
-    "articles_remaining": 91,
+    "articles_published": 10,
+    "articles_remaining": 90,
     "current_article": null,
-    "next_article": 2,
-    "project_completion_percentage": 9,
-    "last_published_date": "2026-09-02",
+    "next_article": 10,
+    "project_completion_percentage": 10,
+    "last_published_date": "2026-10-17",
     "last_run_date": null
   },
   "chapters": [
@@ -113,6 +113,7 @@
       "word_count": 1611,
       "internal_links_out": [
         "https://kun-online.com/blog/brand-vs-product-business",
+        "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/startup-budget-egypt",
         "https://kun-online.com/blog/what-is-ecommerce"
       ],
@@ -120,6 +121,7 @@
         "https://kun-online.com/blog/brand-vs-product-business",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/ecommerce-evolution-history",
+        "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/what-is-ecommerce"
       ],
       "failure_reason": null,
@@ -132,19 +134,34 @@
       "brief": "ساعد القارئ على تقييم نفسه وإمكانياته ورأس ماله ووقته وقدرته على تحمل المخاطرة. وضّح الفرق بين امتلاك متجر وبين العمل كمسوق أو مقدم خدمة أو بائع Marketplace.",
       "new_concept": "Decision Matrix بسيطة يحدد بها هل يبدأ متجرًا أم نموذجًا آخر.",
       "research_space": "ابحث عن نماذج الدخول المختلفة إلى التجارة الإلكترونية ومتطلبات كل نموذج.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "needs_review",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
-      "failure_reason": "Editorial draft prepared; not published. Requires SERP/keyword audit, original approved 1200x630 featured image, external daily lock check, source QA, and mobile live publication tests.",
+      "final_h1": "هل التجارة الإلكترونية مناسبة لك؟ اختبر قرار بدء متجرك",
+      "seo_title": "هل التجارة الإلكترونية مناسبة لك؟ اختبر قرار بدء متجرك | مدونة كن أونلاين",
+      "primary_keyword": "هل التجارة الإلكترونية مناسبة لي",
+      "secondary_keywords": [
+        "هل ابدأ متجر إلكتروني",
+        "مشروع تجارة إلكترونية من الصفر",
+        "البيع على Marketplace",
+        "بدائل إنشاء متجر إلكتروني"
+      ],
+      "search_intent": "informational",
+      "slug": "is-ecommerce-right-for-you",
+      "url": "https://kun-online.com/blog/is-ecommerce-right-for-you",
+      "status": "published",
+      "published_date": "2026-10-17",
+      "word_count": 2023,
+      "internal_links_out": [
+        "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/owned-vs-rented-channels",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
+      "failure_reason": null,
       "attempts": 0,
       "draft_file": "docs/editorial-drafts/002-is-ecommerce-right-for-you.md"
     },
@@ -173,6 +190,7 @@
         "https://kun-online.com/blog/cod-shipping-returns-reconciliation",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/order-confirmation-delivery-rate",
         "https://kun-online.com/blog/owned-vs-rented-channels",
         "https://kun-online.com/blog/real-cost-per-delivered-order"
@@ -182,6 +200,7 @@
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/owned-vs-rented-channels"
       ],
       "failure_reason": null,
@@ -215,6 +234,7 @@
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/customer-funnel-guide",
+        "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/product-marketing-operations-ecommerce",
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
@@ -313,6 +333,7 @@
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-funnel-guide",
         "https://kun-online.com/blog/ecommerce-funnel-explained",
+        "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/product-marketing-operations-ecommerce",
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
@@ -344,6 +365,7 @@
       "internal_links_in": [
         "https://kun-online.com/blog/brand-vs-product-business",
         "https://kun-online.com/blog/ecommerce-evolution-history",
+        "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/startup-budget-egypt",
         "https://kun-online.com/blog/what-is-ecommerce"
       ],
