@@ -738,9 +738,9 @@ test('SEO: all 15 public guides pass the editorial depth, asset, schema and meta
     const primary=html.match(/<title>([^<]+)<\/title>/)?.[1];
     assert.ok(primary && !titles.has(primary),'duplicate or missing SEO title: '+item.slug);
     titles.add(primary);
-    const outgoing=[...new Set([...core.matchAll(/href=["']\/blog\/([a-z0-9-]+)/g)]
+    const outgoing=[...new Set([...html.matchAll(/href=["']\/blog\/([a-z0-9-]+)/g)]
       .map(m=>m[1]).filter(s=>s!==item.slug))];
-    assert.ok(outgoing.length>=2,'need contextual internal reading links: '+item.slug);
+    assert.ok(outgoing.length>=2,'need at least two useful related blog reading links: '+item.slug);
     const canonical='https://kun-online.com/blog/'+item.slug;
     assert.ok(html.includes('rel="canonical" href="'+canonical+'"'),'self-canonical missing: '+item.slug);
     assert.ok(sitemap.includes('<loc>'+canonical+'</loc>'),'article omitted from sitemap: '+item.slug);
