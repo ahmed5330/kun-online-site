@@ -43,6 +43,9 @@ for(const width of [390,1440]){
    assert.ok(placement.beforeFinalCta,`${width} ${url}: system section is beyond final CTA`);
   }
   if(url==='/reviews/'){
+    assert.equal(await page.locator('[data-review-share]').count(),0);
+    assert.equal(await page.locator('a[href="/reviews/#write-review"]').count(),0);
+    assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'),'noindex,follow');
     assert.equal(await page.locator('[data-review-star]').count(),5);
     await page.locator('[data-review-star="4"]').click();
     assert.equal(await page.locator('[data-review-star="4"]').getAttribute('aria-pressed'),'true');
