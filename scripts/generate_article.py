@@ -216,7 +216,7 @@ def main():
         ]
     }
     (drafts / f"{slug}.review.json").write_text(
-        json.dumps(review, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8"
+        json.dumps(review, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     print(f"REVIEW ONLY: {draft_file}. No blog registry, sitemap, or public HTML was changed.")
 
