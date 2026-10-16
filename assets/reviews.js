@@ -1,8 +1,7 @@
-/* Reviews widget shared by homepage and shareable reviews landing */
+/* Reviews widget shared by homepage and admin-invited reviews landing */
 (function(){
   'use strict';
   const API='https://app.kun-online.com/api/public-reviews';
-  const SHARE='https://kun-online.com/reviews/';
   const root=document.querySelector('[data-kun-reviews]');
   if(!root)return;
   const $=s=>root.querySelector(s), esc=String;
@@ -100,17 +99,6 @@
       if(['services','consultations'].includes(type))category.value=type;
     }catch(e){status.textContent=e.message||'حصلت مشكلة، حاول تاني.';}
     finally{button.disabled=false;}
-  });
-  const share=$('[data-review-share]'),shareText=$('[data-review-share-status]');
-  share?.addEventListener('click',async()=>{
-    const url=new URL(SHARE);
-    if(['services','consultations'].includes(category.value))url.searchParams.set('type',category.value);
-    url.hash='write-review';
-    try{
-      if(navigator.share)await navigator.share({title:'قيّم تجربتك مع كن أونلاين',url:String(url)});
-      else if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(String(url));shareText.textContent='تم نسخ لينك التقييم للمشاركة.';}
-      else{const input=$('[data-review-link]');input.value=String(url);input.hidden=false;input.select();shareText.textContent='انسخ الرابط المحدد للمشاركة.';}
-    }catch(e){if(e.name!=='AbortError')shareText.textContent='انسخ الرابط من شريط العنوان للمشاركة.';}
   });
   load();
 })();

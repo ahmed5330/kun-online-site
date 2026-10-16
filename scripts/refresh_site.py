@@ -66,6 +66,10 @@ def refresh(optimize=False):
     for path in sorted(ROOT.rglob('*.html')):
         rel=path.relative_to(ROOT).as_posix()
         if rel in ('404.html','blog/article-template.html') or '.git' in rel:continue
+        # Invitation-only review entry is crawlable by invitees, but explicitly
+        # noindex and must not be put back in the public sitemap by CI.
+        source=path.read_text(encoding='utf-8')
+        if re.search(r'<meta\s+name=["\x27]robots["\x27][^>]*content=["\x27]\s*noindex\b', source, re.I):continue
         url='/' if rel=='index.html' else '/'+rel[:-10] if rel.endswith('index.html') else '/'+rel[:-5]
         # A fabricated default lastmod is worse than omitting the optional tag.
         # Only an editor-maintained dateModified is suitable evidence here; an

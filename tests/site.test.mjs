@@ -7,6 +7,7 @@ import {createHash} from 'node:crypto';
 const root = path.resolve(import.meta.dirname, '..');
 function all(dir) {return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.name==='.git'?[]:e.isDirectory()?all(path.join(dir,e.name)):[path.join(dir,e.name)]);}
 const pages = all(root).filter(p=>p.endsWith('.html')&&!p.endsWith('article-template.html'));
+const indexablePages = pages.filter(p=>!p.endsWith('404.html')&&!p.endsWith(path.join('reviews','index.html')));
 test('all intended pages have one self canonical, title, description and H1',()=>{
   for(const p of pages){
     const s=fs.readFileSync(p,'utf8');
@@ -153,7 +154,7 @@ test('canonical redirects preserve paths and queries with no loops',()=>{
 test('all intended pages are in the sitemap and template is excluded',()=>{
   const s=fs.readFileSync(path.join(root,'sitemap.xml'),'utf8');
   assert.doesNotMatch(s,/https:\/\/www\.kun-online\.com|article-template|<loc>[^<]*404/);
-  for(const p of pages.filter(p=>!p.endsWith('404.html'))){const html=fs.readFileSync(p,'utf8');const url=html.match(/rel="canonical" href="([^"]+)"/)[1];assert.ok(s.includes(`<loc>${url}</loc>`),p);}
+  for(const p of indexablePages){const html=fs.readFileSync(p,'utf8');const url=html.match(/rel="canonical" href="([^"]+)"/)[1];assert.ok(s.includes(`<loc>${url}</loc>`),p);}
 });
 
 
@@ -162,7 +163,7 @@ test('sitemap uses verified editorial lastmod dates and no fabricated defaults',
   const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
   const mapped=new Map(articles.map(a=>[a.slug,a.dateModified]));
   const entries=[...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(x=>x[1]);
-  assert.equal(entries.length,pages.filter(p=>!p.endsWith('404.html')).length);
+  assert.equal(entries.length,indexablePages.length);
   for(const entry of entries){
     const url=entry.match(/<loc>([^<]+)<\/loc>/)?.[1];
     const lastmod=entry.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];
@@ -193,7 +194,7 @@ test('article template uses crawlable noindex instead of conflicting robots bloc
 test('keyword targeting map covers every indexable URL and separates software from agency',()=>{
   const map=JSON.parse(fs.readFileSync(path.join(root,'seo/keyword-map.json'),'utf8'));
   assert.equal(map.metricsAvailable,false,'Do not invent GSC, demand, CPC, or keyword difficulty');
-  const intended=pages.filter(p=>!p.endsWith('404.html')).map(p=>{
+  const intended=indexablePages.map(p=>{
     const html=fs.readFileSync(p,'utf8');
     return new URL(html.match(/rel="canonical" href="([^"]+)"/)[1]).pathname;
   });
