@@ -41,6 +41,26 @@ async function run() {
   const sourceHash=createHash('sha1').update(Buffer.from('blob '+Buffer.byteLength(source)+'\0')).update(source).digest('hex').slice(0,12);
   const versionedSource='/assets/site.js?v='+sourceHash;
   const records = new Map();
+  // Publishing drafts directly from the GitHub repo must NOT make them
+  // crawlable on Cloudflare. This is a real HTTP check, not just a source test.
+  for (const privatePath of [
+    '/content/approved/is-ecommerce-right-for-you.html.ready',
+    '/content/publication-log.json',
+    '/docs/editorial-drafts/002-is-ecommerce-right-for-you.md',
+    '/seo/keyword-map.json',
+    '/scripts/refresh_site.py'
+  ]) {
+    try {
+      const r = await inspect(privatePath, {redirects:'manual'});
+      check('Private editorial/source path is HTTP 404: '+privatePath,
+        r.response.status===404,
+        'status='+r.response.status+' bodyBytes='+r.body.length);
+      check('Private path has noindex header: '+privatePath,
+        (r.response.headers.get('x-robots-tag')||'').includes('noindex'));
+    } catch(error) {
+      check('Private editorial/source path is HTTP 404: '+privatePath, false, error.message);
+    }
+  }
   for (const page of pages) {
     try {
       const r = await inspect(page);
