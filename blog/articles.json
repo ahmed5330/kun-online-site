@@ -14,8 +14,8 @@
     "readTime": 4,
     "wordCount": 534,
     "icon": "📘",
-    "image": "",
-    "dateModified": "2026-10-15"
+    "image": "cod-shipping-returns-reconciliation.png",
+    "dateModified": "2026-10-16"
   },
   {
     "slug": "inventory-barcode-bundle-tracking",
@@ -32,8 +32,8 @@
     "readTime": 4,
     "wordCount": 576,
     "icon": "📘",
-    "image": "",
-    "dateModified": "2026-10-15"
+    "image": "inventory-barcode-bundle-tracking.png",
+    "dateModified": "2026-10-16"
   },
   {
     "slug": "order-confirmation-delivery-rate",
@@ -50,8 +50,8 @@
     "readTime": 4,
     "wordCount": 571,
     "icon": "📘",
-    "image": "",
-    "dateModified": "2026-10-15"
+    "image": "order-confirmation-delivery-rate.png",
+    "dateModified": "2026-10-16"
   },
   {
     "slug": "real-cost-per-delivered-order",
@@ -68,8 +68,8 @@
     "readTime": 4,
     "wordCount": 636,
     "icon": "📘",
-    "image": "",
-    "dateModified": "2026-10-15"
+    "image": "real-cost-per-delivered-order.png",
+    "dateModified": "2026-10-16"
   },
   {
     "slug": "brand-vs-product-business",
