@@ -227,5 +227,10 @@ def update_sitemap(articles):
     subprocess.run([sys.executable, str(SITE_ROOT / "scripts" / "refresh_site.py")], check=True)
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(
+        "Legacy direct publisher is disabled: it bypasses editorial approval, "
+        "the Cairo daily lock, image quality gates and the 100-topic plan. "
+        "Prepare content/approved/<slug>.html.ready and <slug>.json instead; "
+        "use scheduled-blog-publisher.yml for publication."
+    )
 
