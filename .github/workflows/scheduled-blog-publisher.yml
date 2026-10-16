@@ -56,7 +56,7 @@ jobs:
         run: npm test
       - name: Commit at most one approved and tested article
         id: publish
-        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && !inputs.dry_run) }}
+        if: ${{ github.event_name == 'schedule' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && !inputs.dry_run) }}
         run: |
           set -euo pipefail
           git add blog/ seo-content-map.json seo/keyword-map.json seo/published-series-mapping.json sitemap.xml content/publication-log.json
