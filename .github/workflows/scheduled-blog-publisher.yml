@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/scheduled-blog-publisher.yml'
+      - 'content/approved/**'
   schedule:
     - cron: '17 9 * * *'
       timezone: 'Africa/Cairo'
