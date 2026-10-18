@@ -6,7 +6,7 @@
 /assets/blog.js
   Cache-Control: public, max-age=86400
 /assets/site.css
-  Cache-Control: public, max-age=300, must-revalidate
+  Cache-Control: public, max-age=86400
 /assets/system.css
   Cache-Control: public, max-age=86400
 /assets/site.js
