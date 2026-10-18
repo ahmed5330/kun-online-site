@@ -6,6 +6,8 @@ from xml.sax.saxutils import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE = 'https://kun-online.com'
+# Version static cover URLs to bypass cached malformed RTL graphics.
+COVER_REV = '?v=rtl-raqm-20261019'
 
 def article_cards(articles):
     cards=[]
@@ -20,7 +22,7 @@ def article_cards(articles):
         pic=''
         if image and (ROOT/'blog/images'/image).exists():
             stem=Path(image).stem
-            pic='<picture><source type="image/webp" srcset="/blog/images/'+stem+'-640.webp 640w, /blog/images/'+stem+'.webp 1200w" sizes="(max-width:600px) 90vw, 330px"><img src="/blog/images/'+html.escape(image,quote=True)+'" alt="'+html.escape(a['title'],quote=True)+'" width="1200" height="630" loading="lazy" decoding="async"></picture>' if (ROOT/'blog/images'/(stem+'.webp')).exists() else '<img src="/blog/images/'+html.escape(image,quote=True)+'" alt="'+html.escape(a['title'],quote=True)+'" width="1200" height="630" loading="lazy" decoding="async">'
+            pic='<picture><source type="image/webp" srcset="/blog/images/'+stem+'-640.webp'+COVER_REV+' 640w, /blog/images/'+stem+'.webp'+COVER_REV+' 1200w" sizes="(max-width:600px) 90vw, 330px"><img src="/blog/images/'+html.escape(image,quote=True)+COVER_REV+'" alt="'+html.escape(a['title'],quote=True)+'" width="1200" height="630" loading="lazy" decoding="async"></picture>' if (ROOT/'blog/images'/(stem+'.webp')).exists() else '<img src="/blog/images/'+html.escape(image,quote=True)+'" alt="'+html.escape(a['title'],quote=True)+'" width="1200" height="630" loading="lazy" decoding="async">'
         cards.append('<article class="card blog-card" data-category="'+html.escape(a.get('category','store'),quote=True)+'">'+pic+'<p>'+html.escape(a.get('categoryLabel','مقالات'))+' · '+html.escape(a.get('date',''))+' · '+minutes+' دقائق</p><h2><a href="/blog/'+slug+'">'+title+'</a></h2><p>'+desc+'</p></article>')
     return ''.join(cards)
 
@@ -51,12 +53,16 @@ def refresh(optimize=False):
         for article in (ROOT/'blog').glob('*.html'):
             if article.name in ('index.html','article-template.html'):continue
             s=article.read_text(encoding='utf-8')
+            # Always retain the readable editorial UI for newly published guides.
+            if 'editorial-20261019.css' not in s:
+                s=s.replace('</head>', '<link rel="stylesheet" href="/assets/editorial-20261019.css?v=1">\n</head>')
             def picture(m):
                 tag=m.group(0)
-                source=re.search(r'src="(/blog/images/([^"/]+)\.png)"',tag)
+                source=re.search(r'src="(/blog/images/([^"/?]+)\.png)(?:\?v=[^"]+)?"',tag)
                 if not source or not (ROOT/(source.group(1).lstrip('/').replace('.png','.webp'))).exists():return tag
                 stem=source.group(2)
-                return '<picture><source type="image/webp" srcset="/blog/images/'+stem+'-640.webp 640w, /blog/images/'+stem+'.webp 1200w" sizes="(max-width:820px) 95vw, 760px">'+tag+'</picture>'
+                versioned=re.sub(r'src="/blog/images/[^"]+\.png(?:\?v=[^"]+)?"', lambda _: 'src="'+source.group(1)+COVER_REV+'"', tag)
+                return '<picture><source type="image/webp" srcset="/blog/images/'+stem+'-640.webp'+COVER_REV+' 640w, /blog/images/'+stem+'.webp'+COVER_REV+' 1200w" sizes="(max-width:820px) 95vw, 760px">'+versioned+'</picture>'
             # Refresh rather than nesting pictures on repeated runs.
             s=re.sub(r'<picture><source\b[^>]*>(<img\b[\s\S]*?>)</picture>',r'\1',s)
             s=re.sub(r'<img\b[\s\S]*?>',picture,s)
