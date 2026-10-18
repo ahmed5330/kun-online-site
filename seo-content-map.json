@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 11,
-    "articles_remaining": 89,
+    "articles_published": 12,
+    "articles_remaining": 88,
     "current_article": null,
-    "next_article": 11,
-    "project_completion_percentage": 11,
-    "last_published_date": "2026-10-18",
+    "next_article": 12,
+    "project_completion_percentage": 12,
+    "last_published_date": "2026-10-19",
     "last_run_date": null
   },
   "chapters": [
@@ -114,6 +114,7 @@
       "internal_links_out": [
         "https://kun-online.com/blog/brand-vs-product-business",
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
+        "https://kun-online.com/blog/ecommerce-product-ideas-research",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/startup-budget-egypt",
         "https://kun-online.com/blog/what-is-ecommerce"
@@ -123,6 +124,7 @@
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/ecommerce-evolution-history",
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
+        "https://kun-online.com/blog/ecommerce-product-ideas-research",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/what-is-ecommerce"
       ],
@@ -192,6 +194,7 @@
         "https://kun-online.com/blog/cod-shipping-returns-reconciliation",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
+        "https://kun-online.com/blog/ecommerce-product-ideas-research",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/order-confirmation-delivery-rate",
@@ -203,6 +206,7 @@
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
+        "https://kun-online.com/blog/ecommerce-product-ideas-research",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/owned-vs-rented-channels"
@@ -338,6 +342,7 @@
         "https://kun-online.com/blog/customer-funnel-guide",
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
         "https://kun-online.com/blog/ecommerce-funnel-explained",
+        "https://kun-online.com/blog/ecommerce-product-ideas-research",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/product-marketing-operations-ecommerce",
         "https://kun-online.com/blog/startup-budget-egypt"
@@ -448,18 +453,30 @@
       "brief": "علّم القارئ البحث بدل إعطائه قائمة «منتجات رابحة». Google Trends، Trends على TikTok، Amazon Best Sellers، Meta Ads Library، المنافسين، مشاكل العملاء، Reviews.",
       "new_concept": "Product Discovery System.",
       "research_space": "ابحث يوم كتابة المقال عن أحدث أدوات Product Research المجانية والمدفوعة.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "queued",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
+      "final_h1": "10 طرق لاكتشاف أفكار منتجات للتجارة الإلكترونية",
+      "seo_title": "10 طرق لاكتشاف أفكار منتجات للتجارة الإلكترونية | مدونة كن أونلاين",
+      "primary_keyword": "أفكار منتجات للتجارة الإلكترونية",
+      "secondary_keywords": [
+        "اكتشاف منتجات جديدة",
+        "كيفية اختيار منتج للبيع",
+        "البحث عن المنتجات الرابحة"
+      ],
+      "search_intent": "informational",
+      "slug": "ecommerce-product-ideas-research",
+      "url": "https://kun-online.com/blog/ecommerce-product-ideas-research",
+      "status": "published",
+      "published_date": "2026-10-19",
+      "word_count": 1846,
+      "internal_links_out": [
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
       "failure_reason": null,
       "attempts": 0
     },

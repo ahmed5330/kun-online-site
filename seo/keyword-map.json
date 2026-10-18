@@ -512,6 +512,20 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/ecommerce-product-ideas-research",
+      "primary": "أفكار منتجات للتجارة الإلكترونية",
+      "secondary": [
+        "اكتشاف منتجات جديدة",
+        "كيفية اختيار منتج للبيع",
+        "البحث عن المنتجات الرابحة"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }
