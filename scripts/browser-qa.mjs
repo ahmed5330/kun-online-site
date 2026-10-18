@@ -54,9 +54,9 @@ for(const width of [390,1440]){
   }
   if(url.startsWith('/blog/') && url!=='/blog/'){
     const legibility=await page.evaluate(()=>{
-      const para=document.querySelector('.art-content .editorial-guide p')||document.querySelector('.art-content p');
-      const title=document.querySelector('.art-header h1');
-      const img=document.querySelector('.art-featured img');
+      const para=document.querySelector('.art-content .editorial-guide p')||document.querySelector('.art-content p')||document.querySelector('.article-box section p')||document.querySelector('.article-box > p.summary');
+      const title=document.querySelector('.art-header h1')||document.querySelector('.article-box h1');
+      const img=document.querySelector('.art-featured img')||document.querySelector('.operation-cover img');
       const rgb=(str)=>{const m=str.match(/[\d.]+/g);return m?.slice(0,3).map(Number)};
       const luminance=(rgb)=>rgb.map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4}).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);
       const contrast=(a,b)=>{const x=luminance(a),y=luminance(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
