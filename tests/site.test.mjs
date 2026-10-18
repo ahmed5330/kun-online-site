@@ -651,7 +651,7 @@ test('SEO: four existing operations guides have real distinct 1200x630 featured 
     assert.ok(!hashes.has(hash),'covers must be genuinely unique and topic specific');
     hashes.add(hash);
     const html=fs.readFileSync(path.join(root,'blog',slug+'.html'),'utf8');
-    assert.ok(html.includes('src="/blog/images/'+data.image+'"'),'featured image must render in the page');
+    assert.match(html,new RegExp('src="/blog/images/'+slug+'\\.png(?:\\?v=rtl-raqm-20261019)?"'),'featured image must render in the page (versioned URLs supported)');
     assert.ok(html.includes('property="og:image" content="https://kun-online.com/blog/images/'+data.image+'"'),'share preview must use the real cover');
     assert.ok(html.includes('name="twitter:card" content="summary_large_image"'),'X/Twitter preview must have appropriate card');
     const article=html.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)?.[1];
