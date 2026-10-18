@@ -1,0 +1,34 @@
+{
+  "slug": "test-product-before-bulk-inventory",
+  "article_id": 14,
+  "approved": true,
+  "eligibleFrom": "2026-10-22",
+  "editorialApproval": "2026-10-17: Original Arabic editorial review of official Shopify product validation and pre-order documentation, Google Analytics 4 ecommerce events, Egyptian Consumer Protection Agency and Saudi Ministry of Commerce guidance; examples explicitly hypothetical. User authorized daily editorial production.",
+  "title": "اختبار المنتج قبل شراء 100 قطعة: 6 تجارب قليلة المخاطرة",
+  "description": "تعلّم اختبار المنتج قبل شراء مخزون كبير عبر العينة والدفعة الصغيرة وصفحة الانتظار والطلب المسبق وإعلانات الاختبار، مع حساب تكلفة الطلب المُسلّم وخطة قرار واضحة.",
+  "primaryKeyword": "اختبار المنتج قبل شراء المخزون",
+  "secondaryKeywords": [
+    "اختبار المنتج قبل الشراء بالجملة",
+    "تجربة منتج جديد للبيع أونلاين",
+    "الطلب المسبق للمنتجات",
+    "اختبار صفحة هبوط منتج",
+    "اختبار السوق بميزانية صغيرة"
+  ],
+  "category": "store",
+  "categoryLabel": "بناء المتجر",
+  "image": "test-product-before-bulk-inventory.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "ecommerce-complete-journey-guide",
+    "startup-budget-egypt"
+  ],
+  "qualityReview": {
+    "words": 1779,
+    "sections": 13,
+    "readingMinutes": 11,
+    "checkedOn": "2026-10-17",
+    "exampleNumbers": "hypothetical",
+    "sources": "official and platform documentation",
+    "publicationGate": "one Cairo-day article; do not bypass lock"
+  }
+}
