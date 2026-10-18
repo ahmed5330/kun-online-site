@@ -242,3 +242,18 @@ html[lang^="en"] body{font-family:Inter,system-ui,sans-serif}
   .ko-preview-cards article{padding:12px}
   .ko-preview-content h2{font-size:21px}
 }
+
+
+/* Footer and language polish: preserve contrast on dark surfaces. */
+body > footer:not(.site-footer) a{color:#dceaf7}
+body > footer:not(.site-footer) a:hover{color:#a3e87d}
+body > footer:not(.site-footer) .logo{color:white}
+body > footer:not(.site-footer) .logo em{color:#a3e87d}
+html[lang="en"] #main-content .hero h1,
+html[lang="en"] .ko-preview-content h2,
+html[lang="en"] .ko-preview-header strong{font-family:Inter,system-ui,sans-serif}
+html[lang="en"] #main-content .sh{font-family:Inter,system-ui,sans-serif}
+@media(max-width:640px){
+ .site-nav .site-links{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;white-space:nowrap;justify-content:flex-start;scrollbar-width:thin}
+ .site-nav .site-links a{flex:none}
+}
