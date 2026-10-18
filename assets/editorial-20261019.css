@@ -1,0 +1,112 @@
+/* Kun Online editorial design system — 2026-10-19.
+   Scoped to article pages. Retains original editorial content and scripts.
+   Fixes old dark-theme text on the light website redesign. */
+:root{
+  --ko-article-ink:#19344f;
+  --ko-article-muted:#516b80;
+  --ko-article-navy:#092d53;
+  --ko-article-blue:#10549a;
+  --ko-article-edge:#dbe7f1;
+  --ko-article-green:#5aa837;
+}
+body:has(.art-content){background:#fff;color:var(--ko-article-ink);font-family:Cairo,Tajawal,system-ui,sans-serif;line-height:1.85;}
+body:has(.art-content) > nav{
+  position:sticky;top:0;z-index:200;
+  height:auto;min-height:70px;padding:12px max(20px,calc((100vw - 1040px)/2));
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  background:rgba(255,255,255,.97);border-bottom:1px solid var(--ko-article-edge);
+  box-shadow:0 5px 25px rgba(9,45,83,.035);backdrop-filter:blur(14px);
+}
+body:has(.art-content) > nav .logo{font:900 24px Tajawal,Cairo,sans-serif;color:var(--ko-article-navy);text-decoration:none}
+body:has(.art-content) > nav .logo em{color:var(--ko-article-blue)}
+body:has(.art-content) > nav .nav-back{color:var(--ko-article-blue);font-size:13px;font-weight:800}
+.art-header,.art-featured,.art-content{max-width:900px;margin-inline:auto;box-sizing:border-box}
+.art-header{padding:54px 26px 24px;text-align:right}
+.art-header h1{
+  font:900 clamp(30px,4.6vw,48px)/1.42 Tajawal,Cairo,system-ui,sans-serif;
+  color:var(--ko-article-navy);letter-spacing:-.02em;
+  margin:14px 0 18px;overflow-wrap:break-word
+}
+.art-cat-badge{
+  display:inline-flex;align-items:center;gap:8px;background:#eaf6e9;
+  border:1px solid #d0e8c8;color:#307a29;border-radius:999px;
+  font-size:12px;letter-spacing:0;font-weight:800;padding:5px 14px
+}
+.art-meta{display:flex;flex-wrap:wrap;align-items:center;gap:9px 20px;color:#516b80;font-size:12px;margin:0 0 22px}
+.art-meta span{display:inline-flex;align-items:center;gap:5px}
+.art-description{
+  font-size:clamp(15px,1.6vw,17px);line-height:2;color:#244762;
+  background:#edf5fc;border:1px solid #d9e8f4;border-inline-start:4px solid var(--ko-article-green);
+  border-inline-end:1px solid #d9e8f4;
+  border-radius:13px;padding:20px 24px;margin:0
+}
+.art-featured{padding:0 26px;margin:24px auto 32px}
+.art-featured picture{display:block}
+.art-featured img{
+  display:block;width:100%;height:auto;aspect-ratio:40/21;object-fit:contain;
+  background:#0a203a;border-radius:17px;border:1px solid #cfdfed;
+  box-shadow:0 10px 27px rgba(9,45,83,.08)
+}
+.art-content{padding:0 26px 85px;color:var(--ko-article-ink)}
+.art-content .editorial-guide{font-size:16px;line-height:2.05;color:var(--ko-article-ink);direction:rtl;text-align:right}
+.art-content :is(p,li,dd,dt){
+  color:var(--ko-article-ink);font-size:clamp(15px,1.2vw,16px);
+  line-height:2.08;overflow-wrap:break-word
+}
+.art-content p{margin:0 0 20px}
+.art-content :is(h2,h3,h4){font-family:Tajawal,Cairo,system-ui,sans-serif;font-weight:900;line-height:1.55;letter-spacing:0}
+.art-content h2{color:var(--ko-article-navy);font-size:clamp(23px,2.7vw,31px);margin:40px 0 17px;padding-bottom:12px;border-bottom:1px solid var(--ko-article-edge)}
+.art-content h3{font-size:clamp(19px,2.1vw,23px);color:#126099;margin:28px 0 14px}
+.art-content h4{font-size:18px;color:var(--ko-article-navy);margin:24px 0 10px}
+.art-content strong{color:#0a3557;font-weight:900}
+.art-content a{color:#115a96;text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}
+.art-content :is(ul,ol){margin:15px 0 24px;padding-inline-start:24px;padding-right:24px}
+.art-content li{margin-bottom:10px}
+.art-content blockquote{
+  color:#294963;background:#f1f7fc;border:1px solid #dce8f2;border-inline-start:4px solid var(--ko-article-green);
+  border-inline-end:1px solid #dce8f2;border-radius:12px;font-style:normal;
+  padding:20px 24px;margin:28px 0
+}
+.art-content .highlight-box{
+  background:#edf6ff;border:1px solid #cfe2f1;border-radius:14px;padding:23px 25px;margin:25px 0
+}
+.art-content .highlight-box :is(h2,h3,h4){color:var(--ko-article-navy);font-size:clamp(18px,2vw,23px);margin:0 0 12px}
+.art-content .highlight-box p{color:var(--ko-article-ink)}
+.art-content :is(table,pre){max-width:100%}
+.art-content table{display:block;overflow-x:auto;border-collapse:collapse;border:1px solid var(--ko-article-edge);border-radius:12px;margin:24px 0}
+.art-content :is(th,td){padding:12px 16px;border:1px solid var(--ko-article-edge);text-align:right;white-space:normal}
+.art-content th{background:#eaf3fb;color:var(--ko-article-navy)}
+.art-content pre{overflow:auto;direction:ltr;text-align:left;background:#122b43;color:#edf8ff;border-radius:12px;padding:20px}
+.art-content img{max-width:100%;height:auto;border-radius:13px}
+.art-content .art-cta{background:linear-gradient(118deg,#092d53,#10549a);border-radius:18px}
+.art-content .art-cta :is(h2,h3,p){color:#fff}
+.art-content .art-cta a{color:#0e281e;background:#86df63}
+.art-content :where(a,button):focus-visible,body:has(.art-content) > nav a:focus-visible{outline:3px solid #68c54a;outline-offset:4px}
+.related{background:#f4f8fc;border-top:1px solid var(--ko-article-edge);color:var(--ko-article-ink)}
+.related h2{color:var(--ko-article-navy)}
+.related-grid{gap:14px}
+.rel-card{background:white;border:1px solid var(--ko-article-edge);box-shadow:0 4px 14px rgba(14,58,89,.04)}
+.rel-card:hover{border-color:#9fc7e2}
+.rel-cat{color:#2078a3}
+.rel-title{color:var(--ko-article-navy)}
+body:has(.art-content) > footer{background:#092d53;color:#d1e0ed;border-top:1px solid #1e5179}
+body:has(.art-content) > footer :is(p,a){color:#dbe9f5}
+body:has(.art-content) > footer a:hover{color:#9be87b}
+@media(max-width:640px){
+  body:has(.art-content)>nav{min-height:64px;padding:10px 16px}
+  .art-header{padding:30px 18px 14px}
+  .art-header h1{font-size:clamp(28px,7.7vw,37px);line-height:1.4}
+  .art-meta{font-size:11px;gap:7px 13px;margin-bottom:17px}
+  .art-description{font-size:14px;line-height:1.95;padding:16px 17px;border-radius:12px}
+  .art-featured{padding:0 18px;margin:19px auto 27px}
+  .art-featured img{border-radius:12px}
+  .art-content{padding:0 18px 62px}
+  .art-content .editorial-guide{font-size:15px;line-height:2}
+  .art-content p,.art-content li{font-size:15px;line-height:2}
+  .art-content h2{margin-top:31px;font-size:24px}
+  .art-content blockquote,.art-content .highlight-box{padding:17px}
+  .related{padding:36px 18px}
+}
+@media(prefers-reduced-motion:reduce){
+  .art-content *,body:has(.art-content) *{animation:none!important;transition:none!important}
+}

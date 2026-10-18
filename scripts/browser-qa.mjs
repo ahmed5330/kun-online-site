@@ -14,7 +14,7 @@ try{
 for(const width of [390,1440]){
  const page=await browser.newPage({viewport:{width,height:900}});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- for(const url of ['/','/blog/','/blog/essential-ecommerce-glossary','/blog/real-cost-per-delivered-order','/blog/order-confirmation-delivery-rate','/blog/inventory-barcode-bundle-tracking','/blog/cod-shipping-returns-reconciliation','/services/','/reviews/','/consultations/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/services/ecommerce-consulting/','/pricing/','/contact/','/system/','/system/order-management/','/system/inventory/','/system/shipping/','/system/easy-orders/','/en/','/gulf/']){
+ for(const url of ['/','/blog/','/blog/ecommerce-first-30-days-plan','/blog/essential-ecommerce-glossary','/blog/real-cost-per-delivered-order','/blog/order-confirmation-delivery-rate','/blog/inventory-barcode-bundle-tracking','/blog/cod-shipping-returns-reconciliation','/services/','/reviews/','/consultations/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/services/ecommerce-consulting/','/pricing/','/contact/','/system/','/system/order-management/','/system/inventory/','/system/shipping/','/system/easy-orders/','/en/','/gulf/']){
   const response=await page.goto(base+url,{waitUntil:'domcontentloaded'});
   await page.locator('h1').waitFor();
   // Verify initial navigation, before any reload, has an active blocking
@@ -51,6 +51,30 @@ for(const width of [390,1440]){
    });
    assert.ok(placement.afterCore,`${width} ${url}: system interrupted main sections`);
    assert.ok(placement.beforeFinalCta,`${width} ${url}: system section is beyond final CTA`);
+  }
+  if(url.startsWith('/blog/') && url!=='/blog/'){
+    const legibility=await page.evaluate(()=>{
+      const para=document.querySelector('.art-content .editorial-guide p')||document.querySelector('.art-content p');
+      const title=document.querySelector('.art-header h1');
+      const img=document.querySelector('.art-featured img');
+      const rgb=(str)=>{const m=str.match(/[\d.]+/g);return m?.slice(0,3).map(Number)};
+      const luminance=(rgb)=>rgb.map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4}).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);
+      const contrast=(a,b)=>{const x=luminance(a),y=luminance(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
+      return {
+        paragraph:!!para,
+        paragraphContrast:para?contrast(rgb(getComputedStyle(para).color),rgb(getComputedStyle(document.body).backgroundColor)):0,
+        headline:!!title,
+        headlineContrast:title?contrast(rgb(getComputedStyle(title).color),rgb(getComputedStyle(document.body).backgroundColor)):0,
+        imageLoaded:!!(img && img.complete && img.naturalWidth>0),
+        imageVersioned:!!(img && img.currentSrc.includes('rtl-raqm-20261019')),
+        mobileReadable:!para || Number.parseFloat(getComputedStyle(para).fontSize)>=15
+      };
+    });
+    assert.ok(legibility.paragraph && legibility.paragraphContrast>=4.5, width+' '+url+': editorial paragraph must be readable');
+    assert.ok(legibility.headline && legibility.headlineContrast>=4.5, width+' '+url+': editorial headline must be readable');
+    assert.ok(legibility.mobileReadable,width+' '+url+': editorial text too small');
+    assert.ok(legibility.imageLoaded,width+' '+url+': featured image must load');
+    assert.ok(legibility.imageVersioned,width+' '+url+': cover must bypass stale cache');
   }
   if(url==='/reviews/'){
     assert.equal(await page.locator('[data-review-share]').count(),0);

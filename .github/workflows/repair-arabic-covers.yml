@@ -1,0 +1,61 @@
+name: Repair Arabic editorial covers
+on:
+  push:
+    branches:
+      - fix/editorial-arabic-cover-article-ui-20261019
+    paths:
+      - scripts/generate-approved-covers.py
+      - scripts/refresh_site.py
+      - blog/articles.json
+      - .github/workflows/repair-arabic-covers.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deterministic Arabic typography dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-core
+          python -m pip install --disable-pip-version-check Pillow==12.3.0
+      - name: Regenerate published PNG images with single-pass RTL
+        run: python scripts/generate-approved-covers.py --rebuild-published
+      - name: Rebuild both WebP versions and update visible image URLs
+        run: python scripts/refresh_site.py --optimize-images
+      - name: Verify every published cover has required dimensions
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image, features
+          assert features.check('raqm'), 'libraqm not available'
+          root=Path('.')
+          articles=json.loads((root/'blog/articles.json').read_text(encoding='utf-8'))
+          assert len(articles)>=17
+          for article in articles:
+              stem=article['slug']
+              for file,size in [(stem+'.png',(1200,630)),(stem+'.webp',(1200,630)),(stem+'-640.webp',(640,336))]:
+                  with Image.open(root/'blog/images'/file) as image:
+                      assert image.size==size,(file,image.size)
+          for article in articles:
+              page=(root/'blog'/(article['slug']+'.html')).read_text(encoding='utf-8')
+              assert '?v=rtl-raqm-20261019' in page,article['slug']
+          print('Verified',len(articles),'unique published Arabic covers')
+          PY
+      - name: Commit rebuilt image and HTML assets on repair branch
+        run: |
+          git add blog/images/*.png blog/images/*.webp blog/*.html
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "assets: rebuild Arabic editorial imagery with correct RTL shaping"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
