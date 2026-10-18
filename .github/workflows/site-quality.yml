@@ -20,7 +20,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install Pillow==12.3.0
+      - name: Install cover and optimized-image dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-core
+          python -m pip install --disable-pip-version-check Pillow==12.3.0 arabic-reshaper python-bidi
+      - name: Generate transient approved covers before validating pending articles
+        run: python scripts/generate-approved-covers.py
       - name: Build optimized images and refresh crawlable HTML
         run: python scripts/refresh_site.py --optimize-images
       - name: Syntax check live release auditor
