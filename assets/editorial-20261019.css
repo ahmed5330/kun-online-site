@@ -110,3 +110,48 @@ body:has(.art-content) > footer a:hover{color:#9be87b}
 @media(prefers-reduced-motion:reduce){
   .art-content *,body:has(.art-content) *{animation:none!important;transition:none!important}
 }
+
+
+/* Older operational guides use .article-box rather than .art-content.
+   Keep them in the same accessible light editorial design system. */
+body:has(.article-box){background:#f7fafe;color:var(--ko-article-ink)}
+body:has(.article-box)>main{max-width:1050px;padding:49px 22px 78px;margin:auto}
+.article-box{
+  background:#fff!important;border:1px solid var(--ko-article-edge)!important;
+  border-radius:19px;padding:clamp(21px,4vw,49px);
+  box-shadow:0 10px 32px rgba(9,45,83,.04);
+  color:var(--ko-article-ink)!important;line-height:2
+}
+.article-box h1{font:900 clamp(28px,4vw,45px)/1.42 Tajawal,Cairo,sans-serif;color:var(--ko-article-navy)!important;margin:12px 0 19px}
+.article-box :is(h2,h3,h4){font-family:Tajawal,Cairo,sans-serif;font-weight:900;color:var(--ko-article-navy)!important;line-height:1.55}
+.article-box h2{font-size:clamp(23px,2.6vw,29px);margin:34px 0 15px;padding-bottom:10px;border-bottom:1px solid var(--ko-article-edge)}
+.article-box :is(p,li){color:var(--ko-article-ink)!important;font-size:clamp(15px,1.4vw,16px);line-height:2.05;overflow-wrap:break-word}
+.article-box .article-meta{color:#56738d!important;font-size:12px}
+.article-box .summary{
+  background:#eaf4fd;border:1px solid #d1e7f6;border-inline-start:4px solid var(--ko-article-green);
+  padding:17px 20px;border-radius:12px;color:#244762!important
+}
+.article-box a{color:#10549a!important;text-underline-offset:4px}
+.article-box :is(ul,ol){padding-right:23px}
+.article-box li{margin-bottom:9px}
+.article-box strong{color:var(--ko-article-navy)}
+.article-box .operation-cover{margin:27px 0 32px}
+.article-box .operation-cover picture{display:block}
+.article-box .operation-cover img{
+  width:100%;height:auto;aspect-ratio:40/21;object-fit:contain;
+  border-radius:15px;border:1px solid #d4e4ee;
+  background:#0a203a;box-shadow:0 10px 25px rgba(9,45,83,.08)
+}
+.article-box .related{
+  color:var(--ko-article-ink);background:#f3f8fc;
+  border:1px solid var(--ko-article-edge);border-radius:14px;padding:23px
+}
+.article-box .related :is(h2,h3,p){color:var(--ko-article-ink)!important}
+.article-box .note{color:#60788c!important;font-size:13px}
+.article-box :is(table,pre){max-width:100%;overflow-x:auto}
+@media(max-width:640px){
+  body:has(.article-box)>main{padding:24px 14px 55px}
+  .article-box{padding:20px;border-radius:14px}
+  .article-box h1{font-size:clamp(28px,7.4vw,36px)}
+  .article-box .summary{padding:15px 17px}
+}
