@@ -124,18 +124,18 @@ function validateBundle({ meta, source }) {
     'Must link to at least three already published guides');
   // Every approved template must render one immediately available font stylesheet.
   // Normalize legacy print/onload plus noscript pairs without altering article text.
-  const googleFontLink = /<link\\b(?=[^>]*fonts\\.googleapis\\.com\\/css2)[^>]*>/gi;
+  const googleFontLink = /<link\b(?=[^>]*fonts\.googleapis\.com\/css2)[^>]*>/gi;
   const fontLinks = [...html.matchAll(googleFontLink)];
   assert.ok(fontLinks.length >= 1, 'Approved article is missing Google Fonts: ' + slug);
   const fontHref = fontLinks[0][0].match(/href=["']([^"']+)["']/i)?.[1];
   assert.ok(fontHref && /display=(swap|optional|auto|block|fallback)/.test(fontHref), 'Unrecognized font stylesheet link: ' + slug);
   const correctedHref = fontHref.replace(/display=(optional|auto|block|fallback)/g, 'display=swap');
-  html = html.replace(/<noscript>\\s*<link\\b(?=[^>]*fonts\\.googleapis\\.com\\/css2)[^>]*>\\s*<\\/noscript>/gi, '');
+  html = html.replace(/<noscript>\s*<link\b(?=[^>]*fonts\.googleapis\.com\/css2)[^>]*>\s*<\/noscript>/gi, '');
   html = html.replace(googleFontLink, '');
   assert.ok(html.includes('</head>'), 'Approved article is missing head closure: ' + slug);
-  html = html.replace('</head>', '<link href="' + correctedHref + '" rel="stylesheet">\\n</head>');
+  html = html.replace('</head>', '<link href="' + correctedHref + '" rel="stylesheet">\n</head>');
   assert.equal([...html.matchAll(googleFontLink)].length, 1, 'Exactly one Google Fonts stylesheet is required: ' + slug);
-    html = html.replaceAll('__PUBLICATION_DATE_ISO__', cairoDate).replaceAll('__PUBLICATION_DATE_AR__', dateLabel);
+  html = html.replaceAll('__PUBLICATION_DATE_ISO__', cairoDate).replaceAll('__PUBLICATION_DATE_AR__', dateLabel);
   for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(match[1]);
   return { html, words, canonical, outgoing };
 }
