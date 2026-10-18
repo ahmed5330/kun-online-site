@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 10,
-    "articles_remaining": 90,
+    "articles_published": 11,
+    "articles_remaining": 89,
     "current_article": null,
-    "next_article": 10,
-    "project_completion_percentage": 10,
-    "last_published_date": "2026-10-17",
+    "next_article": 11,
+    "project_completion_percentage": 11,
+    "last_published_date": "2026-10-18",
     "last_run_date": null
   },
   "chapters": [
@@ -113,6 +113,7 @@
       "word_count": 1611,
       "internal_links_out": [
         "https://kun-online.com/blog/brand-vs-product-business",
+        "https://kun-online.com/blog/ecommerce-first-30-days-plan",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/startup-budget-egypt",
         "https://kun-online.com/blog/what-is-ecommerce"
@@ -121,6 +122,7 @@
         "https://kun-online.com/blog/brand-vs-product-business",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/ecommerce-evolution-history",
+        "https://kun-online.com/blog/ecommerce-first-30-days-plan",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/what-is-ecommerce"
       ],
@@ -189,6 +191,7 @@
       "internal_links_out": [
         "https://kun-online.com/blog/cod-shipping-returns-reconciliation",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
+        "https://kun-online.com/blog/ecommerce-first-30-days-plan",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/order-confirmation-delivery-rate",
@@ -199,6 +202,7 @@
         "https://kun-online.com/blog/brand-vs-product-business",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/ecommerce-first-30-days-plan",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/owned-vs-rented-channels"
@@ -332,6 +336,7 @@
       "internal_links_in": [
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-funnel-guide",
+        "https://kun-online.com/blog/ecommerce-first-30-days-plan",
         "https://kun-online.com/blog/ecommerce-funnel-explained",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/product-marketing-operations-ecommerce",
@@ -408,18 +413,31 @@
       "brief": "حول أول عشر مقالات إلى خطة أسبوعية عملية يستطيع القارئ تنفيذها.",
       "new_concept": "30-Day E-commerce Launch Plan.",
       "research_space": "ابحث عن Launch Checklists حديثة وأضف أفضل العناصر التي تناسب السوق العربي.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "queued",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
+      "final_h1": "خطة أول 30 يوم لبدء التجارة الإلكترونية من الصفر",
+      "seo_title": "خطة أول 30 يوم لبدء التجارة الإلكترونية من الصفر | مدونة كن أونلاين",
+      "primary_keyword": "خطة أول 30 يوم للتجارة الإلكترونية",
+      "secondary_keywords": [
+        "بدء مشروع تجارة إلكترونية",
+        "خطة إنشاء متجر إلكتروني",
+        "خطوات إطلاق متجر أونلاين"
+      ],
+      "search_intent": "informational",
+      "slug": "ecommerce-first-30-days-plan",
+      "url": "https://kun-online.com/blog/ecommerce-first-30-days-plan",
+      "status": "published",
+      "published_date": "2026-10-18",
+      "word_count": 1915,
+      "internal_links_out": [
+        "https://kun-online.com/blog/cod-shipping-returns-reconciliation",
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
       "failure_reason": null,
       "attempts": 0
     },

@@ -498,6 +498,20 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/ecommerce-first-30-days-plan",
+      "primary": "خطة أول 30 يوم للتجارة الإلكترونية",
+      "secondary": [
+        "بدء مشروع تجارة إلكترونية",
+        "خطة إنشاء متجر إلكتروني",
+        "خطوات إطلاق متجر أونلاين"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }
