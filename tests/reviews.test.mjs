@@ -7,7 +7,9 @@ const root=resolve(import.meta.dirname,'..'),read=f=>readFileSync(join(root,f),'
 test('real public review form is available on homepage and shareable review URL',()=>{
  for(const path of ['index.html','reviews/index.html']){
   const html=read(path);
-  for(const token of ['data-kun-reviews','data-review-form','data-review-star="5"','name="reviewText"','name="reviewConsent"','name="category"','type="file"','data-review-list'])assert.ok(html.includes(token),path+' '+token);
+  for(const token of ['data-kun-reviews','data-review-form','data-review-star="5"','name="reviewText"','name="reviewConsent"','name="category"','name="storeName"','type="file"','data-review-list'])assert.ok(html.includes(token),path+' '+token);
+  assert.match(html,/اسم المتجر \(اختياري\)/);
+  assert.match(html,/maxlength="80"/);
   assert.match(html,/خدمات كن أونلاين/);
   assert.match(html,/استشارات كن أونلاين/);
   assert.match(html,/قبل مراجعة الإدارة|بعد موافقة الإدارة/);
@@ -26,6 +28,8 @@ test('review component never invents reviews and sanitizes displayed user text',
  assert.match(js,/r\.status==='approved'/);
  assert.match(js,/https:\/\/app\.kun-online\.com\/api\/public-reviews/);
  assert.match(js,/toDataURL\('image\/jpeg'/);
+ assert.match(js,/storeName:form\.elements\.storeName\.value\.trim\(\)/);
+ assert.match(js,/node\('small','rv-store-name','المتجر: '\+r\.storeName\)/);
  assert.doesNotMatch(js,/innerHTML\s*=/);
  assert.doesNotMatch(js,/localStorage\.setItem|sessionStorage\.setItem/);
 });
