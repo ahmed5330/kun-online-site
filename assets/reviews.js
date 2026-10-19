@@ -42,7 +42,18 @@
       }else{head.append(node('span','rv-avatar',(r.name||'؟').trim().slice(0,1)));}
       const info=node('div'),name=node('strong',null,r.name);
       info.append(name);
-      if(r.storeName)info.append(node('small','rv-store-name','المتجر: '+r.storeName));
+      if(r.storeName||r.storePhoto){
+        const store=node('div','rv-store-brand');
+        if(typeof r.storePhoto==='string'&&r.storePhoto.length<=120000&&r.storePhoto.startsWith('data:image/jpeg;base64,')){
+          const logo=node('img','rv-store-logo');
+          logo.src=r.storePhoto;
+          logo.alt='صورة متجر '+(r.storeName||'العميل');
+          logo.loading='lazy';
+          store.append(logo);
+        }
+        if(r.storeName)store.append(node('small','rv-store-name','المتجر: '+r.storeName));
+        info.append(store);
+      }
       info.append(node('small',null,r.category==='services'?'تقييم خدمات كن أونلاين':'تقييم استشارات كن أونلاين'));
       head.append(info);card.append(head);
       card.append(node('div','rv-rate','★'.repeat(r.rating)+'☆'.repeat(5-r.rating)));
