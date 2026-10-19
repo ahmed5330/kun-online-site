@@ -526,6 +526,20 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/product-demand-validation-guide",
+      "primary": "التحقق من الطلب على المنتجات",
+      "secondary": [
+        "اختبار طلب السوق على منتج",
+        "Google Trends لاختيار منتج",
+        "قياس الطلب قبل شراء المخزون"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }

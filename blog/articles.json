@@ -1,5 +1,26 @@
 [
   {
+    "slug": "product-demand-validation-guide",
+    "title": "كيف تتحقق من وجود طلب حقيقي على منتج قبل شرائه؟",
+    "excerpt": "تعرف على طريقة التحقق من الطلب على المنتجات باستخدام Google Trends وKeyword Planner وأسئلة العملاء وتجارب البيع الصغيرة، وتجنب الخلط بين البحث والمبيعات.",
+    "description": "تعرف على طريقة التحقق من الطلب على المنتجات باستخدام Google Trends وKeyword Planner وأسئلة العملاء وتجارب البيع الصغيرة، وتجنب الخلط بين البحث والمبيعات.",
+    "category": "store",
+    "categoryLabel": "بناء المتجر",
+    "keywords": [
+      "التحقق من الطلب على المنتجات",
+      "اختبار طلب السوق على منتج",
+      "Google Trends لاختيار منتج",
+      "قياس الطلب قبل شراء المخزون"
+    ],
+    "date": "20 أكتوبر 2026",
+    "dateISO": "2026-10-20",
+    "readTime": 11,
+    "wordCount": 1788,
+    "icon": "📘",
+    "image": "product-demand-validation-guide.png",
+    "dateModified": "2026-10-20"
+  },
+  {
     "slug": "ecommerce-product-ideas-research",
     "title": "10 طرق لاكتشاف أفكار منتجات للتجارة الإلكترونية",
     "excerpt": "اكتشف عشر طرق عملية للعثور على أفكار منتجات قابلة للاختبار، من المراجعات وGoogle Trends إلى TikTok وMeta Ads Library، مع طريقة تقييم قبل شراء المخزون.",

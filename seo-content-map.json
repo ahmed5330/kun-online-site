@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 12,
-    "articles_remaining": 88,
+    "articles_published": 13,
+    "articles_remaining": 87,
     "current_article": null,
-    "next_article": 12,
-    "project_completion_percentage": 12,
-    "last_published_date": "2026-10-19",
+    "next_article": 13,
+    "project_completion_percentage": 13,
+    "last_published_date": "2026-10-20",
     "last_run_date": null
   },
   "chapters": [
@@ -116,6 +116,7 @@
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
         "https://kun-online.com/blog/ecommerce-product-ideas-research",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
+        "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/startup-budget-egypt",
         "https://kun-online.com/blog/what-is-ecommerce"
       ],
@@ -126,6 +127,7 @@
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
         "https://kun-online.com/blog/ecommerce-product-ideas-research",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
+        "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/what-is-ecommerce"
       ],
       "failure_reason": null,
@@ -199,6 +201,7 @@
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/order-confirmation-delivery-rate",
         "https://kun-online.com/blog/owned-vs-rented-channels",
+        "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/real-cost-per-delivered-order"
       ],
       "internal_links_in": [
@@ -209,7 +212,8 @@
         "https://kun-online.com/blog/ecommerce-product-ideas-research",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
-        "https://kun-online.com/blog/owned-vs-rented-channels"
+        "https://kun-online.com/blog/owned-vs-rented-channels",
+        "https://kun-online.com/blog/product-demand-validation-guide"
       ],
       "failure_reason": null,
       "attempts": 0
@@ -344,6 +348,7 @@
         "https://kun-online.com/blog/ecommerce-funnel-explained",
         "https://kun-online.com/blog/ecommerce-product-ideas-research",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
+        "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/product-marketing-operations-ecommerce",
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
@@ -487,18 +492,30 @@
       "brief": "اشرح Demand Validation باستخدام Google Trends، Keyword Planner، Search Suggestions، Marketplace search وغيرها.",
       "new_concept": "Search Demand مقابل Social Demand.",
       "research_space": "ابحث عن أدوات قياس الطلب الحديثة ومزايا وحدود كل أداة.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "queued",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
+      "final_h1": "كيف تتحقق من وجود طلب حقيقي على منتج قبل شرائه؟",
+      "seo_title": "كيف تتحقق من وجود طلب حقيقي على منتج قبل شرائه؟ | مدونة كن أونلاين",
+      "primary_keyword": "التحقق من الطلب على المنتجات",
+      "secondary_keywords": [
+        "اختبار طلب السوق على منتج",
+        "Google Trends لاختيار منتج",
+        "قياس الطلب قبل شراء المخزون"
+      ],
+      "search_intent": "informational",
+      "slug": "product-demand-validation-guide",
+      "url": "https://kun-online.com/blog/product-demand-validation-guide",
+      "status": "published",
+      "published_date": "2026-10-20",
+      "word_count": 1788,
+      "internal_links_out": [
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
       "failure_reason": null,
       "attempts": 0
     },
