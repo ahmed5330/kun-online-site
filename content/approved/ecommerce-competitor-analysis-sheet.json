@@ -1,0 +1,30 @@
+{
+  "slug": "ecommerce-competitor-analysis-sheet",
+  "article_id": 15,
+  "approved": true,
+  "eligibleFrom": "2026-10-23",
+  "editorialApproval": "2026-10-19: Original Arabic editorial research and factual review using official Meta Ads Library, Google Ads Transparency Center, Google Search Central, Google PageSpeed Insights, Similarweb methodology, Egyptian Consumer Protection Agency and Saudi Ministry of Commerce sources; examples explicitly hypothetical; user authorized daily editorial production.",
+  "title": "تحليل المنافسين للمتجر الإلكتروني: ورقة عمل من 10 خطوات",
+  "description": "دليل عملي لتحليل منافسي المتجر الإلكتروني في مصر والسعودية: الأسعار والإعلانات والتقييمات والشحن والسيو، مع نموذج مقارنة قابل للتطبيق دون تقليد.",
+  "primaryKeyword": "تحليل المنافسين في التجارة الإلكترونية",
+  "secondaryKeywords": [
+    "دراسة المنافسين للمتجر الإلكتروني",
+    "تحليل أسعار المنافسين",
+    "مكتبة إعلانات ميتا للمنافسين",
+    "جدول مقارنة المنافسين"
+  ],
+  "category": "store",
+  "categoryLabel": "بناء المتجر",
+  "image": "ecommerce-competitor-analysis-sheet.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "ecommerce-complete-journey-guide",
+    "startup-budget-egypt"
+  ],
+  "qualityReview": {
+    "checkedOn": "2026-10-19",
+    "exampleNumbers": "hypothetical",
+    "sources": "official public sources",
+    "publicationGate": "one Cairo-day article; no bypass"
+  }
+}
