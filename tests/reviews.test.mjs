@@ -30,6 +30,9 @@ test('review component never invents reviews and sanitizes displayed user text',
  assert.match(js,/toDataURL\('image\/jpeg'/);
  assert.match(js,/storeName:form\.elements\.storeName\.value\.trim\(\)/);
  assert.match(js,/node\('small','rv-store-name','المتجر: '\+r\.storeName\)/);
+ assert.match(js,/rv-store-logo/);
+ assert.match(js,/r\.storePhoto\.startsWith\('data:image\/jpeg;base64,'\)/);
+ assert.match(js,/alt='صورة متجر '/);
  assert.doesNotMatch(js,/innerHTML\s*=/);
  assert.doesNotMatch(js,/localStorage\.setItem|sessionStorage\.setItem/);
 });
