@@ -41,7 +41,9 @@
         const img=node('img');img.src=r.photo;img.alt='صورة أرفقها صاحب التقييم';img.loading='lazy';head.append(img);
       }else{head.append(node('span','rv-avatar',(r.name||'؟').trim().slice(0,1)));}
       const info=node('div'),name=node('strong',null,r.name);
-      info.append(name,node('small',null,r.category==='services'?'تقييم خدمات كن أونلاين':'تقييم استشارات كن أونلاين'));
+      info.append(name);
+      if(r.storeName)info.append(node('small','rv-store-name','المتجر: '+r.storeName));
+      info.append(node('small',null,r.category==='services'?'تقييم خدمات كن أونلاين':'تقييم استشارات كن أونلاين'));
       head.append(info);card.append(head);
       card.append(node('div','rv-rate','★'.repeat(r.rating)+'☆'.repeat(5-r.rating)));
       card.append(node('p',null,r.text));
@@ -87,7 +89,7 @@
     button.disabled=true;status.textContent='جاري إرسال التقييم…';
     try{
       const photo=await jpg(form.querySelector('input[type=file]').files[0]);
-      const payload={name:form.elements.name.value.trim(),text:form.elements.reviewText.value.trim(),
+      const payload={name:form.elements.name.value.trim(),storeName:form.elements.storeName.value.trim(),text:form.elements.reviewText.value.trim(),
         category:category.value,rating:selected,photo,consent:form.elements.reviewConsent.checked,
         website:form.elements.website?.value||''};
       const response=await fetch(API,{method:'POST',mode:'cors',credentials:'omit',

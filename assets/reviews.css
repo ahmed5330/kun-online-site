@@ -37,6 +37,7 @@
 .ko-reviews .rv-person img{width:43px;height:43px;border-radius:50%;object-fit:cover}
 .ko-reviews .rv-quote strong{display:block;color:#f6fafc}
 .ko-reviews .rv-quote small{display:block;color:#c1cbdb;font-size:11px}
+.ko-reviews .rv-quote .rv-store-name{color:#bce6a8;font-size:12px;font-weight:700;overflow-wrap:anywhere}
 .ko-reviews .rv-quote .rv-rate{color:#ffd166;font-size:18px;letter-spacing:1px}
 .ko-reviews .rv-quote p{white-space:pre-wrap;overflow-wrap:anywhere;color:#dce4ee;font-size:13px;margin:8px 0 0;line-height:1.9}
 .ko-reviews .rv-filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 9px}
