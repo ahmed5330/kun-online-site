@@ -34,9 +34,10 @@
     <div class="rv-main">
       <div class="rv-card" id="write-review">
         <h3 class="rv-title">اكتب تقييمك</h3>
-        <p class="rv-small">الاسم ونوع الخدمة والنجوم ونص التقييم مطلوبين، والصورة اختيارية.</p>
+        <p class="rv-small">الاسم ونوع الخدمة والنجوم ونص التقييم مطلوبين، واسم المتجر والصورة اختياريان.</p>
         <form class="rv-form" data-review-form>
           <div class="rv-field"><label for="rv-name">اسمك *</label><input id="rv-name" name="name" type="text" autocomplete="name" minlength="2" maxlength="70" required placeholder="اكتب اسمك الظاهر مع التقييم"></div>
+          <div class="rv-field"><label for="rv-store-name">اسم المتجر (اختياري)</label><input id="rv-store-name" name="storeName" type="text" autocomplete="organization" maxlength="80" placeholder="اكتب اسم متجرك لو حابب يظهر مع التقييم"></div>
           <div class="rv-field"><label for="rv-category">بتقيّم إيه؟ *</label>
             <select id="rv-category" name="category" required>
               <option value="services">خدمات كن أونلاين</option>
@@ -55,7 +56,7 @@
           <div class="rv-field"><label for="rv-text">اكتب تجربتك *</label><textarea id="rv-text" name="reviewText" required minlength="15" maxlength="900" placeholder="قولنا إيه اللي عجبك وإيه اللي ممكن يتحسن..."></textarea></div>
           <div class="rv-field"><label for="rv-photo">صورتك (اختياري)</label><input id="rv-photo" type="file" name="photo" accept="image/jpeg,image/png,image/webp"><span class="rv-small">صورة شخصية JPEG أو PNG أو WebP حتى 5 ميجابايت، هتتصغّر قبل الإرسال. الصورة المنشورة تظهر فقط بعد موافقة الإدارة.</span></div>
           <div class="rv-hidden-honeypot" aria-hidden="true"><label for="rv-website">Website</label><input id="rv-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-          <label class="rv-consent"><input name="reviewConsent" type="checkbox" required><span>أوافق على حفظ تقييمي ونشر اسمي ونص رأيي والصورة إن أضفتها، بعد مراجعة الإدارة. يمكن طلب إزالة التقييم بالتواصل عبر واتساب.</span></label>
+          <label class="rv-consent"><input name="reviewConsent" type="checkbox" required><span>أوافق على حفظ تقييمي ونشر اسمي واسم متجري إن أضفته ونص رأيي والصورة إن أضفتها، بعد مراجعة الإدارة. يمكن طلب إزالة التقييم بالتواصل عبر واتساب.</span></label>
           <button class="rv-btn" type="submit">إرسال التقييم للمراجعة ←</button>
           <p class="rv-status" data-review-status aria-live="polite" role="status">مش هننشر تقييمك قبل مراجعة الإدارة.</p>
         </form>
