@@ -35,6 +35,9 @@
 .ko-reviews .rv-person{display:flex;align-items:center;gap:11px;margin-bottom:10px}
 .ko-reviews .rv-avatar{display:grid;place-items:center;flex:0 0 43px;height:43px;width:43px;border-radius:50%;background:#244835;color:#cbf3ad;font-weight:700}
 .ko-reviews .rv-person img{width:43px;height:43px;border-radius:50%;object-fit:cover}
+.ko-reviews .rv-store-brand{display:flex;align-items:center;gap:9px;max-width:100%;margin-top:4px}
+.ko-reviews .rv-person .rv-store-logo{width:42px;height:42px;border:1px solid #54795b;border-radius:9px;object-fit:contain;padding:3px;background:#fff;flex:none}
+.ko-reviews .rv-store-brand .rv-store-name{overflow-wrap:anywhere}
 .ko-reviews .rv-quote strong{display:block;color:#f6fafc}
 .ko-reviews .rv-quote small{display:block;color:#c1cbdb;font-size:11px}
 .ko-reviews .rv-quote .rv-store-name{color:#bce6a8;font-size:12px;font-weight:700;overflow-wrap:anywhere}
