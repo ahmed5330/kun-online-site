@@ -138,7 +138,7 @@ function validateBundle({ meta, source }) {
   // Legacy approved .html.ready files can contain white text for dark backgrounds.
   if (!html.includes('href="/assets/editorial-20261019.css')) {
     html = html.replace('</head>',
-      '<link rel="stylesheet" href="/assets/editorial-20261019.css?v=1">\n</head>');
+      '<link rel="stylesheet" href="/assets/editorial-20261019.css?v=2">\n</head>');
   }
   assert.equal([...html.matchAll(googleFontLink)].length, 1, 'Exactly one Google Fonts stylesheet is required: ' + slug);
   html = html.replaceAll('__PUBLICATION_DATE_ISO__', cairoDate).replaceAll('__PUBLICATION_DATE_AR__', dateLabel);
