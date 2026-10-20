@@ -540,6 +540,21 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/viral-vs-evergreen-product-demand",
+      "primary": "الفرق بين المنتج الترند والمنتج المستمر",
+      "secondary": [
+        "هل المنتج ترند",
+        "المنتجات الرائجة في التجارة الإلكترونية",
+        "طريقة تحليل ترند المنتجات",
+        "Google Trends للمنتجات"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }

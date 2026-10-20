@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 13,
-    "articles_remaining": 87,
+    "articles_published": 14,
+    "articles_remaining": 86,
     "current_article": null,
-    "next_article": 13,
-    "project_completion_percentage": 13,
-    "last_published_date": "2026-10-20",
+    "next_article": 14,
+    "project_completion_percentage": 14,
+    "last_published_date": "2026-10-21",
     "last_run_date": null
   },
   "chapters": [
@@ -118,6 +118,7 @@
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/startup-budget-egypt",
+        "https://kun-online.com/blog/viral-vs-evergreen-product-demand",
         "https://kun-online.com/blog/what-is-ecommerce"
       ],
       "internal_links_in": [
@@ -128,6 +129,7 @@
         "https://kun-online.com/blog/ecommerce-product-ideas-research",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/product-demand-validation-guide",
+        "https://kun-online.com/blog/viral-vs-evergreen-product-demand",
         "https://kun-online.com/blog/what-is-ecommerce"
       ],
       "failure_reason": null,
@@ -202,7 +204,8 @@
         "https://kun-online.com/blog/order-confirmation-delivery-rate",
         "https://kun-online.com/blog/owned-vs-rented-channels",
         "https://kun-online.com/blog/product-demand-validation-guide",
-        "https://kun-online.com/blog/real-cost-per-delivered-order"
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/viral-vs-evergreen-product-demand"
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/brand-vs-product-business",
@@ -213,7 +216,8 @@
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/owned-vs-rented-channels",
-        "https://kun-online.com/blog/product-demand-validation-guide"
+        "https://kun-online.com/blog/product-demand-validation-guide",
+        "https://kun-online.com/blog/viral-vs-evergreen-product-demand"
       ],
       "failure_reason": null,
       "attempts": 0
@@ -350,7 +354,8 @@
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/product-marketing-operations-ecommerce",
-        "https://kun-online.com/blog/startup-budget-egypt"
+        "https://kun-online.com/blog/startup-budget-egypt",
+        "https://kun-online.com/blog/viral-vs-evergreen-product-demand"
       ],
       "failure_reason": null,
       "attempts": 0
@@ -480,7 +485,8 @@
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
-        "https://kun-online.com/blog/startup-budget-egypt"
+        "https://kun-online.com/blog/startup-budget-egypt",
+        "https://kun-online.com/blog/viral-vs-evergreen-product-demand"
       ],
       "failure_reason": null,
       "attempts": 0
@@ -526,18 +532,33 @@
       "brief": "علم القارئ الفرق بين Viral Product وSustainable Product، وكيف يحلل منحنى الطلب بدل مطاردة أي فيديو منتشر.",
       "new_concept": "Trend Lifecycle.",
       "research_space": "ابحث عن أدوات Trend Detection الحالية ودراسات منتجات صعدت ثم اختفت.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "queued",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
+      "final_h1": "المنتج ترند فعلًا ولا مجرد فيديو عامل مشاهدات؟",
+      "seo_title": "المنتج ترند فعلًا ولا مجرد فيديو عامل مشاهدات؟ | مدونة كن أونلاين",
+      "primary_keyword": "الفرق بين المنتج الترند والمنتج المستمر",
+      "secondary_keywords": [
+        "هل المنتج ترند",
+        "المنتجات الرائجة في التجارة الإلكترونية",
+        "طريقة تحليل ترند المنتجات",
+        "Google Trends للمنتجات"
+      ],
+      "search_intent": "informational",
+      "slug": "viral-vs-evergreen-product-demand",
+      "url": "https://kun-online.com/blog/viral-vs-evergreen-product-demand",
+      "status": "published",
+      "published_date": "2026-10-21",
+      "word_count": 1975,
+      "internal_links_out": [
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/ecommerce-product-ideas-research",
+        "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/startup-budget-egypt",
+        "https://kun-online.com/blog/viral-vs-evergreen-product-demand"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
       "failure_reason": null,
       "attempts": 0
     },
