@@ -7,6 +7,7 @@ const require=createRequire(import.meta.url);
 const {chromium}=require('playwright');
 const server=await serve();const base=`http://127.0.0.1:${server.address().port}`;
 const root=path.resolve(import.meta.dirname,'..');
+const publishedArticleUrls=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8')).map(article=>'/blog/'+article.slug);
 const dir=path.join(root,'test-results');fs.mkdirSync(dir,{recursive:true});
 const browser=await chromium.launch({headless:true,...(process.env.SITE_BROWSER_EXECUTABLE?{executablePath:process.env.SITE_BROWSER_EXECUTABLE}:{})});
 const results=[];
@@ -14,7 +15,7 @@ try{
 for(const width of [390,1440]){
  const page=await browser.newPage({viewport:{width,height:900}});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- for(const url of ['/','/blog/','/blog/ecommerce-first-30-days-plan','/blog/ecommerce-product-ideas-research','/blog/essential-ecommerce-glossary','/blog/real-cost-per-delivered-order','/blog/order-confirmation-delivery-rate','/blog/inventory-barcode-bundle-tracking','/blog/cod-shipping-returns-reconciliation','/services/','/reviews/','/consultations/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/services/ecommerce-consulting/','/pricing/','/contact/','/system/','/system/order-management/','/system/inventory/','/system/shipping/','/system/easy-orders/','/en/','/gulf/']){
+ for(const url of ['/','/blog/','/blog/ecommerce-first-30-days-plan','/blog/ecommerce-product-ideas-research','/blog/essential-ecommerce-glossary','/blog/real-cost-per-delivered-order','/blog/order-confirmation-delivery-rate','/blog/inventory-barcode-bundle-tracking','/blog/cod-shipping-returns-reconciliation','/services/','/reviews/','/consultations/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/services/ecommerce-consulting/','/pricing/','/contact/','/system/','/system/order-management/','/system/inventory/','/system/shipping/','/system/easy-orders/','/en/','/gulf/',...publishedArticleUrls]){
   const response=await page.goto(base+url,{waitUntil:'domcontentloaded'});
   await page.locator('h1').waitFor();
   // Verify initial navigation, before any reload, has an active blocking
@@ -53,6 +54,7 @@ for(const width of [390,1440]){
    assert.ok(placement.beforeFinalCta,`${width} ${url}: system section is beyond final CTA`);
   }
   if(url.startsWith('/blog/') && url!=='/blog/'){
+    await page.locator('.art-featured img, .operation-cover img').first().evaluate(img=>img.decode().catch(()=>{}));
     const legibility=await page.evaluate(()=>{
       const para=document.querySelector('.art-content .editorial-guide p')||document.querySelector('.art-content p')||document.querySelector('.article-box section p')||document.querySelector('.article-box > p.summary');
       const title=document.querySelector('.art-header h1')||document.querySelector('.article-box h1');
@@ -66,7 +68,8 @@ for(const width of [390,1440]){
         headline:!!title,
         headlineContrast:title?contrast(rgb(getComputedStyle(title).color),rgb(getComputedStyle(document.body).backgroundColor)):0,
         imageLoaded:!!(img && img.complete && img.naturalWidth>0),
-        imageVersioned:!!(img && img.currentSrc.includes('rtl-raqm-20261019')),
+        imageMatchesArticle:!!(img && img.currentSrc.includes('/blog/images/'+location.pathname.split('/').filter(Boolean).at(-1))),
+        editorialStylesheetLoaded:!!document.querySelector('link[href*="/assets/editorial-20261019.css"]'),
         mobileReadable:!para || Number.parseFloat(getComputedStyle(para).fontSize)>=15
       };
     });
@@ -74,7 +77,8 @@ for(const width of [390,1440]){
     assert.ok(legibility.headline && legibility.headlineContrast>=4.5, width+' '+url+': editorial headline must be readable');
     assert.ok(legibility.mobileReadable,width+' '+url+': editorial text too small');
     assert.ok(legibility.imageLoaded,width+' '+url+': featured image must load');
-    assert.ok(legibility.imageVersioned,width+' '+url+': cover must bypass stale cache');
+    assert.ok(legibility.imageMatchesArticle,width+' '+url+': wrong article cover selected');
+    assert.ok(legibility.editorialStylesheetLoaded,width+' '+url+': missing readable editorial CSS');
   }
   if(url==='/reviews/'){
     assert.equal(await page.locator('[data-review-share]').count(),0);
@@ -174,7 +178,10 @@ for(const width of [390,1440]){
    assert.equal(await page.locator('.blog-card:not([hidden])').count(),0);
   }
   if(url==='/'&&width===390){await page.locator('#hbg').click();assert.equal(await page.locator('#hbg').getAttribute('aria-expanded'),'true');await page.locator('#hbg').click();}
-  await page.screenshot({path:path.join(dir,`${width}-${url.replaceAll('/','_')||'home'}.png`),fullPage:true});
+  // Keep the exact user-reported article in visual snapshots without producing
+  // redundant huge screenshots for every historical guide.
+  if(!url.startsWith('/blog/') || url==='/blog/' || url==='/blog/product-demand-validation-guide' || url==='/blog/ecommerce-first-30-days-plan')
+    await page.screenshot({path:path.join(dir,`${width}-${url.replaceAll('/','_')||'home'}.png`),fullPage:true});
   results.push({width,url,...actual});
  }
  assert.deepEqual(errors,[]);await page.close();

@@ -155,3 +155,7 @@ body:has(.article-box)>main{max-width:1050px;padding:49px 22px 78px;margin:auto}
   .article-box h1{font-size:clamp(28px,7.4vw,36px)}
   .article-box .summary{padding:15px 17px}
 }
+
+/* A few older article callout rules set 14px after the general paragraph rule.
+   Keep their body copy readable on narrow screens without affecting small labels. */
+.art-content .highlight-box p{font-size:clamp(15px,1.2vw,16px);line-height:2.05;color:var(--ko-article-ink)}

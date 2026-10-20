@@ -764,3 +764,26 @@ test('SEO: all public guides pass the editorial depth, asset, schema and metadat
       'updated sitemap modification date missing: '+item.slug);
   }
 });
+
+
+test('all published guides explicitly load the readable editorial UI (including daily articles)',()=>{
+  const registry=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
+  const stylesheet=fs.readFileSync(path.join(root,'assets/editorial-20261019.css'),'utf8');
+  assert.match(stylesheet,/\.art-content :is\(p,li,dd,dt\)/);
+  assert.match(stylesheet,/\.article-box :is\(p,li\)/);
+  assert.ok(registry.length>=19, 'At least the existing published guides must remain');
+  for(const article of registry){
+    const file=path.join(root,'blog',article.slug+'.html');
+    const markup=fs.readFileSync(file,'utf8');
+    const head=markup.split('</head>')[0];
+    assert.match(head,/<link rel="stylesheet" href="\/assets\/editorial-20261019\.css(?:\?[^"]*)?">/,
+      article.slug+': daily publication lacks readable light-theme article styling');
+    assert.ok(markup.includes('class="art-content"')||markup.includes('class="article-box"'),
+      article.slug+': article is missing a recognized editorial body');
+  }
+  const publisher=fs.readFileSync(path.join(root,'scripts/publish-approved-article.mjs'),'utf8');
+  const refresher=fs.readFileSync(path.join(root,'scripts/refresh_site.py'),'utf8');
+  assert.match(publisher,/editorial-20261019\.css/,'Publisher must normalize newly approved articles');
+  assert.ok(refresher.indexOf("for article in (ROOT/'blog').glob('*.html')")<
+    refresher.indexOf("    entries=[]"),'Article normalization must not depend on image optimization');
+});
