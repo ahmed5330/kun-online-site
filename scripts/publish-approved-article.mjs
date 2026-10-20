@@ -134,6 +134,14 @@ function validateBundle({ meta, source }) {
   html = html.replace(googleFontLink, '');
   assert.ok(html.includes('</head>'), 'Approved article is missing head closure: ' + slug);
   html = html.replace('</head>', '<link href="' + correctedHref + '" rel="stylesheet">\n</head>');
+  // Approved .html.ready bundles may carry the old dark theme. Normalize
+  // before publication, even if a later refresh/optimization step is skipped.
+  // The real CSS file is versioned and shared with all existing guides.
+  if (!/href=["']\\/assets\\/editorial-20261019\\.css(?:\\?[^"']*)?["']/.test(html)) {
+    html = html.replace('</head>',
+      '<link rel="stylesheet" href="/assets/editorial-20261019.css?v=1">\\n</head>');
+  }
+
   assert.equal([...html.matchAll(googleFontLink)].length, 1, 'Exactly one Google Fonts stylesheet is required: ' + slug);
   html = html.replaceAll('__PUBLICATION_DATE_ISO__', cairoDate).replaceAll('__PUBLICATION_DATE_AR__', dateLabel);
   for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(match[1]);
