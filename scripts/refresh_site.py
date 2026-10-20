@@ -62,7 +62,7 @@ def refresh(optimize=False):
             if 'editorial-20261019.css' not in s:
                 if '</head>' not in s:
                     raise ValueError('Published article missing </head>: ' + article.name)
-                s=s.replace('</head>', '<link rel="stylesheet" href="/assets/editorial-20261019.css?v=1">\n</head>', 1)
+                s=s.replace('</head>', '<link rel="stylesheet" href="/assets/editorial-20261019.css?v=2">\n</head>', 1)
         if optimize:
             def picture(m):
                 tag=m.group(0)
