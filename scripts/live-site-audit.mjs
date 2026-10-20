@@ -82,6 +82,34 @@ async function run() {
       check('HTTP 200: ' + page, false, error.message);
     }
   }
+  // Compare current published article source with the live Cloudflare output.
+  // Plain HTTP 200/canonical checks did not catch white text on a white
+  // background when the daily publisher omitted the editorial stylesheet.
+  const newest = JSON.parse(await fs.readFile('blog/articles.json','utf8'))[0];
+  if (newest?.slug) {
+    const currentArticle = '/blog/' + newest.slug;
+    try {
+      const live = await inspect(currentArticle);
+      check('Latest published article is live: ' + newest.slug,
+        live.response.status === 200, 'status=' + live.response.status);
+      check('Latest published article loads legible editorial styles: ' + newest.slug,
+        live.body.includes('href="/assets/editorial-20261019.css?v=2"'),
+        'expected=/assets/editorial-20261019.css?v=2 sourceBytes=' + live.body.length);
+    } catch(error) {
+      check('Latest published article loads legible editorial styles: ' + newest.slug,false,error.message);
+    }
+    try {
+      const css = await inspect('/assets/editorial-20261019.css?v=2');
+      check('Live editorial stylesheet is available and has readable body text',
+        css.response.status===200 &&
+        css.body.includes('.art-content :is(p,li,dd,dt)') &&
+        css.body.includes('.art-content .highlight-box p') &&
+        css.body.includes('.article-box :is(p,li)'),
+        'status='+css.response.status+' bytes='+css.body.length);
+    } catch(error) {
+      check('Live editorial stylesheet is available and has readable body text',false,error.message);
+    }
+  }
   const requests = [
     ['/sitemap.xml', 'application'],
     ['/robots.txt', 'robots'],
