@@ -62,20 +62,20 @@ def refresh(optimize=False):
             if 'editorial-20261019.css' not in s:
                 if '</head>' not in s:
                     raise ValueError('Published article missing </head>: ' + article.name)
-                s=s.replace('</head>', '<link rel="stylesheet" href="/assets/editorial-20261019.css?v=1">\\n</head>', 1)
+                s=s.replace('</head>', '<link rel="stylesheet" href="/assets/editorial-20261019.css?v=1">\n</head>', 1)
         if optimize:
             def picture(m):
                 tag=m.group(0)
-                source=re.search(r'src="(/blog/images/([^"/?]+)\\.png)(?:\\?v=[^"]+)?"',tag)
+                source=re.search(r'src="(/blog/images/([^"/?]+)\.png)(?:\?v=[^"]+)?"',tag)
                 if not source or not (ROOT/(source.group(1).lstrip('/').replace('.png','.webp'))).exists():
                     return tag
                 stem=source.group(2)
-                versioned=re.sub(r'src="/blog/images/[^"]+\\.png(?:\\?v=[^"]+)?"',
+                versioned=re.sub(r'src="/blog/images/[^"]+\.png(?:\?v=[^"]+)?"',
                                  lambda _: 'src="'+source.group(1)+COVER_REV+'"', tag)
                 return '<picture><source type="image/webp" srcset="/blog/images/'+stem+'-640.webp'+COVER_REV+' 640w, /blog/images/'+stem+'.webp'+COVER_REV+' 1200w" sizes="(max-width:820px) 95vw, 760px">'+versioned+'</picture>'
             # Refresh rather than nesting picture sources on repeated runs.
-            s=re.sub(r'<picture><source\\b[^>]*>(<img\\b[\\s\\S]*?>)</picture>',r'\\1',s)
-            s=re.sub(r'<img\\b[\\s\\S]*?>',picture,s)
+            s=re.sub(r'<picture><source\b[^>]*>(<img\b[\s\S]*?>)</picture>',r'\1',s)
+            s=re.sub(r'<img\b[\s\S]*?>',picture,s)
         if s != original:
             article.write_text(s,encoding='utf-8')
     entries=[]
