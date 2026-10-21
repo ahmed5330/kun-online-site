@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 14,
-    "articles_remaining": 86,
+    "articles_published": 15,
+    "articles_remaining": 85,
     "current_article": null,
-    "next_article": 14,
-    "project_completion_percentage": 14,
-    "last_published_date": "2026-10-21",
+    "next_article": 15,
+    "project_completion_percentage": 15,
+    "last_published_date": "2026-10-22",
     "last_run_date": null
   },
   "chapters": [
@@ -118,6 +118,7 @@
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/startup-budget-egypt",
+        "https://kun-online.com/blog/test-product-before-bulk-inventory",
         "https://kun-online.com/blog/viral-vs-evergreen-product-demand",
         "https://kun-online.com/blog/what-is-ecommerce"
       ],
@@ -129,6 +130,7 @@
         "https://kun-online.com/blog/ecommerce-product-ideas-research",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/product-demand-validation-guide",
+        "https://kun-online.com/blog/test-product-before-bulk-inventory",
         "https://kun-online.com/blog/viral-vs-evergreen-product-demand",
         "https://kun-online.com/blog/what-is-ecommerce"
       ],
@@ -205,6 +207,7 @@
         "https://kun-online.com/blog/owned-vs-rented-channels",
         "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/test-product-before-bulk-inventory",
         "https://kun-online.com/blog/viral-vs-evergreen-product-demand"
       ],
       "internal_links_in": [
@@ -217,6 +220,7 @@
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/owned-vs-rented-channels",
         "https://kun-online.com/blog/product-demand-validation-guide",
+        "https://kun-online.com/blog/test-product-before-bulk-inventory",
         "https://kun-online.com/blog/viral-vs-evergreen-product-demand"
       ],
       "failure_reason": null,
@@ -252,7 +256,8 @@
         "https://kun-online.com/blog/customer-funnel-guide",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/product-marketing-operations-ecommerce",
-        "https://kun-online.com/blog/startup-budget-egypt"
+        "https://kun-online.com/blog/startup-budget-egypt",
+        "https://kun-online.com/blog/test-product-before-bulk-inventory"
       ],
       "failure_reason": null,
       "attempts": 0
@@ -569,18 +574,34 @@
       "brief": "اشرح أساليب MVP وPre-order وSmall Batch وLanding Page Test وإعلانات اختبار الطلب.",
       "new_concept": "Minimum Viable Product وValidation Test.",
       "research_space": "ابحث عن طرق Product Validation المستخدمة حاليًا في DTC.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "queued",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
+      "final_h1": "اختبار المنتج قبل شراء 100 قطعة: 6 تجارب قليلة المخاطرة",
+      "seo_title": "اختبار المنتج قبل شراء 100 قطعة: 6 تجارب قليلة المخاطرة | مدونة كن أونلاين",
+      "primary_keyword": "اختبار المنتج قبل شراء المخزون",
+      "secondary_keywords": [
+        "اختبار المنتج قبل الشراء بالجملة",
+        "تجربة منتج جديد للبيع أونلاين",
+        "الطلب المسبق للمنتجات",
+        "اختبار صفحة هبوط منتج",
+        "اختبار السوق بميزانية صغيرة"
+      ],
+      "search_intent": "informational",
+      "slug": "test-product-before-bulk-inventory",
+      "url": "https://kun-online.com/blog/test-product-before-bulk-inventory",
+      "status": "published",
+      "published_date": "2026-10-22",
+      "word_count": 1779,
+      "internal_links_out": [
+        "https://kun-online.com/blog/cod-shipping-returns-reconciliation",
+        "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/order-confirmation-delivery-rate",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
       "failure_reason": null,
       "attempts": 0
     },

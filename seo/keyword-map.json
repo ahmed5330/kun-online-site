@@ -555,6 +555,22 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/test-product-before-bulk-inventory",
+      "primary": "اختبار المنتج قبل شراء المخزون",
+      "secondary": [
+        "اختبار المنتج قبل الشراء بالجملة",
+        "تجربة منتج جديد للبيع أونلاين",
+        "الطلب المسبق للمنتجات",
+        "اختبار صفحة هبوط منتج",
+        "اختبار السوق بميزانية صغيرة"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }
