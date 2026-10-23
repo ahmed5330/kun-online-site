@@ -571,6 +571,21 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/ecommerce-competitor-analysis-sheet",
+      "primary": "تحليل المنافسين في التجارة الإلكترونية",
+      "secondary": [
+        "دراسة المنافسين للمتجر الإلكتروني",
+        "تحليل أسعار المنافسين",
+        "مكتبة إعلانات ميتا للمنافسين",
+        "جدول مقارنة المنافسين"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }
