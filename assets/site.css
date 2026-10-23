@@ -164,6 +164,7 @@ html[lang^="en"] body{font-family:Inter,system-ui,sans-serif}
 #main-content .fa{color:var(--ko-copy)}
 #main-content .far{color:var(--ko-blue)}
 #main-content .tc{background:white;border:1px solid var(--ko-stroke)}
+#main-content .tc h3{color:var(--ko-navy)}
 #main-content .ttxt{color:var(--ko-copy)}
 #main-content .tan{color:var(--ko-navy)}
 #main-content .tar{color:#7a8c9d}
