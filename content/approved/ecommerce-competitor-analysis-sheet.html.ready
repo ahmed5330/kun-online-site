@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحليل المنافسين للمتجر الإلكتروني: ورقة عمل من 10 خطوات | مدونة كن أونلاين</title>
+<meta name="description" content="دليل عملي لتحليل المنافسين في التجارة الإلكترونية بمصر والسعودية: الأسعار والإعلانات والتقييمات والشحن والسيو، مع نموذج مقارنة يحوّل الملاحظات إلى قرارات.">
+<meta name="author" content="كن أونلاين">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kun-online.com/blog/ecommerce-competitor-analysis-sheet">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kun-online.com/blog/ecommerce-competitor-analysis-sheet">
+<meta property="og:title" content="تحليل المنافسين للمتجر الإلكتروني: ورقة عمل من 10 خطوات">
+<meta property="og:description" content="دليل عملي لتحليل المنافسين في التجارة الإلكترونية بمصر والسعودية: الأسعار والإعلانات والتقييمات والشحن والسيو، مع نموذج مقارنة يحوّل الملاحظات إلى قرارات.">
+<meta property="og:image" content="https://kun-online.com/blog/images/ecommerce-competitor-analysis-sheet.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="__PUBLICATION_DATE_ISO__">
+<meta property="article:author" content="كن أونلاين">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "تحليل المنافسين للمتجر الإلكتروني: ورقة عمل من 10 خطوات",
+  "description": "دليل عملي لتحليل المنافسين في التجارة الإلكترونية بمصر والسعودية: الأسعار والإعلانات والتقييمات والشحن والسيو، مع نموذج مقارنة يحوّل الملاحظات إلى قرارات.",
+  "datePublished": "__PUBLICATION_DATE_ISO__",
+  "dateModified": "__PUBLICATION_DATE_ISO__",
+  "author": {"@type": "Organization","name": "كن أونلاين","url": "https://kun-online.com"},
+  "publisher": {"@type": "Organization","name": "كن أونلاين","url": "https://kun-online.com"},
+  "url": "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
+  "mainEntityOfPage": "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
+  "keywords": "تحليل المنافسين في التجارة الإلكترونية، دراسة المنافسين للمتجر الإلكتروني، تحليل أسعار المنافسين، مكتبة إعلانات ميتا للمنافسين، جدول مقارنة المنافسين",
+  "articleSection": "store",
+  "inLanguage": "ar-EG",
+  "wordCount": 1817,
+  "timeRequired": "PT11M"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1B3A8F;--lime:#7DC242;--dark:#0a0f1e;--dark2:#111827;--dark3:#1a2540;--muted:rgba(255,255,255,.55);--body-c:rgba(255,255,255,.85);--pad:20px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;direction:rtl;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+nav{position:sticky;top:0;z-index:200;height:60px;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;background:rgba(10,15,30,.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(125,194,66,.12)}
+.logo{font-family:'Tajawal',sans-serif;font-weight:900;font-size:22px;text-decoration:none}
+.logo em{color:var(--lime);font-style:normal}
+.nav-back{color:var(--lime);font-size:13px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px}
+/* ARTICLE */
+.art-header{padding:48px var(--pad) 36px;max-width:760px;margin:0 auto}
+@media(min-width:820px){.art-header{padding:64px 5vw 48px}}
+.art-cat-badge{display:inline-block;background:rgba(125,194,66,.12);border:1px solid rgba(125,194,66,.3);color:var(--lime);font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;margin-bottom:16px;letter-spacing:1px}
+.art-header h1{font-family:'Tajawal',sans-serif;font-weight:900;font-size:clamp(24px,5vw,40px);line-height:1.25;margin-bottom:16px}
+.art-meta{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--muted);margin-bottom:24px;align-items:center}
+.art-meta span{display:flex;align-items:center;gap:5px}
+.art-description{font-size:16px;color:var(--muted);line-height:1.9;padding:20px 24px;background:var(--dark2);border-right:3px solid var(--lime);border-radius:0 12px 12px 0;margin-bottom:32px}
+/* CONTENT */
+.art-featured{max-width:760px;margin:0 auto 32px;padding:0 var(--pad)}
+@media(min-width:820px){.art-featured{padding:0 5vw}}
+.art-featured img{width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.08);display:block}
+.art-content{max-width:760px;margin:0 auto;padding:0 var(--pad) 64px}
+@media(min-width:820px){.art-content{padding:0 5vw 80px}}
+.art-content h2{font-family:'Tajawal',sans-serif;font-weight:900;font-size:clamp(20px,4vw,28px);color:#fff;margin:36px 0 16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.art-content h3{font-size:18px;font-weight:700;color:var(--lime);margin:28px 0 12px}
+.art-content p{font-size:15px;color:var(--body-c);line-height:2;margin-bottom:18px}
+.art-content ul,.art-content ol{margin:16px 0 20px 0;padding-right:20px}
+.art-content li{font-size:15px;color:var(--body-c);line-height:1.9;margin-bottom:8px}
+.art-content strong{color:#fff;font-weight:700}
+.art-content a{color:var(--lime);text-decoration:underline}
+.art-content blockquote{background:var(--dark2);border-right:3px solid var(--lime);padding:16px 20px;border-radius:0 12px 12px 0;margin:24px 0;font-size:15px;color:var(--muted);font-style:italic;line-height:1.9}
+.art-content .highlight-box{background:rgba(27,58,143,.2);border:1px solid rgba(125,194,66,.2);border-radius:12px;padding:20px 24px;margin:24px 0}
+.art-content .highlight-box h4{color:var(--lime);font-size:15px;font-weight:700;margin-bottom:8px}
+.art-content .highlight-box p{font-size:14px;margin:0}
+/* CTA */
+.art-cta{background:linear-gradient(135deg,var(--blue),#0f2660);border-radius:16px;padding:32px 28px;text-align:center;margin:48px 0}
+.art-cta h3{font-family:'Tajawal',sans-serif;font-weight:900;font-size:22px;margin-bottom:10px}
+.art-cta p{font-size:14px;color:rgba(255,255,255,.7);margin-bottom:20px}
+.art-cta a{background:var(--lime);color:#0a0f1e;padding:13px 28px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;display:inline-block}
+/* RELATED */
+.related{background:var(--dark2);padding:48px var(--pad);border-top:1px solid rgba(255,255,255,.06)}
+@media(min-width:820px){.related{padding:48px 5vw}}
+.related h2{font-family:'Tajawal',sans-serif;font-weight:900;font-size:22px;margin-bottom:24px}
+.related-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.related-grid{grid-template-columns:repeat(3,1fr)}}
+.rel-card{background:var(--dark3);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px;text-decoration:none;transition:.2s;display:block}
+.rel-card:hover{border-color:rgba(125,194,66,.3);transform:translateY(-2px)}
+.rel-cat{font-size:10px;color:var(--lime);font-weight:700;letter-spacing:1px;margin-bottom:8px}
+.rel-title{font-size:14px;font-weight:700;color:#fff;line-height:1.5}
+footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);padding:24px var(--pad);text-align:center}
+footer p{font-size:12px;color:var(--muted)}
+footer a{color:var(--lime)}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:rgba(125,194,66,.35);border-radius:3px}
+</style>
+<link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://kun-online.com/#organization","name":"كن أونلاين","alternateName":"Kun Online","url":"https://kun-online.com/","address":{"@type":"PostalAddress","addressCountry":"EG","addressRegion":"أسيوط","addressLocality":"أسيوط","streetAddress":"ميدان الأزهر"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/201021231619","description":"WhatsApp messages only; no voice calls."},"sameAs":["https://www.facebook.com/KunOnlineAgency","https://www.instagram.com/kunonlin/"]}</script></head>
+<body>
+
+<nav>
+  <a href="/" class="logo">كن <em>أونلاين</em></a>
+  <a href="/blog/" class="nav-back">← المدونة</a>
+</nav>
+
+<main id="main-content">
+<div class="art-header">
+  <span class="art-cat-badge">بناء المتجر</span>
+  <h1>تحليل المنافسين للمتجر الإلكتروني: ورقة عمل من 10 خطوات</h1>
+  <div class="art-meta">
+    <span>📅 __PUBLICATION_DATE_AR__</span>
+    <span>⏱️ 11 دقائق قراءة</span>
+    <span>✍️ كن أونلاين</span>
+  </div>
+  <p class="art-description">دليل عملي لتحليل المنافسين في التجارة الإلكترونية بمصر والسعودية: الأسعار والإعلانات والتقييمات والشحن والسيو، مع نموذج مقارنة يحوّل الملاحظات إلى قرارات.</p>
+</div>
+
+<div class="art-featured">
+  <img src="/blog/images/ecommerce-competitor-analysis-sheet.png" alt="ورقة عمل لتحليل المنافسين في المتاجر الإلكترونية: أسعار وإعلانات وتقييمات وشحن" loading="eager" width="1200" height="630"
+       onerror="this.parentElement.style.display='none'">
+</div>
+
+<div class="art-content">
+  <article class="editorial-guide" lang="ar">
+<p>في بداية مشروع التجارة الإلكترونية قد تنشغل بسؤال: من يبيع المنتج نفسه وبأي سعر؟ لكن تحليل المنافسين للمتجر الإلكتروني لا يقتصر على اكتشاف أرخص متجر. العميل يقارن بين وضوح المقاسات، وجودة الصور، وموعد الوصول، وسياسة الاسترجاع، وسهولة التواصل، والثقة قبل أن يقرر أين يشتري. فإذا نسخت سعر المنافس دون فهم تكلفته أو خدمته، قد تجذب طلبات كثيرة لا تحقق لك ربحًا.</p>
+<p>هذا الدليل يقدم ورقة عمل من عشر خطوات تصلح لمتجر ناشئ في مصر أو السعودية. ستجمع إشارات عامة ومشروعة من المواقع والإعلانات والتقييمات، ثم تفصل ما لاحظته عن الافتراض الذي تريد اختباره. الهدف ليس التجسس على بيانات خاصة ولا تقليد التصميمات، بل تحديد فرصة ملموسة تخدم العميل ويمكنك تنفيذها ومحاسبة نتائجها.</p>
+<h2>1. حدد السوق والعميل قبل أن تختار المنافسين</h2>
+<p>ابدأ بتوصيف العميل الذي تخدمه: المحافظة أو المدينة، الفئة السعرية، الاستخدام الأساسي، وحساسيته لتكلفة الشحن. متجر ملابس اقتصادية يخدم مدن الدلتا لا يواجه بالضرورة المنافسة المباشرة نفسها التي يواجهها متجر فاخر يركز على الرياض. اكتب ثلاث مشكلات يحاول العميل حلها، مثل صعوبة اختيار المقاس أو انتظار الشحنة أو غياب صور توضح الخامة.</p>
+<p>اختر من ثلاثة إلى خمسة منافسين للمقارنة الأولى: اثنان يبيعان منتجًا مشابهًا لنفس الجمهور، ومتجر واحد يقدم بديلًا مختلفًا للحاجة نفسها، وآخر معروف بتجربة خدمة قوية. استبعد الصفحات التي لا تعرض معلومات يمكن التحقق منها. سجل سبب إدراج كل منافس وتاريخ البحث، بدل إعداد قائمة طويلة بلا معيار. ويمكنك البدء من <a href="/blog/ecommerce-product-ideas-research">دليل اكتشاف أفكار المنتجات</a> لتوضيح فئة السوق.</p>
+<h2>2. افصل المنافس المباشر عن البديل وعن المرجع الملهم</h2>
+<p>المنافس المباشر يقدم سلعة متقاربة بسعر وخدمة يناسبان الشريحة نفسها. البديل يحقق النتيجة نفسها بطريقة أخرى، مثل شراء منتج جاهز بدل تفصيله. أما المرجع الملهم فقد يكون متجرًا عالميًا أعلى سعرًا؛ تتعلم من وضوح عرضه دون افتراض أن عملاءك يملكون القدرة الشرائية نفسها. هذا الفصل يمنع مقارنة غير عادلة بين متاجر ذات هياكل تكلفة مختلفة.</p>
+<p>ضع لكل اسم تصنيفًا واضحًا، والرابط الرسمي، والسوق المستهدف، والعملة، وطريقة الدفع الظاهرة، ونطاق المنتجات. لا تستخدم عدد المتابعين باعتباره حجم مبيعات، ولا عدد الإعلانات كدليل على نجاحها. المطلوب خريطة خيارات يراها العميل لا ترتيب فائزين اعتمادًا على الانطباعات. راجع القائمة شهريًا إذا كان السوق سريع التغير؛ فمتجر توقّف عن البيع ليس منافسًا نشطًا لمجرد استمرار موقعه.</p>
+<h2>3. قارن عرض المنتج ومحتوى الصفحة لا الصورة وحدها</h2>
+<p>افتح صفحة منتج متشابه لدى كل منافس وسجّل: المادة الخام، الأبعاد، الألوان، دليل المقاسات، عدد الصور المفيدة، سياسة الضمان إن وُجدت، وما إذا كانت الصفحة تشرح لمن يناسب المنتج. انظر لما غاب أيضًا: هل توجد صورة حقيقية للظهر؟ هل يشرح البائع الفرق بين موديلين؟ هل تظهر تكلفة التوصيل قبل تأكيد الطلب؟ وجود هذه الإجابات قد يقلل تردد المشتري.</p>
+<p>لا تمنح نقاطًا تلقائية لمن يملك صورًا أكثر؛ صورة واحدة دقيقة قد تفيد العميل أكثر من عشر صور متشابهة. اكتب ملاحظة قابلة للتحويل إلى عمل، مثل «إضافة صورة قريبة للخياطة مع قياس ظاهر»، بدل «صور المنافس ممتازة». لا تنسَ أن تصميمًا جذابًا لا يثبت جودة المنتج؛ جودة المورد وخدمة ما بعد البيع تحتاج أدلة مستقلة. راجع <a href="/blog/test-product-before-bulk-inventory">اختبار المنتج قبل شراء كمية كبيرة</a> قبل زيادة المخزون.</p>
+<h2>4. احسب السعر النهائي الذي يراه العميل</h2>
+<p>السعر الظاهر على بطاقة المنتج ليس بالضرورة ما سيدفعه العميل. في ورقة العمل افصل سعر القطعة، والخصم المشروط، ورسوم التوصيل، والضرائب أو الرسوم المعروضة حيث تنطبق، ثم المجموع النهائي للسلة نفسها والعنوان نفسه. إذا كان عرض منافس يشترط شراء قطعتين، فلا تقارنه بسعر قطعة واحدة دون توضيح ذلك. واحرص على تسجيل تاريخ الملاحظة لأن القسائم والعروض مؤقتة.</p>
+<p>مثال افتراضي للتوضيح فقط: متجر يعرض قطعة بسعر 420 جنيهًا وشحنًا 60 جنيهًا؛ التكلفة الظاهرة للعميل 480 جنيهًا. منافس آخر يعرض القطعة بسعر 450 جنيهًا والشحن 20 جنيهًا؛ الإجمالي 470 جنيهًا. هنا الثاني أقل بعشرة جنيهات رغم ارتفاع سعر القطعة. هذه معادلة مقارنة سلة، وليست دليلًا على هامش ربح أي متجر. لا يمكن استنتاج ربح المنافس من واجهة سعره.</p>
+<h2>5. استخدم مكتبات الإعلانات بوصفها أدلة على الرسائل لا الأرباح</h2>
+<p>ابحث في <a href="https://www.facebook.com/ads/library/" target="_blank" rel="noopener noreferrer">مكتبة إعلانات ميتا</a> باسم الصفحة أو العلامة واختر البلد والفئة المناسبة. سجّل الفكرة الإعلانية، ووعد المنتج، وصيغة الفيديو أو الصورة، والرابط الظاهر إن توفر. ويمكنك مراجعة <a href="https://adstransparency.google.com/" target="_blank" rel="noopener noreferrer">مركز شفافية إعلانات Google</a> لمعرفة نماذج إعلانات عامة مرتبطة بمعلن أو موقع. المعلومات المعروضة تتفاوت حسب نوع الإعلان والمنطقة وخصائص الشفافية المتاحة.</p>
+<p>الإعلان النشط يثبت وجود إعلان ظاهر في المكتبة ضمن حدودها، لا أنه يحقق مبيعات أو ربحًا أو عائدًا معينًا. كذلك طول بقاء إعلان لا يكشف تكلفة اكتساب العميل، أو نسبة التسليم، أو حقيقة الاستهداف. دوّن الزاوية التسويقية كفرضية: «المنافس يركز على سهولة الاستبدال»، ثم اختبر صياغة أصلية تشرح ميزتك أنت. لا تنسخ نصًا أو فيديو أو هوية بصرية محمية؛ الإلهام شيء والاعتداء على الحقوق شيء آخر.</p>
+<h2>6. اقرأ تقييمات المشترين باعتبارها إشارات تحتاج فرزًا</h2>
+<p>افصل تقييم المنتج عن تجربة المتجر: قد يمتدح العميل خامة المنتج لكنه يشتكي من التأخير، أو يثني على خدمة العملاء مع ملاحظة تتعلق بالمقاس. كوّن مجموعات متكررة مثل «المقاس»، «التغليف»، «الوصف»، «السرعة»، «التعامل بعد البيع». احتفظ باقتباسات قصيرة عند الحاجة ضمن حدود الاستخدام المشروع، مع روابطها وتاريخها، ولا تجمع بيانات شخصية أو تنقل صور أشخاص بغير إذن.</p>
+<p>تجنب تحويل ثلاث شكاوى إلى حكم بأن أغلب العملاء غير راضين؛ عدد المراجعات قد يكون صغيرًا أو منحازًا لمن قرر الكتابة. انتبه للمراجعات المكررة أو غير المرتبطة بالمنتج، وافحص الإيجابي والسلبي معًا. تؤكد <a href="https://support.google.com/merchants/answer/6098512" target="_blank" rel="noopener noreferrer">سياسات Google لتقييمات المنتجات</a> أهمية الأصالة والملاءمة وعدم إخفاء المراجعات السلبية عند تقديم خلاصات التقييم. هدف التحليل استخلاص مشكلة قابلة للحل لا الإساءة إلى منافس.</p>
+<h2>7. اختبر تجربة الطلب والشحن بشفافية</h2>
+<p>جرّب خطوات الشراء الظاهرة للعامة دون إتمام طلب وهمي يحمّل المنافس تكلفة. لاحظ عدد الخطوات، ووضوح حقول العنوان، وخيارات الدفع، ووجود ملخص نهائي ورسوم شحن، ورابط سياسة الاسترجاع. إذا احتجت إلى الاستفسار، اسأل سؤالًا حقيقيًا مختصرًا دون انتحال شخصية عميل أو إغراق فريق الدعم برسائل اختبار. وفي حال إجراء شراء حقيقي، دوّن التكلفة والزمن الفعلي لحالتك فقط.</p>
+<p>لا تستنتج أن متجرًا يسلم خلال يومين في كل مصر من تجربة عنوان واحد. للمقارنة العادلة، اختر عنوانًا ووزنًا وشروط دفع متشابهة، وافصل «المدة المعلنة» عن «المدة المقاسة». تختلف الالتزامات النظامية وحقوق المستهلك حسب الدولة ونوع المنتج؛ راجع الشروط المنشورة لدى الجهات الرسمية والمتجر نفسه قبل كتابة وعود للمشترين. ويمكن ربط هذا التحليل بـ<a href="/blog/order-confirmation-delivery-rate">شرح نسب تأكيد وتسليم الطلبات</a> لتقييم خدمتك أنت ببيانات حقيقية.</p>
+<h2>8. راجع الظهور في البحث وسرعة الموقع دون اختراع أرقام زيارات</h2>
+<p>ابدأ ببحث طبيعي عن احتياجات العميل لا عن اسم المتجر فقط: نوع المنتج، سؤال المقاس، المقارنة، والتعليمات. سجّل صفحات المنافس التي تظهر لك مع البلد والجهاز والتاريخ، لأن النتائج تتغير. راجع عناوين الصفحات ووصفها وبنية الأسئلة وإجاباتها. تقول <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener noreferrer">إرشادات Google للمحتوى المفيد</a> إن القيمة الأصلية والوضوح وموثوقية المعلومات أهم من إنتاج محتوى هدفه محركات البحث وحدها.</p>
+<p>استخدم <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener noreferrer">PageSpeed Insights</a> لفحص صفحات منتقاة على المحمول وسطح المكتب. توضّح وثائق Google أن الأداة تستعين ببيانات مختبرية وبيانات استخدام فعلية عندما تتوفر، وليست حكمًا شاملًا على تجربة كل زائر. اختبر صفحات متقاربة وظروفًا معروفة، ولا تحوّل درجة أداء صفحة واحدة إلى نسبة تحويل أو حجم مبيعات متخيل. راقب مشكلة محددة يمكنك علاجها في متجرك، مثل صورة بطيئة أو زر شراء يصعب الوصول إليه.</p>
+<h2>9. تعامل بحذر مع تقديرات الزيارات وأدوات المنافسة</h2>
+<p>تقدم أدوات من فئة Similarweb وSemrush وAhrefs مؤشرات قد تساعد على اكتشاف كلمات أو روابط أو اتجاهات منافسين، لكن المخرجات العامة غالبًا تقديرات ونماذج تختلف عن سجلات المتجر الفعلية. لا تكتب «المنافس يبيع ألف طلب» لأن أداة خارجية قدّرت زياراته. ولا تخلط بين زيارة الموقع، والجلسة، والطلب المسجل، والطلب المؤكد، والطلب المُسلّم؛ لكل مؤشر تعريف ومصدر مستقل.</p>
+<p>حتى عند استخدام <a href="https://support.google.com/trends/answer/4365533" target="_blank" rel="noopener noreferrer">Google Trends</a> للمقارنة بين الاهتمامات، الأرقام من صفر إلى مئة تمثل اهتمامًا نسبيًا داخل المكان والفترة، وليست عدد عمليات البحث المطلق أو مشتريات فعلية. الأفضل تسجيل «ارتفع الاهتمام النسبي بهذه العبارة في الفترة المدروسة» مع تحديد الفترة، ثم التحقق من الطلب الفعلي باختبار عرض صغير. استعن بـ<a href="/blog/product-demand-validation-guide">دليل التحقق من الطلب الحقيقي</a> قبل اتخاذ قرار شراء كبير.</p>
+<h2>10. حوّل ورقة المقارنة إلى ثلاث تجارب قابلة للقياس</h2>
+<p>اجمع الملاحظات في جدول ثابت الأعمدة: المنافس، رابط الدليل، تاريخ الرصد، الفئة، السعر النهائي، شرح المنتج، إعلان ظاهر، شكاوى متكررة، سياسة الشحن، نقطة قوة، فجوة، مستوى الثقة في الملاحظة، والإجراء المقترح. ميّز بين «رأي» و«حقيقة قابلة للتحقق» و«غير معروف». ابدأ بثلاث فرضيات فقط حتى لا تضيع مجهود الفريق بين عشرات التغييرات. احرص على مشاركة الورقة مع من يتولى خدمة العملاء والتجهيز والتسويق.</p>
+<p>مثال افتراضي: لاحظت أن ثلاثة منافسين لا يشرحون كيفية اختيار المقاس، فتختبر دليل مقاسات مصورًا. تقيس قبل وبعد عدد أسئلة المقاس والطلبات المؤكدة والمرتجعات المرتبطة بالمقاس، على فترة وعينة معقولتين. الفرضية الثانية: عرض رسوم الشحن مبكرًا قد يقلل المفاجأة في آخر الطلب؛ اختبرها بمعدل إتمام الدفع أو تأكيد الطلب. الثالثة: توضيح مدة الاستبدال قد يحسّن الثقة؛ راقب الاستفسارات والشكاوى. لا تنسب أي تغير للتعديل وحده إن تغيرت الإعلانات أو الأسعار بالتزامن.</p>
+<h2>نموذج تسجيل سريع تستطيع نسخه إلى جدول</h2>
+<p>ضع صفًا لكل منافس بدل جمع عدة متاجر في خانة واحدة. مثال للأعمدة: «الاسم | المدينة أو البلد | المنتج المرجعي | السعر + الشحن | الميزة المعلنة | الشكوى الملحوظة | رابط المصدر | تاريخ الرصد | الفرضية | اختبارنا». يمكن وضع تقييم داخلي من واحد إلى ثلاثة لوضوح المعلومات، لكن هذا التقييم قرار فريقك وليس مقياسًا علميًا لجودة المتجر. أضف خانة لمالك المهمة وموعد مراجعتها حتى تتحول الورقة إلى عمل.</p>
+<ul><li>الدليل المؤكد: سعر معروض على صفحة عامة وقت الرصد، مع رابط وتاريخ واضحين.</li>
+<li>الإشارة غير المكتملة: شكوى فردية أو إعلان نشط أو نتيجة بحث تختلف باختلاف المكان.</li>
+<li>الفرضية: يمكن لتوضيح المقاسات أو الشحن المبكر أن يحسن تجربة عميلك.</li>
+<li>الاختبار: تغيير محدد ومؤشر محدد وفترة مراجعة، مع الاحتفاظ بالنتيجة الحقيقية.</li></ul>
+<h2>كيف تتجنب التقليد والتضليل والمقارنة غير العادلة؟</h2>
+<p>لا تستخدم شعارات أو صور منافسيك في إعلانك دون حق، ولا تنشر اتهامات عن متجر بناء على تعليق مجهول. لا تشترِ بيانات عملاء غير عامة، ولا تحاول الوصول إلى لوحة الإعلانات أو التحليلات الخاصة بالآخرين. أدوات الشفافية تفيد في التعلم من الرسائل العامة ولا تمنحك إذنًا بإعادة استخدام المحتوى. وإذا عرضت مقارنة علنية، فحدد الأساس والتاريخ والمصدر وامتنع عن الادعاءات التي لا يمكنك إثباتها.</p>
+<p>راقب الفروق بين مصر والسعودية في اللغة ومواسم الشراء وسياسات المستهلك وخيارات الدفع والشحن. لا تنقل استنتاجًا من عملاء بلد إلى آخر دون اختبار. كما أن المنافس الأصغر قد ينجح لخدمة شريحة محددة رغم قلة ظهوره، فلا تجعل الأعلى إنفاقًا في الإعلانات مرجعك الوحيد. القرارات الأقوى تبدأ بمعرفة العميل ثم مقارنة الأدلة ثم تجربة قصيرة محكومة، وليس بمطاردة كل حركة يقوم بها السوق.</p>
+<h2>الخلاصة: منافسك مصدر أسئلة لا نسخة جاهزة من مشروعك</h2>
+<p>انتهى التحليل الجيد عندما تستطيع الإجابة عن ثلاثة أسئلة: ما المشكلة التي لم تُحل جيدًا؟ ما الشيء الذي يمكنك تقديمه بصورة أفضل وبربحية محتملة؟ وما الدليل الذي ستجمعه قبل توسيع الاستثمار؟ ابدأ بورقة واحدة ومجموعة صغيرة من المنافسين، ثم راجع النتائج بعد تنفيذ تجربة حقيقية. وإذا لم تكشف الأدلة فجوة واضحة، فهذه نتيجة نافعة أيضًا: غيّر فرضية العرض بدل اقتناء مخزون على أمل أن يقلد السوق نجاحًا لا تعرف أسبابه.</p>
+<h2>المصادر الرسمية وحدود استخدامها</h2>
+<ul><li><a href="https://about.fb.com/news/2019/03/a-better-way-to-learn-about-ads/" target="_blank" rel="noopener noreferrer">Meta: تعريف مكتبة الإعلانات وشفافية إعلانات الصفحات</a> — لا تعرض المكتبة أرباح المنافسين.</li>
+<li><a href="https://adstransparency.google.com/" target="_blank" rel="noopener noreferrer">Google Ads Transparency Center</a> — مراجعة نماذج الإعلانات العامة.</li>
+<li><a href="https://developers.google.com/speed/docs/insights/v5/about" target="_blank" rel="noopener noreferrer">Google: شرح PageSpeed Insights</a> — الفرق بين القياس المختبري والبيانات الفعلية.</li>
+<li><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener noreferrer">Google Search Central: المحتوى المفيد والموثوق</a> — معيار نوعية المحتوى لا أرقام مبيعات.</li>
+<li><a href="https://support.google.com/trends/answer/4365533" target="_blank" rel="noopener noreferrer">Google Trends: منهجية البيانات</a> — الأرقام نسبية لا أحجام بحث مطلقة.</li>
+<li><a href="https://support.google.com/merchants/answer/6098512" target="_blank" rel="noopener noreferrer">Google Merchant Center: سياسات تقييمات المنتجات</a> — الأصالة والجودة.</li></ul>
+<p>تمت مراجعة الأدلة العامة بتاريخ 23 أكتوبر 2026. كل أسعار الأمثلة افتراضية للتعليم، وليست بيانات فعلية عن منافسين أو نتائج متاجر أو تقديرات مؤكدة لحجم السوق.</p>
+</article>
+<section class="related-static"><h2>أدلة وخدمات تساعدك</h2><ul><li><a href="/blog/ecommerce-complete-journey-guide">دليل بدء التجارة الإلكترونية</a></li><li><a href="/blog/essential-ecommerce-glossary">مصطلحات ومؤشرات المتجر</a></li><li><a href="/blog/startup-budget-egypt">تخطيط ميزانية المتجر</a></li></ul><p><a href="/services/">خدمات بناء وإدارة المتاجر</a> · <a href="/pricing/">طريقة التسعير</a></p></section>
+
+  <div class="art-cta">
+    <h3>هل محتاج مساعدة في متجرك؟</h3>
+    <p>تواصل معنا واحصل على استشارة مجانية — بدون أي التزام.</p>
+    <a href="https://wa.me/201021231619" target="_blank" rel="noopener">💬 تواصل على واتساب</a>
+  </div>
+</div>
+
+</main>
+<div class="related" id="relatedSection" style="display:none">
+  <h2>مقالات ذات صلة</h2>
+  <div class="related-grid" id="relatedGrid"></div>
+</div>
+
+<footer class="site-footer"><p>كن أونلاين — بناء وإدارة المتاجر الإلكترونية في مصر والخليج.</p><p>مصر — أسيوط — ميدان الأزهر</p><p><a href="https://wa.me/201021231619" target="_blank" rel="noopener">تواصل عبر واتساب</a></p><p><a href="/services/">الخدمات</a> · <a href="/system/">السيستم</a> · <a href="/about/">من نحن</a> · <a href="/contact/">تواصل معنا</a></p><p>© 2026 كن أونلاين — جميع الحقوق محفوظة</p><p class="social-links" aria-label="حسابات كن أونلاين الرسمية">تابع كن أونلاين: <a href="https://www.facebook.com/KunOnlineAgency" target="_blank" rel="noopener noreferrer">فيسبوك</a> · <a href="https://www.instagram.com/kunonlin/" target="_blank" rel="noopener noreferrer">إنستجرام</a></p></footer>
+
+<script>
+// Load related articles
+fetch('/blog/articles.json').then(function(r){return r.json()}).then(function(arts){
+  var slug = 'ecommerce-competitor-analysis-sheet';
+  var cat = 'store';
+  var related = arts.filter(function(a){return a.slug !== slug && a.category === cat}).slice(0,3);
+  if(related.length > 0){
+    document.getElementById('relatedSection').style.display = 'block';
+    document.getElementById('relatedGrid').innerHTML = related.map(function(a){
+      return '<a href="/blog/'+a.slug+'" class="rel-card"><div class="rel-cat">'+a.category+'</div><div class="rel-title">'+a.title+'</div></a>';
+    }).join('');
+  }
+}).catch(function(){});
+</script>
+<script src="/assets/site.js?v=5a700dfc0ebe" defer></script></body>
+</html>
+
