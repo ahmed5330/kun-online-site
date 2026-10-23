@@ -7,7 +7,7 @@ const root=resolve(import.meta.dirname,'..');
 const read=path=>readFileSync(join(root,path),'utf8');
 test('specialist consultation landing is independently navigable and indexable',()=>{
  const page=read('consultations/index.html');
- assert.match(page,/<h1>قرارات أفضل لم/);
+ assert.match(page,/<h1>استشارات التجارة الإلكترونية /);
  assert.match(page,/rel="canonical" href="https:\/\/kun-online\.com\/consultations\/"/);
  assert.match(read('sitemap.xml'),/<loc>https:\/\/kun-online\.com\/consultations\/<\/loc>/);
  assert.match(read('_redirects'),/\/consultations \/consultations\/ 301/);
