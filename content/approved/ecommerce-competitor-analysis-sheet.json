@@ -1,0 +1,34 @@
+{
+  "slug": "ecommerce-competitor-analysis-sheet",
+  "article_id": 15,
+  "approved": true,
+  "eligibleFrom": "2026-10-23",
+  "editorialApproval": "2026-10-23: Original Arabic editorial composition and factual review against official Meta Ad Library, Google Ads Transparency Center, Google Search Central, Google Trends, PageSpeed Insights and Google Merchant Center documentation. Explicitly hypothetical price example. User requested continuation of the approved daily blog publication process.",
+  "title": "تحليل المنافسين للمتجر الإلكتروني: ورقة عمل من 10 خطوات",
+  "description": "دليل عملي لتحليل المنافسين في التجارة الإلكترونية بمصر والسعودية: الأسعار والإعلانات والتقييمات والشحن والسيو، مع نموذج مقارنة يحوّل الملاحظات إلى قرارات.",
+  "primaryKeyword": "تحليل المنافسين في التجارة الإلكترونية",
+  "secondaryKeywords": [
+    "دراسة المنافسين للمتجر الإلكتروني",
+    "تحليل أسعار المنافسين",
+    "مكتبة إعلانات ميتا للمنافسين",
+    "جدول مقارنة المنافسين"
+  ],
+  "category": "store",
+  "categoryLabel": "بناء المتجر",
+  "image": "ecommerce-competitor-analysis-sheet.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "ecommerce-complete-journey-guide",
+    "startup-budget-egypt"
+  ],
+  "qualityReview": {
+    "words": 1817,
+    "sections": 14,
+    "readingMinutes": 11,
+    "checkedOn": "2026-10-23",
+    "exampleNumbers": "hypothetical; arithmetic 420+60=480, 450+20=470, difference=10 verified",
+    "sources": "official Meta and Google documentation reviewed 2026-10-23",
+    "originality": "independently composed workflow, comparison worksheet and illustrative scenarios",
+    "publicationGate": "one Cairo-date article; daily lock enforced by publish-approved-article.mjs"
+  }
+}
