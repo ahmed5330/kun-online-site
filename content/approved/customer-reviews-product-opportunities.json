@@ -1,0 +1,36 @@
+{
+  "slug": "customer-reviews-product-opportunities",
+  "article_id": 16,
+  "approved": true,
+  "eligibleFrom": "2026-10-24",
+  "editorialApproval": "2026-10-24: Original Arabic editorial composition reviewed for source attribution and example arithmetic using current official Shopify Help Center, Google Maps policy, Google Search Central and FTC consumer reviews rule guidance; all example feedback and metrics are explicitly hypothetical. Daily editorial production authorized by site owner.",
+  "title": "تحليل تقييمات المنافسين: كيف تكتشف احتياجات العملاء وأفكار المنتجات؟",
+  "description": "دليل عملي لتحليل تقييمات المنافسين وشكاوى العملاء وتحويل صوت العميل إلى فرص منتجات وتحسينات قابلة للاختبار، مع جدول تصنيف وأمثلة واقعية المنهج.",
+  "primaryKeyword": "تحليل تقييمات المنافسين",
+  "secondaryKeywords": [
+    "تحليل شكاوى العملاء",
+    "صوت العميل في التجارة الإلكترونية",
+    "استخراج أفكار منتجات من التقييمات",
+    "Voice of Customer",
+    "دراسة آراء العملاء"
+  ],
+  "category": "store",
+  "categoryLabel": "بناء المتجر",
+  "image": "customer-reviews-product-opportunities.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "ecommerce-competitor-analysis-sheet",
+    "ecommerce-product-ideas-research"
+  ],
+  "qualityReview": {
+    "words": 2044,
+    "sections": 15,
+    "readingMinutes": 13,
+    "checkedOn": "2026-10-24",
+    "exampleNumbers": "hypothetical only: 8/40=20% of sampled reviews; 3×2×3=18 of 27 internal score; not market statistics",
+    "sources": "official Shopify Help Center, Google Maps policy, Google Search Central and US FTC review rule documentation, checked 2026-10-24",
+    "privacy": "public sources only; no personal data, impersonation or unauthorized scraping",
+    "originality": "original voice-of-customer taxonomy, sampling and prioritization workflow; distinct from competitor-analysis guide",
+    "publicationGate": "at most one Cairo-date article; publisher enforces registry/log lock"
+  }
+}
