@@ -586,6 +586,22 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/customer-reviews-product-opportunities",
+      "primary": "تحليل تقييمات المنافسين",
+      "secondary": [
+        "تحليل شكاوى العملاء",
+        "صوت العميل في التجارة الإلكترونية",
+        "استخراج أفكار منتجات من التقييمات",
+        "Voice of Customer",
+        "دراسة آراء العملاء"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }

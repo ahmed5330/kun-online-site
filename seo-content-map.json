@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 16,
-    "articles_remaining": 84,
+    "articles_published": 17,
+    "articles_remaining": 83,
     "current_article": null,
-    "next_article": 16,
-    "project_completion_percentage": 16,
-    "last_published_date": "2026-10-23",
+    "next_article": 17,
+    "project_completion_percentage": 17,
+    "last_published_date": "2026-10-24",
     "last_run_date": null
   },
   "chapters": [
@@ -126,6 +126,7 @@
       "internal_links_in": [
         "https://kun-online.com/blog/brand-vs-product-business",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
+        "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/ecommerce-evolution-history",
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
@@ -216,6 +217,7 @@
       "internal_links_in": [
         "https://kun-online.com/blog/brand-vs-product-business",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
+        "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
@@ -357,6 +359,7 @@
       "internal_links_in": [
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-funnel-guide",
+        "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
         "https://kun-online.com/blog/ecommerce-funnel-explained",
@@ -488,6 +491,7 @@
       "published_date": "2026-10-19",
       "word_count": 1846,
       "internal_links_out": [
+        "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/real-cost-per-delivered-order",
@@ -530,6 +534,7 @@
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
       "internal_links_in": [
+        "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/startup-budget-egypt"
@@ -606,6 +611,7 @@
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
       "internal_links_in": [
+        "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/startup-budget-egypt"
@@ -636,6 +642,7 @@
       "published_date": "2026-10-23",
       "word_count": 1817,
       "internal_links_out": [
+        "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/ecommerce-product-ideas-research",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
@@ -645,6 +652,7 @@
         "https://kun-online.com/blog/test-product-before-bulk-inventory"
       ],
       "internal_links_in": [
+        "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
@@ -658,18 +666,36 @@
       "brief": "علّم القارئ استخراج Pain Points من Reviews: «الخامة كويسة بس المقاس…»، «التوصيل…»، «مفيش…».",
       "new_concept": "Voice of Customer Research.",
       "research_space": "ابحث عن أدوات AI لتحليل Reviews وCustomer Feedback.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "queued",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
+      "final_h1": "تحليل تقييمات المنافسين: كيف تكتشف احتياجات العملاء وأفكار المنتجات؟",
+      "seo_title": "تحليل تقييمات المنافسين: كيف تكتشف احتياجات العملاء وأفكار المنتجات؟ | مدونة كن أونلاين",
+      "primary_keyword": "تحليل تقييمات المنافسين",
+      "secondary_keywords": [
+        "تحليل شكاوى العملاء",
+        "صوت العميل في التجارة الإلكترونية",
+        "استخراج أفكار منتجات من التقييمات",
+        "Voice of Customer",
+        "دراسة آراء العملاء"
+      ],
+      "search_intent": "informational",
+      "slug": "customer-reviews-product-opportunities",
+      "url": "https://kun-online.com/blog/customer-reviews-product-opportunities",
+      "status": "published",
+      "published_date": "2026-10-24",
+      "word_count": 2044,
+      "internal_links_out": [
+        "https://kun-online.com/blog/customer-funnel-guide",
+        "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/product-demand-validation-guide",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/startup-budget-egypt",
+        "https://kun-online.com/blog/test-product-before-bulk-inventory"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
+        "https://kun-online.com/blog/ecommerce-product-ideas-research"
+      ],
       "failure_reason": null,
       "attempts": 0
     },
@@ -1930,6 +1956,7 @@
         "https://kun-online.com/blog/real-cost-per-delivered-order"
       ],
       "internal_links_in": [
+        "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-funnel-explained",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/product-marketing-operations-ecommerce"
