@@ -602,6 +602,22 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/product-profitability-before-launch",
+      "primary": "حساب ربحية المنتج قبل البيع",
+      "secondary": [
+        "تكلفة الطلب المسلم",
+        "هامش المساهمة للمتجر الإلكتروني",
+        "حساب نقطة التعادل",
+        "تكلفة المرتجعات والشحن",
+        "Unit Economics"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }
