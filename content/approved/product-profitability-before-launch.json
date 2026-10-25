@@ -1,0 +1,37 @@
+{
+  "slug": "product-profitability-before-launch",
+  "article_id": 17,
+  "approved": true,
+  "eligibleFrom": "2026-10-25",
+  "editorialApproval": "2026-10-25: Original Arabic editorial research and explicit editorial approval for user-authorized automated production. Reviewed current official Shopify Help Center product-cost, profit-report and pricing guidance; 2026 Shopify break-even and customer-acquisition documentation; Google Analytics 4 ecommerce event guidance. All numeric examples hypothetical and arithmetic verified; no claimed market benchmarks.",
+  "title": "هل المنتج مربح قبل ما تبدأ؟ احسب التكلفة الحقيقية وهامش المساهمة",
+  "description": "دليل حساب ربحية المنتج قبل البيع: تكلفة الشراء والشحن والتغليف والإعلانات والمرتجعات، مع مثال بالأرقام ونقطة التعادل واختبار سيناريوهات الربح.",
+  "primaryKeyword": "حساب ربحية المنتج قبل البيع",
+  "secondaryKeywords": [
+    "تكلفة الطلب المسلم",
+    "هامش المساهمة للمتجر الإلكتروني",
+    "حساب نقطة التعادل",
+    "تكلفة المرتجعات والشحن",
+    "Unit Economics"
+  ],
+  "category": "store",
+  "categoryLabel": "بناء المتجر",
+  "image": "product-profitability-before-launch.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "ecommerce-complete-journey-guide",
+    "startup-budget-egypt",
+    "test-product-before-bulk-inventory"
+  ],
+  "qualityReview": {
+    "words": 2075,
+    "sections": 17,
+    "readingMinutes": 13,
+    "checkedOn": "2026-10-25",
+    "exampleNumbers": "hypothetical only: 650-(270+20+55+15+110+35)=145; 145/650=22.31%; 5800/145=40; 5800/75 rounded up=78; 5800/95 rounded up=62; 5800/110 rounded up=53; 650-(270+20+55+15+35)=255; 255-100=155",
+    "sources": "Shopify official 2026 guidance and Help Center, Google Analytics 4 official documentation, checked 2026-10-25",
+    "originality": "original pre-launch unit economics decision framework distinct from operational cost-per-delivered-order guide",
+    "publicationGate": "Cairo date one-article lock; no manual bypass",
+    "scope": "original Egyptian Arabic educational article; no real customer data or fabricated statistics"
+  }
+}
