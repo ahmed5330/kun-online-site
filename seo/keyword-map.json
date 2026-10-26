@@ -618,6 +618,22 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/cheap-vs-expensive-products-online",
+      "primary": "بيع المنتجات الرخيصة أم الغالية",
+      "secondary": [
+        "اختيار سعر المنتج للمتجر الإلكتروني",
+        "المنتجات مرتفعة السعر أونلاين",
+        "هامش المساهمة وتكلفة اكتساب العميل",
+        "الربح من المنتجات منخفضة السعر",
+        "AOV وCAC في التجارة الإلكترونية"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }

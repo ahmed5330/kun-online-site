@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 18,
-    "articles_remaining": 82,
+    "articles_published": 19,
+    "articles_remaining": 81,
     "current_article": null,
-    "next_article": 18,
-    "project_completion_percentage": 18,
-    "last_published_date": "2026-10-25",
+    "next_article": 19,
+    "project_completion_percentage": 19,
+    "last_published_date": "2026-10-26",
     "last_run_date": null
   },
   "chapters": [
@@ -113,6 +113,7 @@
       "word_count": 1611,
       "internal_links_out": [
         "https://kun-online.com/blog/brand-vs-product-business",
+        "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
         "https://kun-online.com/blog/ecommerce-product-ideas-research",
@@ -126,6 +127,7 @@
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/brand-vs-product-business",
+        "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
@@ -202,6 +204,7 @@
       "published_date": "2026-08-27",
       "word_count": 1665,
       "internal_links_out": [
+        "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/cod-shipping-returns-reconciliation",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
@@ -219,6 +222,7 @@
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/brand-vs-product-business",
+        "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
@@ -361,6 +365,7 @@
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
       "internal_links_in": [
+        "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-funnel-guide",
         "https://kun-online.com/blog/customer-reviews-product-opportunities",
@@ -618,6 +623,7 @@
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
       "internal_links_in": [
+        "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
@@ -660,6 +666,7 @@
         "https://kun-online.com/blog/test-product-before-bulk-inventory"
       ],
       "internal_links_in": [
+        "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/startup-budget-egypt"
@@ -731,6 +738,7 @@
       "published_date": "2026-10-25",
       "word_count": 2075,
       "internal_links_out": [
+        "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/cod-shipping-returns-reconciliation",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
@@ -741,6 +749,7 @@
         "https://kun-online.com/blog/test-product-before-bulk-inventory"
       ],
       "internal_links_in": [
+        "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/startup-budget-egypt",
         "https://kun-online.com/blog/test-product-before-bulk-inventory"
@@ -755,18 +764,38 @@
       "brief": "اشرح أثر السعر على CAC والهامش والقرار الشرائي والشحن وخدمة العملاء.",
       "new_concept": "Contribution Margin.",
       "research_space": "ابحث عن العلاقة بين AOV وCAC والربحية.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "queued",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
+      "final_h1": "المنتج الرخيص ولا الغالي: أيهما أسهل في البيع أونلاين وأكثر ربحية؟",
+      "seo_title": "المنتج الرخيص ولا الغالي: أيهما أسهل في البيع أونلاين وأكثر ربحية؟ | مدونة كن أونلاين",
+      "primary_keyword": "بيع المنتجات الرخيصة أم الغالية",
+      "secondary_keywords": [
+        "اختيار سعر المنتج للمتجر الإلكتروني",
+        "المنتجات مرتفعة السعر أونلاين",
+        "هامش المساهمة وتكلفة اكتساب العميل",
+        "الربح من المنتجات منخفضة السعر",
+        "AOV وCAC في التجارة الإلكترونية"
+      ],
+      "search_intent": "informational",
+      "slug": "cheap-vs-expensive-products-online",
+      "url": "https://kun-online.com/blog/cheap-vs-expensive-products-online",
+      "status": "published",
+      "published_date": "2026-10-26",
+      "word_count": 2199,
+      "internal_links_out": [
+        "https://kun-online.com/blog/cod-shipping-returns-reconciliation",
+        "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/order-confirmation-delivery-rate",
+        "https://kun-online.com/blog/product-profitability-before-launch",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/startup-budget-egypt",
+        "https://kun-online.com/blog/test-product-before-bulk-inventory"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/product-profitability-before-launch",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
       "failure_reason": null,
       "attempts": 0
     },
