@@ -1,0 +1,37 @@
+{
+  "slug": "cheap-vs-expensive-products-online",
+  "article_id": 18,
+  "approved": true,
+  "eligibleFrom": "2026-10-26",
+  "editorialApproval": "2026-10-26: User-authorized daily original Arabic editorial production, manually composed and reviewed for calculations, SEO structure and source limitations. Official 2026 Shopify CAC, KPIs and pricing guidance, official Shopify shipping guidance, Egyptian Consumer Protection Agency and Saudi Ministry of Commerce guidance checked on 2026-10-26; all figures hypothetical, no invented market statistics.",
+  "title": "المنتج الرخيص ولا الغالي: أيهما أسهل في البيع أونلاين وأكثر ربحية؟",
+  "description": "مقارنة عملية بين بيع المنتجات الرخيصة والغالية أونلاين: هامش المساهمة وتكلفة اكتساب العميل والشحن والمرتجعات والسيولة، مع أمثلة حسابية وخطة اختبار.",
+  "primaryKeyword": "بيع المنتجات الرخيصة أم الغالية",
+  "secondaryKeywords": [
+    "اختيار سعر المنتج للمتجر الإلكتروني",
+    "المنتجات مرتفعة السعر أونلاين",
+    "هامش المساهمة وتكلفة اكتساب العميل",
+    "الربح من المنتجات منخفضة السعر",
+    "AOV وCAC في التجارة الإلكترونية"
+  ],
+  "category": "store",
+  "categoryLabel": "بناء المتجر",
+  "image": "cheap-vs-expensive-products-online.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "ecommerce-complete-journey-guide",
+    "startup-budget-egypt",
+    "product-profitability-before-launch"
+  ],
+  "qualityReview": {
+    "words": 2199,
+    "sections": 15,
+    "readingMinutes": 13,
+    "checkedOn": "2026-10-26",
+    "exampleNumbers": "All hypothetical EGP: low 105+12+38+5+15=175, 250-175=75, 75/250=30%; high 560+25+65+20+50=720, 1000-720=280, 280/1000=28%; 75-50=25, 280-190=90, 75-85=-10, 280-300=-20; inventory 20*105=2100, 20*560=11200.",
+    "sources": "Official Shopify 2026 ecommerce customer acquisition, 2026 ecommerce KPIs and pricing, Shopify shipping, Egyptian CPA consumer FAQ and Saudi Ministry of Commerce consumer rights guide",
+    "originality": "Original price-tier decision framework with explicitly hypothetical paired unit economics and cash-flow comparison; distinct from existing product profitability guide",
+    "publicationGate": "One Cairo-day article lock; eligibleFrom=2026-10-26 after last confirmed article 2026-10-25; never bypass gate",
+    "scope": "Educational Egyptian Arabic article, no actual customer data or claimed market benchmarks"
+  }
+}
