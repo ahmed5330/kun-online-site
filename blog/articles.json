@@ -256,11 +256,11 @@
     ],
     "date": "15 أكتوبر 2026",
     "dateISO": "2026-10-15",
-    "readTime": 9,
-    "wordCount": 1504,
+    "readTime": 10,
+    "wordCount": 1535,
     "icon": "📘",
     "image": "cod-shipping-returns-reconciliation.png",
-    "dateModified": "2026-10-16"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "inventory-barcode-bundle-tracking",
@@ -293,10 +293,10 @@
     "date": "15 أكتوبر 2026",
     "dateISO": "2026-10-15",
     "readTime": 10,
-    "wordCount": 1565,
+    "wordCount": 1598,
     "icon": "📘",
     "image": "order-confirmation-delivery-rate.png",
-    "dateModified": "2026-10-16"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "real-cost-per-delivered-order",
@@ -311,10 +311,10 @@
     "date": "15 أكتوبر 2026",
     "dateISO": "2026-10-15",
     "readTime": 10,
-    "wordCount": 1661,
+    "wordCount": 1697,
     "icon": "📘",
     "image": "real-cost-per-delivered-order.png",
-    "dateModified": "2026-10-16"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "brand-vs-product-business",
