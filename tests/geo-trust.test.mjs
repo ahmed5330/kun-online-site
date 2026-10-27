@@ -152,8 +152,8 @@ test('GEO accuracy: beginner and channel guides do not publish fabricated fixed 
  const registry=JSON.parse(read('blog/articles.json'));
  const map=JSON.parse(read('seo-content-map.json'));
  const cases=[
-  {slug:'ecommerce-complete-journey-guide',original:'2026-08-26',count:1684,minutes:10},
-  {slug:'owned-vs-rented-channels',original:'2026-09-01',count:1727,minutes:11}
+  {slug:'ecommerce-complete-journey-guide',original:'2026-08-26',count:1684,minutes:10,lastmod:'2026-10-27'},
+  {slug:'owned-vs-rented-channels',original:'2026-09-01',count:1805,minutes:11,lastmod:'2026-10-28'}
  ];
  for(const entry of cases){
   const item=registry.find(x=>x.slug===entry.slug);
@@ -163,7 +163,7 @@ test('GEO accuracy: beginner and channel guides do not publish fabricated fixed 
   assert.ok(item&&published&&schema,entry.slug);
   assert.equal(item.dateISO,entry.original);
   assert.equal(schema.datePublished,entry.original);
-  assert.equal(item.dateModified,'2026-10-27');
+  assert.equal(item.dateModified,entry.lastmod);
   assert.equal(schema.dateModified,item.dateModified);
   assert.equal(item.wordCount,entry.count);
   assert.equal(published.word_count,entry.count);
@@ -172,7 +172,7 @@ test('GEO accuracy: beginner and channel guides do not publish fabricated fixed 
   assert.equal(schema.timeRequired,'PT'+entry.minutes+'M');
   assert.ok(html.includes('href="https://www.shopify.com/pricing"'),
    'Official current plan reference required');
-  assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/'+entry.slug+'</loc><lastmod>2026-10-27</lastmod>'));
+  assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/'+entry.slug+'</loc><lastmod>'+entry.lastmod+'</lastmod>'));
   assert.ok(!html.includes('trial مجاني 3 شهور'),'Outdated free-trial claim');
   assert.ok(!html.includes('750 إلى 3000 جنيه'),'Misleading outdated FX conversion');
  }
@@ -211,4 +211,35 @@ test('GEO editorial: latest authorial explanations link to primary sources and p
     assert.ok(html.includes('href="'+q.source+'"'),'primary-source link missing');
     assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/'+q.slug+'</loc><lastmod>2026-10-28</lastmod>'));
   }
+});
+
+
+test('GEO beginner guides: sources, metadata, unchanged original publication dates',()=>{
+ const registry=JSON.parse(read('blog/articles.json'));
+ const mapped=JSON.parse(read('seo-content-map.json'));
+ const cases=[
+  {slug:'what-is-ecommerce',date:'2026-08-25T20:45:12Z',words:1582,minutes:10,link:'https://sdgpulse.unctad.org/glossary/e-commerce/'},
+  {slug:'startup-budget-egypt',date:'2026-08-27',words:1741,minutes:11,link:'https://www.shopify.com/pricing'},
+  {slug:'owned-vs-rented-channels',date:'2026-09-01',words:1805,minutes:11,link:'https://www.shopify.com/pricing'},
+  {slug:'ecommerce-evolution-history',date:'2026-08-26T06:05:00Z',words:1614,minutes:10,link:'https://www.wto.org/english/tratop_e/ecom_e/ecom_work_programme_e.htm'}
+ ];
+ for(const q of cases){
+  const meta=registry.find(x=>x.slug===q.slug),html=read('blog/'+q.slug+'.html');
+  const schema=byType(html,'BlogPosting');
+  assert.ok(meta&&schema,'article and schema missing '+q.slug);
+  assert.equal(meta.dateISO,q.date,'original publication date retained');
+  assert.equal(schema.datePublished,q.date,'original schema publication retained');
+  assert.equal(meta.dateModified,'2026-10-28');
+  assert.equal(schema.dateModified,meta.dateModified);
+  assert.equal(meta.wordCount,q.words);
+  assert.equal(schema.wordCount,q.words);
+  assert.equal(meta.readTime,q.minutes);
+  assert.equal(schema.timeRequired,'PT'+q.minutes+'M');
+  const mappedRow=mapped.queue.find(x=>x.slug===q.slug);
+  if(mappedRow)assert.equal(mappedRow.word_count,q.words,'planned article count matches');
+  assert.ok(html.includes('الإجابة المختصرة:'));
+  assert.ok(html.includes('href="'+q.link+'"'),'Source must be original and relevant');
+  assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/'+q.slug+'</loc><lastmod>2026-10-28</lastmod>'));
+ }
+ assert.ok(!read('blog/ecommerce-evolution-history.html').includes('Amazon يقول أن 35%'),'Unsupported recommendation revenue statistic');
 });

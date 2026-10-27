@@ -601,7 +601,9 @@ test('SEO-34: ecommerce history avoids unsupported national performance percenta
     '90% من الزيارات للمتاجر الإلكترونية',
     'جلب 500 جنيه يوميًا في شهرك الأول'
   ]) assert.ok(!html.includes(falseClaim),'Unverified claim reappeared: '+falseClaim);
-  assert.ok(html.includes('"dateModified":"2026-10-16"'));
+  const history=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8')).find(x=>x.slug==='ecommerce-evolution-history');
+  assert.ok(history,'History article must be registered');
+  assert.ok(html.includes('"dateModified":"'+history.dateModified+'"'),'History schema must reflect authentic revision date');
   assert.ok(html.includes('سوق مصر أو السعودية'));
   assert.ok(html.includes('سياسة استبدال واسترجاع واضحة'));
 });
