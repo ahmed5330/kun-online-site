@@ -23,6 +23,8 @@ jobs:
         with:
           node-version: 22
       - name: Read-only public-domain crawl and user-agent smoke
+        env:
+          GEO_ALLOW_UNDEPLOYED_ROUTES: ${{ github.event_name == 'pull_request' && '1' || '0' }}
         run: node scripts/geo-site-audit.mjs --live
       - uses: actions/upload-artifact@v4
         if: always()
