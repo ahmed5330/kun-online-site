@@ -18,7 +18,7 @@ test('GEO-04: methodology is substantial, visible without JS, and canonical', ()
   assert.match(html,/<title>منهج كن أونلاين/);
   assert.match(html,/rel="canonical" href="https:\/\/kun-online\.com\/methodology\/"/);
   assert.match(html,/<meta name="robots" content="index,follow">/);
-  assert.match(core,/مصادر الأرقام/);
+  assert.match(core,/مصدر البيانات/);
   assert.match(core,/نسبة التسليم/);
   assert.match(core,/هامش المساهمة/);
   assert.match(core,/دراسة حالة موثقة/);
