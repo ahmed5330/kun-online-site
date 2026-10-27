@@ -146,3 +146,40 @@ test('GEO-05: foundational guides preserve source-backed claims and editorial re
   const funnel = read('blog/ecommerce-funnel-explained.html');
   assert.match(funnel, /مثال تعليمي افتراضي/);
 });
+
+
+test('GEO accuracy: beginner and channel guides do not publish fabricated fixed marketplace fees',()=>{
+ const registry=JSON.parse(read('blog/articles.json'));
+ const map=JSON.parse(read('seo-content-map.json'));
+ const cases=[
+  {slug:'ecommerce-complete-journey-guide',original:'2026-08-26',count:1684,minutes:10},
+  {slug:'owned-vs-rented-channels',original:'2026-09-01',count:1727,minutes:11}
+ ];
+ for(const entry of cases){
+  const item=registry.find(x=>x.slug===entry.slug);
+  const published=map.queue.find(x=>x.slug===entry.slug);
+  const html=read('blog/'+entry.slug+'.html');
+  const schema=byType(html,'BlogPosting');
+  assert.ok(item&&published&&schema,entry.slug);
+  assert.equal(item.dateISO,entry.original);
+  assert.equal(schema.datePublished,entry.original);
+  assert.equal(item.dateModified,'2026-10-27');
+  assert.equal(schema.dateModified,item.dateModified);
+  assert.equal(item.wordCount,entry.count);
+  assert.equal(published.word_count,entry.count);
+  assert.equal(schema.wordCount,entry.count);
+  assert.equal(item.readTime,entry.minutes);
+  assert.equal(schema.timeRequired,'PT'+entry.minutes+'M');
+  assert.ok(html.includes('href="https://www.shopify.com/pricing"'),
+   'Official current plan reference required');
+  assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/'+entry.slug+'</loc><lastmod>2026-10-27</lastmod>'));
+  assert.ok(!html.includes('trial مجاني 3 شهور'),'Outdated free-trial claim');
+  assert.ok(!html.includes('750 إلى 3000 جنيه'),'Misleading outdated FX conversion');
+ }
+ const primer=read('blog/ecommerce-complete-journey-guide.html');
+ for(const stale of ['2.49% (الأسرع','10-25 جنيه بين المدن','أنت قدام بـ 80%','3-6 شهور لحتى تشوف','ROAS أقل من 2x','عمولة 15-30% من السعر'])
+  assert.ok(!primer.includes(stale),'Unsupported guarantee/rate '+stale);
+ const compare=read('blog/owned-vs-rented-channels.html');
+ for(const stale of ['15% إلى 45% حسب فئة','29 دولار للخطة الأساسية','بين 750 إلى 3000 جنيه','أقل من 5000 جنيه'])
+  assert.ok(!compare.includes(stale),'Unsupported regional price '+stale);
+});
