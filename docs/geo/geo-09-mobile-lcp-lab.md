@@ -25,3 +25,16 @@ Source artifact: [GitHub Actions run 40538125741](https://github.com/ahmed5330/k
 5. After approved deployment run live Cloudflare tests and a fresh production Lighthouse run to verify the real domain.
 
 **Do not equate a lab improvement to improved field INP or guarantee of higher search ranking.**
+
+## تجربة A — مرفوضة (Lighthouse PR run 40598819554)
+
+استخدمت النسخة الأولى تحميلًا غير حاجب لأربعة ملفات CSS، ومنها ملف `site.css` الذي يحدد `body line-height` وتصميمًا أساسيًا. أظهرت مقارنة ABBA على نفس جهاز الاختبار:
+- **Main baseline:** متوسط LCP للموبايل **1881 ms**، CLS أقصى **0.009**، Performance **98/100**.
+- **Candidate A:** متوسط LCP **1883 ms**، CLS أقصى **0.970**، Performance **75/100**.
+- وبالتالي **لم يتحسن LCP**، وحدث تراجع غير مقبول في تخطيط الصفحة. **يُحظر اعتماد النسخة الأولى** حتى لو اجتازت بعض اختبارات المحتوى.
+
+## تجربة B — تحت الاختبار
+
+- إعادة `site.css` إلى رابط CSS متزامن لتعريف تخطيط الصفحة قبل أول رسم.
+- إبقاء اختبار التحميل غير الحاجب للخطوط وملفي CSS الخاصين بأقسام `reviews` و`system` فقط، مع `noscript` fallback لكل ملف مؤجل.
+- **معيار القبول ثابت:** LCP حقيقي أفضل، CLS قريب من baseline وأقل من 0.1، ولا أخطاء متصفح/SEO. إذا فشل، لا يتم دمج هذا PR.
