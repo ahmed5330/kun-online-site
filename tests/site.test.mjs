@@ -182,7 +182,7 @@ test('all pages load brand-font CSS on first visit and allow late swap without r
     const html=fs.readFileSync(page,'utf8');
     assert.match(html,/<main\b/,page);
     const fontLinks=[...html.matchAll(/<link\b[^>]*fonts\.googleapis\.com\/css2[^>]*>/g)].map(x=>x[0]);
-    const usesAsyncFonts=page==='index.html';
+    const usesAsyncFonts=path.resolve(page)===path.join(root,'index.html');
     assert.equal(fontLinks.length,usesAsyncFonts?2:1,'Google Fonts stylesheet and graceful fallback: '+page);
     for(const link of fontLinks){
       assert.match(link,/rel="stylesheet"/,page);
