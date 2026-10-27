@@ -17,6 +17,9 @@ const specs=[
    absent:['تواصل هاتفيًا قبل الزيارة']},
   {path:'/services/ecommerce-management/',canonical:'https://kun-online.com/services/ecommerce-management/',
    text:['/methodology/']},
+  {path:'/blog/owned-vs-rented-channels',canonical:'https://kun-online.com/blog/owned-vs-rented-channels',
+   text:['https://www.shopify.com/pricing','https://sell.amazon.eg/pricing'],
+   absent:['بين 750 إلى 3000 جنيه','15% إلى 45% حسب فئة المنتج']},
   ...[
     'ecommerce-complete-journey-guide',
     'common-ecommerce-beginner-mistakes',
@@ -29,7 +32,9 @@ const specs=[
     'cod-shipping-returns-reconciliation'
   ].map(slug=>({
     path:'/blog/'+slug,canonical:'https://kun-online.com/blog/'+slug,
-    text:['الإجابة المختصرة:']
+    text:['الإجابة المختصرة:'],
+    absent:slug==='ecommerce-complete-journey-guide' ?
+      ['trial مجاني 3 شهور','ROAS أقل من 2x','10-25 جنيه بين المدن'] : []
   }))
 ];
 function canonical(html){
