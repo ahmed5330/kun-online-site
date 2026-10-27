@@ -212,3 +212,34 @@ test('GEO editorial: latest authorial explanations link to primary sources and p
     assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/'+q.slug+'</loc><lastmod>2026-10-28</lastmod>'));
   }
 });
+
+
+test('GEO beginner guides: sources, metadata, unchanged original publication dates',()=>{
+ const registry=JSON.parse(read('blog/articles.json'));
+ const mapped=JSON.parse(read('seo-content-map.json'));
+ const cases=[
+  {slug:'what-is-ecommerce',date:'2026-08-25T20:45:12Z',words:1582,minutes:10,link:'https://sdgpulse.unctad.org/glossary/e-commerce/'},
+  {slug:'startup-budget-egypt',date:'2026-08-27',words:1741,minutes:11,link:'https://www.shopify.com/pricing'},
+  {slug:'owned-vs-rented-channels',date:'2026-09-01',words:1805,minutes:11,link:'https://www.shopify.com/pricing'},
+  {slug:'ecommerce-evolution-history',date:'2026-08-26T06:05:00Z',words:1614,minutes:10,link:'https://www.wto.org/english/tratop_e/ecom_e/ecom_work_programme_e.htm'}
+ ];
+ for(const q of cases){
+  const meta=registry.find(x=>x.slug===q.slug),html=read('blog/'+q.slug+'.html');
+  const schema=byType(html,'BlogPosting');
+  assert.ok(meta&&schema,'article and schema missing '+q.slug);
+  assert.equal(meta.dateISO,q.date,'original publication date retained');
+  assert.equal(schema.datePublished,q.date,'original schema publication retained');
+  assert.equal(meta.dateModified,'2026-10-28');
+  assert.equal(schema.dateModified,meta.dateModified);
+  assert.equal(meta.wordCount,q.words);
+  assert.equal(schema.wordCount,q.words);
+  assert.equal(meta.readTime,q.minutes);
+  assert.equal(schema.timeRequired,'PT'+q.minutes+'M');
+  const mappedRow=mapped.queue.find(x=>x.slug===q.slug);
+  if(mappedRow)assert.equal(mappedRow.word_count,q.words,'planned article count matches');
+  assert.ok(html.includes('الإجابة المختصرة:'));
+  assert.ok(html.includes('href="'+q.link+'"'),'Source must be original and relevant');
+  assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/'+q.slug+'</loc><lastmod>2026-10-28</lastmod>'));
+ }
+ assert.ok(!read('blog/ecommerce-evolution-history.html').includes('Amazon يقول أن 35%'),'Unsupported recommendation revenue statistic');
+});
