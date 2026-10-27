@@ -83,6 +83,16 @@
 | `/system/order-management/` | P1 | `system/order-management/index.html` | موجود | فحص PR | غير مثبت |
 | `/system/shipping/` | P1 | `system/shipping/index.html` | موجود | فحص PR | غير مثبت |
 
+## سجل التنفيذ والاختبارات (27 أكتوبر 2026)
+
+- PR للمراجعة: https://github.com/ahmed5330/kun-online-site/pull/89 (Draft، لم يُدمج ولم يُنشر).
+- GitHub Actions: https://github.com/ahmed5330/kun-online-site/actions/runs/40466979496 — **success** على commit `0d2da66e126e1074849badf1aefccd208a8b565d`.
+- مجموعة الاختبارات الحالية: **63/63 ناجحة**، واختبارات GEO الجديدة: **4/4 ناجحة**.
+- التقرير الآلي الجديد: **106/106 فحصًا ثابتًا ناجحًا** عبر **45 رابطًا** (الوضع `static`).
+- فحص المتصفح Desktop/Mobile في نفس الدورة: **success**.
+- **ليس إثبات نشر**: الفحص الحي `--live` وسجل WAF الخاص بالزواحف وGoogle URL Inspection لم يتم إغلاقهم بهذا الـCI. إعداد الإنتاج لم يُغيَّر.
+- ملفات `test-results/` مخرجات اختبارات غير مُلتزمة في Git؛ سجل CI يثبت الأرقام، والفحص قابل لإعادة التشغيل على أي checkout مماثل.
+
 ## سجل الحالات المفتوحة
 
 | ID | الفحص | الوضع | شرط الإغلاق |
