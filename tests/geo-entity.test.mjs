@@ -72,3 +72,20 @@ test('GEO-03: service schemas use stable publisher identity rather than invented
     assert.ok(service?.['@id']?.startsWith('https://kun-online.com/'), file);
   }
 });
+
+test('GEO-03: published articles credit the existing business identity consistently', () => {
+  const entries = JSON.parse(read('blog/articles.json'));
+  const attributableToKun = entity => entity?.['@id'] === ORG ||
+    (entity?.['@type'] === 'Organization' &&
+      entity.name === 'كن أونلاين' &&
+      (entity.url === 'https://kun-online.com' || entity.url === 'https://kun-online.com/'));
+  assert.ok(entries.length >= 15, 'unexpectedly missing published articles');
+  for (const entry of entries) {
+    const file = 'blog/' + entry.slug + '.html';
+    const posting = byType(read(file), 'BlogPosting');
+    assert.ok(posting, file + ': missing BlogPosting');
+    assert.ok(attributableToKun(posting.publisher), file + ': inconsistent publisher');
+    assert.ok(attributableToKun(posting.author), file + ': author not yet documented');
+    assert.equal(posting.mainEntityOfPage, 'https://kun-online.com/blog/' + entry.slug, file);
+  }
+});
