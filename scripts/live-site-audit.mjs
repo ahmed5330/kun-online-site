@@ -183,12 +183,17 @@ async function run() {
     check('Sitemap contains ' + article,
       sitemap.includes('<loc>' + base + article + '</loc>'));
   }
+  const articleRegistry = JSON.parse(await fs.readFile('blog/articles.json','utf8'));
+  const publishedDateFor = slug => articleRegistry.find(item=>item.slug===slug)?.dateModified || null;
   const cro = records.get('/blog/customer-funnel-guide')?.body || '';
+  const croModified = publishedDateFor('customer-funnel-guide');
   check('Revised CRO guide actually deployed',
+    !!croModified &&
     cro.includes('ابنِ لوحة قياس واحدة') &&
     cro.includes('أحداث GA4 المناسبة') &&
     cro.includes('مؤشرات لا يمكن استنتاجها من Clarity وحده') &&
-    cro.includes('"dateModified":"2026-10-16"'));
+    cro.includes('"dateModified":"'+croModified+'"'),
+    'expected dateModified='+croModified);
   const unversionedJs=records.get('/assets/site.js')?.body || '';
   let js=unversionedJs;
   try {
@@ -222,13 +227,13 @@ async function run() {
     js.includes("window.gtag('event', 'whatsapp_click'"));
   const editorChecks = [
     { path: '/blog/startup-budget-egypt',
-      required: ['سيولة الاحتياط', 'هامش المساهمة', 'shopify.com/pricing', '"dateModified":"2026-10-16"'],
+      required: ['سيولة الاحتياط', 'هامش المساهمة', 'shopify.com/pricing', '"dateModified":"'+publishedDateFor('startup-budget-egypt')+'"'],
       forbidden: ['1500 جنيه تغطي منتج'] },
     { path: '/blog/product-marketing-operations-ecommerce',
-      required: ['نقرة واتساب ليست عميلًا مؤهلًا', '300 جنيه', '"dateModified":"2026-10-16"'],
+      required: ['نقرة واتساب ليست عميلًا مؤهلًا', '300 جنيه', '"dateModified":"'+publishedDateFor('product-marketing-operations-ecommerce')+'"'],
       forbidden: ['1000% طلب عليه'] },
     { path: '/blog/ecommerce-evolution-history',
-      required: ['ما فيش نسبة موثوقة واحدة', 'سوق مصر أو السعودية', '"dateModified":"2026-10-16"'],
+      required: ['ما فيش نسبة موثوقة واحدة', 'سوق مصر أو السعودية', '"dateModified":"'+publishedDateFor('ecommerce-evolution-history')+'"'],
       forbidden: ['أكثر من 90% من المتاجر الجديدة', '80% من متاجر الموضة', '90% من الزيارات للمتاجر الإلكترونية'] }
   ];
   for (const entry of editorChecks) {
@@ -239,8 +244,10 @@ async function run() {
         entry.required.every(phrase=>r.body.includes(phrase)) &&
         entry.forbidden.every(phrase=>!r.body.includes(phrase)),
         'status='+r.response.status+' bytes='+r.body.length);
+      const expectedDate = publishedDateFor(entry.path.split('/').at(-1));
       check('Updated lastmod published: '+entry.path,
-        sitemap.includes('<loc>'+base+entry.path+'</loc><lastmod>2026-10-16</lastmod>'));
+        !!expectedDate && sitemap.includes('<loc>'+base+entry.path+'</loc><lastmod>'+expectedDate+'</lastmod>'),
+        'expected dateModified='+expectedDate);
     } catch(error) {
       check('Revised editorial page deployed: '+entry.path,false,error.message);
     }
