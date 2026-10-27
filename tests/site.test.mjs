@@ -182,13 +182,27 @@ test('all pages load brand-font CSS on first visit and allow late swap without r
     const html=fs.readFileSync(page,'utf8');
     assert.match(html,/<main\b/,page);
     const fontLinks=[...html.matchAll(/<link\b[^>]*fonts\.googleapis\.com\/css2[^>]*>/g)].map(x=>x[0]);
-    assert.equal(fontLinks.length,1,'Expected one active Google Fonts CSS file: '+page);
+    const usesAsyncFonts=path.resolve(page)===path.join(root,'index.html');
+    assert.equal(fontLinks.length,usesAsyncFonts?2:1,'Google Fonts stylesheet and graceful fallback: '+page);
     for(const link of fontLinks){
       assert.match(link,/rel="stylesheet"/,page);
       assert.match(link,/display=swap/,page);
-      assert.doesNotMatch(link,/display=optional|media="print"|onload=|as="style"/,page);
+      assert.doesNotMatch(link,/display=optional/,page);
     }
-    assert.doesNotMatch(html,/<noscript>\s*<link[^>]*fonts\.googleapis\.com/,page);
+    if(usesAsyncFonts){
+      const [asyncFont,noscriptFont]=fontLinks;
+      assert.match(asyncFont,/media="print" onload="this.media='all'"/,page);
+      assert.doesNotMatch(noscriptFont,/media="print"|onload=/,page);
+      assert.match(html,/<noscript><link rel="stylesheet" href="https:\/\/fonts\.googleapis\.com/,page);
+      assert.ok(html.includes('<link rel="stylesheet" href="/assets/site.css?v=contrast-20261023">'), 'core CSS must stay stable before paint');
+      for(const css of ['/assets/reviews.css?v=store-photo-20261019','/assets/system.css']){
+        assert.ok(html.includes('<link rel="stylesheet" href="'+css+'" media="print" onload="this.media=\'all\'">'),css);
+        assert.ok(html.includes('<noscript><link rel="stylesheet" href="'+css+'"></noscript>'),css+' fallback');
+      }
+    }else{
+      assert.doesNotMatch(html,/<noscript>\s*<link[^>]*fonts\.googleapis\.com/,page);
+      assert.doesNotMatch(fontLinks[0],/media="print"|onload=/,page);
+    }
     assert.match(html,/rel="preconnect" href="https:\/\/fonts\.gstatic\.com" crossorigin/,page);
   }
   for(const home of ['index.html','en/index.html','gulf/index.html']){
