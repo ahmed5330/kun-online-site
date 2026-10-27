@@ -9,6 +9,10 @@ const read = p => fs.readFileSync(path.join(root,p),'utf8');
 const base = 'https://kun-online.com/';
 const route = '/methodology/';
 
+const byType = (html, type) => [...html.matchAll(/<script\\b[^>]*type=["']application\\/ld\\+json["'][^>]*>([\\s\\S]*?)<\\/script>/gi)]
+  .map(m => JSON.parse(m[1])).find(schema => schema['@type'] === type);
+
+
 test('GEO-04: methodology is substantial, visible without JS, and canonical', () => {
   const html = read('methodology/index.html');
   const core = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] || '';
