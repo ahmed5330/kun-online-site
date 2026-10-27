@@ -152,8 +152,8 @@ test('GEO accuracy: beginner and channel guides do not publish fabricated fixed 
  const registry=JSON.parse(read('blog/articles.json'));
  const map=JSON.parse(read('seo-content-map.json'));
  const cases=[
-  {slug:'ecommerce-complete-journey-guide',original:'2026-08-26',count:1684,minutes:10},
-  {slug:'owned-vs-rented-channels',original:'2026-09-01',count:1727,minutes:11}
+  {slug:'ecommerce-complete-journey-guide',original:'2026-08-26',count:1684,minutes:10,lastmod:'2026-10-27'},
+  {slug:'owned-vs-rented-channels',original:'2026-09-01',count:1805,minutes:11,lastmod:'2026-10-28'}
  ];
  for(const entry of cases){
   const item=registry.find(x=>x.slug===entry.slug);
@@ -163,7 +163,7 @@ test('GEO accuracy: beginner and channel guides do not publish fabricated fixed 
   assert.ok(item&&published&&schema,entry.slug);
   assert.equal(item.dateISO,entry.original);
   assert.equal(schema.datePublished,entry.original);
-  assert.equal(item.dateModified,'2026-10-27');
+  assert.equal(item.dateModified,entry.lastmod);
   assert.equal(schema.dateModified,item.dateModified);
   assert.equal(item.wordCount,entry.count);
   assert.equal(published.word_count,entry.count);
@@ -172,7 +172,7 @@ test('GEO accuracy: beginner and channel guides do not publish fabricated fixed 
   assert.equal(schema.timeRequired,'PT'+entry.minutes+'M');
   assert.ok(html.includes('href="https://www.shopify.com/pricing"'),
    'Official current plan reference required');
-  assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/'+entry.slug+'</loc><lastmod>2026-10-27</lastmod>'));
+  assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/'+entry.slug+'</loc><lastmod>'+entry.lastmod+'</lastmod>'));
   assert.ok(!html.includes('trial مجاني 3 شهور'),'Outdated free-trial claim');
   assert.ok(!html.includes('750 إلى 3000 جنيه'),'Misleading outdated FX conversion');
  }
