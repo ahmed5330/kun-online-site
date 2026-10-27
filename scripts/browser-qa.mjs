@@ -27,8 +27,21 @@ for(const width of [390,1440]){
       renderBlocking:links.every(link=>!link.hasAttribute('media')&&!link.hasAttribute('onload'))};
   });
   assert.equal(firstViewFonts.count,1, width+' '+url+': brand font CSS must be linked exactly once');
-  assert.ok(firstViewFonts.swap && firstViewFonts.renderBlocking,width+' '+url+': font CSS must load for first paint without reload');
-  await page.evaluate(()=>document.fonts.ready);
+  if(url==='/'){
+    // The homepage intentionally paints a system-font fallback immediately, then
+    // switches to the real brand font when the CSS finishes loading; no reload.
+    assert.ok(firstViewFonts.swap,width+' '+url+': font-display swap required');
+    await page.waitForFunction(()=>{
+      const link=document.querySelector('link[href*="fonts.googleapis.com/css2"]');
+      return link?.media==='all' && !!link.sheet;
+    },{timeout:15000});
+    await page.evaluate(()=>document.fonts.ready);
+    const family=await page.locator('h1').evaluate(node=>getComputedStyle(node).fontFamily);
+    assert.match(family,/Tajawal/,width+' '+url+': final brand font must be applied');
+  }else{
+    assert.ok(firstViewFonts.swap && firstViewFonts.renderBlocking,width+' '+url+': font CSS must load for first paint without reload');
+    await page.evaluate(()=>document.fonts.ready);
+  }
   assert.equal(response.status(),200,url);
   if(url==='/system/'||url.startsWith('/system/')){
     const approvals=JSON.parse(fs.readFileSync(path.join(root,'seo/system-screenshots.json'),'utf8')).screenshots.filter(s=>s.page===url);
