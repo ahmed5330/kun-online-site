@@ -57,6 +57,7 @@ const lines = [
 ];
 // PR builds measure main and the candidate from localhost on the *same runner*.
 // This removes the production-vs-local mismatch. A single run still varies.
+let maxPRCandidateCLS = null;
 try {
   const baseline = JSON.parse(await fs.readFile('test-results/lighthouse-baseline-mobile.json', 'utf8'));
   if (!baseline.categories?.performance) throw new Error('Invalid baseline LHR');
@@ -85,6 +86,7 @@ try {
   const baselineRepeat=JSON.parse(await fs.readFile('test-results/lighthouse-baseline-mobile-repeat.json','utf8'));
   const candidateFirst=JSON.parse(await fs.readFile('test-results/lighthouse-mobile.json','utf8'));
   const candidateRepeat=JSON.parse(await fs.readFile('test-results/lighthouse-mobile-repeat.json','utf8'));
+  maxPRCandidateCLS = Math.max(...[candidateFirst,candidateRepeat].map(lhr=>lhr.audits['cumulative-layout-shift']?.numericValue ?? Infinity));
   const pairs=[
     {label:'Main',runs:[baseline,baselineRepeat]},
     {label:'Candidate',runs:[candidateFirst,candidateRepeat]}
@@ -113,6 +115,20 @@ try {
   if (process.env.GITHUB_EVENT_NAME === 'pull_request') throw error;
 }
 
+const mobile = results.find(r => r.mode === 'mobile');
+const mobileCLS = mobile?.metrics.CLS;
+const clsThreshold = 0.10;
+const isMobileCLSValid = Number.isFinite(mobileCLS) && mobileCLS <= clsThreshold &&
+  (maxPRCandidateCLS == null || (Number.isFinite(maxPRCandidateCLS) && maxPRCandidateCLS <= clsThreshold));
+lines.push('', '**Mobile layout stability gate:** ' + (isMobileCLSValid ? 'PASS' : 'FAIL') +
+  ' — max permitted CLS '+clsThreshold+', observed primary run '+(mobileCLS ?? 'missing') +
+  (maxPRCandidateCLS == null ? '' : ', candidate ABBA maximum '+maxPRCandidateCLS.toFixed(3)) +
+  '. Synthetic lab gate only; not a substitute for CrUX.', '');
 const markdown = lines.join('\n');
 console.log(markdown);
 if (process.env.GITHUB_STEP_SUMMARY) await fs.appendFile(process.env.GITHUB_STEP_SUMMARY, markdown);
+if (!isMobileCLSValid) {
+  throw new Error('Mobile CLS safety gate exceeded: primary='+mobileCLS+
+    ' maxABBA='+(maxPRCandidateCLS ?? 'not_run')+
+    ' threshold='+clsThreshold+'. Do NOT ship a layout-shifting homepage.');
+}
