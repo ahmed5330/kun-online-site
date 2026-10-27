@@ -19,8 +19,12 @@ jobs:
           node-version: 22
       - name: Check real public domain, redirects, sitemap and GA4 asset
         run: node scripts/live-site-audit.mjs
+      - name: Verify production GEO crawler policy and strict sitemap parity
+        run: node scripts/geo-site-audit.mjs --live
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: live-cloudflare-seo-audit
-          path: test-results/live-site-audit.json
+          path: |
+            test-results/live-site-audit.json
+            test-results/geo-site-audit.json
