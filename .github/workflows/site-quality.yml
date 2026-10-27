@@ -43,6 +43,11 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - name: Desktop and mobile browser checks
         run: node scripts/browser-qa.mjs
+      - name: PR Cloudflare preview GEO smoke (read only)
+        if: github.event_name == 'pull_request' && github.head_ref == 'feature/geo-readiness-20261027'
+        env:
+          GEO_PREVIEW_BASE: https://feature-geo-readiness-202610.kun-online-site.pages.dev
+        run: node scripts/geo-preview-smoke.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -15,7 +15,7 @@ try{
 for(const width of [390,1440]){
  const page=await browser.newPage({viewport:{width,height:900}});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- for(const url of ['/','/blog/','/blog/ecommerce-first-30-days-plan','/blog/ecommerce-product-ideas-research','/blog/essential-ecommerce-glossary','/blog/real-cost-per-delivered-order','/blog/order-confirmation-delivery-rate','/blog/inventory-barcode-bundle-tracking','/blog/cod-shipping-returns-reconciliation','/services/','/reviews/','/consultations/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/services/ecommerce-consulting/','/pricing/','/contact/','/system/','/system/order-management/','/system/inventory/','/system/shipping/','/system/easy-orders/','/en/','/gulf/',...publishedArticleUrls]){
+ for(const url of ['/','/blog/','/blog/ecommerce-first-30-days-plan','/blog/ecommerce-product-ideas-research','/blog/essential-ecommerce-glossary','/blog/real-cost-per-delivered-order','/blog/order-confirmation-delivery-rate','/blog/inventory-barcode-bundle-tracking','/blog/cod-shipping-returns-reconciliation','/services/','/reviews/','/consultations/','/services/ecommerce-management/','/services/ecommerce-ads/','/services/ecommerce-store-development/','/services/ecommerce-consulting/','/pricing/','/about/','/methodology/','/contact/','/system/','/system/order-management/','/system/inventory/','/system/shipping/','/system/easy-orders/','/en/','/gulf/',...publishedArticleUrls]){
   const response=await page.goto(base+url,{waitUntil:'domcontentloaded'});
   await page.locator('h1').waitFor();
   // Verify initial navigation, before any reload, has an active blocking
@@ -165,6 +165,13 @@ for(const width of [390,1440]){
     assert.equal(await page.locator('.kos-checklist li').count(),9);
     assert.ok(await page.locator('a[href="/system/inventory/"]').count());
     assert.ok(await page.locator('a[href="https://app.kun-online.com/v2/"]').count());
+  }
+  if(url==='/methodology/'){
+    assert.equal(await page.locator('main h1').count(),1,'methodology must have one H1');
+    assert.ok(await page.getByText('مصدر البيانات', {exact:false}).count(),'methodology must show data provenance');
+    assert.ok(await page.locator('a[href="/blog/real-cost-per-delivered-order"]').count(),'methodology must link to profitability guide');
+    const canonical=await page.locator('link[rel="canonical"]').getAttribute('href');
+    assert.equal(canonical,'https://kun-online.com/methodology/');
   }
   if(url==='/blog/'){
    assert.equal(await page.locator('.blog-card').count(),JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8')).length);

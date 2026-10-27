@@ -64,10 +64,10 @@
     "date": "25 أكتوبر 2026",
     "dateISO": "2026-10-25",
     "readTime": 13,
-    "wordCount": 2075,
+    "wordCount": 2115,
     "icon": "📘",
     "image": "product-profitability-before-launch.png",
-    "dateModified": "2026-10-25"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "customer-reviews-product-opportunities",
@@ -256,11 +256,11 @@
     ],
     "date": "15 أكتوبر 2026",
     "dateISO": "2026-10-15",
-    "readTime": 9,
-    "wordCount": 1504,
+    "readTime": 10,
+    "wordCount": 1535,
     "icon": "📘",
     "image": "cod-shipping-returns-reconciliation.png",
-    "dateModified": "2026-10-16"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "inventory-barcode-bundle-tracking",
@@ -275,10 +275,10 @@
     "date": "15 أكتوبر 2026",
     "dateISO": "2026-10-15",
     "readTime": 10,
-    "wordCount": 1539,
+    "wordCount": 1609,
     "icon": "📘",
     "image": "inventory-barcode-bundle-tracking.png",
-    "dateModified": "2026-10-16"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "order-confirmation-delivery-rate",
@@ -293,10 +293,10 @@
     "date": "15 أكتوبر 2026",
     "dateISO": "2026-10-15",
     "readTime": 10,
-    "wordCount": 1565,
+    "wordCount": 1598,
     "icon": "📘",
     "image": "order-confirmation-delivery-rate.png",
-    "dateModified": "2026-10-16"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "real-cost-per-delivered-order",
@@ -311,10 +311,10 @@
     "date": "15 أكتوبر 2026",
     "dateISO": "2026-10-15",
     "readTime": 10,
-    "wordCount": 1661,
+    "wordCount": 1697,
     "icon": "📘",
     "image": "real-cost-per-delivered-order.png",
-    "dateModified": "2026-10-16"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "brand-vs-product-business",
@@ -406,8 +406,8 @@
     "keywords": "Funnel التجارة الإلكترونية,Customer Journey,مراحل البيع,قمع التسويق,تحويل الزائر إلى عميل",
     "date": "30 أغسطس 2026",
     "dateISO": "2026-08-30",
-    "readTime": 10,
-    "wordCount": 1614,
+    "readTime": 11,
+    "wordCount": 1703,
     "icon": "🧭",
     "image": "ecommerce-funnel-explained.png",
     "internal_links_in": [
@@ -416,7 +416,7 @@
         "text": "شرح المصطلحات الأساسية المستخدمة في الـ Funnel"
       }
     ],
-    "dateModified": "2026-10-16"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "customer-funnel-guide",
@@ -429,10 +429,10 @@
     "date": "29 أغسطس 2026",
     "dateISO": "2026-08-29",
     "readTime": 10,
-    "wordCount": 1549,
+    "wordCount": 1616,
     "icon": "🧭",
     "image": "customer-funnel-guide.png",
-    "dateModified": "2026-10-16"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "product-marketing-operations-ecommerce",
@@ -476,10 +476,10 @@
     "date": "28 أغسطس 2026",
     "dateISO": "2026-08-28",
     "readTime": 11,
-    "wordCount": 1712,
+    "wordCount": 1785,
     "icon": "⚠️",
     "image": "common-ecommerce-beginner-mistakes.png",
-    "dateModified": "2026-10-16"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "startup-budget-egypt",
@@ -518,10 +518,10 @@
     "date": "26 أغسطس 2026",
     "dateISO": "2026-08-26",
     "readTime": 10,
-    "wordCount": 1611,
+    "wordCount": 1690,
     "icon": "🧭",
     "image": "ecommerce-complete-journey-guide.png",
-    "dateModified": "2026-10-13"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "ecommerce-evolution-history",

@@ -642,7 +642,7 @@ test('SEO: four existing operations guides have real distinct 1200x630 featured 
     assert.ok(data,'missing operations guide registry record: '+slug);
     assert.equal(data.image,slug+'.png');
     assert.equal(data.dateISO,'2026-10-15','original publication date must not change');
-    assert.equal(data.dateModified,'2026-10-16','cover modification must have authentic date');
+    assert.match(data.dateModified,/^\d{4}-\d{2}-\d{2}$/,'article revision date must be ISO');
     const buffer=fs.readFileSync(path.join(root,'blog/images',data.image));
     assert.equal(buffer.subarray(0,8).toString('hex'),'89504e470d0a1a0a','PNG signature required');
     assert.equal(buffer.readUInt32BE(16),1200,'cover width');
@@ -660,7 +660,7 @@ test('SEO: four existing operations guides have real distinct 1200x630 featured 
     assert.equal(structured['@type'],'BlogPosting');
     assert.equal(structured.image,'https://kun-online.com/blog/images/'+data.image);
     assert.equal(structured.datePublished,'2026-10-15');
-    assert.equal(structured.dateModified,'2026-10-16');
+    assert.equal(structured.dateModified,data.dateModified,'article schema must match the recorded real revision date');
   }
 });
 

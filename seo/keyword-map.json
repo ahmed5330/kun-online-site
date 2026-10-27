@@ -651,6 +651,20 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/methodology/",
+      "primary": "منهج تشغيل المتاجر الإلكترونية وقياس الأداء",
+      "secondary": [
+        "مراجعة عمليات المتجر الإلكتروني",
+        "مؤشرات التأكيد والتسليم والتحصيل",
+        "كيفية قياس أداء متجر إلكتروني"
+      ],
+      "market": "EG+GCC",
+      "pillar": "brand",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "شرح إجراءات التشغيل والتعريفات وقيود القياس بصورة شفافة؛ لا يزعم أرقام عملاء أو نتائج تجارية غير متحقق منها."
     }
   ]
 }
