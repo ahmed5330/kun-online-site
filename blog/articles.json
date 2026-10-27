@@ -406,8 +406,8 @@
     "keywords": "Funnel التجارة الإلكترونية,Customer Journey,مراحل البيع,قمع التسويق,تحويل الزائر إلى عميل",
     "date": "30 أغسطس 2026",
     "dateISO": "2026-08-30",
-    "readTime": 10,
-    "wordCount": 1614,
+    "readTime": 11,
+    "wordCount": 1703,
     "icon": "🧭",
     "image": "ecommerce-funnel-explained.png",
     "internal_links_in": [
@@ -416,7 +416,7 @@
         "text": "شرح المصطلحات الأساسية المستخدمة في الـ Funnel"
       }
     ],
-    "dateModified": "2026-10-16"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "customer-funnel-guide",
@@ -476,10 +476,10 @@
     "date": "28 أغسطس 2026",
     "dateISO": "2026-08-28",
     "readTime": 11,
-    "wordCount": 1712,
+    "wordCount": 1785,
     "icon": "⚠️",
     "image": "common-ecommerce-beginner-mistakes.png",
-    "dateModified": "2026-10-16"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "startup-budget-egypt",
@@ -518,10 +518,10 @@
     "date": "26 أغسطس 2026",
     "dateISO": "2026-08-26",
     "readTime": 10,
-    "wordCount": 1611,
+    "wordCount": 1690,
     "icon": "🧭",
     "image": "ecommerce-complete-journey-guide.png",
-    "dateModified": "2026-10-13"
+    "dateModified": "2026-10-27"
   },
   {
     "slug": "ecommerce-evolution-history",
