@@ -1,0 +1,33 @@
+name: GEO crawler live smoke (diagnostic)
+on:
+  pull_request:
+    paths:
+      - 'scripts/geo-site-audit.mjs'
+      - 'tests/geo-site-audit.test.mjs'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - '.github/workflows/geo-crawler-live-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: geo-live-crawler-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  http-crawler-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Read-only public-domain crawl and user-agent smoke
+        run: node scripts/geo-site-audit.mjs --live
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: geo-crawler-live-smoke
+          path: test-results/geo-site-audit.json
+# This is a public HTTP/User-Agent smoke test, not authenticated bot verification.
+# Never change Cloudflare WAF rules or claim Google indexing from its result.
