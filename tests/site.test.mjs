@@ -552,13 +552,14 @@ test('Cloudflare Pages asset rules do not mask the short analytics bundle TTL',(
 
 
 test('SEO-34: revised editorial pages carry verified modification dates and labeled examples',()=>{
+  const articles=JSON.parse(fs.readFileSync(path.join(root,'blog/articles.json'),'utf8'));
   for (const slug of ['startup-budget-egypt','product-marketing-operations-ecommerce']) {
     const html=fs.readFileSync(path.join(root,'blog',slug+'.html'),'utf8');
     const scripts=html.split('<script type="application/ld+json">').slice(1);
     const schemas=scripts.map(s=>JSON.parse(s.split('</script>')[0]));
     const posting=schemas.find(x=>x['@type']==='BlogPosting');
     assert.ok(posting,slug+' must have article structured data');
-    assert.equal(posting.dateModified,'2026-10-16');
+    assert.equal(posting.dateModified,articles.find(item=>item.slug===slug)?.dateModified,'Article dates must match registry of actual revisions');
     assert.equal(posting.url,'https://kun-online.com/blog/'+slug);
     assert.ok(html.includes('rel="canonical" href="https://kun-online.com/blog/'+slug+'"'));
     assert.ok(html.includes('افتراضي') || html.includes('افتراضية'),slug);
