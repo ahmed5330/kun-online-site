@@ -1,0 +1,38 @@
+{
+  "slug": "one-product-vs-multi-product-store",
+  "article_id": 19,
+  "approved": true,
+  "eligibleFrom": "2026-10-27",
+  "editorialApproval": "2026-10-27: Owner-authorized original Arabic editorial production, research and quality review. Reviewed official Shopify collections, variants and navigation documentation plus Google Search Central developer and ProductGroup guidance; examples explicitly hypothetical, calculations checked, no market benchmarks invented.",
+  "title": "متجر منتج واحد أم متجر 100 منتج؟ اختر النموذج المناسب قبل التوسع",
+  "description": "مقارنة عملية بين متجر المنتج الواحد والمتجر المتخصص والمتجر العام والبراند: المخزون والتسويق والسيو والربحية، مع مصفوفة قرار وخطة اختبار 30 يومًا.",
+  "primaryKeyword": "متجر منتج واحد أم متجر متعدد المنتجات",
+  "secondaryKeywords": [
+    "متجر منتج واحد",
+    "متجر متخصص Niche Store",
+    "متجر عام General Store",
+    "اختيار عدد منتجات المتجر الإلكتروني",
+    "One Product Store",
+    "إدارة تنوع المنتجات والمخزون"
+  ],
+  "category": "store",
+  "categoryLabel": "بناء المتجر",
+  "image": "one-product-vs-multi-product-store.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "ecommerce-complete-journey-guide",
+    "product-profitability-before-launch",
+    "ecommerce-competitor-analysis-sheet"
+  ],
+  "qualityReview": {
+    "words": 1952,
+    "sections": 15,
+    "readingMinutes": 12,
+    "checkedOn": "2026-10-27",
+    "exampleNumbers": "Hypothetical A: 260+20+50+15+130+25=500, 600-500=100, 100/600=16.67%; B: 350+25+60+20+160+35=650, 750-650=100, 100/750=13.33%; 4 sizes*3 colors=12 variants, 5 products*3 colors*4 sizes=60 possible combinations. Examples are illustrative only.",
+    "sources": "Official Shopify Help Center collections, variants, collection menu links; Google Search Central developer guide and ProductGroup structured data; checked 2026-10-27",
+    "originality": "New four-model decision framework contrasting one-product, niche, general and brand stores, SKU/variant complexity, unit economics, cash flow, and a 30-day test plan. Distinct from earlier profitability and product-validation articles.",
+    "publicationGate": "Eligible on 2026-10-27 only if no Cairo-date post has already been published; existing publisher enforces one post per Cairo day and preserves approved content.",
+    "scope": "Educational Egyptian Arabic; no claimed market statistics, no fabricated store outcomes or testimonials."
+  }
+}
