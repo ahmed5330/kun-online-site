@@ -634,6 +634,23 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/one-product-vs-multi-product-store",
+      "primary": "متجر منتج واحد أم متجر متعدد المنتجات",
+      "secondary": [
+        "متجر منتج واحد",
+        "متجر متخصص Niche Store",
+        "متجر عام General Store",
+        "اختيار عدد منتجات المتجر الإلكتروني",
+        "One Product Store",
+        "إدارة تنوع المنتجات والمخزون"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }
