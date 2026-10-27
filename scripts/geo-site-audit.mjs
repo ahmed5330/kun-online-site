@@ -112,8 +112,32 @@ async function inspectLive(report, staticUrls) {
   const sitemap = await retrieve('/sitemap.xml');
   check(report, 'live-sitemap-200', sitemap.response.status === 200, sitemap.response.status);
   const published = sitemapEntries(sitemap.html).map(e => e.url).sort();
-  check(report, 'live-sitemap-parity-with-branch', JSON.stringify(published) === JSON.stringify([...staticUrls].sort()),
-    'published=' + published.length + ' source=' + staticUrls.length);
+  const pendingDeployment = staticUrls.filter(url => !published.includes(url));
+  const publishedOnly = published.filter(url => !staticUrls.includes(url));
+  const allowUnpublished = process.env.GEO_ALLOW_UNDEPLOYED_ROUTES === '1';
+  report.liveSitemap = {
+    publishedCount: published.length,
+    sourceCount: staticUrls.length,
+    pendingDeployment,
+    publishedOnly,
+    sourceMatchesProduction: pendingDeployment.length === 0 && publishedOnly.length === 0
+  };
+  if (allowUnpublished) {
+    check(report, 'live-published-sitemap-wellformed', published.length > 0 &&
+      published.length === new Set(published).size &&
+      published.every(url => url.startsWith(ORIGIN + '/')),
+      'published=' + published.length + ' pendingDeployment=' + pendingDeployment.length +
+      ' publishedOnly=' + publishedOnly.length);
+    report.limitations.push(
+      'PR diagnostic mode deliberately does not demand unpublished branch URLs on production. ' +
+      'See liveSitemap.pendingDeployment and liveSitemap.publishedOnly; production release must run strict parity.'
+    );
+  } else {
+    check(report, 'live-sitemap-parity-with-branch',
+      !pendingDeployment.length && !publishedOnly.length,
+      'published=' + published.length + ' source=' + staticUrls.length +
+      ' missingInProduction=' + pendingDeployment.length + ' productionOnly=' + publishedOnly.length);
+  }
   const sample = ['/', '/services/ecommerce-management/', '/blog/real-cost-per-delivered-order'];
   for (const agent of ['Googlebot', 'Bingbot', 'OAI-SearchBot']) {
     for (const route of sample) {
