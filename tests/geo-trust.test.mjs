@@ -183,3 +183,32 @@ test('GEO accuracy: beginner and channel guides do not publish fabricated fixed 
  for(const stale of ['15% إلى 45% حسب فئة','29 دولار للخطة الأساسية','بين 750 إلى 3000 جنيه','أقل من 5000 جنيه'])
   assert.ok(!compare.includes(stale),'Unsupported regional price '+stale);
 });
+
+
+test('GEO editorial: latest authorial explanations link to primary sources and preserve true dates',()=>{
+  const registry=JSON.parse(read('blog/articles.json'));
+  const plan=JSON.parse(read('seo-content-map.json'));
+  const items=[
+    {slug:'essential-ecommerce-glossary',date:'2026-08-31',count:1682,mins:10,source:'https://developers.google.com/analytics/devguides/collection/ga4/validate-ecommerce'},
+    {slug:'brand-vs-product-business',date:'2026-09-02',count:1738,mins:11,source:'https://www.wipo.int/ar/web/trademarks'},
+    {slug:'product-marketing-operations-ecommerce',date:'2026-08-28',count:1615,mins:10,source:'https://developers.google.com/analytics/devguides/collection/ga4/ecommerce'}
+  ];
+  for(const q of items){
+    const row=registry.find(x=>x.slug===q.slug),mapped=plan.queue.find(x=>x.slug===q.slug);
+    const html=read('blog/'+q.slug+'.html');
+    const posting=byType(html,'BlogPosting');
+    assert.ok(row&&mapped&&posting,'missing editorial article '+q.slug);
+    assert.equal(row.dateISO,q.date,'original publication must remain unchanged');
+    assert.equal(posting.datePublished,row.dateISO,'schema publication date');
+    assert.equal(row.dateModified,'2026-10-28','actual revision date');
+    assert.equal(posting.dateModified,row.dateModified,'schema modification');
+    assert.equal(row.wordCount,q.count,'verified article word count');
+    assert.equal(mapped.word_count,q.count,'mapped publication word count');
+    assert.equal(posting.wordCount,q.count,'schema word count');
+    assert.equal(row.readTime,q.mins,'reading time in registry');
+    assert.equal(posting.timeRequired,'PT'+q.mins+'M','schema reading time');
+    assert.ok(html.includes('الإجابة المختصرة:'),'direct answer missing');
+    assert.ok(html.includes('href="'+q.source+'"'),'primary-source link missing');
+    assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/'+q.slug+'</loc><lastmod>2026-10-28</lastmod>'));
+  }
+});
