@@ -177,36 +177,25 @@ test('sitemap uses verified editorial lastmod dates and no fabricated defaults',
     }
   }
 });
-test('all pages load brand-font CSS on first visit and allow late swap without refresh',()=>{
+test('all pages load brand-font CSS on first visit without post-render shifts',()=>{
   for(const page of pages){
     const html=fs.readFileSync(page,'utf8');
     assert.match(html,/<main\b/,page);
-    const fontLinks=[...html.matchAll(/<link\b[^>]*fonts\.googleapis\.com\/css2[^>]*>/g)].map(x=>x[0]);
-    const usesAsyncFonts=path.resolve(page)===path.join(root,'index.html');
-    assert.equal(fontLinks.length,usesAsyncFonts?2:1,'Google Fonts stylesheet and graceful fallback: '+page);
-    for(const link of fontLinks){
-      assert.match(link,/rel="stylesheet"/,page);
-      assert.match(link,/display=swap/,page);
-      assert.doesNotMatch(link,/display=optional/,page);
-    }
-    if(usesAsyncFonts){
-      const [asyncFont,noscriptFont]=fontLinks;
-      assert.match(asyncFont,/media="print" onload="this.media='all'"/,page);
-      assert.doesNotMatch(noscriptFont,/media="print"|onload=/,page);
-      assert.match(html,/<noscript><link rel="stylesheet" href="https:\/\/fonts\.googleapis\.com/,page);
-      assert.ok(html.includes('<link rel="stylesheet" href="/assets/site.css?v=contrast-20261023">'), 'core CSS must stay stable before paint');
-      for(const css of ['/assets/reviews.css?v=store-photo-20261019','/assets/system.css']){
-        assert.ok(html.includes('<link rel="stylesheet" href="'+css+'" media="print" onload="this.media=\'all\'">'),css);
-        assert.ok(html.includes('<noscript><link rel="stylesheet" href="'+css+'"></noscript>'),css+' fallback');
-      }
-    }else{
-      assert.doesNotMatch(html,/<noscript>\s*<link[^>]*fonts\.googleapis\.com/,page);
-      assert.doesNotMatch(fontLinks[0],/media="print"|onload=/,page);
-    }
+    const links=[...html.matchAll(/<link\b[^>]*fonts\.googleapis\.com\/css2[^>]*>/g)].map(x=>x[0]);
+    assert.equal(links.length,1,'Expected exactly one Google Fonts CSS file: '+page);
+    assert.match(links[0],/rel="stylesheet"/,page);
+    assert.match(links[0],/display=swap/,page);
+    assert.doesNotMatch(links[0],/media="print"|onload=|display=optional/,page);
+    assert.doesNotMatch(html,/<noscript>\s*<link[^>]*fonts\.googleapis\.com/,page);
     assert.match(html,/rel="preconnect" href="https:\/\/fonts\.gstatic\.com" crossorigin/,page);
   }
-  for(const home of ['index.html','en/index.html','gulf/index.html']){
-    const html=fs.readFileSync(path.join(root,home),'utf8');
+  const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
+  for(const css of ['/assets/site.css?v=contrast-20261023','/assets/reviews.css?v=store-photo-20261019','/assets/system.css']){
+    assert.ok(home.includes('<link rel="stylesheet" href="'+css+'">'),'Critical styles must avoid late CLS: '+css);
+    assert.ok(!home.includes('<link rel="stylesheet" href="'+css+'" media="print"'),'No async paint shift: '+css);
+  }
+  for(const homePage of ['index.html','en/index.html','gulf/index.html']){
+    const html=fs.readFileSync(path.join(root,homePage),'utf8');
     assert.doesNotMatch(html,/class="tstars"|<em>150<\/em>|8\+ Years of Field Experience/);
   }
 });
