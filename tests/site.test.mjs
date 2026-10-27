@@ -194,7 +194,8 @@ test('all pages load brand-font CSS on first visit and allow late swap without r
       assert.match(asyncFont,/media="print" onload="this.media='all'"/,page);
       assert.doesNotMatch(noscriptFont,/media="print"|onload=/,page);
       assert.match(html,/<noscript><link rel="stylesheet" href="https:\/\/fonts\.googleapis\.com/,page);
-      for(const css of ['/assets/site.css?v=contrast-20261023','/assets/reviews.css?v=store-photo-20261019','/assets/system.css']){
+      assert.ok(html.includes('<link rel="stylesheet" href="/assets/site.css?v=contrast-20261023">'), 'core CSS must stay stable before paint');
+      for(const css of ['/assets/reviews.css?v=store-photo-20261019','/assets/system.css']){
         assert.ok(html.includes('<link rel="stylesheet" href="'+css+'" media="print" onload="this.media=\'all\'">'),css);
         assert.ok(html.includes('<noscript><link rel="stylesheet" href="'+css+'"></noscript>'),css+' fallback');
       }
