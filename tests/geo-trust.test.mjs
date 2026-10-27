@@ -109,3 +109,40 @@ test('GEO-05: three revised guides preserve original dates and provide evidenced
   assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/'+e.slug+'</loc><lastmod>2026-10-27</lastmod>'));
  }
 });
+
+
+test('GEO-05: foundational guides preserve source-backed claims and editorial registry parity', () => {
+  const registry = JSON.parse(read('blog/articles.json'));
+  const plan = JSON.parse(read('seo-content-map.json'));
+  const guides = [
+    {slug:'ecommerce-complete-journey-guide', original:'2026-08-26',
+      ref:'https://help.shopify.com/en/manual/intro-to-shopify/initial-setup/setup-prepare-for-launch'},
+    {slug:'common-ecommerce-beginner-mistakes', original:'2026-08-28',
+      ref:'https://help.shopify.com/en/manual/intro-to-shopify/initial-setup/setup-prepare-for-launch'},
+    {slug:'ecommerce-funnel-explained', original:'2026-08-30',
+      ref:'https://developers.google.com/analytics/devguides/collection/ga4/ecommerce'}
+  ];
+  for (const g of guides) {
+    const meta = registry.find(item => item.slug === g.slug);
+    const mapped = plan.queue.find(item => item.slug === g.slug);
+    const html = read('blog/' + g.slug + '.html');
+    const posting = byType(html, 'BlogPosting');
+    assert.ok(meta && mapped && posting, g.slug + ' must remain published and mapped');
+    assert.equal(meta.dateISO, g.original, g.slug + ' original publication date');
+    assert.equal(posting.datePublished, g.original, g.slug + ' original schema publication date');
+    assert.equal(meta.dateModified, '2026-10-27', g.slug + ' source revision date');
+    assert.equal(posting.dateModified, meta.dateModified, g.slug + ' schema revision parity');
+    assert.equal(posting.wordCount, meta.wordCount, g.slug + ' schema wordcount parity');
+    assert.equal(mapped.word_count, meta.wordCount, g.slug + ' 100-topic registry parity');
+    assert.equal(posting.timeRequired, 'PT' + meta.readTime + 'M', g.slug + ' reading time');
+    assert.match(html, /الإجابة المختصرة:/, g.slug + ' must explain direct answer');
+    assert.ok(html.includes('href="' + g.ref + '"'), g.slug + ' official reference required');
+    assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/' + g.slug + '</loc><lastmod>2026-10-27</lastmod>'));
+  }
+  const mistakes = read('blog/common-ecommerce-beginner-mistakes.html');
+  assert.doesNotMatch(mistakes, /بناءً على سنين من إدارة المتاجر والملاحظة المباشرة/);
+  assert.doesNotMatch(mistakes, /ابدأ بـ 20-50 قطعة فقط/);
+  assert.match(mistakes, /لا يوجد عدد قطع ثابت يصلح لجميع المنتجات/);
+  const funnel = read('blog/ecommerce-funnel-explained.html');
+  assert.match(funnel, /مثال تعليمي افتراضي/);
+});
