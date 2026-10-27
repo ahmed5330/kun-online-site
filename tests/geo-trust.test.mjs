@@ -68,3 +68,40 @@ test('GEO-04: case-study consent template stays private; review form stays noind
   assert.match(reviews,/<meta name="robots" content="noindex,follow">/);
   assert.ok(!read('sitemap.xml').includes('<loc>'+base+'reviews/</loc>'));
 });
+
+
+test('GEO-05: three revised guides preserve original dates and provide evidenced quick answers',()=>{
+ const registry=JSON.parse(read('blog/articles.json'));
+ const expectations=[
+  {
+   slug:'inventory-barcode-bundle-tracking',original:'2026-10-15',
+   source:'https://help.shopify.com/en/manual/products/details/sku',
+   secondary:'https://help.shopify.com/en/manual/inventory-and-locations/adjusting-inventory'
+  },
+  {
+   slug:'customer-funnel-guide',original:'2026-08-29',
+   source:'https://support.google.com/analytics/answer/9327974?hl=en'
+  },
+  {
+   slug:'product-profitability-before-launch',original:'2026-10-25',
+   source:'https://help.shopify.com/en/manual/products/details/product-details-page/'
+  }
+ ];
+ for(const e of expectations){
+  const item=registry.find(x=>x.slug===e.slug);
+  assert.ok(item,e.slug+' missing registry record');
+  assert.equal(item.dateISO,e.original,e.slug+' original published date must not be changed');
+  assert.equal(item.dateModified,'2026-10-27',e.slug+' changed content must have real revision date');
+  const html=read('blog/'+e.slug+'.html');
+  const posting=byType(html,'BlogPosting');
+  assert.ok(posting,e.slug+' missing BlogPosting');
+  assert.equal(posting.datePublished,e.original,e.slug);
+  assert.equal(posting.dateModified,item.dateModified,e.slug);
+  assert.equal(posting.wordCount,item.wordCount,e.slug);
+  assert.equal(posting.timeRequired,'PT'+item.readTime+'M',e.slug);
+  assert.match(html,/الإجابة المختصرة:/,e.slug+' answer-first paragraph missing');
+  assert.ok(html.includes('href="'+e.source+'"'),e.slug+' primary official reference missing');
+  if(e.secondary)assert.ok(html.includes('href="'+e.secondary+'"'),e.slug+' second official reference missing');
+  assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/'+e.slug+'</loc><lastmod>2026-10-27</lastmod>'));
+ }
+});
