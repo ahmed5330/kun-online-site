@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {FIELDS,buildRows,serializeCsv} from '../scripts/geo-ai-visibility-protocol.mjs';
-import {parseCsv,summarizeAi,summarizeCrawlers,summarizeGsc} from '../scripts/geo-evidence-scorecard.mjs';
+import {parseCsv,summarizeAi,summarizeCrawlers,summarizeGsc,summarizeGscPages,summarizeBing} from '../scripts/geo-evidence-scorecard.mjs';
 
 test('GEO scorecard: 48 unrun tests do not become 48 failures or zero-rate evidence',()=>{
  const rows=parseCsv(serializeCsv(buildRows()));
@@ -64,4 +64,18 @@ test('GEO scorecard: CSV supports quoted Arabic, commas and line breaks',()=>{
  rows[0].notes='تفصيل، للمراجعة\nسطر ثانٍ';
  const parsed=parseCsv(serializeCsv(rows));
  assert.equal(parsed[0].notes,rows[0].notes);
+});
+test('GEO scorecard: separately keeps original GSC Pages coverage and date',()=>{
+ const p=summarizeGscPages({capturedAt:'2026-10-28T15:00:00Z',indexed:23,notIndexed:24,
+  exclusions:[{reason:'Crawled - currently not indexed',count:6}]});
+ assert.equal(p.indexed,23);
+ assert.match(p.status,/not_independently_authenticated/);
+ assert.throws(()=>summarizeGscPages({capturedAt:'today',indexed:0,notIndexed:0}),/GSC Pages/);
+});
+test('GEO scorecard: native Bing AI cited URLs must be the same site',()=>{
+ const x=summarizeBing({from:'2026-10-01',to:'2026-10-27',totalCitations:4,
+  citedPages:[{url:'https://kun-online.com/',citations:4}]});
+ assert.equal(x.totalCitations,4);
+ assert.throws(()=>summarizeBing({from:'2026-10-01',to:'2026-10-27',totalCitations:4,
+  citedPages:[{url:'https://kun-online.com.evil.test/',citations:4}]}),/Invalid Bing/);
 });
