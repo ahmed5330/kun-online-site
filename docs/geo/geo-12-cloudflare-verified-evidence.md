@@ -1,7 +1,7 @@
 # GEO-12 — Provider-verified Cloudflare bot evidence, Oct 28 2026
 
 ## Measured now (external evidence, without extrapolation)
-- Google Search Console through Windsor.ai: **14 page-result rows, 142 impressions, 16 clicks** from 1–28 October 2026. Eight article pages have result rows. This is **not the total indexed count**.
+- Google Search Console through Windsor.ai: **14 page-result rows, 142 impressions, 16 clicks** from 1–28 October 2026. Eight article pages have result rows. This is **not the total indexed count**. A separate daily-dimension read yielded 132 impressions / 16 clicks through 26 October (32 impressions and 5 clicks for 1–13 Oct; 100 impressions and 11 clicks for 14–26 Oct). Page-dimension 142 vs date-dimension 132 must NOT be silently combined; Google warns that aggregation/privacy filtering and data grouping change the totals (https://support.google.com/webmasters/answer/17010575). Visible query-dimension rows sum only 33 impressions and 2 clicks due to query-anonymization/aggregation, not proof that other search queries do not exist.
 - GA4 property 547488425: **2 chatgpt.com / ai-assistant sessions**. Referral **does not** establish a linked AI answer citation.
 - Cloudflare bot data: **not yet authorized**. No verified real crawler totals, WAF actions or per-path counts were available.
 - Native URL Inspection, Page Indexing totals and Bing AI Performance: not yet connected.
@@ -19,7 +19,7 @@ Cloudflare's botDetectionIds_hasany filter is **Bot Management plan-gated**, and
 2. Add secrets to GitHub repository Actions: CF_ANALYTICS_READ_TOKEN and CF_ZONE_ID (actual Cloudflare zone identifier, not domain). Use GitHub → Settings → Secrets and variables → Actions.
 3. Run Actions → GEO Cloudflare verified crawler evidence (read only) → Run workflow. It queries the last **24 hours**, and uploads a JSON artifact for **14 days**.
 4. The report groups Cloudflare-detected bots by edge status, path and, when available, security action. If securityAction is restricted, the query retries only without that dimension. If detection IDs are restricted, it reports unavailable and **never falls back to User-Agent**. Aggregated results may be sampled and limited to 1000 groups. Zero observed is not proof a bot never visited.
-5. The script stores no IP, client identity, cookies, query strings or secrets. Investigate any blocked or challenged events against native Cloudflare Security Events. A 403 alone does not conclusively prove a WAF block.
+5. Differentiate *GPTBot* (training crawler) from *OAI-SearchBot* (AI search crawler) and *ChatGPT-User* (assistant retrieval). A policy-blocked GPTBot is not automatically a GEO failure: never relax training restrictions to improve search indexing. The script stores no IP, client identity, cookies, query strings or secrets. Investigate any blocked or challenged events against native Cloudflare Security Events. A 403 alone does not conclusively prove a WAF block.
 
 Test without credentials: run node scripts/geo-cloudflare-bot-evidence.mjs, then node scripts/geo-evidence-scorecard.mjs. It records not_authorized without making a Cloudflare request.
 
