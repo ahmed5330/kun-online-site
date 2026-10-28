@@ -1,0 +1,38 @@
+{
+  "slug": "product-selection-checklist-20-points",
+  "article_id": 20,
+  "approved": true,
+  "eligibleFrom": "2026-10-28",
+  "editorialApproval": "2026-10-28: Owner-authorized original Arabic editorial production and approval. Manually researched official Shopify Help Center product cost/profit reports, inventory and shipping setup, Google Analytics ecommerce event documentation, Egyptian Consumer Protection Agency return guidance and Saudi Ministry of Commerce ecommerce guidance. Hypothetical calculations checked; no claimed market benchmarks.",
+  "title": "اختيار المنتج للبيع أونلاين: قائمة فحص من 20 نقطة قبل شراء المخزون",
+  "description": "قائمة عملية من 20 نقطة لاختيار منتج لمتجرك الإلكتروني في مصر والسعودية: الطلب والمنافسة وهامش المساهمة والشحن والمرتجعات والتوسع، مع بطاقة تقييم قابلة للتطبيق.",
+  "primaryKeyword": "قائمة فحص اختيار المنتج للبيع أونلاين",
+  "secondaryKeywords": [
+    "معايير اختيار المنتج المربح",
+    "تقييم فكرة منتج للتجارة الإلكترونية",
+    "Product Scorecard",
+    "دراسة جدوى المنتج قبل الشراء",
+    "اختبار المنتج قبل شراء المخزون"
+  ],
+  "category": "store",
+  "categoryLabel": "بناء المتجر",
+  "image": "product-selection-checklist-20-points.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "ecommerce-complete-journey-guide",
+    "product-profitability-before-launch",
+    "product-demand-validation-guide"
+  ],
+  "qualityReview": {
+    "words": 2126,
+    "sections": 8,
+    "numberedChecklistItems": 20,
+    "readingMinutes": 13,
+    "checkedOn": "2026-10-28",
+    "exampleNumbers": "Illustrative only: 240+55+20+15+110+40=480; 600-480=120 contribution per delivered order; 3300/30=110 ad spend per delivered order; 120-100=20 after discount; 120*30=3600, 3600-4500=-900 before other costs; 20 questions x 2 = 40 maximum.",
+    "sources": "Official Shopify Help Center profit reports, inventory tracking and shipping; Google Analytics ecommerce events; Egypt CPA consumer return FAQ; Saudi Ministry of Commerce ecommerce consumer guide; reviewed 2026-10-28.",
+    "originality": "New 20-item Product Scorecard grouped into demand, economics, supplier/fulfillment, and marketing/scale; evidence-based 0-2 rubric, explicit stop conditions and a 7-day evaluation workflow. Not a replacement for earlier demand validation, product profitability or competitor analysis guides.",
+    "publicationGate": "One Cairo-day article maximum. Eligible 2026-10-28 only if no publication is already logged for Cairo date; existing publisher enforces lock. Cover created by generate-approved-covers.py before preflight/publish.",
+    "scope": "Educational Arabic for Egypt and Saudi Arabia; not legal/tax advice; no fabricated market data."
+  }
+}
