@@ -14,6 +14,7 @@ permissions:
 jobs:
   rebuild:
     runs-on: ubuntu-latest
+    if: github.ref_name == 'fix/editorial-arabic-cover-article-ui-20261019'
     steps:
       - uses: actions/checkout@v5
         with:
@@ -54,6 +55,7 @@ jobs:
         run: |
           git add blog/images/*.png blog/images/*.webp blog/*.html
           if ! git diff --cached --quiet; then
+            node scripts/seo-geo-general-reviewer.mjs --staged --role publisher
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git commit -m "assets: rebuild Arabic editorial imagery with correct RTL shaping"
