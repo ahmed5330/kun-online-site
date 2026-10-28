@@ -59,6 +59,7 @@ jobs:
         run: |
           git add blog/images/*.webp blog/*.html sitemap.xml
           if ! git diff --cached --quiet; then
+            node scripts/seo-geo-general-reviewer.mjs --staged --role publisher
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git commit -m "build: optimize verified marketing images and static article links"

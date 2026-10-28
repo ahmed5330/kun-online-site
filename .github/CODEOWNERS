@@ -1,0 +1,16 @@
+# Human review ownership for SEO/GEO-sensitive production changes.
+# CODEOWNERS requests reviews; branch Rulesets must require code-owner approval.
+# For PRs authored by this same account, add a second independent reviewer.
+/.github/workflows/ @ahmed5330
+/.github/CODEOWNERS @ahmed5330
+/scripts/seo-geo-general-reviewer.mjs @ahmed5330
+/tests/seo-geo-general-reviewer.test.mjs @ahmed5330
+/robots.txt @ahmed5330
+/_headers @ahmed5330
+/_redirects @ahmed5330
+/sitemap.xml @ahmed5330
+/index.html @ahmed5330
+/content/ @ahmed5330
+/blog/ @ahmed5330
+/services/ @ahmed5330
+/docs/geo/ @ahmed5330

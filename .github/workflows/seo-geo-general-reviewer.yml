@@ -1,0 +1,63 @@
+name: SEO GEO General Reviewer
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited, ready_for_review]
+  push:
+    branches: [main]
+  schedule:
+    - cron: '33 8 * * *'
+      timezone: 'Africa/Cairo'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pull-requests: read
+concurrency:
+  group: seo-geo-general-review-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  general-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Verify independent reviewer policy tests
+        run: node --test tests/seo-geo-general-reviewer.test.mjs
+      - name: Review PR SEO/GEO scopes and overlapping changes
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/seo-geo-general-reviewer.mjs --pr ${{ github.event.pull_request.number }}
+      - name: Audit direct main pushes against PR / approved publisher source
+        if: github.event_name == 'push'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/seo-geo-general-reviewer.mjs --push
+      - name: Daily open-PR collision and impact audit
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/seo-geo-general-reviewer.mjs --daily
+      - name: Summarize reviewer result
+        if: always()
+        run: |
+          if [ -f test-results/seo-geo-general-review.json ]; then
+            node -e "const r=require('./test-results/seo-geo-general-review.json'); console.log('Reviewer: '+r.decision); console.log('Violations: '+(r.violations||[]).join(' | '))"
+            cat test-results/seo-geo-general-review.json >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No report: reviewer test/credential failure; inspect logs." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seo-geo-general-reviewer
+          path: test-results/seo-geo-general-review.json
+          retention-days: 30
+# This check blocks the PR job when overlap/impact/approval conditions fail.
+# To make the status impossible to bypass, owner must require general-review under
+# Settings > Branches / Rulesets and restrict direct writes to main. This
+# workflow cannot grant itself the branch-protection administrative permission.
