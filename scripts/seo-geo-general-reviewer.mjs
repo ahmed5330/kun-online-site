@@ -67,7 +67,9 @@ function matchesApproval(reviews,author,headSha){
   const cur=latest.get(r.user.login);
   if(!cur||String(r.submitted_at||'')>=String(cur.submitted_at||''))latest.set(r.user.login,r);
  }
- return [...latest.values()].some(r=>r.state==='APPROVED'&&r.commit_id===headSha);
+ const decisions=[...latest.values()];
+ if(decisions.some(r=>r.state==='CHANGES_REQUESTED'))return false;
+ return decisions.some(r=>r.state==='APPROVED'&&r.commit_id===headSha);
 }
 export function reviewPr({number,files,otherPrFiles=[],body='',author='',headSha='',reviews=[]}){
  const list=files.map(f=>typeof f==='string'?{filename:f,patch:''}:f);
