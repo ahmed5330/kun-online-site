@@ -100,3 +100,10 @@ test('General reviewer: accept bullet-form SEO/GEO impact explanations in PR bod
  const v=r([{filename:'blog/new-guide.html'}],{body});
  assert.equal(v.decision,'APPROVED');
 });
+
+test('General reviewer: reject boilerplate impacts left in PR template',()=>{
+ const v=r([{filename:'blog/delivery-guide.html'}],{body:'SEO impact: TODO — describe search effect.\nGEO impact: Describe how AI answer citations change.'});
+ assert.equal(v.decision,'BLOCKED');
+ assert.ok(v.violations.some(s=>s.includes('MISSING_SEO_IMPACT')));
+ assert.ok(v.violations.some(s=>s.includes('MISSING_GEO_IMPACT')));
+});
