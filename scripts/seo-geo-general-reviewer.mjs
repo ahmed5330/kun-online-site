@@ -53,8 +53,11 @@ export function reviewPublisherPaths(files){
   limits:['This validates allowed publication paths, not article quality.','npm test/editorial approval must also pass.']};
 }
 function bodyHasImpact(body,label){
- const escaped=label==='SEO'?'SEO':'GEO';
- return new RegExp('(?:^|\\n)\\s*(?:[-*]\\s*)?'+escaped+'\\s+impact\\s*:\\s*[^\\n\\r]{8,}','i').test(body||'');
+ const marker=label==='SEO'?'SEO':'GEO';
+ const re=new RegExp('(?:^|\\n)[ \\t]*(?:[-*][ \\t]*)?'+marker+'[ \\t]+impact[ \\t]*:[ \\t]*([^\\n\\r]{8,})','i');
+ const m=re.exec(body||'');
+ if(!m)return false;
+ return !/^(?:TODO|TBD|Describe\b|N\/A\b|To be determined\b|Placeholder\b)/i.test(m[1].trim());
 }
 function matchesApproval(reviews,author,headSha){
  const latest=new Map();
