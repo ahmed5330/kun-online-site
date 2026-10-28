@@ -243,3 +243,37 @@ test('GEO beginner guides: sources, metadata, unchanged original publication dat
  }
  assert.ok(!read('blog/ecommerce-evolution-history.html').includes('Amazon يقول أن 35%'),'Unsupported recommendation revenue statistic');
 });
+
+
+test('GEO-05: October 28 answer-first series keeps editorial evidence and publication metadata', () => {
+  const registry=JSON.parse(read('blog/articles.json'));
+  const plan=JSON.parse(read('seo-content-map.json')).queue;
+  const sitemap=read('sitemap.xml');
+  const cases=[
+    ['test-product-before-bulk-inventory','2026-10-22'],
+    ['product-demand-validation-guide','2026-10-20'],
+    ['ecommerce-first-30-days-plan','2026-10-18'],
+    ['customer-reviews-product-opportunities','2026-10-24'],
+    ['ecommerce-product-ideas-research','2026-10-19']
+  ];
+  for(const [slug,date] of cases){
+    const html=read('blog/'+slug+'.html');
+    const meta=registry.find(x=>x.slug===slug);
+    const mapped=plan.find(x=>x.slug===slug);
+    const post=byType(html,'BlogPosting');
+    assert.ok(meta&&mapped&&post,'Missing publication record '+slug);
+    assert.equal(meta.dateISO,date,'Original publication date remains unchanged: '+slug);
+    assert.equal(post.datePublished,date,'Schema original publication date: '+slug);
+    assert.equal(meta.dateModified,'2026-10-28',slug);
+    assert.equal(post.dateModified,meta.dateModified,slug);
+    assert.equal(post.wordCount,meta.wordCount,slug);
+    assert.equal(mapped.word_count,meta.wordCount,slug);
+    assert.equal(post.timeRequired,'PT'+meta.readTime+'M',slug);
+    assert.ok(html.includes('<strong>الإجابة المختصرة:</strong>'),slug+' should answer question early');
+    const pos=html.indexOf('<article class="editorial-guide" lang="ar">');
+    const answer=html.indexOf('<p class="geo-quick-answer">',pos);
+    assert.ok(pos>0&&answer>pos&&answer-pos<1650,slug+' intro answer should be near article start');
+    assert.ok(sitemap.includes('<loc>https://kun-online.com/blog/'+slug+'</loc><lastmod>2026-10-28</lastmod>'),slug+' sitemap');
+    assert.ok(!html.includes('نتائج مضمونة')&&!html.includes('أرباح مضمونة'),slug+' must avoid outcome guarantees');
+  }
+});
