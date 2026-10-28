@@ -26,7 +26,7 @@ const SEO=/^(?:seo\/|seo-content-map\.json$|sitemap\.xml$|robots\.txt$|_redirect
 const GEO=/^(?:docs\/geo\/|scripts\/geo-|tests\/geo-|geo\/)/;
 const SHARED=/^(?:index\.html|(?:blog|services|system|gulf|pricing|consultations|methodology|content)\/|sitemap\.xml$|robots\.txt$|_headers$|_redirects$)/;
 const INFRA=/^(?:\.github\/|package\.json$|assets\/|scripts\/refresh_site\.py$|scripts\/seo-geo-general-reviewer\.mjs$|tests\/seo-geo-general-reviewer\.test\.mjs$)/;
-const SENSITIVE_ADD=/^\+[^+].*(?:<link[^>]*rel=["']canonical|<meta[^>]*name=["']robots|<meta[^>]*name=["']googlebot|noindex|nofollow|<script[^>]*application\/ld\+json|Content-Signal:|Disallow:|Allow:)/im;
+const SENSITIVE_ADD=/^\+(?!\+)[^\r\n]*?(?:<link[^>]*rel=["']canonical|<meta[^>]*name=["']robots|<meta[^>]*name=["']googlebot|noindex|nofollow|<script[^>]*application\/ld\+json|Content-Signal:|Disallow:|Allow:)/im;
 
 export function classifyFile(file){
  if(SHARED.test(file)||CONTENT.test(file))return 'SHARED_SEO_GEO';
