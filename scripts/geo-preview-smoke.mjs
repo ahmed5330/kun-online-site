@@ -37,6 +37,36 @@ const specs=[
       ['trial مجاني 3 شهور','ROAS أقل من 2x','10-25 جنيه بين المدن'] : []
   }))
 ];
+// The October editorial release is opt-in for its own PR preview only.
+// These added checks must not make older branch previews fail for unpublished copy.
+if(process.env.GEO_REQUIRE_20261028_EDITORIAL==='1'){
+ const revised=[
+  'product-selection-checklist-20-points',
+  'one-product-vs-multi-product-store',
+  'cheap-vs-expensive-products-online',
+  'ecommerce-competitor-analysis-sheet',
+  'viral-vs-evergreen-product-demand',
+  'is-ecommerce-right-for-you',
+  'test-product-before-bulk-inventory',
+  'product-demand-validation-guide',
+  'ecommerce-first-30-days-plan',
+  'customer-reviews-product-opportunities',
+  'ecommerce-product-ideas-research'
+ ];
+ for(const slug of revised){
+  specs.push({path:'/blog/'+slug,canonical:'https://kun-online.com/blog/'+slug,
+   text:['الإجابة المختصرة:']});
+ }
+ const sources={
+  'real-cost-per-delivered-order':'https://support.google.com/analytics/answer/13428834?hl=en',
+  'order-confirmation-delivery-rate':'https://help.shopify.com/en/manual/fulfillment/managing-orders/order-status',
+  'cod-shipping-returns-reconciliation':'https://help.shopify.com/en/manual/fulfillment/managing-orders/returns'
+ };
+ for(const spec of specs){
+  const slug=spec.path.startsWith('/blog/')?spec.path.slice('/blog/'.length):'';
+  if(sources[slug])spec.text.push(sources[slug]);
+ }
+}
 function canonical(html){
  const link=[...html.matchAll(/<link\b[^>]*>/gi)]
    .find(x=>/\brel=["']canonical["']/i.test(x[0]))?.[0]||'';
@@ -79,7 +109,9 @@ async function run(){
  try{
   const {html,r}=await fetchWithRetry(urlSitemap);
   sitemapCount=[...html.matchAll(/<loc>([^<]+)<\/loc>/g)].length;
-  check(r.status===200&&sitemapCount===46,'Unexpected preview sitemap count '+sitemapCount);
+  const sourceXml=await fs.readFile(path.join(root,'sitemap.xml'),'utf8');
+  const sourceCount=[...sourceXml.matchAll(/<loc>([^<]+)<\/loc>/g)].length;
+  check(r.status===200&&sitemapCount===sourceCount,'Preview sitemap='+sitemapCount+' source='+sourceCount);
   rows.push({path:'/sitemap.xml',passed:true,count:sitemapCount});
  }catch(e){rows.push({path:'/sitemap.xml',passed:false,issues:[e.message]});}
  const report={base,checkedAt:new Date().toISOString(),tested:rows.length,
