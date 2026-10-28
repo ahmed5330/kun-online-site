@@ -277,3 +277,56 @@ test('GEO-05: October 28 answer-first series keeps editorial evidence and public
     assert.ok(!html.includes('نتائج مضمونة')&&!html.includes('أرباح مضمونة'),slug+' must avoid outcome guarantees');
   }
 });
+
+
+test('GEO-05: remaining six published guides provide concise answers with truthful metadata',()=>{
+  const registry=JSON.parse(read('blog/articles.json'));
+  const queue=JSON.parse(read('seo-content-map.json')).queue;
+  const cases=[
+    ['product-selection-checklist-20-points','2026-10-28'],
+    ['one-product-vs-multi-product-store','2026-10-27'],
+    ['cheap-vs-expensive-products-online','2026-10-26'],
+    ['ecommerce-competitor-analysis-sheet','2026-10-23'],
+    ['viral-vs-evergreen-product-demand','2026-10-21'],
+    ['is-ecommerce-right-for-you','2026-10-17']
+  ];
+  for(const [slug,original] of cases){
+    const html=read('blog/'+slug+'.html'),meta=registry.find(x=>x.slug===slug),
+      series=queue.find(x=>x.slug===slug),schema=byType(html,'BlogPosting');
+    assert.ok(meta&&series&&schema,'Missing published article '+slug);
+    assert.equal(meta.dateISO,original,slug+' original publication date');
+    assert.equal(schema.datePublished,original,slug);
+    assert.equal(meta.dateModified,'2026-10-28',slug);
+    assert.equal(schema.dateModified,meta.dateModified,slug);
+    assert.equal(schema.wordCount,meta.wordCount,slug);
+    assert.equal(series.word_count,meta.wordCount,slug);
+    assert.equal(schema.timeRequired,'PT'+meta.readTime+'M',slug);
+    assert.ok(meta.wordCount>=1500&&meta.wordCount<=2200,'Article size bound '+slug);
+    const start=html.indexOf('<article class="editorial-guide" lang="ar">');
+    const answer=html.indexOf('<strong>الإجابة المختصرة:</strong>',start);
+    assert.ok(start>0&&answer>start&&answer-start<1400,slug+' summary must appear near beginning');
+    assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/'+slug+'</loc><lastmod>2026-10-28</lastmod>'),slug);
+  }
+});
+
+test('GEO-05: COD and shipment guides link to official scope-limited documentation',()=>{
+  const registry=JSON.parse(read('blog/articles.json'));
+  const cases=[
+    ['real-cost-per-delivered-order','https://support.google.com/analytics/answer/13428834?hl=en'],
+    ['order-confirmation-delivery-rate','https://help.shopify.com/en/manual/fulfillment/managing-orders/order-status'],
+    ['cod-shipping-returns-reconciliation','https://help.shopify.com/en/manual/fulfillment/managing-orders/returns']
+  ];
+  for(const [slug,ref] of cases){
+    const html=read('blog/'+slug+'.html'),meta=registry.find(x=>x.slug===slug),
+      schema=byType(html,'BlogPosting');
+    assert.ok(meta&&schema,slug);
+    assert.equal(meta.dateISO,'2026-10-15',slug+' original publication');
+    assert.equal(meta.dateModified,'2026-10-28',slug);
+    assert.equal(schema.dateModified,meta.dateModified,slug);
+    assert.equal(schema.wordCount,meta.wordCount,slug);
+    assert.equal(schema.timeRequired,'PT'+meta.readTime+'M',slug);
+    assert.ok(html.includes('href="'+ref+'"'),'Official scope-limited source: '+slug);
+    assert.ok(html.includes('class="geo-sources"'),'Clearly labeled source context: '+slug);
+    assert.ok(read('sitemap.xml').includes('<loc>https://kun-online.com/blog/'+slug+'</loc><lastmod>2026-10-28</lastmod>'),slug);
+  }
+});
