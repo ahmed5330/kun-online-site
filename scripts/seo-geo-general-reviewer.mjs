@@ -144,6 +144,26 @@ export async function reviewLivePr({number,env=process.env,fetcher=fetch}){
  return reviewPr({number,files,otherPrFiles,body:me.body,author:me.user?.login,
   headSha:me.head?.sha,reviews});
 }
+export async function reviewDaily({env=process.env,fetcher=fetch}={}){
+ const prs=await paginated('/pulls?state=open',env,fetcher);
+ const candidates=await Promise.all(prs.map(async p=>({
+  p,files:await paginated('/pulls/'+p.number+'/files',env,fetcher),
+  reviews:await paginated('/pulls/'+p.number+'/reviews',env,fetcher)
+ })));
+ const results=candidates.map(({p,files,reviews})=>({
+  number:p.number,url:p.html_url,
+  ...reviewPr({number:p.number,files,body:p.body||'',author:p.user?.login,
+   headSha:p.head?.sha,reviews,
+   otherPrFiles:candidates.filter(x=>x.p.number!==p.number).map(x=>({
+    number:x.p.number,files:x.files.map(f=>f.filename)
+   }))})
+ }));
+ return {decision:results.every(r=>r.decision==='APPROVED')?'APPROVED':'BLOCKED',
+  owner:'DAILY_GENERAL_REVIEW',checkedPrs:results.length,results,
+  violations:results.flatMap(r=>r.violations.map(v=>'PR #'+r.number+': '+v)),
+  warnings:results.flatMap(r=>r.warnings.map(v=>'PR #'+r.number+': '+v)),
+  note:'Daily audit checks open PRs. Production direct pushes are reviewed after the push; branch protection is required for proactive enforcement.'};
+}
 export async function reviewLivePush({sha,env=process.env,fetcher=fetch}){
  const [associated,commit]=await Promise.all([
   gh('/commits/'+sha+'/pulls',env,fetcher),
@@ -173,10 +193,12 @@ export async function run(args=process.argv.slice(2),env=process.env){
   const n=Number(args[args.indexOf('--pr')+1]);
   if(!Number.isSafeInteger(n)||n<1)throw Error('Missing PR number');
   result=await reviewLivePr({number:n,env});
+ }else if(args.includes('--daily')){
+  result=await reviewDaily({env});
  }else if(args.includes('--push')){
   if(!env.GITHUB_SHA)throw Error('Missing GITHUB_SHA');
   result=await reviewLivePush({sha:env.GITHUB_SHA,env});
- }else throw Error('Select --pr NUMBER, --push or --staged --role publisher');
+ }else throw Error('Select --pr NUMBER, --push, --daily or --staged --role publisher');
  return save(result);
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
