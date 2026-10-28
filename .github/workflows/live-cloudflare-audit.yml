@@ -21,6 +21,8 @@ jobs:
         run: node scripts/live-site-audit.mjs
       - name: Verify production GEO crawler policy and strict sitemap parity
         run: node scripts/geo-site-audit.mjs --live
+      - name: Publish evidence availability without treating unknown as zero
+        run: node scripts/geo-evidence-scorecard.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -28,3 +30,4 @@ jobs:
           path: |
             test-results/live-site-audit.json
             test-results/geo-site-audit.json
+            test-results/geo-evidence-scorecard.json
