@@ -54,7 +54,7 @@ export function reviewPublisherPaths(files){
 }
 function bodyHasImpact(body,label){
  const escaped=label==='SEO'?'SEO':'GEO';
- return new RegExp('(?:^|\\n)\\s*'+escaped+'\\s+impact\\s*:\\s*[^\\n\\r]{8,}','i').test(body||'');
+ return new RegExp('(?:^|\\n)\\s*(?:[-*]\\s*)?'+escaped+'\\s+impact\\s*:\\s*[^\\n\\r]{8,}','i').test(body||'');
 }
 function matchesApproval(reviews,author,headSha){
  const latest=new Map();
