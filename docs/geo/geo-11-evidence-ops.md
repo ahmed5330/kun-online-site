@@ -11,6 +11,12 @@
 5. **Mobile performance:** existing \`.github/workflows/lighthouse-baseline.yml\` runs real production Lighthouse mobile/desktop on schedule and manually; preserve its dated artifacts, Lighthouse version, LCP/CLS and exact URL. Lighthouse lab score is not CrUX field INP.
 6. **E-E-A-T:** company/team legal identity, social profile ownership, independent numbers and publishing consent remain approval gates, not automatic code tasks.
 
+## Optional read-only native Google check inside GitHub Actions
+
+A dedicated manual workflow `.github/workflows/geo-native-gsc-url-inspection.yml` is now in the repo. To enable its genuine URL Inspection calls, the authorized site owner must create a Google OAuth app, grant **`https://www.googleapis.com/auth/webmasters.readonly`** access to the correct Search Console property, and store these three values as GitHub Actions **repository secrets** (never in chat/commits): `GSC_CLIENT_ID`, `GSC_CLIENT_SECRET`, `GSC_REFRESH_TOKEN`.
+
+Once authorized, visit Actions → **GEO native GSC URL Inspection (read only)** → Run workflow, and choose **priority** or **all**. It requests a short-lived access token and uploads 14-day-retained JSON evidence. There is **no automatic submission of URLs** and no claim this can run before Google grants scope access. It does not replace the original Pages coverage report.
+
 ## Generate the combined evidence status safely
 
 \`\`\`sh
