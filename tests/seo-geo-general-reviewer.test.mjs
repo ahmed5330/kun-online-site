@@ -93,3 +93,10 @@ test('General reviewer: adding first CODEOWNERS is safe, later modification need
  assert.equal(r([{filename:'.github/CODEOWNERS',status:'added'}],{body:'Initial owner mapping'}).decision,'APPROVED');
  assert.equal(r([{filename:'.github/CODEOWNERS',status:'modified'}],{body:'Change owner mapping'}).decision,'BLOCKED');
 });
+
+
+test('General reviewer: accept bullet-form SEO/GEO impact explanations in PR bodies',()=>{
+ const body='- SEO impact: No canonical or search performance changes are expected.\n- GEO impact: The crawler verification policy remains unchanged.';
+ const v=r([{filename:'blog/new-guide.html'}],{body});
+ assert.equal(v.decision,'APPROVED');
+});
