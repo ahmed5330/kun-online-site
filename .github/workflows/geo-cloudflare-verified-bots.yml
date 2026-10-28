@@ -1,0 +1,35 @@
+name: GEO Cloudflare verified crawler evidence (read only)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: geo-cloudflare-verified-crawlers
+  cancel-in-progress: false
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Read provider-verified crawler detections (last 24 hours)
+        env:
+          CF_ANALYTICS_READ_TOKEN: ${{ secrets.CF_ANALYTICS_READ_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+        run: node scripts/geo-cloudflare-bot-evidence.mjs
+      - name: Build evidence scorecard without invented bot data
+        run: node scripts/geo-evidence-scorecard.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: geo-cloudflare-verified-crawlers
+          path: |
+            test-results/geo-cloudflare-bot-detections.json
+            test-results/geo-evidence-scorecard.json
+          retention-days: 14
+# Requires Cloudflare zone Analytics:Read and Bot Management detection IDs support.
+# Unavailable credentials, plan or GraphQL fields are reported as unknown, not zero.
+# No user-agent spoofing, firewall configuration changes, or production writes.
