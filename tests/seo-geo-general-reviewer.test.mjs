@@ -107,3 +107,12 @@ test('General reviewer: reject boilerplate impacts left in PR template',()=>{
  assert.ok(v.violations.some(s=>s.includes('MISSING_SEO_IMPACT')));
  assert.ok(v.violations.some(s=>s.includes('MISSING_GEO_IMPACT')));
 });
+
+test('General reviewer: outstanding changes-requested from another human vetoes approval',()=>{
+ const reviews=[
+  {state:'APPROVED',commit_id:'abc',user:{login:'reviewer-a',type:'User'},submitted_at:'2026-10-29T00:00:00Z'},
+  {state:'CHANGES_REQUESTED',commit_id:'abc',user:{login:'reviewer-b',type:'User'},submitted_at:'2026-10-29T00:01:00Z'}
+ ];
+ const v=r([{filename:'robots.txt'}],{reviews});
+ assert.equal(v.decision,'BLOCKED');
+});
