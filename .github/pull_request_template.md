@@ -4,9 +4,9 @@
 
 **Issue / source of truth:** Link the task and original evidence.
 
-SEO impact: Describe how indexing, canonicals, search snippets, links, and performance are preserved or improved.
+SEO impact: TODO — replace this with verified effects on indexing, canonicals, links and performance.
 
-GEO impact: Describe how entity information, crawl access, answer quality, citations, and provenance are preserved or improved.
+GEO impact: TODO — replace this with verified effects on entities, AI crawler access and citation quality.
 
 **Changed pages/files:** List paths; avoid editing files owned by another active PR.
 
