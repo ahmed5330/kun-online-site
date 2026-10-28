@@ -141,21 +141,23 @@ async function optional(name){
  catch(err){if(err.code==='ENOENT')return null;throw err;}
 }
 export async function run(){
- const [gsc,ai,cloudflare,gscPages,bing]=await Promise.all([
+ const [gsc,ai,cloudflare,gscPages,bing,cloudflareDetections]=await Promise.all([
   optional('geo-gsc-inspection.json'),optional('geo-ai-visibility-observations.csv'),
-  optional('geo-cloudflare-verified-bots.json'),optional('geo-gsc-pages.json'),optional('geo-bing-ai-performance.json')]);
+  optional('geo-cloudflare-verified-bots.json'),optional('geo-gsc-pages.json'),optional('geo-bing-ai-performance.json'),
+  optional('geo-cloudflare-bot-detections.json')]);
  const report={checkedAt:new Date().toISOString(),scope:'kun-online.com',sources:{
   gsc:gsc?summarizeGsc(JSON.parse(gsc)):{status:'not_connected_to_native_inspection'},
   gscPageIndexing:gscPages?summarizeGscPages(JSON.parse(gscPages)):{status:'no_native_page_indexing_report',indexed:null,notIndexed:null},
   ai:ai?summarizeAi(parseCsv(ai)):{status:'not_run',planned:PLATFORMS.length*PROMPTS.length,observed:0},
   cloudflare:cloudflare?summarizeCrawlers(JSON.parse(cloudflare)):{status:'no_authenticated_events_export'},
+  cloudflareDetectionIds:cloudflareDetections?JSON.parse(cloudflareDetections):{status:'not_connected_to_cloudflare_graphql'},
   bing:bing?summarizeBing(JSON.parse(bing)):{status:'not_connected_to_bing_webmaster',citationCount:null}},
   caveats:['Absent evidence is unknown, not zero.', 'Google indexed total requires native Page Indexing coverage.',
    'GA4 referrals are not AI cited URL events.', 'Provider exports must have source provenance verified.']};
  await fs.mkdir(INPUT,{recursive:true});
  await fs.writeFile(path.join(INPUT,'geo-evidence-scorecard.json'),JSON.stringify(report,null,2)+'\n');
  console.log('GEO evidence: GSC '+report.sources.gsc.status+'; AI '+report.sources.ai.status+
-  '; Cloudflare '+report.sources.cloudflare.status+'; Bing '+report.sources.bing.status);
+  '; Cloudflare '+report.sources.cloudflare.status+'/'+report.sources.cloudflareDetectionIds.status+'; Bing '+report.sources.bing.status);
  console.log('Report: test-results/geo-evidence-scorecard.json');
  return report;
 }
