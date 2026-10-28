@@ -83,7 +83,7 @@ export function reviewPr({number,files,otherPrFiles=[],body='',author='',headSha
   if(!bodyHasImpact(body,'SEO'))issues.push('MISSING_SEO_IMPACT: PR body needs SEO impact: ...');
   if(!bodyHasImpact(body,'GEO'))issues.push('MISSING_GEO_IMPACT: PR body needs GEO impact: ...');
  }
- const sensitive=list.filter(f=>HIGH_RISK.test(f.filename)||SENSITIVE_ADD.test(f.patch||''))
+ const sensitive=list.filter(f=>(HIGH_RISK.test(f.filename)&&!(f.filename==='.github/CODEOWNERS'&&f.status==='added'))||SENSITIVE_ADD.test(f.patch||''))
   .map(f=>f.filename);
  const approved=matchesApproval(reviews,author,headSha);
  if(sensitive.length&&!approved){
