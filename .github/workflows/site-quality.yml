@@ -44,9 +44,10 @@ jobs:
       - name: Desktop and mobile browser checks
         run: node scripts/browser-qa.mjs
       - name: PR Cloudflare preview GEO smoke (read only)
-        if: github.event_name == 'pull_request' && (github.head_ref == 'feature/geo-readiness-20261027' || github.head_ref == 'fix/geo-pricing-current-main-20261027')
+        if: github.event_name == 'pull_request' && (github.head_ref == 'feature/geo-readiness-20261027' || github.head_ref == 'fix/geo-pricing-current-main-20261027' || github.head_ref == 'feature/geo-editorial-answer-first-batch-20261028')
         env:
-          GEO_PREVIEW_BASE: ${{ github.head_ref == 'fix/geo-pricing-current-main-20261027' && 'https://fix-geo-pricing-current-main.kun-online-site.pages.dev' || 'https://feature-geo-readiness-202610.kun-online-site.pages.dev' }}
+          GEO_PREVIEW_BASE: ${{ github.head_ref == 'feature/geo-editorial-answer-first-batch-20261028' && 'https://feature-geo-editorial-answer.kun-online-site.pages.dev' || (github.head_ref == 'fix/geo-pricing-current-main-20261027' && 'https://fix-geo-pricing-current-main.kun-online-site.pages.dev' || 'https://feature-geo-readiness-202610.kun-online-site.pages.dev') }}
+          GEO_REQUIRE_20261028_EDITORIAL: ${{ github.head_ref == 'feature/geo-editorial-answer-first-batch-20261028' && '1' || '0' }}
         run: node scripts/geo-preview-smoke.mjs
       - uses: actions/upload-artifact@v4
         if: always()
