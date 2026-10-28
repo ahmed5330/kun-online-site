@@ -116,19 +116,40 @@ export function summarizeGsc(report){
   sitewideIndexedTotal:null,
   warning:'Sample inspected count is not GSC Page Indexing site-wide indexed total.'};
 }
+
+export function summarizeGscPages(p){
+ if(!p||!Number.isInteger(p.indexed)||p.indexed<0||!Number.isInteger(p.notIndexed)||p.notIndexed<0||
+  !p.capturedAt||Number.isNaN(Date.parse(p.capturedAt)))throw Error('GSC Pages requires dated official indexed/notIndexed nonnegative totals');
+ return {status:'provided_page_indexing_report_not_independently_authenticated',
+  capturedAt:p.capturedAt,indexed:p.indexed,notIndexed:p.notIndexed,
+  exclusions:Array.isArray(p.exclusions)?p.exclusions:[],providerSource:p.providerSource??null};
+}
+export function summarizeBing(p){
+ if(!p||!p.from||!p.to||Number.isNaN(Date.parse(p.from))||Number.isNaN(Date.parse(p.to))||
+  !Number.isInteger(p.totalCitations)||p.totalCitations<0||!Array.isArray(p.citedPages))
+  throw Error('Bing AI Performance requires dates, totalCitations and citedPages');
+ for(const page of p.citedPages){
+  if(!isKunUrl(page.url)||!Number.isInteger(page.citations)||page.citations<0)
+   throw Error('Invalid Bing cited page');
+ }
+ return {status:'provided_bing_export_not_independently_authenticated',
+  from:p.from,to:p.to,totalCitations:p.totalCitations,citedPages:p.citedPages};
+}
+
 async function optional(name){
  try{return await fs.readFile(path.join(INPUT,name),'utf8');}
  catch(err){if(err.code==='ENOENT')return null;throw err;}
 }
 export async function run(){
- const [gsc,ai,cloudflare]=await Promise.all([
+ const [gsc,ai,cloudflare,gscPages,bing]=await Promise.all([
   optional('geo-gsc-inspection.json'),optional('geo-ai-visibility-observations.csv'),
-  optional('geo-cloudflare-verified-bots.json')]);
+  optional('geo-cloudflare-verified-bots.json'),optional('geo-gsc-pages.json'),optional('geo-bing-ai-performance.json')]);
  const report={checkedAt:new Date().toISOString(),scope:'kun-online.com',sources:{
   gsc:gsc?summarizeGsc(JSON.parse(gsc)):{status:'not_connected_to_native_inspection'},
+  gscPageIndexing:gscPages?summarizeGscPages(JSON.parse(gscPages)):{status:'no_native_page_indexing_report',indexed:null,notIndexed:null},
   ai:ai?summarizeAi(parseCsv(ai)):{status:'not_run',planned:PLATFORMS.length*PROMPTS.length,observed:0},
   cloudflare:cloudflare?summarizeCrawlers(JSON.parse(cloudflare)):{status:'no_authenticated_events_export'},
-  bing:{status:'not_connected_to_bing_webmaster',citationCount:null}},
+  bing:bing?summarizeBing(JSON.parse(bing)):{status:'not_connected_to_bing_webmaster',citationCount:null}},
   caveats:['Absent evidence is unknown, not zero.', 'Google indexed total requires native Page Indexing coverage.',
    'GA4 referrals are not AI cited URL events.', 'Provider exports must have source provenance verified.']};
  await fs.mkdir(INPUT,{recursive:true});
