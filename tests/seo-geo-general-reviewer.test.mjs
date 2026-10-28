@@ -82,3 +82,14 @@ test('General reviewer: recognized publisher commit is not mislabeled unauthoriz
  assert.equal(reviewPush({sha:'abc',actor:'hacker',
    subject:'blog: publish one pre-approved article (Cairo date guard)',prNumbers:[]}).decision,'BLOCKED');
 });
+
+test('General reviewer: writing about noindex in docs/tests is not a real canonical policy change',()=>{
+ const v=r([{filename:'docs/geo/indexing-notes.md',
+  patch:'@@\n+Never claim noindex is a proof that a page was not visited.'}],{
+  body:'GEO documentation and evidence'});
+ assert.equal(v.decision,'APPROVED');
+});
+test('General reviewer: adding first CODEOWNERS is safe, later modification needs human review',()=>{
+ assert.equal(r([{filename:'.github/CODEOWNERS',status:'added'}],{body:'Initial owner mapping'}).decision,'APPROVED');
+ assert.equal(r([{filename:'.github/CODEOWNERS',status:'modified'}],{body:'Change owner mapping'}).decision,'BLOCKED');
+});
