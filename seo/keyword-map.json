@@ -665,6 +665,22 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "شرح إجراءات التشغيل والتعريفات وقيود القياس بصورة شفافة؛ لا يزعم أرقام عملاء أو نتائج تجارية غير متحقق منها."
+    },
+    {
+      "path": "/blog/product-selection-checklist-20-points",
+      "primary": "قائمة فحص اختيار المنتج للبيع أونلاين",
+      "secondary": [
+        "معايير اختيار المنتج المربح",
+        "تقييم فكرة منتج للتجارة الإلكترونية",
+        "Product Scorecard",
+        "دراسة جدوى المنتج قبل الشراء",
+        "اختبار المنتج قبل شراء المخزون"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }
