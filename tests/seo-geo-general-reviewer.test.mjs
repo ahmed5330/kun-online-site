@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import './routine-article-policy.test.mjs';
 import {classifyFile,classifySet,reviewPublisherPaths,reviewPr,reviewPush}
  from '../scripts/seo-geo-general-reviewer.mjs';
 
@@ -7,6 +9,24 @@ const impact='SEO impact: Preserve existing canonicals and search snippets.\nGEO
 const r=(files,extra={})=>reviewPr({
  number:17,files,body:impact,otherPrFiles:[],author:'author',headSha:'abc',
  reviews:[],...extra
+});
+test('General reviewer: review lifecycle refreshes the same PR gate with read-only permissions',()=>{
+ const workflow=readFileSync(new URL('../.github/workflows/seo-geo-general-reviewer.yml',import.meta.url),'utf8');
+ assert.match(workflow,/pull_request_review:\s*\n\s+types: \[submitted, edited, dismissed\]/);
+ assert.match(workflow,/if: github.event_name == 'pull_request' \|\| github.event_name == 'pull_request_review'/);
+ assert.match(workflow,/group: seo-geo-general-review-\$\{\{ github.event.pull_request.number \|\| github.ref \}\}/);
+ assert.match(workflow,/permissions:\s*\n\s+contents: read\s*\n\s+pull-requests: read/);
+ assert.doesNotMatch(workflow,/pull_request_target|checks: write|contents: write/);
+});
+test('General reviewer: article #21 remains sensitive through approval and revocation lifecycle',()=>{
+ const files=[{filename:'content/approved/sales-price-vs-real-ecommerce-profit.html.ready',status:'added',
+  patch:'@@\n+<link rel="canonical" href="https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit">\n+<script type="application/ld+json">'}];
+ const approval={state:'APPROVED',commit_id:'abc',user:{login:'independent',type:'User'},submitted_at:'2026-10-29T08:00:00Z'};
+ assert.equal(r(files).decision,'BLOCKED');
+ assert.equal(r(files,{reviews:[approval]}).decision,'APPROVED');
+ assert.equal(r(files,{headSha:'new-head',reviews:[approval]}).decision,'BLOCKED');
+ assert.equal(r(files,{reviews:[{...approval,state:'DISMISSED'}]}).decision,'BLOCKED');
+ assert.equal(r(files,{reviews:[approval,{...approval,state:'CHANGES_REQUESTED',submitted_at:'2026-10-29T08:01:00Z'}]}).decision,'BLOCKED');
 });
 test('General reviewer: shared content is not mislabeled SEO-only or GEO-only',()=>{
  assert.equal(classifyFile('blog/real-cost-per-delivered-order.html'),'SHARED_SEO_GEO');

@@ -10,6 +10,7 @@ import fs from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {routineArticleBundle} from './routine-article-policy.mjs';
 const ROOT=path.resolve(fileURLToPath(new URL('..',import.meta.url)));
 const OUT=path.join(ROOT,'test-results','seo-geo-general-review.json');
 
@@ -26,7 +27,7 @@ const SEO=/^(?:seo\/|seo-content-map\.json$|sitemap\.xml$|robots\.txt$|_redirect
 const GEO=/^(?:docs\/geo\/|scripts\/geo-|tests\/geo-|geo\/)/;
 const SHARED=/^(?:index\.html|(?:blog|services|system|gulf|pricing|consultations|methodology|content)\/|sitemap\.xml$|robots\.txt$|_headers$|_redirects$)/;
 const INFRA=/^(?:\.github\/|package\.json$|assets\/|scripts\/refresh_site\.py$|scripts\/seo-geo-general-reviewer\.mjs$|tests\/seo-geo-general-reviewer\.test\.mjs$)/;
-const SENSITIVE_ADD=/^\+(?!\+)[^\r\n]*?(?:<link[^>]*rel=["']canonical|<meta[^>]*name=["']robots|<meta[^>]*name=["']googlebot|noindex|nofollow|<script[^>]*application\/ld\+json|Content-Signal:|Disallow:|Allow:)/im;
+const SENSITIVE_ADD=/^[+-](?![+-])[^\r\n]*?(?:<link[^>]*rel=["']canonical|<meta[^>]*name=["']robots|<meta[^>]*name=["']googlebot|noindex|nofollow|<script[^>]*application\/ld\+json|Content-Signal:|Disallow:|Allow:)/im;
 
 export function classifyFile(file){
  if(SHARED.test(file)||CONTENT.test(file))return 'SHARED_SEO_GEO';
@@ -59,7 +60,7 @@ function bodyHasImpact(body,label){
  if(!m)return false;
  return !/^(?:TODO|TBD|Describe\b|N\/A\b|To be determined\b|Placeholder\b)/i.test(m[1].trim());
 }
-function matchesApproval(reviews,author,headSha){
+function latestHumanReviews(reviews,author){
  const latest=new Map();
  for(const r of reviews){
   if(!r.user?.login||r.user.login===author||r.user.type==='Bot')continue;
@@ -67,7 +68,10 @@ function matchesApproval(reviews,author,headSha){
   const cur=latest.get(r.user.login);
   if(!cur||String(r.submitted_at||'')>=String(cur.submitted_at||''))latest.set(r.user.login,r);
  }
- const decisions=[...latest.values()];
+ return [...latest.values()];
+}
+function matchesApproval(reviews,author,headSha){
+ const decisions=latestHumanReviews(reviews,author);
  if(decisions.some(r=>r.state==='CHANGES_REQUESTED'))return false;
  return decisions.some(r=>r.state==='APPROVED'&&r.commit_id===headSha);
 }
@@ -88,7 +92,11 @@ export function reviewPr({number,files,otherPrFiles=[],body='',author='',headSha
   if(!bodyHasImpact(body,'SEO'))issues.push('MISSING_SEO_IMPACT: PR body needs SEO impact: ...');
   if(!bodyHasImpact(body,'GEO'))issues.push('MISSING_GEO_IMPACT: PR body needs GEO impact: ...');
  }
- const sensitive=list.filter(f=>(HIGH_RISK.test(f.filename)&&!(f.filename==='.github/CODEOWNERS'&&f.status==='added'))||(CONTENT.test(f.filename)&&SENSITIVE_ADD.test(f.patch||'')))
+ const routine=routineArticleBundle(list);
+ if(routine.length&&latestHumanReviews(reviews,author).some(r=>r.state==='CHANGES_REQUESTED'))
+  issues.push('CHANGES_REQUESTED: resolve outstanding human review before routine publication');
+ const sensitive=list.filter(f=>(HIGH_RISK.test(f.filename)&&!(f.filename==='.github/CODEOWNERS'&&f.status==='added'))||
+  ((CONTENT.test(f.filename)&&SENSITIVE_ADD.test(f.patch||'')||/^content\/approved\/[^/]+\.html\.ready$/.test(f.filename))&&!routine.includes(f.filename)))
   .map(f=>f.filename);
  const approved=matchesApproval(reviews,author,headSha);
  if(sensitive.length&&!approved){
@@ -101,7 +109,7 @@ export function reviewPr({number,files,otherPrFiles=[],body='',author='',headSha
  return {
   decision:issues.length?'BLOCKED':'APPROVED',scope,changedFiles:names,
   overlapCount:issues.filter(v=>v.startsWith('OPEN_PR_OVERLAP')).length,
-  sensitiveFiles:sensitive,hasIndependentApproval:approved,
+  sensitiveFiles:sensitive,routineArticleFiles:routine,hasIndependentApproval:approved,
   violations:issues,warnings
  };
 }
@@ -134,6 +142,15 @@ async function paginated(endpoint,env,fetcher){
  }
  throw Error('More than 500 items; fail closed rather than omit overlaps');
 }
+async function hydrateArticleFiles(files,sha,env,fetcher){
+ if(files.length!==2||files.some(f=>f.status!=='added'||!/^content\/approved\/[a-z0-9-]+\.(?:html\.ready|json)$/.test(f.filename)))return;
+ if(!/^[a-f0-9]{40}$/.test(sha||''))throw Error('Cannot pin article contents to current head');
+ await Promise.all(files.map(async f=>{
+  const data=await gh('/contents/'+f.filename+'?ref='+sha,env,fetcher);
+  if(data.type!=='file'||data.encoding!=='base64'||data.sha!==f.sha||data.size>250000)throw Error('Cannot verify full article contents at current head');
+  f.content=Buffer.from(data.content,'base64').toString('utf8');
+ }));
+}
 export async function reviewLivePr({number,env=process.env,fetcher=fetch}){
  const me=await gh('/pulls/'+number,env,fetcher);
  const [files,prs,reviews]=await Promise.all([
@@ -141,11 +158,14 @@ export async function reviewLivePr({number,env=process.env,fetcher=fetch}){
   paginated('/pulls?state=open',env,fetcher),
   paginated('/pulls/'+number+'/reviews',env,fetcher)
  ]);
+ await hydrateArticleFiles(files,me.head?.sha,env,fetcher);
  const candidates=prs.filter(p=>p.number!==number);
  const otherPrFiles=await Promise.all(candidates.map(async p=>({
   number:p.number,
   files:(await paginated('/pulls/'+p.number+'/files',env,fetcher)).map(x=>x.filename)
  })));
+ const current=await gh('/pulls/'+number,env,fetcher);
+ if(current.head?.sha!==me.head?.sha)throw Error('PR head changed during review; rerun for the latest head');
  return reviewPr({number,files,otherPrFiles,body:me.body,author:me.user?.login,
   headSha:me.head?.sha,reviews});
 }
@@ -155,6 +175,7 @@ export async function reviewDaily({env=process.env,fetcher=fetch}={}){
   p,files:await paginated('/pulls/'+p.number+'/files',env,fetcher),
   reviews:await paginated('/pulls/'+p.number+'/reviews',env,fetcher)
  })));
+ await Promise.all(candidates.map(x=>hydrateArticleFiles(x.files,x.p.head?.sha,env,fetcher)));
  const results=candidates.map(({p,files,reviews})=>({
   number:p.number,url:p.html_url,
   ...reviewPr({number:p.number,files,body:p.body||'',author:p.user?.login,
