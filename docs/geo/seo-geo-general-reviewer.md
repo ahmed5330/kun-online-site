@@ -1,5 +1,13 @@
 # SEO & GEO General Reviewer — control design and limits (29 Oct 2026)
 
+## Owner-authorized routine editorial exception (29 Oct 2026)
+
+The owner explicitly requested adapting the policy for a solo maintainer, then authorized implementation and publication. Exactly one newly added `content/approved/<slug>.html.ready` plus its matching JSON metadata may pass without a second human approval only when full contents fetched at the exact PR head pass `routine-article-policy.mjs`. Added-file status and matching blob SHA are verified against GitHub. A partial/missing patch never grants the exception.
+
+The exception verifies a single exact self-canonical, `index, follow`, matching BlogPosting URL/headline/description, unchanged known Organization schema, and existing template JavaScript only. Off-site/encoded/duplicate directives, noindex/crawler overrides, redirects, unfamiliar executable code, changed schema/entity, existing-file edits, mixed-file PRs and malformed/missing data remain sensitive. Human changes-requested reviews still veto ordinary content; overlap and separate SEO/GEO impact checks remain mandatory. The normal editorial/publisher/site/browser checks and Cairo-day lock are still required.
+
+All sensitive cases outside this narrow exception retain the independent current-head human approval requirement. This is a policy revision approved by the owner, not a bot submitting a human review. Administrative branch protection is unchanged; Issue #105 remains open until publisher migration and enforcement are verified.
+
 **Scope:** public marketing repository `ahmed5330/kun-online-site`. No access to the customer app, live D1, customer records or Cloudflare WAF. This reviewer does not rewrite articles, force sitemap resubmission, or invent search/AI indexing evidence.
 
 ## 1. Ownership matrix

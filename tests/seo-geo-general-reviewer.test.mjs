@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import './routine-article-policy.test.mjs';
 import {classifyFile,classifySet,reviewPublisherPaths,reviewPr,reviewPush}
  from '../scripts/seo-geo-general-reviewer.mjs';
 

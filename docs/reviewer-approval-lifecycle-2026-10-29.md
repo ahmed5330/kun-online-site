@@ -1,5 +1,7 @@
 # Reviewer approval lifecycle repair (Issue #105)
 
+**Updated authorization:** The owner subsequently requested solo-maintainer policy support and explicitly said to implement and publish. This PR now also adds the strict full-content routine-new-bundle exception documented in `docs/geo/seo-geo-general-reviewer.md`. The original observations and draft-only boundary below describe the earlier investigation; they are superseded for this authorized release only. The sensitive-policy human gate remains for changes outside the validated exception. No human approval is fabricated.
+
 PR #106 at `145312e7e23578665e125bfbb43c715641b9b3dd` adds a canonical, robots metadata and BlogPosting structured data in a queued article. Under the existing documented policy this is sensitive. No independent review exists at inspection time. `SENSITIVE_CHANGE_APPROVAL` is therefore an intentional gate, not a false positive that can safely be waived.
 
 The actual workflow defect is missing review events: submitting or dismissing a human review did not refresh the PR check. Add `pull_request_review` for submitted, edited and dismissed events; route those events to the same read-only PR evaluation and concurrency group. Evaluate current API reviews and current head, never trust the event's approval state alone. No sensitive-file exemption, self-approval, bot approval, stale approval or publisher bypass is added.
