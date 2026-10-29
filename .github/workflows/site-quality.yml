@@ -11,7 +11,7 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -36,7 +36,9 @@ jobs:
       - name: Syntax check live analytics dry-run
         run: node --check scripts/live-ga4-network-audit.mjs
       - name: Static SEO and redirect checks
-        run: npm test
+        run: |
+          node --test tests/quality-no-direct-write.test.mjs
+          npm test
       - name: Future publisher metadata regression
         run: python -m unittest discover -s tests -p '*_test.py'
       - run: npm install --ignore-scripts --no-package-lock
@@ -54,14 +56,17 @@ jobs:
         with:
           name: marketing-site-browser-qa
           path: test-results/
-      - name: Save verified optimized assets on the same authorized branch
-        if: github.event_name == 'push'
+      - name: Prepare optimized assets for a separately reviewed change
         run: |
+          set -euo pipefail
           git add blog/images/*.webp blog/*.html sitemap.xml
           if ! git diff --cached --quiet; then
             node scripts/seo-geo-general-reviewer.mjs --staged --role publisher
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git commit -m "build: optimize verified marketing images and static article links"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
+            git diff --cached --binary > test-results/optimized-assets.patch
+            echo "Optimized assets need a reviewed PR; this job does not push changes." >> "$GITHUB_STEP_SUMMARY"
           fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: optimized-assets-review-patch
+          path: test-results/optimized-assets.patch
+          if-no-files-found: ignore
