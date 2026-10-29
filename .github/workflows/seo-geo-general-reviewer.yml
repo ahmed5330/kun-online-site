@@ -2,6 +2,8 @@ name: SEO GEO General Reviewer
 on:
   pull_request:
     types: [opened, synchronize, reopened, edited, ready_for_review]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
   push:
     branches: [main]
   schedule:
@@ -12,7 +14,7 @@ permissions:
   contents: read
   pull-requests: read
 concurrency:
-  group: seo-geo-general-review-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  group: seo-geo-general-review-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
   general-review:
@@ -28,7 +30,7 @@ jobs:
       - name: Verify independent reviewer policy tests
         run: node --test tests/seo-geo-general-reviewer.test.mjs
       - name: Review PR SEO/GEO scopes and overlapping changes
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_review'
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: node scripts/seo-geo-general-reviewer.mjs --pr ${{ github.event.pull_request.number }}
