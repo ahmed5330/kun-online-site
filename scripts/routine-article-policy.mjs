@@ -40,15 +40,16 @@ export function routineArticleBundle(files){
   if(meta.slug!==slug||meta.approved!==true||!Number.isInteger(meta.article_id)||meta.article_id<1||meta.article_id>100||
    typeof meta.editorialApproval!=='string'||meta.editorialApproval.length<20||!/^\d{4}-\d{2}-\d{2}$/.test(meta.eligibleFrom||'')||
    !/^[a-z]+$/.test(meta.category||'')||meta.image!==slug+'.png'||typeof meta.title!=='string'||meta.title.length<12||typeof meta.description!=='string'||meta.description.length<80)return [];
-  if(html.length>250000||/<!--[\s\S]*$/.test(html.replace(/<!--[\s\S]*?-->/g,'')))return [];
-  const clean=html.replace(/<!--[\s\S]*?-->/g,'');
-  if(/<(?:base|iframe|object|embed|form)\b|javascript\s*:|noindex|nofollow|disallow\s*:|content-signal\s*:/i.test(clean))return [];
+  if(html.length>250000||/<!--|-->|<!\[CDATA\[/i.test(html))return [];
+  const clean=html;
+  if(/<(?:base|iframe|object|embed|form|svg|math)\b|javascript\s*:|noindex|nofollow|disallow\s*:|content-signal\s*:/i.test(clean))return [];
   const links=[],robots=[],schemas=[];
   // Validate every opening tag so duplicate/encoded directive attributes cannot hide.
-  for(const tag of clean.matchAll(/<([a-z][\w:-]*)\b([^<>]*)>/gi)){
+  for(const tag of clean.matchAll(/<([a-z][\w:-]*)\b((?:"[^"]*"|'[^']*'|[^"'<>])*)>/gi)){
    const name=tag[1].toLowerCase(),a=attributes(tag[2]);
    if(!a)return [];
    for(const [key,value] of Object.entries(a)){
+    if(['href','src','action'].includes(key)&&(/&#|&colon;|[\u0000-\u0020]/i.test(value)||! /^(?:https?:\/\/|\/|#|mailto:|tel:)/i.test(value)))return [];
     if(key.startsWith('on')&&!((key==='onload'&&value==="this.media='all'")||
      (key==='onerror'&&value==="this.parentElement.style.display='none'")))return [];
    }
