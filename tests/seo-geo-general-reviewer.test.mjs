@@ -81,11 +81,12 @@ test('General reviewer: ordinary GEO-only documentation can pass',()=>{
  assert.equal(v.scope,'GEO_ONLY');
 });
 test('General reviewer: publisher can modify only its approved publication files',()=>{
- assert.equal(reviewPublisherPaths(['blog/new.html','blog/images/new.webp','sitemap.xml',
+ assert.equal(reviewPublisherPaths(['blog/articles.json','blog/new.html','blog/images/new.webp','sitemap.xml',
   'seo/keyword-map.json','content/publication-log.json']).decision,'APPROVED');
  const b=reviewPublisherPaths(['blog/new.html','robots.txt','.github/workflows/a.yml']);
  assert.equal(b.decision,'BLOCKED');
  assert.equal(b.violations.length,2);
+ assert.equal(reviewPublisherPaths(['blog/other.json']).decision,'BLOCKED');
 });
 test('General reviewer: publisher rejects duplicate staged files',()=>{
  assert.equal(reviewPublisherPaths(['sitemap.xml','sitemap.xml']).decision,'BLOCKED');

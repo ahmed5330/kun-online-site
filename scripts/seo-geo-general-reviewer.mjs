@@ -15,6 +15,7 @@ const ROOT=path.resolve(fileURLToPath(new URL('..',import.meta.url)));
 const OUT=path.join(ROOT,'test-results','seo-geo-general-review.json');
 
 const PUBLISH_PATHS=[
+ /^blog\/articles\.json$/,
  /^blog\/(?:[^/]+\.html|images\/[^/]+\.(?:webp|png|jpg|jpeg))$/i,
  /^seo-content-map\.json$/,
  /^seo\/(?:keyword-map|published-series-mapping)\.json$/,
