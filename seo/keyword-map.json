@@ -681,6 +681,22 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/sales-price-vs-real-ecommerce-profit",
+      "primary": "حساب الربح الحقيقي للمتجر الإلكتروني",
+      "secondary": [
+        "الفرق بين مجمل الربح وصافي الربح",
+        "هامش المساهمة في التجارة الإلكترونية",
+        "تكلفة الطلب المسلم",
+        "ربحية الدفع عند الاستلام",
+        "تكلفة الشحن والمرتجعات"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }

@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 21,
-    "articles_remaining": 79,
+    "articles_published": 22,
+    "articles_remaining": 78,
     "current_article": null,
-    "next_article": 21,
-    "project_completion_percentage": 21,
-    "last_published_date": "2026-10-28",
+    "next_article": 22,
+    "project_completion_percentage": 22,
+    "last_published_date": "2026-10-29",
     "last_run_date": null
   },
   "chapters": [
@@ -122,6 +122,7 @@
         "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/product-profitability-before-launch",
         "https://kun-online.com/blog/product-selection-checklist-20-points",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
         "https://kun-online.com/blog/startup-budget-egypt",
         "https://kun-online.com/blog/test-product-before-bulk-inventory",
         "https://kun-online.com/blog/viral-vs-evergreen-product-demand",
@@ -141,6 +142,7 @@
         "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/product-profitability-before-launch",
         "https://kun-online.com/blog/product-selection-checklist-20-points",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
         "https://kun-online.com/blog/test-product-before-bulk-inventory",
         "https://kun-online.com/blog/viral-vs-evergreen-product-demand",
         "https://kun-online.com/blog/what-is-ecommerce"
@@ -240,6 +242,7 @@
         "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/product-profitability-before-launch",
         "https://kun-online.com/blog/product-selection-checklist-20-points",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
         "https://kun-online.com/blog/test-product-before-bulk-inventory",
         "https://kun-online.com/blog/viral-vs-evergreen-product-demand"
       ],
@@ -385,6 +388,7 @@
         "https://kun-online.com/blog/product-marketing-operations-ecommerce",
         "https://kun-online.com/blog/product-profitability-before-launch",
         "https://kun-online.com/blog/product-selection-checklist-20-points",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
         "https://kun-online.com/blog/startup-budget-egypt",
         "https://kun-online.com/blog/viral-vs-evergreen-product-demand"
       ],
@@ -764,6 +768,7 @@
         "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/product-selection-checklist-20-points",
         "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
         "https://kun-online.com/blog/startup-budget-egypt",
         "https://kun-online.com/blog/test-product-before-bulk-inventory"
       ],
@@ -771,6 +776,7 @@
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/one-product-vs-multi-product-store",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
         "https://kun-online.com/blog/startup-budget-egypt",
         "https://kun-online.com/blog/test-product-before-bulk-inventory"
       ],
@@ -814,6 +820,7 @@
       "internal_links_in": [
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/product-profitability-before-launch",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
       "failure_reason": null,
@@ -856,7 +863,8 @@
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/product-profitability-before-launch",
-        "https://kun-online.com/blog/product-selection-checklist-20-points"
+        "https://kun-online.com/blog/product-selection-checklist-20-points",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit"
       ],
       "failure_reason": null,
       "attempts": 0
@@ -898,7 +906,8 @@
       "internal_links_in": [
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/product-demand-validation-guide",
-        "https://kun-online.com/blog/product-profitability-before-launch"
+        "https://kun-online.com/blog/product-profitability-before-launch",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit"
       ],
       "failure_reason": null,
       "attempts": 0
@@ -910,18 +919,37 @@
       "brief": "مثال عملي كامل يفضح التكاليف المخفية.",
       "new_concept": "Gross Profit وNet Profit وContribution Margin.",
       "research_space": "ابحث عن طرق حساب الربحية الخاصة بمتاجر COD والأسواق الناشئة.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "queued",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
+      "final_h1": "بتبيع بـ500 جنيه؟ احسب الربح الحقيقي بعد الشحن والإعلانات والمرتجعات",
+      "seo_title": "بتبيع بـ500 جنيه؟ احسب الربح الحقيقي بعد الشحن والإعلانات والمرتجعات | مدونة كن أونلاين",
+      "primary_keyword": "حساب الربح الحقيقي للمتجر الإلكتروني",
+      "secondary_keywords": [
+        "الفرق بين مجمل الربح وصافي الربح",
+        "هامش المساهمة في التجارة الإلكترونية",
+        "تكلفة الطلب المسلم",
+        "ربحية الدفع عند الاستلام",
+        "تكلفة الشحن والمرتجعات"
+      ],
+      "search_intent": "informational",
+      "slug": "sales-price-vs-real-ecommerce-profit",
+      "url": "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
+      "status": "published",
+      "published_date": "2026-10-29",
+      "word_count": 2006,
+      "internal_links_out": [
+        "https://kun-online.com/blog/cheap-vs-expensive-products-online",
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/one-product-vs-multi-product-store",
+        "https://kun-online.com/blog/product-profitability-before-launch",
+        "https://kun-online.com/blog/product-selection-checklist-20-points",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/product-profitability-before-launch",
+        "https://kun-online.com/blog/real-cost-per-delivered-order"
+      ],
       "failure_reason": null,
       "attempts": 0
     },
