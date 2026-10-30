@@ -697,6 +697,22 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/ecommerce-product-price-strategy",
+      "primary": "تسعير المنتجات في التجارة الإلكترونية",
+      "secondary": [
+        "كيفية تحديد سعر بيع المنتج",
+        "التسعير على أساس التكلفة",
+        "التسعير حسب المنافسين",
+        "التسعير حسب القيمة",
+        "هامش الربح والتخفيضات"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }

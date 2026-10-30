@@ -112,6 +112,11 @@
       "article_id": 21,
       "slug": "sales-price-vs-real-ecommerce-profit",
       "reason": "Approved published series article; 2026-10-29: Owner-authorized original Arabic editorial composition and explicit approval for daily production. Official Shopify Help Center profit reports, cost per item, pricing, refunds and Google Analytics ecommerce event documentation reviewed on 2026-10-29. All example amounts hypothetical; calculations and COD cohort treatment manually checked; no invented market data."
+    },
+    {
+      "article_id": 22,
+      "slug": "ecommerce-product-price-strategy",
+      "reason": "Approved published series article; 2026-10-30: Owner-authorized daily original Arabic editorial production; reviewed official 2026 Shopify pricing strategy guidance, Stripe 2025 cost/value pricing, Google Search Central Merchant Listing price schema, Saudi Ministry of Commerce discount regulations, and Egyptian Consumer Protection Agency guidance. Hypothetical examples and arithmetic independently checked. Independent SEO/GEO reviewer gate must still pass before merging."
     }
   ],
   "supplementalPublished": [

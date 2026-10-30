@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 22,
-    "articles_remaining": 78,
+    "articles_published": 23,
+    "articles_remaining": 77,
     "current_article": null,
-    "next_article": 22,
-    "project_completion_percentage": 22,
-    "last_published_date": "2026-10-29",
+    "next_article": 23,
+    "project_completion_percentage": 23,
+    "last_published_date": "2026-10-30",
     "last_run_date": null
   },
   "chapters": [
@@ -137,6 +137,7 @@
         "https://kun-online.com/blog/ecommerce-evolution-history",
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
         "https://kun-online.com/blog/ecommerce-product-ideas-research",
+        "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/one-product-vs-multi-product-store",
         "https://kun-online.com/blog/product-demand-validation-guide",
@@ -235,6 +236,7 @@
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
         "https://kun-online.com/blog/ecommerce-product-ideas-research",
+        "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/one-product-vs-multi-product-store",
@@ -382,6 +384,7 @@
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
         "https://kun-online.com/blog/ecommerce-funnel-explained",
         "https://kun-online.com/blog/ecommerce-product-ideas-research",
+        "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/one-product-vs-multi-product-store",
         "https://kun-online.com/blog/product-demand-validation-guide",
@@ -677,6 +680,7 @@
         "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/ecommerce-product-ideas-research",
+        "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/one-product-vs-multi-product-store",
         "https://kun-online.com/blog/order-confirmation-delivery-rate",
@@ -688,6 +692,7 @@
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/one-product-vs-multi-product-store",
         "https://kun-online.com/blog/product-selection-checklist-20-points",
         "https://kun-online.com/blog/startup-budget-egypt"
@@ -762,6 +767,7 @@
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/cod-shipping-returns-reconciliation",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/one-product-vs-multi-product-store",
         "https://kun-online.com/blog/order-confirmation-delivery-rate",
@@ -775,6 +781,7 @@
       "internal_links_in": [
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/one-product-vs-multi-product-store",
         "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
         "https://kun-online.com/blog/startup-budget-egypt",
@@ -905,6 +912,7 @@
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/product-profitability-before-launch",
         "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit"
@@ -938,6 +946,7 @@
       "internal_links_out": [
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/one-product-vs-multi-product-store",
         "https://kun-online.com/blog/product-profitability-before-launch",
@@ -947,6 +956,7 @@
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/product-profitability-before-launch",
         "https://kun-online.com/blog/real-cost-per-delivered-order"
       ],
@@ -960,18 +970,37 @@
       "brief": "اشرح Cost-Based وCompetitor-Based وValue-Based Pricing بأمثلة.",
       "new_concept": "Pricing Psychology وAnchor Pricing.",
       "research_space": "ابحث عن أحدث دراسات Pricing وطرق Psychological Pricing.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "queued",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
+      "final_h1": "تسعير المنتجات أونلاين: 3 طرق لتحديد سعر مربح ومنافس",
+      "seo_title": "تسعير المنتجات أونلاين: 3 طرق لتحديد سعر مربح ومنافس | مدونة كن أونلاين",
+      "primary_keyword": "تسعير المنتجات في التجارة الإلكترونية",
+      "secondary_keywords": [
+        "كيفية تحديد سعر بيع المنتج",
+        "التسعير على أساس التكلفة",
+        "التسعير حسب المنافسين",
+        "التسعير حسب القيمة",
+        "هامش الربح والتخفيضات"
+      ],
+      "search_intent": "informational",
+      "slug": "ecommerce-product-price-strategy",
+      "url": "https://kun-online.com/blog/ecommerce-product-price-strategy",
+      "status": "published",
+      "published_date": "2026-10-30",
+      "word_count": 1782,
+      "internal_links_out": [
+        "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/product-profitability-before-launch",
+        "https://kun-online.com/blog/product-selection-checklist-20-points",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
+        "https://kun-online.com/blog/product-profitability-before-launch",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit"
+      ],
       "failure_reason": null,
       "attempts": 0
     },
