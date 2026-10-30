@@ -46,3 +46,11 @@
 - النشر العام: `scheduled-blog-publisher.yml` يعمل عند 09:17 و15:37 بتوقيت القاهرة بالإضافة إلى التشغيل اليدوي وعند إضافة مقالات معتمدة؛ قفل تاريخ القاهرة يمنع أكثر من مقال في اليوم. النجاح لا يُعتبر مُثبتًا حتى كتابة commit وتحقق خدمة Cloudflare من عنوان المقال وSitemap.
 - لا يعتمد سير العمل على خدمة GitHub Models (أُوقفت في يوليو 2026). `scripts/generate_article.py` القديم محظور تشغيله مباشرة لأنه كان يتجاوز بوابات الجودة ويتعامل مع محتوى 800–1200 كلمة.
 - **حدود الفهرسة:** اختبارات HTTPS/Canonical/Sitemap تبرهن القابلية الفنية فقط؛ لا يمكن ادعاء Google-indexed من دون بيانات URL Inspection/Page Indexing صحيحة، والحقل `indexed` عبر Windsor.ai قديم وغير موثوق.
+
+
+## نظام Visual SEO — صور أصلية بدون وجوه
+- كل صورة جديدة يجب أن تخلو تمامًا من وجوه الأشخاص. سياسة ملزمة: `seo/visual-seo-policy.md` و`seo/visual-seo-policy.json`.
+- منشئ أغلفة المقالات `scripts/generate-approved-covers.py` يرسم أشكالًا هندسية موضوعية (بدون أشخاص) ويولّد PNG وWebP بحجمين، دون API أو صور خارجية.
+- `scripts/refresh_site.py` يحافظ على النصوص ويضيف Image sitemap و`BlogPosting.image` والبيانات الاجتماعية للأغلفة الموجودة.
+- `npm test` يشغّل `tests/visual-seo.test.mjs` للتحقق من الصور المرئية وALT وخريطة الصور والبيانات المنظمة. لا يدّعي الاختبار التعرف البصري الآلي على الوجوه في أي صور مستوردة.
+- بعد دمج PR والنشر، راجع URL Inspection وImage Search Performance في Search Console؛ اكتمال علامات HTML وحده لا يثبت الفهرسة.
