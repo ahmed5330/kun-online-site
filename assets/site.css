@@ -258,3 +258,11 @@ html[lang="en"] #main-content .sh{font-family:Inter,system-ui,sans-serif}
  .site-nav .site-links{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;white-space:nowrap;justify-content:flex-start;scrollbar-width:thin}
  .site-nav .site-links a{flex:none}
 }
+
+/* Face-free, crawlable illustrations for service and editorial landing pages. */
+.ko-visual-feature{width:min(100%,1080px);margin:24px auto 36px;overflow:hidden;border-radius:20px;background:#082442;box-shadow:0 16px 42px rgba(10,36,68,.14)}
+.ko-visual-feature img{display:block;width:100%;height:auto;max-height:335px;object-fit:cover;border-radius:0}
+.ko-visual-feature figcaption{background:#f2f7fa;color:#28516d;font-size:13px;padding:9px 18px;text-align:right}
+.ko-visual-home{width:min(calc(100% - 32px),1040px);margin:34px auto 42px}
+.ko-visual-home img{max-height:285px}
+@media(max-width:600px){.ko-visual-feature{border-radius:13px}.ko-visual-feature img{max-height:240px}.ko-visual-home{margin:22px auto 28px}}
