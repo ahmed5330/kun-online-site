@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "owner": "Kun Online / SEO + Creative",
+  "appliesTo": [
+    "blog covers",
+    "marketing pages",
+    "social previews",
+    "product captures"
+  ],
+  "facesAllowed": false,
+  "recognizablePeopleAllowed": false,
+  "allowedSubjects": [
+    "products",
+    "packaging",
+    "abstract diagrams",
+    "real approved anonymized dashboards",
+    "charts",
+    "non-person illustrations"
+  ],
+  "humanReviewRequiredForImportedVisuals": true,
+  "doNotPublishIfFaceOrIdentityUncertain": true,
+  "generatedCoverFormat": "PNG",
+  "coverSize": {
+    "width": 1200,
+    "height": 630
+  },
+  "responsiveFormats": [
+    "webp-1200",
+    "webp-640"
+  ],
+  "accessibleAltRequired": true,
+  "sourceRightsRequired": true,
+  "syntheticPerformanceClaimsForbidden": true,
+  "notes": "Geometric PIL and SVG artworks are guaranteed by source design to contain no people; manually imported visual assets require explicit human screening for faces, privacy and rights."
+}
