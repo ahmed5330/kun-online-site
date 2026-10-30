@@ -137,3 +137,71 @@ test('General reviewer: outstanding changes-requested from another human vetoes 
  const v=r([{filename:'robots.txt'}],{reviews});
  assert.equal(v.decision,'BLOCKED');
 });
+
+
+const owner='ahmed5330', siteRepo='ahmed5330/kun-online-site', pinnedSha='a'.repeat(40);
+function ownerComment(sha=pinnedSha, action='APPROVE',id=20,user={login:owner,type:'User'}){
+ return {id,user,body:'KUN-SOLO-'+action+' '+sha,created_at:'2026-10-30T12:00:00Z',updated_at:'2026-10-30T12:00:00Z'};
+}
+const visualChange=[{filename:'blog/guide.html',status:'modified',
+ patch:'@@\n+<script type="application/ld+json">\n+{"@type":"BlogPosting","image":"https://kun-online.com/blog/images/guide.png"}'}];
+const solo=(files,extra={})=>reviewPr({number:110,files,body:impact,author:owner,
+ headSha:pinnedSha,reviews:[],comments:[],repository:siteRepo,otherPrFiles:[],...extra});
+
+test('Solo-maintainer: repository-scoped owner comment permits only ordinary image-schema change',()=>{
+ assert.equal(solo(visualChange).decision,'BLOCKED');
+ const result=solo(visualChange,{comments:[ownerComment()]});
+ assert.equal(result.decision,'APPROVED');
+ assert.equal(result.hasSoloOwnerConsent,true);
+ assert.equal(result.hasIndependentApproval,false);
+ assert.deepEqual(result.criticalFiles,[]);
+});
+
+test('Solo-maintainer: no approval outside the exact repository or owner',()=>{
+ const comments=[ownerComment()];
+ assert.equal(solo(visualChange,{repository:'ahmed5330/kunonline',comments}).decision,'BLOCKED');
+ assert.equal(solo(visualChange,{repository:'ahmed5330/another-project',comments}).decision,'BLOCKED');
+ assert.equal(solo(visualChange,{author:'different-owner',comments}).decision,'BLOCKED');
+});
+
+test('Solo-maintainer: SHA changes, forged user, bot, edited comment and malformed note fail closed',()=>{
+ const changed='b'.repeat(40);
+ for(const comments of [
+  [ownerComment(changed)], [ownerComment(pinnedSha,'APPROVE',20,{login:'attacker',type:'User'})],
+  [ownerComment(pinnedSha,'APPROVE',20,{login:owner,type:'Bot'})],
+  [{...ownerComment(),updated_at:'2026-10-30T12:20:00Z'}],
+  [{...ownerComment(),body:'KUN-SOLO-APPROVE '+pinnedSha+' extra'}],
+  [{...ownerComment(),body:'KUN-SOLO-APPROVE '+pinnedSha.toUpperCase()}]
+ ])assert.equal(solo(visualChange,{comments}).decision,'BLOCKED');
+ assert.equal(solo(visualChange,{headSha:changed,comments:[ownerComment()]}).decision,'BLOCKED');
+});
+
+test('Solo-maintainer: last authentic decision for SHA is authoritative and revocable',()=>{
+ assert.equal(solo(visualChange,{comments:[ownerComment(),ownerComment(pinnedSha,'REVOKE',25)]}).decision,'BLOCKED');
+ assert.equal(solo(visualChange,{comments:[ownerComment(),ownerComment(pinnedSha,'REVOKE',25),ownerComment(pinnedSha,'APPROVE',30)]}).decision,'APPROVED');
+});
+
+test('Solo-maintainer: no bypass for critical crawl directives or infrastructure',()=>{
+ for(const files of [
+  [{filename:'robots.txt',patch:'+Disallow: /blog'}],
+  [{filename:'_headers',patch:'+/*\n+  Content-Signal: noindex'}],
+  [{filename:'.github/CODEOWNERS',status:'modified',patch:'+* @owner'}],
+  [{filename:'.github/workflows/site-quality.yml',patch:'+permissions: write'}],
+  [{filename:'index.html',patch:'@@\n+<link rel="canonical" href="https://attacker.example/">'}],
+  [{filename:'blog/guide.html',patch:'@@\n+<meta name="robots" content="noindex">'}],
+  [{filename:'blog/guide.html',patch:'@@\n-<link rel="canonical" href="https://kun-online.com/blog/guide">'}]
+ ]) {
+  const verdict=solo(files,{comments:[ownerComment()]});
+  assert.equal(verdict.decision,'BLOCKED',files[0].filename);
+  assert.ok(verdict.criticalFiles.length>0);
+ }
+});
+
+test('Solo-maintainer: independent changes requested and open PR overlap still block',()=>{
+ const reviews=[{state:'CHANGES_REQUESTED',commit_id:pinnedSha,
+  user:{login:'second-reviewer',type:'User'},submitted_at:'2026-10-30T13:00:00Z'}];
+ assert.equal(solo(visualChange,{comments:[ownerComment()],reviews}).decision,'BLOCKED');
+ assert.equal(solo(visualChange,{comments:[ownerComment()],
+  otherPrFiles:[{number:123,files:['blog/guide.html']}]}).decision,'BLOCKED');
+ assert.equal(solo(visualChange,{comments:[ownerComment()],body:'SEO impact: fine'}).decision,'BLOCKED');
+});
