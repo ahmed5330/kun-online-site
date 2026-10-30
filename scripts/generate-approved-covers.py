@@ -80,6 +80,26 @@ def color_category(meta):
     category = meta.get("category", "store")
     return PALETTE.get(category, PALETTE["store"])
 
+def cover_topic(meta):
+    """Choose relevant, face-free pictograms from editorial subject and category."""
+    slug = str(meta.get("slug", "")).lower()
+    category = str(meta.get("category", "store")).lower()
+    if any(word in slug for word in ("profit", "cost", "budget", "price", "finance")):
+        return "finance"
+    if any(word in slug for word in ("shipping", "delivery", "order-confirmation", "returns")):
+        return "ops"
+    if any(word in slug for word in ("inventory", "barcode", "bundle")):
+        return "inventory"
+    if any(word in slug for word in ("research", "selection", "competitor", "demand", "reviews")):
+        return "research"
+    if any(word in slug for word in ("funnel", "conversion", "checkout")):
+        return "cro"
+    if any(word in slug for word in ("seo", "search", "google")):
+        return "seo"
+    if any(word in slug for word in ("scale", "growth", "expansion")):
+        return "growth"
+    return category
+
 def draw_motif(draw, category, accent):
     """Subtle category-specific abstract chart, no unverified data or text."""
     pale = tuple(max(0, min(255, round(x * .53))) for x in accent)
@@ -98,6 +118,40 @@ def draw_motif(draw, category, accent):
             draw.rounded_rectangle((x,y,x+65,y+55),radius=10,
                                    fill=(14,49,65),outline=pale,width=3)
             draw.line((x+32,y+8,x+32,y+43),fill=pale,width=2)
+    elif category == "research":
+        draw.ellipse((133,299,281,447),outline=accent,width=11)
+        draw.ellipse((161,327,253,419),outline=pale,width=3)
+        draw.line((260,427,344,508),fill=accent,width=14)
+    elif category == "inventory":
+        for x,y in ((132,327),(225,327),(179,411)):
+            draw.polygon(((x,y),(x+70,y),(x+90,y+27),(x+20,y+27)),
+                         outline=accent,width=3)
+            draw.rectangle((x+20,y+27,x+90,y+90),outline=pale,width=3)
+            draw.line((x+55,y+30,x+55,y+84),fill=pale,width=2)
+    elif category == "cro":
+        for i in range(3):
+            x=120+i*91
+            draw.rounded_rectangle((x,350,x+73,430),radius=13,
+                                   outline=accent,width=4)
+            draw.line((x+17,374,x+56,374),fill=pale,width=4)
+            draw.line((x+17,393,x+47,393),fill=pale,width=3)
+            if i<2:
+                draw.line((x+75,391,x+88,391),fill=accent,width=3)
+    elif category == "seo":
+        draw.rounded_rectangle((119,328,362,473),radius=17,
+                               fill=(14,48,63),outline=pale,width=4)
+        draw.rounded_rectangle((140,353,341,388),radius=12,outline=accent,width=3)
+        draw.ellipse((166,401,207,442),outline=accent,width=5)
+        draw.line((201,438,225,460),fill=accent,width=5)
+        for y in (409,426,443):
+            draw.line((250,y,323,y),fill=pale,width=3)
+    elif category == "growth":
+        for i,height in enumerate((40,72,110,165)):
+            x=126+i*59
+            draw.rounded_rectangle((x,474-height,x+37,474),radius=7,
+                                   fill=(14,49,65),outline=pale,width=3)
+        draw.line(((131,408),(207,381),(282,328),(358,299)),
+                  fill=accent,width=6,joint="curve")
     else:
         draw.rounded_rectangle((128,360,340,468),radius=17,
                                fill=(14,48,63),outline=pale,width=4)
@@ -125,7 +179,7 @@ def generate(meta, overwrite=False):
     draw.rounded_rectangle((48,46,1152,581),radius=27,
                            outline=(37,78,99),width=2)
     draw.rounded_rectangle((78,75,1123,160),radius=13,fill=(16,47,63))
-    draw_motif(draw,meta.get("category","store"),accent)
+    draw_motif(draw,cover_topic(meta),accent)
 
     fontpath = font_file()
     brand = get_font(fontpath, 29)
@@ -160,6 +214,10 @@ def generate(meta, overwrite=False):
 
     IMAGES.mkdir(parents=True,exist_ok=True)
     canvas.save(target,optimize=True)
+    # Preserve the canonical PNG while providing lighter responsive WebP variants.
+    canvas.save(target.with_suffix(".webp"),"WEBP",quality=87,method=6)
+    smaller=canvas.resize((640,336),resample=Image.Resampling.LANCZOS)
+    smaller.save(target.with_name(name+"-640.webp"),"WEBP",quality=85,method=6)
     with Image.open(target) as check:
         assert check.size == SIZE and check.format == "PNG"
     print("COVER READY:",target.relative_to(ROOT))
