@@ -137,7 +137,7 @@ export function reviewPr({number,files,otherPrFiles=[],body='',author='',headSha
  const routine=routineArticleBundle(list);
  if(routine.length&&latestHumanReviews(reviews,author).some(r=>r.state==='CHANGES_REQUESTED'))
   issues.push('CHANGES_REQUESTED: resolve outstanding human review before routine publication');
- const sensitive=list.filter(f=>(HIGH_RISK.test(f.filename)&&!(f.filename==='.github/CODEOWNERS'&&f.status==='added'))||
+ const sensitive=list.filter(f=>(HIGH_RISK.test(f.filename)&&!(f.filename==='.github/CODEOWNERS'&&f.status==='added'))||f.filename.startsWith('.github/workflows/')||
   ((CONTENT.test(f.filename)&&SENSITIVE_ADD.test(f.patch||'')||/^content\/approved\/[^/]+\.html\.ready$/.test(f.filename))&&!routine.includes(f.filename)))
   .map(f=>f.filename);
  const approved=matchesApproval(reviews,author,headSha);
