@@ -140,6 +140,11 @@ def refresh(optimize=False):
                 entry+='<image:image><image:loc>'+escape(BASE+'/blog/images/'+cover)+'</image:loc></image:image>'
         if url in ('/','/en/','/gulf/'):
             entry+=''.join('<xhtml:link rel="alternate" hreflang="'+lang+'" href="'+BASE+p+'"/>' for lang,p in languages)
+        # Only explicitly approved original illustrations (no scraped imagery).
+        for illustration in sorted(set(re.findall(
+            r'src="(/assets/visuals/[a-z0-9-]+\.svg)"',source,re.I))):
+            if (ROOT/illustration.lstrip('/')).is_file():
+                entry+='<image:image><image:loc>'+escape(BASE+illustration)+'</image:loc></image:image>'
         entries.append(entry+'</url>')
     xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'+'\n'.join(entries)+'\n</urlset>\n'
     (ROOT/'sitemap.xml').write_text(xml,encoding='utf-8')
