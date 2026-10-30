@@ -75,7 +75,7 @@ def refresh(optimize=False):
                 if '</head>' not in s:
                     raise ValueError('Article missing head: '+article.name)
                 tags=[]
-                if not re.search(r'<meta\s+property="og:image"\b',s,re.I):
+                if not re.search(r'<meta\s+property="og:image"',s,re.I):
                     tags.append('<meta property="og:image" content="'+html.escape(image_url,quote=True)+'">')
                 for name,value in (('og:image:width','1200'),('og:image:height','630'),
                                    ('og:image:alt',image_alt)):
