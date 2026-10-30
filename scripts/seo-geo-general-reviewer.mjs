@@ -28,6 +28,12 @@ const SEO=/^(?:seo\/|seo-content-map\.json$|sitemap\.xml$|robots\.txt$|_redirect
 const GEO=/^(?:docs\/geo\/|scripts\/geo-|tests\/geo-|geo\/)/;
 const SHARED=/^(?:index\.html|(?:blog|services|system|gulf|pricing|consultations|methodology|content)\/|sitemap\.xml$|robots\.txt$|_headers$|_redirects$)/;
 const INFRA=/^(?:\.github\/|package\.json$|assets\/|scripts\/refresh_site\.py$|scripts\/seo-geo-general-reviewer\.mjs$|tests\/seo-geo-general-reviewer\.test\.mjs$)/;
+// SOLO policy is scoped to this one marketing-site repository; never other projects.
+const SOLO_REPOSITORY='ahmed5330/kun-online-site';
+const SOLO_OWNER='ahmed5330';
+const OWNER_COMMENT=/^KUN-SOLO-(APPROVE|REVOKE) ([a-f0-9]{40})$/;
+// These directives and infrastructural controls ALWAYS require an independent human.
+const CRITICAL_DIRECTIVE=/^[+-](?![+-])[^\\r\\n]*?(?:<link[^>]*rel=[\"']canonical|<meta[^>]*name=[\"'](?:robots|googlebot)|noindex|nofollow|Content-Signal:|Disallow:|Allow:|http-equiv=[\"']refresh)/im;
 const SENSITIVE_ADD=/^[+-](?![+-])[^\r\n]*?(?:<link[^>]*rel=["']canonical|<meta[^>]*name=["']robots|<meta[^>]*name=["']googlebot|noindex|nofollow|<script[^>]*application\/ld\+json|Content-Signal:|Disallow:|Allow:)/im;
 
 export function classifyFile(file){
@@ -76,7 +82,16 @@ function matchesApproval(reviews,author,headSha){
  if(decisions.some(r=>r.state==='CHANGES_REQUESTED'))return false;
  return decisions.some(r=>r.state==='APPROVED'&&r.commit_id===headSha);
 }
-export function reviewPr({number,files,otherPrFiles=[],body='',author='',headSha='',reviews=[]}){
+function ownerConsent(comments,repository,author,headSha){
+ if(repository!==SOLO_REPOSITORY||author!==SOLO_OWNER||!/^[a-f0-9]{40}$/.test(headSha))return false;
+ const decisions=comments.filter(c=>c.user?.login===SOLO_OWNER&&c.user?.type==='User'&&
+   c.body&&OWNER_COMMENT.test(c.body.trim())&&
+   c.created_at&&c.updated_at&&c.created_at===c.updated_at&&Number.isSafeInteger(c.id))
+  .map(c=>({id:c.id,parts:OWNER_COMMENT.exec(c.body.trim())}))
+  .filter(c=>c.parts?.[2]===headSha).sort((a,b)=>a.id-b.id);
+ return decisions.length>0&&decisions.at(-1).parts[1]==='APPROVE';
+}
+export function reviewPr({number,files,otherPrFiles=[],body='',author='',headSha='',reviews=[],comments=[],repository=''}){
  const list=files.map(f=>typeof f==='string'?{filename:f,patch:''}:f);
  const names=list.map(f=>f.filename);
  const scope=classifySet(names);
@@ -100,9 +115,18 @@ export function reviewPr({number,files,otherPrFiles=[],body='',author='',headSha
   ((CONTENT.test(f.filename)&&SENSITIVE_ADD.test(f.patch||'')||/^content\/approved\/[^/]+\.html\.ready$/.test(f.filename))&&!routine.includes(f.filename)))
   .map(f=>f.filename);
  const approved=matchesApproval(reviews,author,headSha);
+ const solo=ownerConsent(comments,repository,author,headSha);
+ const critical=sensitive.filter(name=>HIGH_RISK.test(name)||name.startsWith('.github/workflows/')||
+   (list.find(f=>f.filename===name)?.patch&&CRITICAL_DIRECTIVE.test(list.find(f=>f.filename===name).patch)));
+ // A solo owner may attest *ordinary* editorial and image-schema updates, never critical directives.
+ // Existing independent changes-requested vetoes either approval route.
+ const outstanding=latestHumanReviews(reviews,author).some(r=>r.state==='CHANGES_REQUESTED');
  if(sensitive.length&&!approved){
-  issues.push('SENSITIVE_CHANGE_APPROVAL: latest head commit needs approval from a different non-bot reviewer for '+sensitive.join(', '));
+  if(critical.length||!solo||outstanding)
+   issues.push('SENSITIVE_CHANGE_APPROVAL: '+(critical.length?'independent reviewer required for critical changes: '+critical.join(', '):
+     'latest head needs independent review or owner SHA-pinned GitHub comment for '+sensitive.join(', ')));
  }
+ if(solo&&outstanding)issues.push('CHANGES_REQUESTED: owner attestation cannot override independent changes requested');
  if(names.some(n=>n.startsWith('.github/workflows/')))
   warnings.push('Workflow modifications need repository CODEOWNERS/branch rules to guarantee human review and prevent bypass.');
  if(names.some(n=>n.includes('seo-geo-general-reviewer')))
@@ -110,7 +134,7 @@ export function reviewPr({number,files,otherPrFiles=[],body='',author='',headSha
  return {
   decision:issues.length?'BLOCKED':'APPROVED',scope,changedFiles:names,
   overlapCount:issues.filter(v=>v.startsWith('OPEN_PR_OVERLAP')).length,
-  sensitiveFiles:sensitive,routineArticleFiles:routine,hasIndependentApproval:approved,
+  sensitiveFiles:sensitive,routineArticleFiles:routine,hasIndependentApproval:approved,hasSoloOwnerConsent:solo,criticalFiles:critical,
   violations:issues,warnings
  };
 }
@@ -154,10 +178,11 @@ async function hydrateArticleFiles(files,sha,env,fetcher){
 }
 export async function reviewLivePr({number,env=process.env,fetcher=fetch}){
  const me=await gh('/pulls/'+number,env,fetcher);
- const [files,prs,reviews]=await Promise.all([
+ const [files,prs,reviews,comments]=await Promise.all([
   paginated('/pulls/'+number+'/files',env,fetcher),
   paginated('/pulls?state=open',env,fetcher),
-  paginated('/pulls/'+number+'/reviews',env,fetcher)
+  paginated('/pulls/'+number+'/reviews',env,fetcher),
+  paginated('/issues/'+number+'/comments',env,fetcher)
  ]);
  await hydrateArticleFiles(files,me.head?.sha,env,fetcher);
  const candidates=prs.filter(p=>p.number!==number);
@@ -168,19 +193,20 @@ export async function reviewLivePr({number,env=process.env,fetcher=fetch}){
  const current=await gh('/pulls/'+number,env,fetcher);
  if(current.head?.sha!==me.head?.sha)throw Error('PR head changed during review; rerun for the latest head');
  return reviewPr({number,files,otherPrFiles,body:me.body,author:me.user?.login,
-  headSha:me.head?.sha,reviews});
+  headSha:me.head?.sha,reviews,comments,repository:env.GITHUB_REPOSITORY});
 }
 export async function reviewDaily({env=process.env,fetcher=fetch}={}){
  const prs=await paginated('/pulls?state=open',env,fetcher);
  const candidates=await Promise.all(prs.map(async p=>({
   p,files:await paginated('/pulls/'+p.number+'/files',env,fetcher),
-  reviews:await paginated('/pulls/'+p.number+'/reviews',env,fetcher)
+  reviews:await paginated('/pulls/'+p.number+'/reviews',env,fetcher),
+  comments:await paginated('/issues/'+p.number+'/comments',env,fetcher)
  })));
  await Promise.all(candidates.map(x=>hydrateArticleFiles(x.files,x.p.head?.sha,env,fetcher)));
- const results=candidates.map(({p,files,reviews})=>({
+ const results=candidates.map(({p,files,reviews,comments})=>({
   number:p.number,url:p.html_url,
   ...reviewPr({number:p.number,files,body:p.body||'',author:p.user?.login,
-   headSha:p.head?.sha,reviews,
+   headSha:p.head?.sha,reviews,comments,repository:env.GITHUB_REPOSITORY,
    otherPrFiles:candidates.filter(x=>x.p.number!==p.number).map(x=>({
     number:x.p.number,files:x.files.map(f=>f.filename)
    }))})
