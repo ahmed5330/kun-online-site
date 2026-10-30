@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --check scripts/publish-approved-article.mjs && node scripts/publish-approved-article.mjs --check && node scripts/reconcile-content-plan.mjs --check && node --test tests/site.test.mjs tests/reviews.test.mjs tests/consultations.test.mjs tests/seo-completion.test.mjs tests/approved-queue.test.mjs && node --test tests/geo-site-audit.test.mjs tests/geo-entity.test.mjs tests/geo-trust.test.mjs tests/geo-editorial-audit.test.mjs tests/geo-ai-visibility.test.mjs tests/geo-gsc-inspect.test.mjs tests/geo-evidence-scorecard.test.mjs tests/geo-cloudflare-bot-evidence.test.mjs tests/seo-geo-general-reviewer.test.mjs && node scripts/geo-site-audit.mjs && node scripts/geo-editorial-audit.mjs && node scripts/geo-ai-visibility-protocol.mjs && node scripts/system-screenshots.mjs --check"
+    "test": "node --check scripts/publish-approved-article.mjs && node scripts/publish-approved-article.mjs --check && node scripts/reconcile-content-plan.mjs --check && node --test tests/site.test.mjs tests/reviews.test.mjs tests/consultations.test.mjs tests/seo-completion.test.mjs tests/approved-queue.test.mjs && node --test tests/geo-site-audit.test.mjs tests/geo-entity.test.mjs tests/geo-trust.test.mjs tests/geo-editorial-audit.test.mjs tests/geo-ai-visibility.test.mjs tests/geo-gsc-inspect.test.mjs tests/geo-evidence-scorecard.test.mjs tests/geo-cloudflare-bot-evidence.test.mjs tests/seo-geo-general-reviewer.test.mjs && node scripts/geo-site-audit.mjs && node scripts/geo-editorial-audit.mjs && node scripts/geo-ai-visibility-protocol.mjs && node scripts/system-screenshots.mjs --check && node --test tests/visual-seo.test.mjs"
   },
   "devDependencies": {
     "playwright": "1.56.1"
