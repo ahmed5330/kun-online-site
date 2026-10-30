@@ -83,11 +83,12 @@ export function routineArticleBundle(files){
   const article=schemas.find(s=>s['@type']==='BlogPosting');
   const org=schemas.find(s=>s['@type']==='Organization');
   if(!article||!equal(org,organization))return [];
-  const keys=['@context','@type','headline','description','datePublished','dateModified','author','publisher','url','mainEntityOfPage','keywords','articleSection','inLanguage','wordCount','timeRequired'];
+  const keys=['@context','@type','headline','description','datePublished','dateModified','author','publisher','url','mainEntityOfPage','keywords','articleSection','inLanguage','wordCount','timeRequired','image'];
   if(Object.keys(article).some(k=>!keys.includes(k))||article['@context']!=='https://schema.org'||
    article.url!==SITE+'/blog/'+slug||article.mainEntityOfPage!==article.url||article.headline!==meta.title||article.description!==meta.description||
    article.datePublished!=='__PUBLICATION_DATE_ISO__'||article.dateModified!==article.datePublished||
-   !Number.isInteger(article.wordCount)||article.wordCount<1500||article.wordCount>2500||article.inLanguage!=='ar-EG')return [];
+   !Number.isInteger(article.wordCount)||article.wordCount<1500||article.wordCount>2500||article.inLanguage!=='ar-EG'||
+   (article.image!==undefined&&article.image!==SITE+'/blog/images/'+slug+'.png'))return [];
   const publisher={'@type':'Organization',name:'كن أونلاين',url:SITE};
   if(!equal(article.author,publisher)||!equal(article.publisher,publisher))return [];
   return [page.filename,data.filename];
