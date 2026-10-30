@@ -37,6 +37,7 @@ def refresh(optimize=False):
                       source)
         page.write_text(source,encoding='utf-8')
     articles=json.loads((ROOT/'blog/articles.json').read_text(encoding='utf-8'))
+    articles_by_slug={a['slug']:a for a in articles}
     if optimize:
         from PIL import Image
         for png in (ROOT/'blog/images').glob('*.png'):
@@ -63,6 +64,40 @@ def refresh(optimize=False):
                 if '</head>' not in s:
                     raise ValueError('Published article missing </head>: ' + article.name)
                 s=s.replace('</head>', '<link rel="stylesheet" href="/assets/editorial-20261019.css?v=2">\n</head>', 1)
+        # Enrich only real published cover assets; never manufacture image evidence.
+        meta=articles_by_slug.get(article.stem)
+        if meta:
+            filename=meta.get('image','')
+            if re.fullmatch(r'[a-z0-9-]+\.png',filename) and (ROOT/'blog/images'/filename).is_file():
+                image_url=BASE+'/blog/images/'+filename
+                visible=re.search(r'<img\b[^>]*src="/blog/images/[^"]+"[^>]*alt="([^"]+)"',s,re.I)
+                image_alt=html.unescape(visible.group(1)) if visible else meta['title']
+                if '</head>' not in s:
+                    raise ValueError('Article missing head: '+article.name)
+                tags=[]
+                if not re.search(r'<meta\s+property="og:image"',s,re.I):
+                    tags.append('<meta property="og:image" content="'+html.escape(image_url,quote=True)+'">')
+                for name,value in (('og:image:width','1200'),('og:image:height','630'),
+                                   ('og:image:alt',image_alt)):
+                    if not re.search(r'<meta\s+property="'+re.escape(name)+r'"',s,re.I):
+                        tags.append('<meta property="'+name+'" content="'+html.escape(value,quote=True)+'">')
+                if not re.search(r'<meta\s+name="twitter:card"',s,re.I):
+                    tags.append('<meta name="twitter:card" content="summary_large_image">')
+                if not re.search(r'<meta\s+name="twitter:image"',s,re.I):
+                    tags.append('<meta name="twitter:image" content="'+html.escape(image_url,quote=True)+'">')
+                if tags:
+                    s=s.replace('</head>','\n'.join(tags)+'\n</head>',1)
+                def add_blogposting_image(match):
+                    try:
+                        data=json.loads(match.group(2))
+                    except json.JSONDecodeError:
+                        return match.group(0)
+                    if isinstance(data,dict) and data.get('@type')=='BlogPosting' and not data.get('image'):
+                        data['image']=image_url
+                        return match.group(1)+json.dumps(data,ensure_ascii=False,indent=2)+match.group(3)
+                    return match.group(0)
+                s=re.sub(r'(<script\b[^>]*type="application/ld\+json"[^>]*>)([\s\S]*?)(</script>)',
+                         add_blogposting_image,s,flags=re.I)
         if optimize:
             def picture(m):
                 tag=m.group(0)
@@ -99,10 +134,19 @@ def refresh(optimize=False):
         entry='  <url><loc>'+escape(BASE+url)+'</loc>'
         if changed:
             entry+='<lastmod>'+escape(changed)+'</lastmod>'
+        if url.startswith('/blog/') and not url.endswith('/'):
+            cover=articles_by_slug.get(url.split('/')[-1],{}).get('image','')
+            if re.fullmatch(r'[a-z0-9-]+\.png',cover) and (ROOT/'blog/images'/cover).is_file():
+                entry+='<image:image><image:loc>'+escape(BASE+'/blog/images/'+cover)+'</image:loc></image:image>'
         if url in ('/','/en/','/gulf/'):
             entry+=''.join('<xhtml:link rel="alternate" hreflang="'+lang+'" href="'+BASE+p+'"/>' for lang,p in languages)
+        # Only explicitly approved original illustrations (no scraped imagery).
+        for illustration in sorted(set(re.findall(
+            r'src="(/assets/visuals/[a-z0-9-]+\.svg)"',source,re.I))):
+            if (ROOT/illustration.lstrip('/')).is_file():
+                entry+='<image:image><image:loc>'+escape(BASE+illustration)+'</image:loc></image:image>'
         entries.append(entry+'</url>')
-    xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'+'\n'.join(entries)+'\n</urlset>\n'
+    xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'+'\n'.join(entries)+'\n</urlset>\n'
     (ROOT/'sitemap.xml').write_text(xml,encoding='utf-8')
     print(f'Refreshed {len(entries)} sitemap entries and {len(articles)} static cards')
 

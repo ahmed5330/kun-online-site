@@ -26,3 +26,9 @@ Manual publish: dry_run = false, only when genuinely editorially approved.
 No content is generated automatically without an external AI service or human authoring.
 The scheduler itself uses no external VPS, API subscription, token, or OpenClaw process.
 Do not reactivate a second independent article publisher: it would bypass the lock.
+
+
+## Visual SEO — mandatory no-face rule
+Every new cover, image or illustration **MUST contain no human face** (photographic, AI-generated or illustrated). Use packaging, products, charts, anonymized real UI, or original geometric graphics instead. Manually imported images require recorded human review for faces, rights, privacy and accurate claims. If unclear, do not approve. See `seo/visual-seo-policy.md`.
+
+Generated 1200×630 PNG covers now also have 1200×630 and 640×336 WebP derivatives for responsive cards. The publisher retains the PNG primary asset and uses the existing SEO/GEO reviewer. Do not claim image indexing without native Search Console evidence.
