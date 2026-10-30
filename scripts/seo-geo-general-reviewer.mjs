@@ -34,6 +34,32 @@ const SOLO_OWNER='ahmed5330';
 const OWNER_COMMENT=/^KUN-SOLO-(APPROVE|REVOKE) ([a-f0-9]{40})$/;
 // These directives and infrastructural controls ALWAYS require an independent human.
 const CRITICAL_DIRECTIVE=/^[+-](?![+-])[^\\r\\n]*?(?:<link[^>]*rel=[\"']canonical|<meta[^>]*name=[\"'](?:robots|googlebot)|noindex|nofollow|Content-Signal:|Disallow:|Allow:|http-equiv=[\"']refresh)/im;
+function policyDirectiveChanged(patch){
+ if(!CRITICAL_DIRECTIVE.test(patch||''))return false;
+ const lines=String(patch).split(/\r?\n/);
+ const old=lines.filter(l=>l.startsWith('-')&&!l.startsWith('---')).map(l=>l.slice(1)).join('\n');
+ const fresh=lines.filter(l=>l.startsWith('+')&&!l.startsWith('+++')).map(l=>l.slice(1)).join('\n');
+ // Minified HTML can rewrite a whole unchanged canonical/robots tag on one line.
+ // Comparing the exact directive tags on both sides avoids false high-risk alerts.
+ const matched = txt => {
+   const htmlTags=[...txt.matchAll(/<(?:meta|link)\b[^>]*>/gi)]
+     .map(m=>m[0]).filter(t=>(/canonical/i.test(t)&&/^<link\b/i.test(t))||
+       (/^<meta\b/i.test(t)&&/\bname\s*=\s*["'](?:robots|googlebot)["']/i.test(t)));
+   const other=[...txt.matchAll(/(?:^|\n)\s*(?:Content-Signal|Disallow|Allow)\s*:[^\n]*/gi)].map(m=>m[0].trim());
+   return [...htmlTags,...other].sort();
+ };
+ const before=matched(old),after=matched(fresh);
+ if(before.length&&JSON.stringify(before)===JSON.stringify(after)){
+   const strip=txt=>txt.replace(/<(?:meta|link)\b[^>]*>/gi,m=>
+     (/canonical/i.test(m)&&/^<link\b/i.test(m))||
+     (/^<meta\b/i.test(m)&&/\bname\s*=\s*["'](?:robots|googlebot)["']/i.test(m))?'':m)
+     .replace(/(?:^|\n)\s*(?:Content-Signal|Disallow|Allow)\s*:[^\n]*/gi,'');
+   // Any remaining crawler directive change is still critical.
+   if(!/noindex|nofollow|Content-Signal:|Disallow:|Allow:|http-equiv=["']refresh/i.test(strip(old)+'\n'+strip(fresh)))
+     return false;
+ }
+ return true;
+}
 const SENSITIVE_ADD=/^[+-](?![+-])[^\r\n]*?(?:<link[^>]*rel=["']canonical|<meta[^>]*name=["']robots|<meta[^>]*name=["']googlebot|noindex|nofollow|<script[^>]*application\/ld\+json|Content-Signal:|Disallow:|Allow:)/im;
 
 export function classifyFile(file){
@@ -117,7 +143,7 @@ export function reviewPr({number,files,otherPrFiles=[],body='',author='',headSha
  const approved=matchesApproval(reviews,author,headSha);
  const solo=ownerConsent(comments,repository,author,headSha);
  const critical=sensitive.filter(name=>HIGH_RISK.test(name)||name.startsWith('.github/workflows/')||
-   (list.find(f=>f.filename===name)?.patch&&CRITICAL_DIRECTIVE.test(list.find(f=>f.filename===name).patch)));
+   policyDirectiveChanged(list.find(f=>f.filename===name)?.patch));
  // A solo owner may attest *ordinary* editorial and image-schema updates, never critical directives.
  // Existing independent changes-requested vetoes either approval route.
  const outstanding=latestHumanReviews(reviews,author).some(r=>r.state==='CHANGES_REQUESTED');
