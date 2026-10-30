@@ -33,7 +33,7 @@ const SOLO_REPOSITORY='ahmed5330/kun-online-site';
 const SOLO_OWNER='ahmed5330';
 const OWNER_COMMENT=/^KUN-SOLO-(APPROVE|REVOKE) ([a-f0-9]{40})$/;
 // These directives and infrastructural controls ALWAYS require an independent human.
-const CRITICAL_DIRECTIVE=/^[+-](?![+-])[^\\r\\n]*?(?:<link[^>]*rel=[\"']canonical|<meta[^>]*name=[\"'](?:robots|googlebot)|noindex|nofollow|Content-Signal:|Disallow:|Allow:|http-equiv=[\"']refresh)/im;
+const CRITICAL_DIRECTIVE=/^[+-](?![+-])[^\r\n]*?(?:<link[^>]*rel=[\"']canonical|<meta[^>]*name=[\"'](?:robots|googlebot)|noindex|nofollow|Content-Signal:|Disallow:|Allow:|http-equiv=[\"']refresh)/im;
 function policyDirectiveChanged(patch){
  if(!CRITICAL_DIRECTIVE.test(patch||''))return false;
  const lines=String(patch).split(/\r?\n/);
