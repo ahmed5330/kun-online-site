@@ -68,7 +68,7 @@ test('Live review hydrates full article at exact head and fails closed on API mi
  const sha='a'.repeat(40),f=files(),pr={number:9,head:{sha},user:{login:'owner'},body:'SEO impact: New guide for readers.\nGEO impact: Preserve existing organization schema.'};
  const fetcher=async url=>{
   const u=new URL(url),p=u.pathname;
-  const result=p.endsWith('/files')?f.map(({content,...rest})=>rest):p.endsWith('/reviews')?[]:
+  const result=p.endsWith('/files')?f.map(({content,...rest})=>rest):p.endsWith('/reviews')||p.endsWith('/comments')?[]:
    p.endsWith('/pulls')?[]:p.includes('/contents/')?(()=>{
     assert.equal(u.searchParams.get('ref'),sha);
     const file=f.find(x=>p.endsWith(x.filename));return {type:'file',encoding:'base64',sha:file.sha,size:file.content.length,content:Buffer.from(file.content).toString('base64')};
