@@ -81,3 +81,15 @@ test('Live review hydrates full article at exact head and fails closed on API mi
   const response=await fetcher(url,...args);if(url.includes('/contents/')){const d=await response.json();return new Response(JSON.stringify({...d,sha:'mismatch'}));}return response;
  }}),/Cannot verify full article/);
 });
+
+
+test('Routine policy: exact BlogPosting.image is approved, off-site image stays sensitive',()=>{
+ const f=files();
+ const allowed='https://kun-online.com/blog/images/'+slug+'.png';
+ f[0].content=f[0].content.replace(JSON.stringify(schema),JSON.stringify({...schema,image:allowed}));
+ assert.equal(routineArticleBundle(f).length,2);
+ assert.equal(review(f).decision,'APPROVED');
+ f[0].content=f[0].content.replace(allowed,'https://wrong.example/asset.png');
+ assert.equal(routineArticleBundle(f).length,0);
+ assert.equal(review(f).decision,'BLOCKED');
+});
