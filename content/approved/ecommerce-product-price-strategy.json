@@ -1,0 +1,37 @@
+{
+  "slug": "ecommerce-product-price-strategy",
+  "article_id": 22,
+  "approved": true,
+  "eligibleFrom": "2026-10-30",
+  "editorialApproval": "2026-10-30: Owner-authorized daily original Arabic editorial production; reviewed official 2026 Shopify pricing strategy guidance, Stripe 2025 cost/value pricing, Google Search Central Merchant Listing price schema, Saudi Ministry of Commerce discount regulations, and Egyptian Consumer Protection Agency guidance. Hypothetical examples and arithmetic independently checked. Independent SEO/GEO reviewer gate must still pass before merging.",
+  "title": "تسعير المنتجات أونلاين: 3 طرق لتحديد سعر مربح ومنافس",
+  "description": "دليل مصري عملي لتسعير المنتج في المتجر الإلكتروني: التكلفة والمنافسين والقيمة، مع حساب هامش المساهمة والخصومات والشحن واختبار السعر دون خسارة.",
+  "primaryKeyword": "تسعير المنتجات في التجارة الإلكترونية",
+  "secondaryKeywords": [
+    "كيفية تحديد سعر بيع المنتج",
+    "التسعير على أساس التكلفة",
+    "التسعير حسب المنافسين",
+    "التسعير حسب القيمة",
+    "هامش الربح والتخفيضات"
+  ],
+  "category": "finance",
+  "categoryLabel": "المالية والتسعير",
+  "image": "ecommerce-product-price-strategy.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "sales-price-vs-real-ecommerce-profit",
+    "product-profitability-before-launch",
+    "ecommerce-competitor-analysis-sheet"
+  ],
+  "qualityReview": {
+    "words": 1782,
+    "sections": 12,
+    "readingMinutes": 11,
+    "checkedOn": "2026-10-30",
+    "sources": "Shopify 2026 ecommerce pricing strategy, Stripe 2025 pricing guides, Google Search Central Merchant Listing price documentation, Saudi Ministry of Commerce discount regulations, Egyptian Consumer Protection Agency",
+    "exampleNumbers": "300->450: markup=150/300=50%, gross margin=150/450=33.33%; 350/(1-0.30)=500; (420+80)/(1-0.02)=510.204; 511-420-(511*0.02)=80.78; 500-340=160; 400-340=60; contribution decline=100/160=62.5%; all illustrative, not market benchmarks.",
+    "originality": "Original Egyptian Arabic 3-method pricing workflow and COD-sensitive margin model, distinguished from published product profitability and real profit guides.",
+    "visualSeo": "No photographs, people, faces, external images, or customer data. Deterministic geometric finance chart via scripts/generate-approved-covers.py; visible descriptive 1200x630 img, OG and Twitter image and BlogPosting.image refer to canonical PNG.",
+    "publicationGate": "At most one approved article per Africa/Cairo day; existing publisher only. Eligible 2026-10-30 if no publication already logged that day; independent SEO/GEO general reviewer must approve PR before merge."
+  }
+}
