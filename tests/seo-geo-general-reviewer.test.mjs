@@ -205,3 +205,18 @@ test('Solo-maintainer: independent changes requested and open PR overlap still b
   otherPrFiles:[{number:123,files:['blog/guide.html']}]}).decision,'BLOCKED');
  assert.equal(solo(visualChange,{comments:[ownerComment()],body:'SEO impact: fine'}).decision,'BLOCKED');
 });
+
+
+test('Solo-maintainer: minified pages with unchanged crawl directives can be image-only reviewed',()=>{
+ const prefix='<!doctype html><head><link rel="canonical" href="https://kun-online.com/blog/"><meta name="robots" content="index,follow"></head><body>';
+ const file={filename:'blog/index.html',patch:
+  '@@\n-'+prefix+'<main>Old content</main></body>\n+'+prefix+
+  '<main><img src="/assets/visuals/editorial-analytics.svg" alt="Original illustration"></main></body>'};
+ const v=solo([file],{comments:[ownerComment()]});
+ assert.equal(v.decision,'APPROVED');
+ assert.deepEqual(v.criticalFiles,[]);
+ const danger={...file,patch:file.patch.replace(
+   '+<!doctype html><head><link rel="canonical" href="https://kun-online.com/blog/">',
+   '+<!doctype html><head><link rel="canonical" href="https://wrong.example/blog/">')};
+ assert.equal(solo([danger],{comments:[ownerComment()]}).decision,'BLOCKED');
+});
