@@ -136,8 +136,9 @@ export function buildSVG(spec) {
  let size=headline.length>76?35:headline.length>62?38:headline.length>47?42:46;
  let lines=wrap(size);
  while(lines.length>4&&size>30){size-=2;lines=wrap(size)}
+ if(lines.length===4&&size>40){size=40;lines=wrap(size)}
  if(lines.length>4)throw Error('Headline needs more than four rows: '+slug);
- const dy=Math.round(size*1.55),begin=325-Math.round((lines.length-1)*dy/2);
+ const dy=Math.round(size*1.55),begin=355-Math.round((lines.length-1)*dy/2);
  const titleLines=lines.map((line,i)=>'<text x="885" y="'+(begin+i*dy)+'" text-anchor="middle" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Tajawal,Noto Sans Arabic,Segoe UI,Arial,sans-serif" font-size="'+size+'" font-weight="700" letter-spacing="0" fill="'+(i===lines.length-1?bright:'#f8fbff')+'">'+xml(line)+'</text>').join('\n');
  const safe=xml(spec.alt);
  const cleanTitle=xml(headline);
