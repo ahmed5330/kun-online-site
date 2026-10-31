@@ -24,10 +24,10 @@ test('ART-01: one individually composed vector per published article, reproducib
   assert.match(asset,/^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" width="1200" height="630"/);
   assert.match(asset,/<title id="title">/);
   assert.match(asset,/<desc id="desc">/);
-  assert.doesNotMatch(asset,/<foreignObject\\b|<image\\b|<script\\b|<use\\b|href\\s*=|onload\\s*=|data:/i,'no external images, active SVG or scripts');
-  const block=asset.match(/<g id="article-title">([\\s\\S]*?)<\\/g>/)?.[1];
+  assert.doesNotMatch(asset,/<foreignObject\b|<image\b|<script\b|<use\b|href\s*=|onload\s*=|data:/i,'no external images, active SVG or scripts');
+  const block=asset.match(/<g id="article-title">([\s\S]*?)<\/g>/)?.[1];
   assert.ok(block,'on-image headline block missing '+s.slug);
-  const visible=[...block.matchAll(/<text[^>]*>([^<]+)<\\/text>/g)].map(x=>x[1]
+  const visible=[...block.matchAll(/<text[^>]*>([^<]+)<\/text>/g)].map(x=>x[1]
     .replaceAll('&amp;','&').replaceAll('&lt;','<').replaceAll('&gt;','>').replaceAll('&quot;','"')).join(' ');
   assert.equal(visible,article.title,'every title word must be visibly printed on its cover: '+s.slug);
   assert.ok((block.match(/<text /g)||[]).length<=4,'too many lines for thumbnail '+s.slug);
