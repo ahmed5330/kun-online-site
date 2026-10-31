@@ -713,6 +713,22 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/customer-acquisition-cost-cac-ecommerce",
+      "primary": "تكلفة اكتساب العميل في التجارة الإلكترونية",
+      "secondary": [
+        "حساب CAC للمتجر الإلكتروني",
+        "الفرق بين CAC وCPA",
+        "تكلفة العميل الجديد",
+        "Blended CAC",
+        "تكلفة الطلب المسلم"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }

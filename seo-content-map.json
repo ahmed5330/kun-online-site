@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 23,
-    "articles_remaining": 77,
+    "articles_published": 24,
+    "articles_remaining": 76,
     "current_article": null,
-    "next_article": 23,
-    "project_completion_percentage": 23,
-    "last_published_date": "2026-10-30",
+    "next_article": 24,
+    "project_completion_percentage": 24,
+    "last_published_date": "2026-10-31",
     "last_run_date": null
   },
   "chapters": [
@@ -132,6 +132,7 @@
         "https://kun-online.com/blog/brand-vs-product-business",
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/ecommerce-evolution-history",
@@ -231,6 +232,7 @@
         "https://kun-online.com/blog/brand-vs-product-business",
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
@@ -378,6 +380,7 @@
       "internal_links_in": [
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/customer-funnel-guide",
         "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
@@ -766,6 +769,7 @@
       "internal_links_out": [
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/cod-shipping-returns-reconciliation",
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
@@ -780,6 +784,7 @@
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/one-product-vs-multi-product-store",
@@ -945,6 +950,7 @@
       "word_count": 2006,
       "internal_links_out": [
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
@@ -955,6 +961,7 @@
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
       "internal_links_in": [
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/product-profitability-before-launch",
@@ -987,6 +994,7 @@
       "published_date": "2026-10-30",
       "word_count": 1782,
       "internal_links_out": [
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
@@ -997,6 +1005,7 @@
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
       "internal_links_in": [
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/product-profitability-before-launch",
         "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit"
@@ -1011,18 +1020,36 @@
       "brief": "اشرح ببساطة كم دفعت للحصول على العميل الحقيقي، وليس مجرد تكلفة Message أو Add to Cart.",
       "new_concept": "CAC وBlended CAC.",
       "research_space": "ابحث عن طرق حساب CAC حسب Channels.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "queued",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
+      "final_h1": "تكلفة اكتساب العميل CAC: بتدفع كام عشان تكسب عميل حقيقي؟",
+      "seo_title": "تكلفة اكتساب العميل CAC: بتدفع كام عشان تكسب عميل حقيقي؟ | مدونة كن أونلاين",
+      "primary_keyword": "تكلفة اكتساب العميل في التجارة الإلكترونية",
+      "secondary_keywords": [
+        "حساب CAC للمتجر الإلكتروني",
+        "الفرق بين CAC وCPA",
+        "تكلفة العميل الجديد",
+        "Blended CAC",
+        "تكلفة الطلب المسلم"
+      ],
+      "search_intent": "informational",
+      "slug": "customer-acquisition-cost-cac-ecommerce",
+      "url": "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
+      "status": "published",
+      "published_date": "2026-10-31",
+      "word_count": 1917,
+      "internal_links_out": [
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/ecommerce-product-price-strategy",
+        "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/product-profitability-before-launch",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/ecommerce-product-price-strategy",
+        "https://kun-online.com/blog/product-profitability-before-launch",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit"
+      ],
       "failure_reason": null,
       "attempts": 0
     },
