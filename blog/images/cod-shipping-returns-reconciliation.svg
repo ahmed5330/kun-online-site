@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-<title id="title">الشحن والتحصيل COD والمرتجعات: مطابقة الأرقام خطوة بخطوة — كن أونلاين</title><desc id="desc">رسم توضيحي بلا أشخاص يشرح طرود وشريط تسوية الشحن والتحصيل لمقال مطابقة الشحن والتحصيل والمرتجعات بنظام الدفع عند الاستلام</desc>
+<title id="title">الشحن والتحصيل COD والمرتجعات: مطابقة الأرقام خطوة بخطوة — كن أونلاين</title><desc id="desc">رسم يوضح طرود وشريط تسوية الشحن والتحصيل</desc>
 <defs><linearGradient id="g" x2=".9" y2="1"><stop stop-color="#081a2d"/><stop offset="1" stop-color="#133c4e"/></linearGradient></defs>
 <rect width="1200" height="630" fill="url(#g)"/><circle cx="1160" cy="-60" r="350" fill="#7bd3c4" opacity=".05"/>
 <rect x="38" y="35" width="1124" height="558" rx="31" fill="none" stroke="#426b79" stroke-width="2"/>
@@ -11,7 +11,7 @@
 <text x="815" y="260" text-anchor="middle" direction="rtl" font-family="Cairo,Tajawal,Arial,sans-serif" font-weight="700" font-size="41" fill="#f1f6f8">الشحن والتحصيل COD</text>
 <text x="815" y="326" text-anchor="middle" direction="rtl" font-family="Cairo,Tajawal,Arial,sans-serif" font-weight="700" font-size="41" fill="#f1f6f8">والمرتجعات: مطابقة الأرقام</text>
 <text x="815" y="392" text-anchor="middle" direction="rtl" font-family="Cairo,Tajawal,Arial,sans-serif" font-weight="700" font-size="41" fill="#f1f6f8">خطوة بخطوة</text>
-<rect x="555" y="513" width="569" height="45" rx="16" fill="#19475a"/>
-<text x="840" y="542" text-anchor="middle" direction="rtl" font-family="Cairo,Tajawal,Arial,sans-serif" font-size="23" fill="#7bd3c4">رسوم توضيحية · بلا أشخاص · بلا بيانات مفبركة</text>
-<text x="1078" y="581" text-anchor="end" font-family="Arial,sans-serif" font-size="15" fill="#9fb6be">KUN ONLINE · ORIGINAL EDITORIAL VISUAL</text>
+
+
+
 </svg>

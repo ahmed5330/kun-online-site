@@ -20,9 +20,10 @@ test('COVER-01: all approved original designs are unique, per-published-article 
    assert.ok(bySlug.has(d.slug),'missing registered article '+d.slug);
    assert.equal(d.svg,d.slug+'.svg');
    assert.equal(d.png,d.slug+'.png');
-   assert.ok(d.alt.length>55&&d.alt.length<230);
+   assert.ok(d.alt.length>20&&d.alt.length<150);
    assert.ok(d.focusKeyword.length>10);
-   assert.ok(d.caption.includes('ليس بيانات فعلية'));
+   assert.ok(!('caption' in d),'internal production notes must not be image captions');
+   assert.doesNotMatch(d.alt,/بلا أشخاص|بلا بيانات|لمقال/,'ALT must describe the visual, not instructions');
  }
 });
 
@@ -35,24 +36,24 @@ test('COVER-02: all new published vectors are original geometry, without photos,
   assert.match(svg,/<rect\b/);
   assert.doesNotMatch(svg,/<(?:image|script|foreignObject|iframe|use)\b|\bonload=|\bonerror=|\bhref=|\bdata:/i);
   assert.ok(svg.includes(attr(d.alt)),'SVG title/description discrepancy '+d.slug);
+  assert.doesNotMatch(svg, /<text[^>]*>(?:رسوم توضيحية|KUN ONLINE · ORIGINAL EDITORIAL VISUAL)/,'No internal footer in the image itself');
+  assert.doesNotMatch(svg,/بلا أشخاص|بلا بيانات مفبركة|ORIGINAL EDITORIAL VISUAL|ليس بيانات فعلية/,
+   'No private design instructions embedded in visible artwork');
   assert.ok(existsSync(new URL('blog/images/'+d.png,root)),'keep canonical legacy PNG '+d.slug);
  }
 });
 
-test('COVER-03: each older article renders its unique vector with truthful ALT, caption, and compatible PNG sharing',()=>{
+test('COVER-03: every article keeps truthful ALT, clean visuals, and compatible PNG sharing',()=>{
  for(const d of designs.items){
   const html=read('blog/'+d.slug+'.html');
-  const source='<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'">';
+  const source='<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'?v=editorial-clean-20261031">';
   assert.ok(html.includes(source),'missing original vector in article '+d.slug);
   const hero=[...html.matchAll(/<picture>([\s\S]*?)<\/picture>/gi)].find(x=>x[0].includes(d.svg));
   assert.ok(hero,'missing vector + fallback picture '+d.slug);
   assert.ok(hero[0].includes('/blog/images/'+d.png),'PNG fallback removed '+d.slug);
   assert.ok(hero[0].includes('alt="'+attr(d.alt)+'"'),'ALT not specific to graphic '+d.slug);
-  const operational=['real-cost-per-delivered-order','cod-shipping-returns-reconciliation','inventory-barcode-bundle-tracking','order-confirmation-delivery-rate'];
-  if(!operational.includes(d.slug))
-   assert.ok(html.includes(attr(d.caption)),'conceptual caption missing '+d.slug);
-  else
-   assert.ok(d.alt.length>50,'older operational articles preserve exact wordCount and use detailed ALT '+d.slug);
+  assert.doesNotMatch(html, /class="ko-cover-caption"|بلا بيانات مفبركة|ليس بيانات فعلية عن متجر/,
+   'No image-production notes shown to readers: '+d.slug);
   for(const [field,key] of [['property','og:image:alt'],['name','twitter:image:alt']]){
    assert.ok(html.includes('<meta '+field+'="'+key+'" content="'+attr(d.alt)+'">'),'social image alt '+key+' '+d.slug);
   }
@@ -66,7 +67,7 @@ test('COVER-03: each older article renders its unique vector with truthful ALT, 
 
 test('COVER-04: editorial listing and sitemap enumerate every approved vector and legacy raster',()=>{
  for(const d of designs.items){
-  assert.ok(list.includes('<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'">'),'missing listing SVG '+d.slug);
+  assert.ok(list.includes('<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'?v=editorial-clean-20261031">'),'missing listing SVG '+d.slug);
   assert.ok(list.includes('alt="'+attr(d.alt)+'"'),'missing listing ALT '+d.slug);
   assert.ok(map.includes('<image:loc>https://kun-online.com/blog/images/'+d.svg+'</image:loc>'));
   assert.ok(map.includes('<image:loc>https://kun-online.com/blog/images/'+d.png+'</image:loc>'));
