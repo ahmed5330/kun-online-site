@@ -140,6 +140,19 @@ def refresh(optimize=False):
                 segment=re.sub(r'<p class="ko-cover-caption">[\s\S]*?</p>','',segment)
                 segment=segment.replace('</div>','<p class="ko-cover-caption">'+caption+'</p></div>',1)
                 s=s[:found.start()]+segment+s[found.end():]
+            # Some older guides place covers inside <figure> rather than .art-featured.
+            # Reinsert SVG after the optional optimization rebuilds PNG/WebP <picture>.
+            def restore_svg_sources(m):
+                markup=m.group(0)
+                if '/blog/images/'+article.stem+'.png' not in markup:
+                    return markup
+                markup=re.sub(r'<source type="image/svg\+xml"[^>]*>','',markup)
+                markup=re.sub(r'<img\b[^>]*>',lambda hit:re.sub(
+                    r'\balt="[^"]*"',lambda _: 'alt="'+alt+'"',hit.group(0)),
+                    markup,count=1)
+                return markup.replace('<picture>','<picture>'+svg_source,1)
+            s=re.sub(r'<picture>(?:<source\b[^>]*>)*<img\b[\s\S]*?></picture>',
+                     restore_svg_sources,s,flags=re.I)
             for key in ('og:image:alt','twitter:image:alt'):
                 tag='<meta '+('property' if key.startswith('og:') else 'name')+'="'+key+'" content="'+alt+'">'
                 pat=r'<meta\s+(?:property|name)="'+re.escape(key)+r'"[^>]*>'
