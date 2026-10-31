@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 BASE = 'https://kun-online.com'
 # Version static cover URLs to bypass cached malformed RTL graphics.
 COVER_REV = '?v=rtl-raqm-20261019'
+VECTOR_REV = '?v=editorial-clean-20261031'
 
 def article_cards(articles, designs=None):
     designs = designs or {}
@@ -28,7 +29,7 @@ def article_cards(articles, designs=None):
             pic='<picture><source type="image/webp" srcset="/blog/images/'+stem+'-640.webp'+COVER_REV+' 640w, /blog/images/'+stem+'.webp'+COVER_REV+' 1200w" sizes="(max-width:600px) 90vw, 330px"><img src="/blog/images/'+html.escape(image,quote=True)+COVER_REV+'" alt="'+html.escape(visual_alt,quote=True)+'" width="1200" height="630" loading="lazy" decoding="async"></picture>' if (ROOT/'blog/images'/(stem+'.webp')).exists() else '<img src="/blog/images/'+html.escape(image,quote=True)+'" alt="'+html.escape(visual_alt,quote=True)+'" width="1200" height="630" loading="lazy" decoding="async">'
         svg=design.get('svg','')
         if re.fullmatch(r'[a-z0-9-]+\.svg',svg) and (ROOT/'blog/images'/svg).is_file() and pic:
-            visual='<source type="image/svg+xml" srcset="/blog/images/'+svg+'">'
+            visual='<source type="image/svg+xml" srcset="/blog/images/'+svg+VECTOR_REV+'">'
             pic=pic.replace('<picture>','<picture>'+visual,1) if pic.startswith('<picture>') else '<picture>'+visual+pic+'</picture>'
         cards.append('<article class="card blog-card" data-category="'+html.escape(a.get('category','store'),quote=True)+'">'+pic+'<p>'+html.escape(a.get('categoryLabel','مقالات'))+' · '+html.escape(a.get('date',''))+' · '+minutes+' دقائق</p><h2><a href="/blog/'+slug+'">'+title+'</a></h2><p>'+desc+'</p></article>')
     return ''.join(cards)
@@ -124,7 +125,7 @@ def refresh(optimize=False):
         design=designs.get(article.stem)
         if design and (ROOT/'blog/images'/design['svg']).is_file():
             alt=html.escape(design['alt'],quote=True)
-            svg_source='<source type="image/svg+xml" srcset="/blog/images/'+design['svg']+'">'
+            svg_source='<source type="image/svg+xml" srcset="/blog/images/'+design['svg']+VECTOR_REV+'">'
             found=re.search(r'<div class="art-featured">[\s\S]*?</div>',s,re.I)
             if found:
                 segment=found.group(0)
