@@ -139,7 +139,7 @@ def refresh(optimize=False):
                 # Captions that described production constraints must never appear to visitors.
                 s=s[:found.start()]+segment+s[found.end():]
             # Strip legacy editorial-production disclaimers rather than rendering them.
-            s=re.sub(r'<(?:p|figcaption)\\b[^>]*class="ko-cover-caption"[^>]*>[\\s\\S]*?</(?:p|figcaption)>','',s,flags=re.I)
+            s=re.sub(r'<(?:p|figcaption)\b[^>]*class="ko-cover-caption"[^>]*>[\s\S]*?</(?:p|figcaption)>','',s,flags=re.I)
             # Some older guides place covers inside <figure> rather than .art-featured.
             # Reinsert SVG after the optional optimization rebuilds PNG/WebP <picture>.
             def restore_svg_sources(m):
