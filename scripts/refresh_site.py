@@ -124,7 +124,6 @@ def refresh(optimize=False):
         design=designs.get(article.stem)
         if design and (ROOT/'blog/images'/design['svg']).is_file():
             alt=html.escape(design['alt'],quote=True)
-            caption=html.escape(design['caption'])
             svg_source='<source type="image/svg+xml" srcset="/blog/images/'+design['svg']+'">'
             found=re.search(r'<div class="art-featured">[\s\S]*?</div>',s,re.I)
             if found:
@@ -137,9 +136,10 @@ def refresh(optimize=False):
                 else:
                     segment=re.sub(r'(<img\b[^>]*\bsrc="/blog/images/'+re.escape(article.stem)+r'\.png[^"]*"[^>]*>)',
                                    lambda m:'<picture>'+svg_source+m.group(1)+'</picture>',segment,count=1)
-                segment=re.sub(r'<p class="ko-cover-caption">[\s\S]*?</p>','',segment)
-                segment=segment.replace('</div>','<p class="ko-cover-caption">'+caption+'</p></div>',1)
+                # Captions that described production constraints must never appear to visitors.
                 s=s[:found.start()]+segment+s[found.end():]
+            # Strip legacy editorial-production disclaimers rather than rendering them.
+            s=re.sub(r'<(?:p|figcaption)\\b[^>]*class="ko-cover-caption"[^>]*>[\\s\\S]*?</(?:p|figcaption)>','',s,flags=re.I)
             # Some older guides place covers inside <figure> rather than .art-featured.
             # Reinsert SVG after the optional optimization rebuilds PNG/WebP <picture>.
             def restore_svg_sources(m):
