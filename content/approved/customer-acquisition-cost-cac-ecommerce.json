@@ -1,0 +1,45 @@
+{
+  "slug": "customer-acquisition-cost-cac-ecommerce",
+  "article_id": 23,
+  "approved": true,
+  "eligibleFrom": "2026-10-31",
+  "editorialApproval": "2026-10-31: Owner-authorized original Arabic editorial preparation with factual review of official Shopify July 2026 CAC guide, Shopify ecommerce metrics and customer reports, Google Analytics acquisition reports, Google Ads conversion/attribution documentation; hypothetical arithmetic checked. Independent SEO/GEO reviewer approval remains required before merge.",
+  "title": "تكلفة اكتساب العميل CAC: بتدفع كام عشان تكسب عميل حقيقي؟",
+  "description": "دليل عملي لحساب تكلفة اكتساب العميل CAC في التجارة الإلكترونية بمصر والسعودية، والفرق بينها وبين CPA وتكلفة الطلب، مع أمثلة الدفع عند الاستلام وجدول متابعة.",
+  "primaryKeyword": "تكلفة اكتساب العميل في التجارة الإلكترونية",
+  "secondaryKeywords": [
+    "حساب CAC للمتجر الإلكتروني",
+    "الفرق بين CAC وCPA",
+    "تكلفة العميل الجديد",
+    "Blended CAC",
+    "تكلفة الطلب المسلم"
+  ],
+  "category": "finance",
+  "categoryLabel": "المالية والتسعير",
+  "image": "customer-acquisition-cost-cac-ecommerce.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "sales-price-vs-real-ecommerce-profit",
+    "product-profitability-before-launch",
+    "ecommerce-product-price-strategy"
+  ],
+  "qualityReview": {
+    "words": 1917,
+    "sections": 13,
+    "readingMinutes": 12,
+    "checkedOn": "2026-10-31",
+    "sources": [
+      "https://www.shopify.com/blog/ecommerce-customer-acquisition",
+      "https://www.shopify.com/blog/basic-ecommerce-metrics",
+      "https://help.shopify.com/en/manual/reports-and-analytics/shopify-reports/report-types/default-reports/customers-reports",
+      "https://support.google.com/analytics/answer/14731736?hl=en",
+      "https://support.google.com/analytics/answer/11080067",
+      "https://support.google.com/google-ads/answer/1722022?hl=en",
+      "https://support.google.com/google-ads/answer/1722023?hl=en"
+    ],
+    "exampleNumbers": "12,000/240=50; 12,000/120=100; 12,000/80=150; 12,000/60=200; 16,000/80=200; 9,000/150=60; 9,000/90=100; 9,000/60=150; 12,000/60=200; 18,000/90=200; 600-280-55-15-10-20=220; 220-200=20; 220-250=-30; all hypothetical.",
+    "originality": "Original Arabic CAC guide distinguishing advertising CPA, COD delivered customer, blended attribution, deduplication, margin and cohort.",
+    "visualSeo": "No human faces, external photographs, customer data or imported imagery. Geometric finance motif and Arabic headline generated through scripts/generate-approved-covers.py; visible 1200x630 PNG, OG, Twitter and BlogPosting.image match.",
+    "publicationGate": "One Cairo-date article at most; use existing publisher only; independent SEO/GEO general reviewer must approve before merge."
+  }
+}
