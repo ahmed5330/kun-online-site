@@ -52,6 +52,10 @@ export function buildSVG(spec) {
  const row=(x,y,flags=4)=>Array.from({length:flags},(_,j)=>R(x,y+j*34,228-(j%3)*38,13,7,j%2?accent:'#5f899b','none',0)).join('');
  let scene='';
  switch(slug){
+ case 'customer-acquisition-cost-cac-ecommerce':
+  // CAC: acquisition ad -> distinct new buyer -> recoverable customer value.
+  // The three original geometry cards are conceptual, not measured metrics.
+  scene=tile(145,195,238,284,'bullhorn',1.32,accent)+arrow(397,335,466,335)+tile(484,173,238,309,'target',1.40,bright)+arrow(741,335,812,335)+tile(827,195,229,284,'wallet',1.28,accent)+R(511,495,181,14,7,accent,'none',0);break;
  case 'ecommerce-product-price-strategy':
   scene=tile(154,200,231,240,'receipt',1.2)+tile(485,153,231,294,'target',1.35,bright)+tile(815,200,231,240,'wallet',1.2)+arrow(397,311,464,311)+arrow(735,311,802,311)+R(491,480,224,16,8,accent,'none',0);break;
  case 'sales-price-vs-real-ecommerce-profit':
