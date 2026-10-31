@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {canonicalLocation} from '../_worker.js';
 const root=path.resolve(import.meta.dirname,'..');
-const types={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'application/javascript','.json':'application/json','.xml':'application/xml','.txt':'text/plain','.png':'image/png','.webp':'image/webp'};
+const types={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'application/javascript','.json':'application/json','.xml':'application/xml','.txt':'text/plain','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml'};
 export function serve(port=0){
 const server=http.createServer((req,res)=>{
   const u=new URL(req.url,'http://localhost');const redirect=canonicalLocation('https://kun-online.com'+u.pathname+u.search);

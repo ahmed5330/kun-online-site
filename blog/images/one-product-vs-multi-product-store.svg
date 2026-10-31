@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">متجر منتج واحد أم متجر 100 منتج؟ اختر النموذج المناسب قبل التوسع — كن أونلاين</title><desc id="desc">رسم توضيحي بلا أشخاص يشرح مقارنة متجر المنتج الواحد بمتجر متنوع لمقال مقارنة نماذج المتاجر وعدد المنتجات</desc>
+<defs><linearGradient id="g" x2=".9" y2="1"><stop stop-color="#081a2d"/><stop offset="1" stop-color="#133c4e"/></linearGradient></defs>
+<rect width="1200" height="630" fill="url(#g)"/><circle cx="1160" cy="-60" r="350" fill="#87baf1" opacity=".05"/>
+<rect x="38" y="35" width="1124" height="558" rx="31" fill="none" stroke="#426b79" stroke-width="2"/>
+<rect x="75" y="180" width="360" height="358" rx="29" fill="#102b3d" stroke="#446779" stroke-width="2"/>
+<rect x="113" y="230" width="125" height="233" rx="17" fill="#1b4356" stroke="#5b8a9e" stroke-width="3"/><rect x="134" y="265" width="82" height="82" rx="12" fill="#4b8aaa" stroke="none" stroke-width="3"/><path d="M133 381 L213 381" stroke="#5d91a2" stroke-width="8" stroke-linecap="round" fill="none"/><path d="M133 413 L192 413" stroke="#5d91a2" stroke-width="7" stroke-linecap="round" fill="none"/><rect x="252" y="230" width="125" height="233" rx="17" fill="#1b4356" stroke="#5b8a9e" stroke-width="3"/><rect x="273" y="265" width="82" height="82" rx="12" fill="#87baf1" stroke="none" stroke-width="3"/><path d="M272 381 L352 381" stroke="#5d91a2" stroke-width="8" stroke-linecap="round" fill="none"/><path d="M272 413 L331 413" stroke="#5d91a2" stroke-width="7" stroke-linecap="round" fill="none"/>
+<rect x="560" y="76" width="570" height="69" rx="13" fill="#174050"/>
+<text x="845" y="122" text-anchor="middle" direction="rtl" font-family="Cairo,Tajawal,Arial,sans-serif" font-weight="700" font-size="28" fill="#eaf5f4">كن أونلاين | دليلك للتجارة الإلكترونية</text>
+<rect x="701" y="178" width="222" height="8" rx="4" fill="#87baf1"/>
+<text x="815" y="260" text-anchor="middle" direction="rtl" font-family="Cairo,Tajawal,Arial,sans-serif" font-weight="700" font-size="41" fill="#f1f6f8">متجر منتج واحد أم متجر 100</text>
+<text x="815" y="326" text-anchor="middle" direction="rtl" font-family="Cairo,Tajawal,Arial,sans-serif" font-weight="700" font-size="41" fill="#f1f6f8">منتج؟ اختر النموذج المناسب</text>
+<text x="815" y="392" text-anchor="middle" direction="rtl" font-family="Cairo,Tajawal,Arial,sans-serif" font-weight="700" font-size="41" fill="#f1f6f8">قبل التوسع</text>
+<rect x="555" y="513" width="569" height="45" rx="16" fill="#19475a"/>
+<text x="840" y="542" text-anchor="middle" direction="rtl" font-family="Cairo,Tajawal,Arial,sans-serif" font-size="23" fill="#87baf1">رسوم توضيحية · بلا أشخاص · بلا بيانات مفبركة</text>
+<text x="1078" y="581" text-anchor="end" font-family="Arial,sans-serif" font-size="15" fill="#9fb6be">KUN ONLINE · ORIGINAL EDITORIAL VISUAL</text>
+</svg>

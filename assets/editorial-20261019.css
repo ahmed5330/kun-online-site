@@ -159,3 +159,20 @@ body:has(.article-box)>main{max-width:1050px;padding:49px 22px 78px;margin:auto}
 /* A few older article callout rules set 14px after the general paragraph rule.
    Keep their body copy readable on narrow screens without affecting small labels. */
 .art-content .highlight-box p{font-size:clamp(15px,1.2vw,16px);line-height:2.05;color:var(--ko-article-ink)}
+
+/* Original 2026-10-31 editorial illustrations: visible descriptions for readers and search crawlers. */
+.art-featured picture,
+.article-box figure picture,
+.article-box .operation-cover picture{display:block;width:100%}
+.art-featured .ko-cover-caption,
+.article-box .ko-cover-caption,
+figure .ko-cover-caption{
+  margin:11px auto 3px;
+  max-width:790px;
+  color:#566e82!important;
+  font-family:Cairo,Tajawal,sans-serif;
+  font-size:clamp(12px,1.1vw,14px)!important;
+  line-height:1.8!important;
+  text-align:center;
+  font-weight:500;
+}

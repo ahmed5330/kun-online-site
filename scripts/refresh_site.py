@@ -9,7 +9,8 @@ BASE = 'https://kun-online.com'
 # Version static cover URLs to bypass cached malformed RTL graphics.
 COVER_REV = '?v=rtl-raqm-20261019'
 
-def article_cards(articles):
+def article_cards(articles, designs=None):
+    designs = designs or {}
     cards=[]
     for a in articles:
         slug=html.escape(a['slug'],quote=True)
@@ -19,10 +20,16 @@ def article_cards(articles):
         minutes=minutes.group(0) if minutes else '5'
         # Backgrounds no longer eagerly download every full-size PNG.
         image=a.get('image','')
+        design=designs.get(a['slug'],{})
+        visual_alt=design.get('alt',a['title'])
         pic=''
         if image and (ROOT/'blog/images'/image).exists():
             stem=Path(image).stem
-            pic='<picture><source type="image/webp" srcset="/blog/images/'+stem+'-640.webp'+COVER_REV+' 640w, /blog/images/'+stem+'.webp'+COVER_REV+' 1200w" sizes="(max-width:600px) 90vw, 330px"><img src="/blog/images/'+html.escape(image,quote=True)+COVER_REV+'" alt="'+html.escape(a['title'],quote=True)+'" width="1200" height="630" loading="lazy" decoding="async"></picture>' if (ROOT/'blog/images'/(stem+'.webp')).exists() else '<img src="/blog/images/'+html.escape(image,quote=True)+'" alt="'+html.escape(a['title'],quote=True)+'" width="1200" height="630" loading="lazy" decoding="async">'
+            pic='<picture><source type="image/webp" srcset="/blog/images/'+stem+'-640.webp'+COVER_REV+' 640w, /blog/images/'+stem+'.webp'+COVER_REV+' 1200w" sizes="(max-width:600px) 90vw, 330px"><img src="/blog/images/'+html.escape(image,quote=True)+COVER_REV+'" alt="'+html.escape(visual_alt,quote=True)+'" width="1200" height="630" loading="lazy" decoding="async"></picture>' if (ROOT/'blog/images'/(stem+'.webp')).exists() else '<img src="/blog/images/'+html.escape(image,quote=True)+'" alt="'+html.escape(visual_alt,quote=True)+'" width="1200" height="630" loading="lazy" decoding="async">'
+        svg=design.get('svg','')
+        if re.fullmatch(r'[a-z0-9-]+\.svg',svg) and (ROOT/'blog/images'/svg).is_file() and pic:
+            visual='<source type="image/svg+xml" srcset="/blog/images/'+svg+'">'
+            pic=pic.replace('<picture>','<picture>'+visual,1) if pic.startswith('<picture>') else '<picture>'+visual+pic+'</picture>'
         cards.append('<article class="card blog-card" data-category="'+html.escape(a.get('category','store'),quote=True)+'">'+pic+'<p>'+html.escape(a.get('categoryLabel','مقالات'))+' · '+html.escape(a.get('date',''))+' · '+minutes+' دقائق</p><h2><a href="/blog/'+slug+'">'+title+'</a></h2><p>'+desc+'</p></article>')
     return ''.join(cards)
 
@@ -38,6 +45,9 @@ def refresh(optimize=False):
         page.write_text(source,encoding='utf-8')
     articles=json.loads((ROOT/'blog/articles.json').read_text(encoding='utf-8'))
     articles_by_slug={a['slug']:a for a in articles}
+    designs_file=ROOT/'seo/published-cover-designs.json'
+    designs_data=json.loads(designs_file.read_text(encoding='utf-8')) if designs_file.is_file() else {'items':[]}
+    designs={entry['slug']:entry for entry in designs_data.get('items',[])}
     if optimize:
         from PIL import Image
         for png in (ROOT/'blog/images').glob('*.png'):
@@ -48,7 +58,7 @@ def refresh(optimize=False):
                 small.save(png.with_name(png.stem+'-640.webp'),'WEBP',quality=88,method=6)
     blog=ROOT/'blog/index.html'
     s=blog.read_text(encoding='utf-8')
-    s=re.sub(r'<!-- articles:start -->[\s\S]*?<!-- articles:end -->','<!-- articles:start -->'+article_cards(articles)+'<!-- articles:end -->',s)
+    s=re.sub(r'<!-- articles:start -->[\s\S]*?<!-- articles:end -->','<!-- articles:start -->'+article_cards(articles,designs)+'<!-- articles:end -->',s)
     blog.write_text(s,encoding='utf-8')
     # Article legibility is a publishing invariant, NOT an image optimization option.
     # The scheduled publisher deliberately calls refresh() without --optimize-images.
@@ -109,8 +119,47 @@ def refresh(optimize=False):
                                  lambda _: 'src="'+source.group(1)+COVER_REV+'"', tag)
                 return '<picture><source type="image/webp" srcset="/blog/images/'+stem+'-640.webp'+COVER_REV+' 640w, /blog/images/'+stem+'.webp'+COVER_REV+' 1200w" sizes="(max-width:820px) 95vw, 760px">'+versioned+'</picture>'
             # Refresh rather than nesting picture sources on repeated runs.
-            s=re.sub(r'<picture><source\b[^>]*>(<img\b[\s\S]*?>)</picture>',r'\1',s)
+            s=re.sub(r'<picture>(?:<source\b[^>]*>)+(<img\b[\s\S]*?>)</picture>',r'\1',s)
             s=re.sub(r'<img\b[\s\S]*?>',picture,s)
+        design=designs.get(article.stem)
+        if design and (ROOT/'blog/images'/design['svg']).is_file():
+            alt=html.escape(design['alt'],quote=True)
+            caption=html.escape(design['caption'])
+            svg_source='<source type="image/svg+xml" srcset="/blog/images/'+design['svg']+'">'
+            found=re.search(r'<div class="art-featured">[\s\S]*?</div>',s,re.I)
+            if found:
+                segment=found.group(0)
+                image_match=r'(<img\b[^>]*\bsrc="/blog/images/'+re.escape(article.stem)+r'\.png[^"]*"[^>]*\balt=")[^"]*(")'
+                segment=re.sub(image_match,lambda m:m.group(1)+alt+m.group(2),segment,count=1)
+                segment=re.sub(r'<source type="image/svg\+xml"[^>]*>','',segment)
+                if '<picture>' in segment:
+                    segment=segment.replace('<picture>','<picture>'+svg_source,1)
+                else:
+                    segment=re.sub(r'(<img\b[^>]*\bsrc="/blog/images/'+re.escape(article.stem)+r'\.png[^"]*"[^>]*>)',
+                                   lambda m:'<picture>'+svg_source+m.group(1)+'</picture>',segment,count=1)
+                segment=re.sub(r'<p class="ko-cover-caption">[\s\S]*?</p>','',segment)
+                segment=segment.replace('</div>','<p class="ko-cover-caption">'+caption+'</p></div>',1)
+                s=s[:found.start()]+segment+s[found.end():]
+            # Some older guides place covers inside <figure> rather than .art-featured.
+            # Reinsert SVG after the optional optimization rebuilds PNG/WebP <picture>.
+            def restore_svg_sources(m):
+                markup=m.group(0)
+                if '/blog/images/'+article.stem+'.png' not in markup:
+                    return markup
+                markup=re.sub(r'<source type="image/svg\+xml"[^>]*>','',markup)
+                markup=re.sub(r'<img\b[^>]*>',lambda hit:re.sub(
+                    r'\balt="[^"]*"',lambda _: 'alt="'+alt+'"',hit.group(0)),
+                    markup,count=1)
+                return markup.replace('<picture>','<picture>'+svg_source,1)
+            s=re.sub(r'<picture>(?:<source\b[^>]*>)*<img\b[\s\S]*?></picture>',
+                     restore_svg_sources,s,flags=re.I)
+            for key in ('og:image:alt','twitter:image:alt'):
+                tag='<meta '+('property' if key.startswith('og:') else 'name')+'="'+key+'" content="'+alt+'">'
+                pat=r'<meta\s+(?:property|name)="'+re.escape(key)+r'"[^>]*>'
+                if re.search(pat,s,re.I):
+                    s=re.sub(pat,lambda _:tag,s,count=1,flags=re.I)
+                else:
+                    s=s.replace('</head>',tag+'\n</head>',1)
         if s != original:
             article.write_text(s,encoding='utf-8')
     entries=[]
@@ -138,6 +187,9 @@ def refresh(optimize=False):
             cover=articles_by_slug.get(url.split('/')[-1],{}).get('image','')
             if re.fullmatch(r'[a-z0-9-]+\.png',cover) and (ROOT/'blog/images'/cover).is_file():
                 entry+='<image:image><image:loc>'+escape(BASE+'/blog/images/'+cover)+'</image:loc></image:image>'
+            svg=designs.get(url.split('/')[-1],{}).get('svg','')
+            if re.fullmatch(r'[a-z0-9-]+\.svg',svg) and (ROOT/'blog/images'/svg).is_file():
+                entry+='<image:image><image:loc>'+escape(BASE+'/blog/images/'+svg)+'</image:loc></image:image>'
         if url in ('/','/en/','/gulf/'):
             entry+=''.join('<xhtml:link rel="alternate" hreflang="'+lang+'" href="'+BASE+p+'"/>' for lang,p in languages)
         # Only explicitly approved original illustrations (no scraped imagery).
