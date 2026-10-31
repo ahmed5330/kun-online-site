@@ -36,16 +36,17 @@ test('COVER-02: all new published vectors are original geometry, without photos,
   assert.match(svg,/<rect\b/);
   assert.doesNotMatch(svg,/<(?:image|script|foreignObject|iframe|use)\b|\bonload=|\bonerror=|\bhref=|\bdata:/i);
   assert.ok(svg.includes(attr(d.alt)),'SVG title/description discrepancy '+d.slug);
+  assert.doesNotMatch(svg, /<text[^>]*>(?:رسوم توضيحية|KUN ONLINE · ORIGINAL EDITORIAL VISUAL)/,'No internal footer in the image itself');
   assert.doesNotMatch(svg,/بلا أشخاص|بلا بيانات مفبركة|ORIGINAL EDITORIAL VISUAL|ليس بيانات فعلية/,
    'No private design instructions embedded in visible artwork');
   assert.ok(existsSync(new URL('blog/images/'+d.png,root)),'keep canonical legacy PNG '+d.slug);
  }
 });
 
-test('COVER-03: each older article renders its unique vector with truthful ALT, caption, and compatible PNG sharing',()=>{
+test('COVER-03: every article keeps truthful ALT, clean visuals, and compatible PNG sharing',()=>{
  for(const d of designs.items){
   const html=read('blog/'+d.slug+'.html');
-  const source='<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'">';
+  const source='<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'?v=editorial-clean-20261031">';
   assert.ok(html.includes(source),'missing original vector in article '+d.slug);
   const hero=[...html.matchAll(/<picture>([\s\S]*?)<\/picture>/gi)].find(x=>x[0].includes(d.svg));
   assert.ok(hero,'missing vector + fallback picture '+d.slug);
@@ -66,7 +67,7 @@ test('COVER-03: each older article renders its unique vector with truthful ALT, 
 
 test('COVER-04: editorial listing and sitemap enumerate every approved vector and legacy raster',()=>{
  for(const d of designs.items){
-  assert.ok(list.includes('<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'">'),'missing listing SVG '+d.slug);
+  assert.ok(list.includes('<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'?v=editorial-clean-20261031">'),'missing listing SVG '+d.slug);
   assert.ok(list.includes('alt="'+attr(d.alt)+'"'),'missing listing ALT '+d.slug);
   assert.ok(map.includes('<image:loc>https://kun-online.com/blog/images/'+d.svg+'</image:loc>'));
   assert.ok(map.includes('<image:loc>https://kun-online.com/blog/images/'+d.png+'</image:loc>'));
