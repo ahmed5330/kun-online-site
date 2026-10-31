@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-<title id="title">المنتج ترند فعلًا ولا مجرد فيديو عامل مشاهدات؟ — كن أونلاين</title><desc id="desc">رسم توضيحي بلا أشخاص يشرح خطا طلب متغير ومستمر دون بيانات فعلية لمقال التمييز بين الطلب الموسمي والمستمر على المنتج</desc>
+<title id="title">المنتج ترند فعلًا ولا مجرد فيديو عامل مشاهدات؟ — كن أونلاين</title><desc id="desc">رسم يوضح خطا طلب متغير ومستمر دون بيانات فعلية</desc>
 <defs><linearGradient id="g" x2=".9" y2="1"><stop stop-color="#081a2d"/><stop offset="1" stop-color="#133c4e"/></linearGradient></defs>
 <rect width="1200" height="630" fill="url(#g)"/><circle cx="1160" cy="-60" r="350" fill="#91b7f1" opacity=".05"/>
 <rect x="38" y="35" width="1124" height="558" rx="31" fill="none" stroke="#426b79" stroke-width="2"/>
@@ -10,7 +10,7 @@
 <rect x="701" y="178" width="222" height="8" rx="4" fill="#91b7f1"/>
 <text x="815" y="260" text-anchor="middle" direction="rtl" font-family="Cairo,Tajawal,Arial,sans-serif" font-weight="700" font-size="46" fill="#f1f6f8">المنتج ترند فعلًا ولا مجرد</text>
 <text x="815" y="326" text-anchor="middle" direction="rtl" font-family="Cairo,Tajawal,Arial,sans-serif" font-weight="700" font-size="46" fill="#f1f6f8">فيديو عامل مشاهدات؟</text>
-<rect x="555" y="513" width="569" height="45" rx="16" fill="#19475a"/>
-<text x="840" y="542" text-anchor="middle" direction="rtl" font-family="Cairo,Tajawal,Arial,sans-serif" font-size="23" fill="#91b7f1">رسوم توضيحية · بلا أشخاص · بلا بيانات مفبركة</text>
-<text x="1078" y="581" text-anchor="end" font-family="Arial,sans-serif" font-size="15" fill="#9fb6be">KUN ONLINE · ORIGINAL EDITORIAL VISUAL</text>
+
+
+
 </svg>
