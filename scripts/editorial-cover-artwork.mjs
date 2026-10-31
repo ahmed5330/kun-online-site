@@ -1,6 +1,7 @@
-// Reproducible, editable first-party editorial artwork. No external imagery,
-// fictional metrics, font dependencies, embedded scripts, characters or faces.
-// The article's real H1 and concise HTML ALT convey its subject in all locales.
+// Reproducible, editable, first-party topic artwork with the EXACT Arabic article title.
+// The title is large and RTL, within a bounded visual headline panel; no fabricated
+// metrics, external media, people, faces, private instructions or remote font imports.
+// The PNG/WebP publisher uses Pillow+RAQM for definitive cross-platform Arabic.
 export function buildSVG(spec) {
  const slug=spec.slug;
  const themes={
@@ -111,18 +112,56 @@ export function buildSVG(spec) {
   scene=tile(148,183,363,328,'store',1.7,bright)+arrow(524,341,619,341)+tile(644,183,206,328,'cart',1.4)+arrow(861,341,922,341)+tile(940,204,158,282,'wallet',.92,bright);break;
  default: throw Error('No bespoke illustration storyboard for '+slug);
  }
- const safe=String(spec.alt).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+ const xml=(value)=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+ const headline=String(spec.title||'').trim();
+ if(!headline||headline.length>125)throw Error('Invalid canonical article headline: '+slug);
+ const visualWidth=(line,font)=>[...line].reduce((px,ch)=>{
+   if(/[\u0600-\u06FF]/u.test(ch))return px+font*.60;
+   if(/[A-Z]/u.test(ch))return px+font*.65;
+   if(/[0-9]/u.test(ch))return px+font*.53;
+   if(ch===' ')return px+font*.32;
+   return px+font*.33;
+ },0);
+ const wrap=(size)=>{
+   const chunks=[],words=headline.split(/\s+/);let current='';
+   for(const word of words){
+      const candidate=current?current+' '+word:word;
+      if(current&&visualWidth(candidate,size)>462){chunks.push(current);current=word}
+      else current=candidate;
+      if(visualWidth(current,size)>465)throw Error('Headline word too wide: '+slug);
+   }
+   if(current)chunks.push(current);
+   return chunks;
+ };
+ let size=headline.length>76?35:headline.length>62?38:headline.length>47?42:46;
+ let lines=wrap(size);
+ while(lines.length>4&&size>30){size-=2;lines=wrap(size)}
+ if(lines.length===4&&size>40){size=40;lines=wrap(size)}
+ if(lines.length>4)throw Error('Headline needs more than four rows: '+slug);
+ const dy=Math.round(size*1.55),begin=355-Math.round((lines.length-1)*dy/2);
+ const titleLines=lines.map((line,i)=>'<text x="885" y="'+(begin+i*dy)+'" text-anchor="middle" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Tajawal,Noto Sans Arabic,Segoe UI,Arial,sans-serif" font-size="'+size+'" font-weight="700" letter-spacing="0" fill="'+(i===lines.length-1?bright:'#f8fbff')+'">'+xml(line)+'</text>').join('\n');
+ const safe=xml(spec.alt);
+ const cleanTitle=xml(headline);
+ // Enlarge/recenter the bespoke subject illustration in the left-hand visual stage.
+ // No static label such as "no faces" is ever shown to the customer.
  return '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">\n'+
-  '<title id="title">'+String(spec.title).replaceAll('&','&amp;').replaceAll('<','&lt;')+'</title><desc id="desc">'+safe+'</desc>\n'+
+  '<title id="title">'+cleanTitle+'</title><desc id="desc">'+safe+'</desc>\n'+
   '<defs><linearGradient id="back" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061d30"/><stop offset=".62" stop-color="#103b4e"/><stop offset="1" stop-color="#123b50"/></linearGradient>'+
   '<linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#214f61"/><stop offset="1" stop-color="#143a4d"/></linearGradient>'+
-  '<radialGradient id="bloom"><stop stop-color="'+accent+'" stop-opacity=".18"/><stop offset="1" stop-color="'+accent+'" stop-opacity="0"/></radialGradient></defs>\n'+
-  '<rect width="1200" height="630" fill="url(#back)"/><circle cx="'+(200+(spec.index*83)%800)+'" cy="'+(50+(spec.index*41)%480)+'" r="450" fill="url(#bloom)"/>'+
-  '<rect x="35" y="34" width="1130" height="562" rx="36" fill="none" stroke="#3f6f81" stroke-width="2" opacity=".75"/>'+
-  '<path d="M69 118H1131" stroke="#4c7f8b" stroke-width="1" opacity=".34"/>'+
-  '<rect x="72" y="72" width="61" height="13" rx="6" fill="'+accent+'"/><circle cx="1090" cy="78" r="9" fill="'+accent+'"/>'+
-  '<circle cx="1120" cy="78" r="9" fill="#668e9d"/><circle cx="1150" cy="78" r="9" fill="#38576b"/>'+
-  '<g stroke="#508396" stroke-opacity=".10" stroke-width="1">'+Array.from({length:12},(_,i)=>'<path d="M'+(90+i*95)+' 130V550"/>').join('')+
-  Array.from({length:5},(_,i)=>'<path d="M90 '+(164+i*90)+'H1110"/>').join('')+'</g>\n'+
-  scene+'\n</svg>\n';
+  '<radialGradient id="bloom"><stop stop-color="'+accent+'" stop-opacity=".24"/><stop offset="1" stop-color="'+accent+'" stop-opacity="0"/></radialGradient></defs>\n'+
+  '<rect width="1200" height="630" fill="url(#back)"/>'+
+  '<circle cx="180" cy="320" r="390" fill="url(#bloom)"/>'+
+  '<rect x="34" y="34" width="1132" height="562" rx="34" fill="none" stroke="#51798a" stroke-width="2"/>'+
+  '<rect x="62" y="131" width="544" height="410" rx="28" fill="#0c2b3d" stroke="#365c71" stroke-width="2"/>'+
+  '<g stroke="#508396" stroke-opacity=".10" stroke-width="1">'+Array.from({length:7},(_,i)=>'<path d="M'+(92+i*84)+' 155V519"/>').join('')+
+  Array.from({length:4},(_,i)=>'<path d="M80 '+(193+i*83)+'H594"/>').join('')+'</g>\n'+
+  '<g id="topic-illustration" transform="translate(44 122) scale(.52)">'+scene+'</g>\n'+
+  '<rect x="634" y="131" width="512" height="410" rx="28" fill="#092639" stroke="#436879" stroke-width="2"/>'+
+  '<rect x="685" y="170" width="115" height="8" rx="4" fill="'+accent+'"/>'+
+  '<text x="1113" y="209" direction="rtl" text-anchor="start" font-family="Cairo,Tajawal,Noto Sans Arabic,Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="'+accent+'">كن أونلاين</text>\n'+
+  '<g id="article-title">'+titleLines+'</g>\n'+
+  '<path d="M691 488H1107" stroke="#426979" stroke-width="2"/>'+
+  '<text x="1095" y="521" direction="rtl" text-anchor="start" font-family="Cairo,Tajawal,Noto Sans Arabic,Segoe UI,Arial,sans-serif" font-size="19" fill="#a9c8d2">مقالات التجارة الإلكترونية</text>\n'+
+  '<rect x="78" y="569" width="172" height="7" rx="3.5" fill="'+accent+'"/>'+
+  '<text x="1117" y="580" direction="rtl" text-anchor="start" font-family="Arial,sans-serif" font-size="15" fill="#87aebc">KUN ONLINE</text>\n</svg>\n';
 }

@@ -33,6 +33,8 @@ test('COVER-02: all new published vectors are original geometry, without photos,
   assert.match(svg,/^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"[^>]+width="1200" height="630"/);
   assert.match(svg,/<title id="title">/);
   assert.match(svg,/<desc id="desc">/);
+  assert.match(svg,/id="article-title"/,'headline must be printed inside the SVG');
+  assert.match(svg,/id="topic-illustration"/,'on-topic artwork must exist');
   assert.match(svg,/<rect\b/);
   assert.doesNotMatch(svg,/<(?:image|script|foreignObject|iframe|use)\b|\bonload=|\bonerror=|\bhref=|\bdata:/i);
   assert.ok(svg.includes(attr(d.alt)),'SVG title/description discrepancy '+d.slug);
@@ -46,7 +48,7 @@ test('COVER-02: all new published vectors are original geometry, without photos,
 test('COVER-03: every article keeps truthful ALT, clean visuals, and compatible PNG sharing',()=>{
  for(const d of designs.items){
   const html=read('blog/'+d.slug+'.html');
-  const source='<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'?v=illustrated-20261031">';
+  const source='<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'?v=topic-title-20261031">';
   assert.ok(html.includes(source),'missing original vector in article '+d.slug);
   const hero=[...html.matchAll(/<picture>([\s\S]*?)<\/picture>/gi)].find(x=>x[0].includes(d.svg));
   assert.ok(hero,'missing vector + fallback picture '+d.slug);
@@ -67,7 +69,7 @@ test('COVER-03: every article keeps truthful ALT, clean visuals, and compatible 
 
 test('COVER-04: editorial listing and sitemap enumerate every approved vector and legacy raster',()=>{
  for(const d of designs.items){
-  assert.ok(list.includes('<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'?v=illustrated-20261031">'),'missing listing SVG '+d.slug);
+  assert.ok(list.includes('<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'?v=topic-title-20261031">'),'missing listing SVG '+d.slug);
   assert.ok(list.includes('alt="'+attr(d.alt)+'"'),'missing listing ALT '+d.slug);
   assert.ok(map.includes('<image:loc>https://kun-online.com/blog/images/'+d.svg+'</image:loc>'));
   assert.ok(map.includes('<image:loc>https://kun-online.com/blog/images/'+d.png+'</image:loc>'));

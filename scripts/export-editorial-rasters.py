@@ -10,7 +10,9 @@ import io
 import json
 import os
 import re
+import subprocess
 from pathlib import Path
+from xml.etree import ElementTree as ET
 
 ROOT=Path(__file__).resolve().parent.parent
 IMAGES=ROOT/'blog'/'images'
@@ -34,13 +36,41 @@ def main():
         if not args.write:
             rendered.append(slug)
             continue
-        # Imported only for an explicit write; no dependency or output side effect on --check.
+        # SVG engines differ in Arabic shaping. For social previews we strip
+        # SVG <text> and draw the *same* headline lines via Pillow/libraqm.
         import cairosvg
-        from PIL import Image
-        png_data=cairosvg.svg2png(bytestring=content.encode('utf-8'),output_width=1200,output_height=630)
+        from PIL import Image, ImageDraw, ImageFont, features
+        if not features.check('raqm'):
+            raise RuntimeError('Pillow/libraqm is required for Arabic social images')
+        root = ET.fromstring(content)
+        ns = '{http://www.w3.org/2000/svg}'
+        title_elements = []
+        for parent in root.iter():
+            for child in list(parent):
+                if child.tag == ns+'text':
+                    title_elements.append((child.attrib, ''.join(child.itertext())))
+                    parent.remove(child)
+        if len(title_elements)<3:
+            raise RuntimeError('Visible Arabic headline missing for '+slug)
+        bare = ET.tostring(root,encoding='utf-8',xml_declaration=False)
+        png_data = cairosvg.svg2png(bytestring=bare,output_width=1200,output_height=630)
         with Image.open(io.BytesIO(png_data)) as png:
-            rgb=png.convert('RGB')
-            assert rgb.size==(1200,630)
+            rgb = png.convert('RGB')
+            assert rgb.size == (1200,630)
+            draw=ImageDraw.Draw(rgb)
+            font_path = os.getenv('EDITORIAL_ARABIC_FONT') or subprocess.check_output(
+                ['fc-match','-f','%{file}','Noto Sans Arabic:style=Bold'],text=True).strip()
+            if not Path(font_path).is_file():
+                raise RuntimeError('Noto Arabic font required to avoid squares')
+            for attrs,value in title_elements:
+                if not value.strip():
+                    continue
+                size = int(float(attrs.get('font-size','36')))
+                font = ImageFont.truetype(font_path,size,layout_engine=ImageFont.Layout.RAQM)
+                x,y=float(attrs['x']),float(attrs['y'])
+                anchor='ms' if attrs.get('text-anchor')=='middle' else 'rs'
+                draw.text((x,y),value,fill=attrs.get('fill','#f8fbff'),
+                          font=font,anchor=anchor,direction='rtl',language='ar')
             sources=((slug+'.png','PNG',None),
                      (slug+'.webp','WEBP',87),
                      (slug+'-640.webp','WEBP',85))

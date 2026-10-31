@@ -10,9 +10,9 @@ const articles=JSON.parse(read('blog/articles.json'));
 const lookup=new Map(articles.map(a=>[a.slug,a]));
 const index=read('blog/index.html');
 const sitemap=read('sitemap.xml');
-const version='?v=illustrated-20261031';
+const version='?v=topic-title-20261031';
 
-test('ART-01: one individually composed vector per published article, reproducible and no text-rendering defects',()=>{
+test('ART-01: one individually composed vector per published article, reproducible and full RTL title and safe Arabic fallback',()=>{
  assert.equal(designs.length,29);
  const signatures=new Set();
  for(const [i,s] of designs.entries()){
@@ -24,7 +24,15 @@ test('ART-01: one individually composed vector per published article, reproducib
   assert.match(asset,/^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" width="1200" height="630"/);
   assert.match(asset,/<title id="title">/);
   assert.match(asset,/<desc id="desc">/);
-  assert.doesNotMatch(asset,/<text\b|font-family|<foreignObject\b|<image\b|<script\b|<use\b|href\s*=|onload\s*=|data:/i,'no external fonts, overlays, embeds or scripts');
+  assert.doesNotMatch(asset,/<foreignObject\b|<image\b|<script\b|<use\b|href\s*=|onload\s*=|data:/i,'no external images, active SVG or scripts');
+  const block=asset.match(/<g id="article-title">([\s\S]*?)<\/g>/)?.[1];
+  assert.ok(block,'on-image headline block missing '+s.slug);
+  const visible=[...block.matchAll(/<text[^>]*>([^<]+)<\/text>/g)].map(x=>x[1]
+    .replaceAll('&amp;','&').replaceAll('&lt;','<').replaceAll('&gt;','>').replaceAll('&quot;','"')).join(' ');
+  assert.equal(visible,article.title,'every title word must be visibly printed on its cover: '+s.slug);
+  assert.ok((block.match(/<text /g)||[]).length<=4,'too many lines for thumbnail '+s.slug);
+  assert.match(block,/direction="rtl"/,'title must be explicitly RTL');
+  assert.match(asset,/id="topic-illustration"/,'topic-specific composition missing');
   assert.doesNotMatch(asset,/بلا أشخاص|بلا بيانات مفبركة|ORIGINAL EDITORIAL VISUAL/,'internal design notes stay internal');
   const digest=createHash('sha256').update(asset).digest('hex');
   assert.ok(!signatures.has(digest),'duplicate artwork: '+s.slug);
@@ -54,7 +62,7 @@ test('ART-02: Google-friendly stable page URLs, SVG picture and PNG/WebP fallbac
 
 test('ART-03: the publisher preserves the art and never stamps every existing article as new',()=>{
  const refresh=read('scripts/refresh_site.py');
- assert.match(refresh,/VECTOR_REV = '\?v=illustrated-20261031'/);
+ assert.match(refresh,/VECTOR_REV = '\?v=topic-title-20261031'/);
  assert.match(refresh,/published-cover-designs\.json/);
  assert.match(refresh,/def restore_svg_sources/);
  assert.doesNotMatch(refresh,/dateModified\s*=\s*datetime\.now/);
