@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">تكلفة اكتساب العميل CAC: بتدفع كام عشان تكسب عميل حقيقي؟</title><desc id="desc">رسم يوضح رحلة تكلفة اكتساب العميل من الإعلان إلى الطلب والشراء</desc>
+<defs><linearGradient id="back" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071e2e"/><stop offset=".54" stop-color="#0a3546"/><stop offset="1" stop-color="#164b5b"/></linearGradient><radialGradient id="shine"><stop stop-color="#ffcf8f" stop-opacity=".2"/><stop offset="1" stop-color="#ffcf8f" stop-opacity="0"/></radialGradient></defs>
+<rect width="1200" height="630" fill="url(#back)"/><circle cx="200" cy="200" r="370" fill="url(#shine)"/>
+<rect x="30" y="30" width="1140" height="570" rx="35" fill="none" stroke="#426f81" stroke-width="2"/>
+<rect x="64" y="132" width="535" height="411" rx="31" fill="#092b3b" stroke="#396c7d" stroke-width="3"/>
+<g id="topic-illustration" transform="translate(87 160)">
+<rect x="26" y="139" width="431" height="247" rx="29" fill="#153f50" stroke="#4b94a7" stroke-width="4"/>
+<path d="M75 223L165 181L165 288L75 260Z" fill="#f5c27a" stroke="#f8e4b9" stroke-width="5"/><rect x="48" y="218" width="38" height="49" rx="7" fill="#f4dba6"/><path d="M97 267L128 329" stroke="#e9bd80" stroke-width="13" stroke-linecap="round"/>
+<path d="M188 194C217 214 217 254 188 273M211 170C258 211 260 257 211 296" fill="none" stroke="#72d9c5" stroke-width="7" stroke-linecap="round"/>
+<rect x="275" y="155" width="130" height="132" rx="20" fill="#225c6c" stroke="#c1e4d7" stroke-width="4"/><path d="M298 196H382M298 218H364M298 240H348" stroke="#f5dca7" stroke-width="7" stroke-linecap="round"/>
+<path d="M84 89H161L200 55" fill="none" stroke="#f4c080" stroke-width="10" stroke-linecap="round"/><circle cx="216" cy="40" r="24" fill="#f2d69d"/><path d="M242 42H350" stroke="#72d9c5" stroke-width="12" stroke-linecap="round"/><circle cx="371" cy="41" r="20" fill="#72d9c5"/>
+<rect x="64" y="327" width="351" height="9" rx="4.5" fill="#508ba0"/>
+</g>
+<rect x="620" y="132" width="516" height="411" rx="31" fill="#0a2b3b" stroke="#396c7d" stroke-width="2"/>
+<rect x="681" y="178" width="111" height="8" rx="4" fill="#f0be80"/>
+<text x="1094" y="217" direction="rtl" text-anchor="start" font-family="Cairo,Tajawal,Noto Sans Arabic,Arial,sans-serif" font-size="26" font-weight="700" fill="#f0be80">كن أونلاين</text>
+<g id="article-title">
+<text x="884" y="300" text-anchor="middle" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Tajawal,Noto Sans Arabic,Segoe UI,Arial,sans-serif" font-size="33" font-weight="700" fill="#f8fbff">تكلفة اكتساب العميل CAC:</text>
+<text x="884" y="359" text-anchor="middle" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Tajawal,Noto Sans Arabic,Segoe UI,Arial,sans-serif" font-size="38" font-weight="700" fill="#f8fbff">بتدفع كام عشان</text>
+<text x="884" y="418" text-anchor="middle" direction="rtl" unicode-bidi="plaintext" font-family="Cairo,Tajawal,Noto Sans Arabic,Segoe UI,Arial,sans-serif" font-size="38" font-weight="700" fill="#f2d9a4">تكسب عميل حقيقي؟</text>
+</g>
+<path d="M681 490H1095" stroke="#477586" stroke-width="2"/>
+<text x="1095" y="523" direction="rtl" text-anchor="start" font-family="Cairo,Tajawal,Noto Sans Arabic,Arial,sans-serif" font-size="19" fill="#b7cbd0">دليل عملي للتجارة الإلكترونية</text>
+<rect x="78" y="567" width="175" height="8" rx="4" fill="#f0be80"/>
+<text x="1112" y="583" direction="rtl" text-anchor="start" font-family="Arial,sans-serif" font-size="15" fill="#86afbd">KUN ONLINE</text>
+</svg>
