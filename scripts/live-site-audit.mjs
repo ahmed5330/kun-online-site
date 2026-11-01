@@ -197,7 +197,8 @@ async function run() {
         const expected='<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'?v=topic-title-20261031">';
         check('Live article prefers SVG with original PNG fallback: '+slug,
           page.response.status===200&&page.body.includes(expected)&&
-          page.body.includes('src="/blog/images/'+d.png+'"'),
+          (page.body.includes('src="/blog/images/'+d.png+'"')||
+           page.body.includes('src="/blog/images/'+d.png+'?')),
           'status='+page.response.status);
         check('Live SVG article ALT is descriptive and matches manifest: '+slug,
           page.response.status===200&&page.body.includes('alt="'+
