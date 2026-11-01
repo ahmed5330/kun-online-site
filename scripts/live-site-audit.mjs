@@ -167,6 +167,66 @@ async function run() {
       }
     } catch(error) {check('Sitemap route HTTP 200: '+target.pathname,false,error.message);}
   }
+
+  // Visual SEO release checks: GitHub success alone cannot prove Cloudflare served
+  // the published vectors, their content types, or matching article picture tags.
+  // Check ONLY locally approved slugs; never fetch arbitrary external URLs from XML.
+  const vectorDesigns=JSON.parse(await fs.readFile('seo/published-cover-designs.json','utf8')).items;
+  let vectorSitemap=sitemap;
+  for(let attempt=0;attempt<8;attempt++){
+    const absent=vectorDesigns.some(d=>!vectorSitemap.includes(
+      '<image:loc>'+base+'/blog/images/'+d.svg+'</image:loc>'));
+    if(!absent)break;
+    await sleep(2500);
+    try {
+      const refreshed=await inspect('/sitemap.xml');
+      if(refreshed.response.status===200)vectorSitemap=refreshed.body;
+    }catch{ /* retain the last verified response */ }
+  }
+  for(let i=0;i<vectorDesigns.length;i+=5){
+    await Promise.all(vectorDesigns.slice(i,i+5).map(async d=>{
+      const slug=d.slug;
+      if(!/^[a-z0-9-]+$/.test(slug)||d.svg!==slug+'.svg'||d.png!==slug+'.png'){
+        check('Approved vector safe naming: '+slug,false);return;
+      }
+      check('Live image sitemap contains vector and PNG: '+slug,
+        vectorSitemap.includes('<image:loc>'+base+'/blog/images/'+d.svg+'</image:loc>')&&
+        vectorSitemap.includes('<image:loc>'+base+'/blog/images/'+d.png+'</image:loc>'));
+      try{
+        const page=await inspect('/blog/'+slug);
+        const expected='<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'?v=topic-title-20261031">';
+        check('Live article prefers SVG with original PNG fallback: '+slug,
+          page.response.status===200&&page.body.includes(expected)&&
+          page.body.includes('src="/blog/images/'+d.png+'"'),
+          'status='+page.response.status);
+        check('Live SVG article ALT is descriptive and matches manifest: '+slug,
+          page.response.status===200&&page.body.includes('alt="'+
+            d.alt.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'"'));
+      }catch(error){check('Live SVG article preferred image: '+slug,false,error.message);}
+      let svgResponse=null,svgError='';
+      for(let attempt=0;attempt<4;attempt++){
+        try{
+          const r=await inspect('/blog/images/'+d.svg+'?v=topic-title-20261031');
+          const mime=r.response.headers.get('content-type')||'';
+          if(r.response.status===200&&mime.toLowerCase().startsWith('image/svg+xml')&&
+            r.body.startsWith('<svg xmlns="http://www.w3.org/2000/svg"')){
+            svgResponse={ok:true,mime,body:r.body,status:r.response.status};break;
+          }
+          svgResponse={ok:false,mime,status:r.response.status,body:r.body};
+        }catch(error){svgError=error.message;}
+        if(attempt<3)await sleep(2500);
+      }
+      check('Live SVG HTTP 200 and correct image/svg+xml MIME: '+slug,
+        !!svgResponse?.ok,
+        'status='+(svgResponse?.status??'fetch_failed')+' mime='+(svgResponse?.mime??'')+
+        (svgError?' error='+svgError:''));
+      if(svgResponse?.ok){
+        check('Live SVG includes visible Arabic headline and subject illustration: '+slug,
+          svgResponse.body.includes('id="article-title"')&&svgResponse.body.includes('id="topic-illustration"'));
+      }
+    }));
+  }
+
   // Parity audit catches accidental Cloudflare challenges targeting crawlers.
   // A forged User-Agent is only a smoke test, NOT proof that Google indexed it.
   for (const pathname of ['/', '/services/', '/system/', '/blog/real-cost-per-delivered-order']) {
