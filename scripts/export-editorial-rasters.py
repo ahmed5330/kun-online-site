@@ -23,7 +23,11 @@ def main():
     p.add_argument('--write',action='store_true',help='Replace all published raster variants after reviewing vector previews')
     args=p.parse_args()
     records=json.loads(MANIFEST.read_text(encoding='utf-8'))['items']
-    assert len(records)==29, 'Require explicit editorial inventory review before altering published image count'
+    # Read-only validation follows the approved manifest as new covers are reviewed.
+    # Keep the high-risk bulk raster overwrite locked to its original, separately approved batch.
+    assert len(records)>=29 and len({r['slug'] for r in records})==len(records), 'Invalid approved visual inventory'
+    if args.write and len(records)!=29:
+        raise RuntimeError('Expanded published-cover inventory requires separate human approval before any bulk --write export')
     rendered=[]
     for item in records:
         slug=item['slug']
