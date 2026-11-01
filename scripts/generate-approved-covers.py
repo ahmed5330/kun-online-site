@@ -158,6 +158,44 @@ def draw_motif(draw, category, accent):
         draw.polygon([(118,362),(235,274),(350,362)],outline=accent)
         draw.rounded_rectangle((216,411,251,468),radius=6,fill=pale)
 
+
+def ensure_responsive_variants(png_path):
+    """Create ONLY missing WebP derivatives from the existing approved 1200x630 PNG.
+
+    Re-running is idempotent. Do not re-render artwork, change the PNG, or
+    overwrite any previously reviewed WebP asset.
+    """
+    png_path = Path(png_path)
+    if not png_path.is_file():
+        raise FileNotFoundError("Published source cover is missing: " + str(png_path))
+    full = png_path.with_suffix(".webp")
+    small = png_path.with_name(png_path.stem + "-640.webp")
+    requested = [(full, (1200, 630), 87), (small, (640, 336), 85)]
+    missing = [(target, size, quality) for target, size, quality in requested if not target.exists()]
+    if not missing:
+        return []
+    created = []
+    with Image.open(png_path) as source:
+        if source.format != "PNG" or source.size != SIZE:
+            raise ValueError("Approved source PNG must remain 1200x630: " + str(png_path))
+        pixels = source.convert("RGB")
+        for target, size, quality in missing:
+            frame = pixels if size == SIZE else pixels.resize(size, Image.Resampling.LANCZOS)
+            temp = target.with_name(target.name + ".tmp")
+            try:
+                frame.save(temp, format="WEBP", quality=quality, method=6)
+                with Image.open(temp) as check:
+                    if check.format != "WEBP" or check.size != size:
+                        raise ValueError("Responsive image output invalid: " + str(target))
+                os.replace(temp, target)
+                created.append(target.name)
+            finally:
+                if temp.exists():
+                    temp.unlink()
+    if created:
+        print("RESPONSIVE COVER BACKFILL:", png_path.name, ", ".join(created))
+    return created
+
 def generate(meta, overwrite=False):
     require_raqm()
     name = str(meta["slug"])
@@ -165,6 +203,9 @@ def generate(meta, overwrite=False):
         raise ValueError("Cover path does not match the published slug: " + name)
     target = IMAGES / (name + ".png")
     if target.exists() and not overwrite:
+        # The PNG might be pre-approved and already present while WebP variants are missing.
+        # Encode only missing variants; never repaint or replace published source artwork.
+        ensure_responsive_variants(target)
         return False
 
     accent, tint = color_category(meta)
@@ -236,6 +277,15 @@ def main():
             generate(item,overwrite=True)
         print("REBUILT",len(items),"PUBLISHED COVERS")
         return
+    # Published PNGs remain the visual source of truth. Backfill only absent
+    # derivatives under the existing approved one-article-per-day publisher path.
+    # This never creates a new article or changes any metadata/lastmod.
+    published = json.loads(ARTICLES.read_text(encoding="utf-8"))
+    for entry in published:
+        slug = str(entry["slug"])
+        if entry.get("image") != slug + ".png":
+            raise ValueError("Published image/slug mismatch: " + slug)
+        ensure_responsive_variants(IMAGES / entry["image"])
     cairo_today = os.getenv("EDITORIAL_CAIRO_DATE") or datetime.now(
         ZoneInfo("Africa/Cairo")).date().isoformat()
     log_path = ROOT / "content" / "publication-log.json"
