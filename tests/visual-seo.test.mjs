@@ -79,3 +79,13 @@ test('VISUAL-04: home, services and blog use real HTML images with ALT and dimen
     assert.match(tag, /\bdecoding="async"/);
   }
 });
+
+
+test('VISUAL-05: live Cloudflare release auditor verifies original vector HTTP and MIME for approved articles',()=>{
+  const live=read('scripts/live-site-audit.mjs');
+  assert.match(live,/seo\/published-cover-designs\.json/);
+  assert.match(live,/Live SVG HTTP 200 and correct image\/svg\+xml MIME/);
+  assert.match(live,/Live SVG article ALT is descriptive/);
+  assert.match(live,/Live image sitemap contains vector and PNG/);
+  assert.match(live,/topic-title-20261031/);
+});
