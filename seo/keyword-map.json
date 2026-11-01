@@ -729,6 +729,23 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/average-order-value-aov-ecommerce",
+      "primary": "متوسط قيمة الطلب AOV",
+      "secondary": [
+        "زيادة متوسط سلة الشراء",
+        "حساب متوسط قيمة الطلب",
+        "البيع الإضافي Upsell",
+        "البيع المتقاطع Cross-sell",
+        "حد الشحن المجاني",
+        "باقات المنتجات للمتجر الإلكتروني"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }
