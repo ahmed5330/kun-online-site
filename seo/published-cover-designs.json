@@ -292,6 +292,26 @@
       "alt": "رسم يوضح واجهة متجر وعربة تسوق تجريديتان",
       "width": 1200,
       "height": 630
+    },
+    {
+      "slug": "average-order-value-aov-ecommerce",
+      "svg": "average-order-value-aov-ecommerce.svg",
+      "png": "average-order-value-aov-ecommerce.png",
+      "motif": "cart",
+      "focusKeyword": "رفع متوسط قيمة الطلب AOV بالباقات والبيع الإضافي والشحن",
+      "alt": "رسم لسلة مشتريات تضم منتجات إضافية وسهم يوضح زيادة متوسط قيمة الطلب",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "slug": "customer-acquisition-cost-cac-ecommerce",
+      "svg": "customer-acquisition-cost-cac-ecommerce.svg",
+      "png": "customer-acquisition-cost-cac-ecommerce.png",
+      "motif": "acquisition",
+      "focusKeyword": "حساب تكلفة اكتساب العميل CAC في المتاجر الإلكترونية",
+      "alt": "رسم يوضح رحلة تكلفة اكتساب العميل من الإعلان إلى الطلب والشراء",
+      "width": 1200,
+      "height": 630
     }
   ]
 }

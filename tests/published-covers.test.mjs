@@ -13,7 +13,7 @@ const attr=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</
 
 test('COVER-01: all approved original designs are unique, per-published-article and editorially descriptive',()=>{
  assert.equal(designs.schemaVersion,1);
- assert.equal(designs.items.length,29,'29 pre-existing approved guides are in this audited batch');
+ assert.ok(designs.items.length>=29,'approved editorial designs must not be dropped');
  assert.equal(new Set(designs.items.map(d=>d.slug)).size,designs.items.length);
  assert.equal(new Set(designs.items.map(d=>d.alt)).size,designs.items.length);
  for(const d of designs.items){
@@ -82,4 +82,19 @@ test('COVER-05: next editorial refresh retains image SEO without changing canoni
  assert.ok(source.includes('def restore_svg_sources('));
  assert.ok(source.includes("source type=\"image/svg+xml\""));
  assert.doesNotMatch(read('seo/published-cover-designs.json'),/\bmeta keywords\b/i);
+});
+
+// Future daily articles may publish safely with PNG while vector editorial approval is pending.
+// Report every gap explicitly instead of silently assuming the old 29-cover batch is exhaustive.
+test('COVER-06: published article cover coverage is observable without blocking the daily publisher',()=>{
+ const approved=new Set(designs.items.map(d=>d.slug));
+ const pending=articles.filter(a=>!approved.has(a.slug)).map(a=>a.slug);
+ for(const article of articles){
+  assert.ok(existsSync(new URL('blog/images/'+article.image,root)),'missing canonical PNG '+article.slug);
+  if(!existsSync(new URL('blog/images/'+article.slug+'.webp',root))||
+     !existsSync(new URL('blog/images/'+article.slug+'-640.webp',root)))
+   console.warn('VISUAL_SEO_PENDING_WEBP: '+article.slug);
+ }
+ if(pending.length)console.warn('VISUAL_SEO_PENDING_SVG: '+pending.join(', '));
+ else console.log('VISUAL_SEO_SVG_COVERAGE: '+approved.size+'/'+articles.length);
 });
