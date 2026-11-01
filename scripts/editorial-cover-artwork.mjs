@@ -52,6 +52,18 @@ export function buildSVG(spec) {
  const row=(x,y,flags=4)=>Array.from({length:flags},(_,j)=>R(x,y+j*34,228-(j%3)*38,13,7,j%2?accent:'#5f899b','none',0)).join('');
  let scene='';
  switch(slug){
+ case 'average-order-value-aov-ecommerce':
+  // AOV: a growing basket of complementary products, not claimed sales data.
+  // Every component is geometric and independently composed; no faces or photos.
+  scene=tile(145,190,255,286,'cart',1.54,bright)
+   +arrow(416,332,487,332)
+   +R(510,182,307,304,28,'url(#glass)','#477687',2)
+   +icon('package',531,228,.92,accent)
+   +icon('package',651,228,.92,bright)
+   +icon('package',593,344,.92,accent)
+   +arrow(823,333,875,333)
+   +tile(891,214,175,245,'chart',1.15,bright)
+   +R(535,501,257,13,6,accent,'none',0);break;
  case 'customer-acquisition-cost-cac-ecommerce':
   // CAC: acquisition ad -> distinct new buyer -> recoverable customer value.
   // The three original geometry cards are conceptual, not measured metrics.
