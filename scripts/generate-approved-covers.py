@@ -84,6 +84,8 @@ def cover_topic(meta):
     """Choose relevant, face-free pictograms from editorial subject and category."""
     slug = str(meta.get("slug", "")).lower()
     category = str(meta.get("category", "store")).lower()
+    if any(word in slug for word in ("lifetime", "ltv", "retention", "repeat-purchase")):
+        return "retention"
     if any(word in slug for word in ("profit", "cost", "budget", "price", "finance")):
         return "finance"
     if any(word in slug for word in ("shipping", "delivery", "order-confirmation", "returns")):
@@ -118,6 +120,18 @@ def draw_motif(draw, category, accent):
             draw.rounded_rectangle((x,y,x+65,y+55),radius=10,
                                    fill=(14,49,65),outline=pale,width=3)
             draw.line((x+32,y+8,x+32,y+43),fill=pale,width=2)
+    elif category == "retention":
+        # Three consecutive purchase cards linked by a circular return path.
+        # Conceptual repeat orders and growing customer value, never real data.
+        for x, y in ((124, 357), (211, 318), (298, 357)):
+            draw.rounded_rectangle((x, y, x+68, y+69), radius=11,
+                                   fill=(14, 49, 65), outline=accent, width=3)
+            draw.line((x+13, y+25, x+55, y+25), fill=pale, width=4)
+            draw.line((x+13, y+40, x+48, y+40), fill=pale, width=3)
+            draw.ellipse((x+18, y+49, x+27, y+58), fill=accent)
+            draw.ellipse((x+42, y+49, x+51, y+58), fill=accent)
+        draw.arc((116, 291, 398, 507), start=202, end=351, fill=pale, width=6)
+        draw.polygon(((384, 340), (361, 336), (378, 362)), fill=accent)
     elif category == "research":
         draw.ellipse((133,299,281,447),outline=accent,width=11)
         draw.ellipse((161,327,253,419),outline=pale,width=3)
