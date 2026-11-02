@@ -1,0 +1,45 @@
+{
+  "slug": "customer-lifetime-value-ltv-ecommerce",
+  "article_id": 25,
+  "approved": true,
+  "eligibleFrom": "2026-11-02",
+  "editorialApproval": "2026-11-02: Owner-authorized daily original Arabic editorial production. Verified 2026-10-08 Shopify CLV guide, official Shopify customer cohort/RFM reports, Google Analytics 4 ecommerce purchase/refund and retention documentation, and Stripe CLV methodology on 2026-11-02. All examples explicitly hypothetical and independently arithmetically checked; no market estimates, personal data, or fabricated benchmarks. Independent SEO/GEO reviewer gate remains mandatory.",
+  "title": "قيمة العميل مدى الحياة LTV: احسب ربح العميل المتكرر قبل زيادة الإعلانات",
+  "description": "شرح عملي لحساب قيمة العميل مدى الحياة LTV في المتاجر المصرية والسعودية، والفرق بين الإيراد وهامش المساهمة، وتحليل العملاء المتكررين ومقارنة LTV بتكلفة الاكتساب.",
+  "primaryKeyword": "قيمة العميل مدى الحياة LTV",
+  "secondaryKeywords": [
+    "حساب LTV للمتجر الإلكتروني",
+    "قيمة العميل المتكرر",
+    "معدل تكرار الشراء",
+    "LTV مقابل CAC",
+    "تحليل مجموعات العملاء Cohorts"
+  ],
+  "category": "finance",
+  "categoryLabel": "المالية والتسعير",
+  "image": "customer-lifetime-value-ltv-ecommerce.png",
+  "market": "EG+GCC",
+  "inboundFrom": [
+    "average-order-value-aov-ecommerce",
+    "customer-acquisition-cost-cac-ecommerce",
+    "sales-price-vs-real-ecommerce-profit"
+  ],
+  "qualityReview": {
+    "words": 2012,
+    "sections": 14,
+    "readingMinutes": 12,
+    "checkedOn": "2026-11-02",
+    "sources": [
+      "https://www.shopify.com/blog/customer-lifetime-value",
+      "https://help.shopify.com/en/manual/reports-and-analytics/shopify-reports/report-types/default-reports/customers-reports",
+      "https://help.shopify.com/en/manual/reports-and-analytics/shopify-reports/report-types/reports-overview",
+      "https://developers.google.com/analytics/devguides/collection/ga4/ecommerce",
+      "https://support.google.com/analytics/answer/11004084",
+      "https://stripe.com/resources/more/customer-lifetime-value"
+    ],
+    "exampleNumbers": "500*2*2=2000; 2000*0.30=600; 600-300-65-15-20=200; 600+550+550=1700; 200*3=600; 600-150-40=410; 200*500+50*400+15*300=124500; 200+50+15=265; 124500/200=622.5; 200*180+50*130+15*100=44000; 44000/200=220; 50/200=25%; 16000/200=80; 220/80=2.75; 2000/200=10; 220-80-10=130. All hypothetical.",
+    "originality": "Original Arabic practical customer LTV guide: historical vs predicted, revenue vs contribution, COD delivery guard, 90-day cohort, LTV:CAC/payback, retention strategy and 30-day implementation.",
+    "visualSeo": "No faces, people, external photos, customer data, or fabricated metrics. First-party geometric return-purchase motif selected via cover_topic in scripts/generate-approved-covers.py; visible 1200x630 PNG, descriptive Arabic ALT, OG image/alt, Twitter image/alt and BlogPosting.image use matching URL.",
+    "visualStoryboard": "Three anonymous geometric purchase cards joined by an abstract repeat-purchase return path, with full article title rendered by Pillow+RAQM. The cards have no real order values, names, faces, or imported assets.",
+    "publicationGate": "One article per Cairo date; existing VPS-free publisher only. Independent SEO/GEO general reviewer and routine editorial tests must pass before merge."
+  }
+}
