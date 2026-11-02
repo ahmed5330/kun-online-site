@@ -746,6 +746,22 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/customer-lifetime-value-ltv-ecommerce",
+      "primary": "قيمة العميل مدى الحياة LTV",
+      "secondary": [
+        "حساب LTV للمتجر الإلكتروني",
+        "قيمة العميل المتكرر",
+        "معدل تكرار الشراء",
+        "LTV مقابل CAC",
+        "تحليل مجموعات العملاء Cohorts"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }

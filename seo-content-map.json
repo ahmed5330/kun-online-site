@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 25,
-    "articles_remaining": 75,
+    "articles_published": 26,
+    "articles_remaining": 74,
     "current_article": null,
-    "next_article": 25,
-    "project_completion_percentage": 25,
-    "last_published_date": "2026-11-01",
+    "next_article": 26,
+    "project_completion_percentage": 26,
+    "last_published_date": "2026-11-02",
     "last_run_date": null
   },
   "chapters": [
@@ -134,6 +134,7 @@
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
+        "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/ecommerce-evolution-history",
@@ -235,6 +236,7 @@
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
+        "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
@@ -385,6 +387,7 @@
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/customer-funnel-guide",
+        "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/customer-reviews-product-opportunities",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
@@ -956,6 +959,7 @@
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
+        "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
@@ -968,6 +972,7 @@
       "internal_links_in": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
+        "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/product-profitability-before-launch",
@@ -1045,6 +1050,7 @@
       "word_count": 1917,
       "internal_links_out": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
+        "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
@@ -1055,6 +1061,7 @@
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
+        "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/product-profitability-before-launch",
         "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit"
@@ -1088,6 +1095,7 @@
       "word_count": 1935,
       "internal_links_out": [
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
+        "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/product-profitability-before-launch",
@@ -1097,6 +1105,7 @@
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
+        "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit"
       ],
@@ -1110,18 +1119,36 @@
       "brief": "اشرح Customer Lifetime Value بقصة عميل يكرر الشراء.",
       "new_concept": "LTV:CAC Ratio كمفهوم، بدون تحويله إلى قاعدة جامدة.",
       "research_space": "ابحث عن طرق حساب LTV المناسبة لـDTC.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "queued",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
+      "final_h1": "قيمة العميل مدى الحياة LTV: احسب ربح العميل المتكرر قبل زيادة الإعلانات",
+      "seo_title": "قيمة العميل مدى الحياة LTV: احسب ربح العميل المتكرر قبل زيادة الإعلانات | مدونة كن أونلاين",
+      "primary_keyword": "قيمة العميل مدى الحياة LTV",
+      "secondary_keywords": [
+        "حساب LTV للمتجر الإلكتروني",
+        "قيمة العميل المتكرر",
+        "معدل تكرار الشراء",
+        "LTV مقابل CAC",
+        "تحليل مجموعات العملاء Cohorts"
+      ],
+      "search_intent": "informational",
+      "slug": "customer-lifetime-value-ltv-ecommerce",
+      "url": "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
+      "status": "published",
+      "published_date": "2026-11-02",
+      "word_count": 2012,
+      "internal_links_out": [
+        "https://kun-online.com/blog/average-order-value-aov-ecommerce",
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/average-order-value-aov-ecommerce",
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit"
+      ],
       "failure_reason": null,
       "attempts": 0
     },
