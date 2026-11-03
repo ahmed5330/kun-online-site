@@ -57,7 +57,7 @@ function special(slug){
 }
 export function buildMarketingCover(spec,creative){
  if(!spec?.slug||!spec?.alt||!creative?.hook)throw Error('Missing marketing-cover facts');
- const accent=hues[spec.motif]||'#8fe3ee';
+ const accent=['finance','trend','calendar','funnel','repeat','brand'].includes(spec.motif)?'#ffca64':'#51d6d3';
  const {size,lines}=wrap(creative.hook);
  let artwork=special(spec.slug)||sceneOld({...spec,seoTitle:creative.seoTitle});
  const specialUsed=!!special(spec.slug);
@@ -77,10 +77,10 @@ export function buildMarketingCover(spec,creative){
  '<rect width="1200" height="630" fill="url(#bg)"/><circle cx="290" cy="310" r="381" fill="url(#glow)"/>'+
  '<path d="M36 79H600" stroke="'+accent+'" stroke-width="3" opacity=".6"/>'+
  draw+
- '<text x="1121" y="101" direction="rtl" text-anchor="end" font-family="Cairo,Tajawal,Segoe UI,Arial,sans-serif" font-size="29" font-weight="700" fill="#def2f5">كن أونلاين</text>'+
+ '<text x="1005" y="101" direction="rtl" text-anchor="middle" font-family="Cairo,Tajawal,Segoe UI,Arial,sans-serif" font-size="29" font-weight="700" fill="#def2f5">كن أونلاين</text>'+
  '<rect x="1036" y="122" width="85" height="7" rx="3" fill="'+accent+'"/>'+
  '<g id="hook">'+hook+'</g>'+
  '<text x="895" y="505" direction="rtl" text-anchor="middle" font-family="Cairo,Tajawal,Segoe UI,Arial,sans-serif" font-size="27" fill="#c8dce5">'+esc(sub)+'</text>'+
- '<path d="M640 540H1130" stroke="#3f6d7f" stroke-width="2" opacity=".6"/>'+
+ 
  '</svg>\n';
 }
