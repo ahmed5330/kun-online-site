@@ -1,0 +1,326 @@
+{
+  "schemaVersion": 2,
+  "updatedAt": "2026-11-03",
+  "purpose": "32 subject-specific covers with concise hook and honest SEO alt",
+  "rules": {
+    "visual": "large subject-specific product/order object, minimal secondary elements, no faces or people",
+    "copy": "one short Egyptian hook; maximum one short subline; never print production notes or fake data",
+    "seo": "preserve slug, title, canonical, article dates, and current PNG/WebP until matching new raster versions verified"
+  },
+  "items": [
+    {
+      "slug": "customer-lifetime-value-ltv-ecommerce",
+      "hook": "العميل الواحد يساوي كام؟",
+      "subline": "قيمة الشراء المتكرر",
+      "art": "Three repeated orders connect to a single growing value symbol",
+      "alt": "ثلاثة طرود متكررة متصلة بقيمة متراكمة لتوضيح قيمة العميل مدى الحياة",
+      "seoTitle": "قيمة العميل مدى الحياة LTV: احسب ربح العميل المتكرر قبل زيادة الإعلانات"
+    },
+    {
+      "slug": "average-order-value-aov-ecommerce",
+      "hook": "تزود قيمة الأوردر إزاي؟",
+      "subline": "من غير ما تخسر هامشك",
+      "art": "A shopping basket holding a main product and complementary add-ons",
+      "alt": "سلة مشتريات فيها منتج أساسي ومنتجات مكملة توضح رفع متوسط قيمة الطلب",
+      "seoTitle": "متوسط قيمة الطلب AOV: 7 طرق تزود سلة العميل من غير ما تخسر"
+    },
+    {
+      "slug": "customer-acquisition-cost-cac-ecommerce",
+      "hook": "العميل الجديد بيكلفك كام؟",
+      "subline": "احسبها قبل زيادة الإعلان",
+      "art": "Ad ticket and calculator feeding into one delivered order box",
+      "alt": "إعلان وآلة حساب وطرد طلب متصلون لتوضيح حساب تكلفة اكتساب العميل",
+      "seoTitle": "تكلفة اكتساب العميل CAC: بتدفع كام عشان تكسب عميل حقيقي؟"
+    },
+    {
+      "slug": "ecommerce-product-price-strategy",
+      "hook": "سعّرت صح… ولا خسرت؟",
+      "subline": "التكلفة × المنافسة × القيمة",
+      "art": "Hero 3D studio depiction of a product on a pedestal with three contrasting price cards, visible margins, floating tags; no numbers implying real data.",
+      "seoTitle": "تسعير المنتجات أونلاين: 3 طرق لتحديد سعر مربح ومنافس",
+      "canonicalImage": "blog/images/ecommerce-product-price-strategy.png",
+      "canonicalSVG": "blog/images/ecommerce-product-price-strategy.svg",
+      "alt": "ثلاث بطاقات لتكلفة المنتج والمنافسة والقيمة بجوار منتج معروض لتوضيح طرق التسعير"
+    },
+    {
+      "slug": "sales-price-vs-real-ecommerce-profit",
+      "hook": "بتبيع بـ500… بتكسب كام؟",
+      "subline": "المهم اللي بيفضل في جيبك",
+      "art": "Large realistic product box and a single bill dissolving into expense receipts and tiny remaining profit coins; the 500 figure comes from the actual article title.",
+      "seoTitle": "بتبيع بـ500 جنيه؟ احسب الربح الحقيقي بعد الشحن والإعلانات والمرتجعات",
+      "canonicalImage": "blog/images/sales-price-vs-real-ecommerce-profit.png",
+      "canonicalSVG": "blog/images/sales-price-vs-real-ecommerce-profit.svg",
+      "alt": "صندوق منتج وفاتورة مصاريف وعملات توضح الفرق بين سعر البيع والربح الحقيقي"
+    },
+    {
+      "slug": "product-selection-checklist-20-points",
+      "hook": "المنتج ده يستاهل؟",
+      "subline": "20 نقطة قبل شراء المخزون",
+      "art": "A product box under a dramatic magnifying glass with bold emerald checkmark stamps and a premium tactile checklist card.",
+      "seoTitle": "اختيار المنتج للبيع أونلاين: قائمة فحص من 20 نقطة قبل شراء المخزون",
+      "canonicalImage": "blog/images/product-selection-checklist-20-points.png",
+      "canonicalSVG": "blog/images/product-selection-checklist-20-points.svg",
+      "alt": "صندوق منتج وعدسة مكبرة وقائمة فحص تساعد في تقييم المنتج قبل شراء المخزون"
+    },
+    {
+      "slug": "one-product-vs-multi-product-store",
+      "hook": "منتج واحد ولا 100؟",
+      "subline": "اختار قبل ما تتوسع",
+      "art": "Split visual: one spotlighted best-seller on left and cluttered wall of many products on right with a crisp visual divider.",
+      "seoTitle": "متجر منتج واحد أم متجر 100 منتج؟ اختر النموذج المناسب قبل التوسع",
+      "canonicalImage": "blog/images/one-product-vs-multi-product-store.png",
+      "canonicalSVG": "blog/images/one-product-vs-multi-product-store.svg",
+      "alt": "مقارنة بين منتج واحد تحت الضوء ومجموعة كبيرة من المنتجات داخل متجر"
+    },
+    {
+      "slug": "cheap-vs-expensive-products-online",
+      "hook": "الرخيص ولا الغالي يكسب؟",
+      "subline": "مش السعر وحده اللي بيحكم",
+      "art": "Two products at different price tiers on contrasting pedestals; one small price tag and one premium tag; comparative composition.",
+      "seoTitle": "المنتج الرخيص ولا الغالي: أيهما أسهل في البيع أونلاين وأكثر ربحية؟",
+      "canonicalImage": "blog/images/cheap-vs-expensive-products-online.png",
+      "canonicalSVG": "blog/images/cheap-vs-expensive-products-online.svg",
+      "alt": "منتجان على منصتين بأسعار مختلفة يوضحان المقارنة بين البيع الرخيص والمرتفع"
+    },
+    {
+      "slug": "product-profitability-before-launch",
+      "hook": "هتكسب منه… ولا لأ؟",
+      "subline": "احسبها قبل الإطلاق",
+      "art": "3D calculator, shipping box, advertising ticket and a highlighted net margin ledger with no made-up numbers.",
+      "seoTitle": "هل المنتج مربح قبل ما تبدأ؟ احسب التكلفة الحقيقية وهامش المساهمة",
+      "canonicalImage": "blog/images/product-profitability-before-launch.png",
+      "canonicalSVG": "blog/images/product-profitability-before-launch.svg",
+      "alt": "آلة حاسبة وفاتورة شحن وصندوق منتج لفحص الربحية قبل إطلاق المتجر"
+    },
+    {
+      "slug": "customer-reviews-product-opportunities",
+      "hook": "العميل بيقولك تبيع إيه!",
+      "subline": "الإجابة في التقييمات",
+      "art": "Stack of anonymized review cards under glowing search lens; abstract star rating and a product idea bulb revealed.",
+      "seoTitle": "تحليل تقييمات المنافسين: كيف تكتشف احتياجات العملاء وأفكار المنتجات؟",
+      "canonicalImage": "blog/images/customer-reviews-product-opportunities.png",
+      "canonicalSVG": "blog/images/customer-reviews-product-opportunities.svg",
+      "alt": "بطاقات مراجعات عملاء تحت عدسة مكبرة لاكتشاف فرص منتجات جديدة"
+    },
+    {
+      "slug": "ecommerce-competitor-analysis-sheet",
+      "hook": "راقب منافسك قبل ما تصرف",
+      "subline": "فهم السوق يوفّر عليك",
+      "art": "Overhead desk with two competitor storefront cards, magnifying glass and highlighted side-by-side offer details.",
+      "seoTitle": "تحليل المنافسين للمتجر الإلكتروني: ورقة عمل من 10 خطوات",
+      "canonicalImage": "blog/images/ecommerce-competitor-analysis-sheet.png",
+      "canonicalSVG": "blog/images/ecommerce-competitor-analysis-sheet.svg",
+      "alt": "بطاقتا متجر إلكتروني وجدول مقارنة وعلامات بحث لتحليل المنافسين"
+    },
+    {
+      "slug": "test-product-before-bulk-inventory",
+      "hook": "ما تشتريش 100 قطعة دلوقتي!",
+      "subline": "اختبر الأول بمخاطرة أقل",
+      "art": "One sample box on a small test platform facing a much larger stack of unopened inventory boxes, dramatic spotlight on sample.",
+      "seoTitle": "اختبار المنتج قبل شراء 100 قطعة: 6 تجارب قليلة المخاطرة",
+      "canonicalImage": "blog/images/test-product-before-bulk-inventory.png",
+      "canonicalSVG": "blog/images/test-product-before-bulk-inventory.svg",
+      "alt": "عينة منتج واحدة مضاءة بجوار مجموعة صناديق مخزون كثيرة لاختبار الطلب أولًا"
+    },
+    {
+      "slug": "viral-vs-evergreen-product-demand",
+      "hook": "مش كل ترند بيبيع!",
+      "subline": "المشاهدات ≠ طلب حقيقي",
+      "art": "Hero smartphone showing an abstract exploding play icon and reaction shapes, contrasted against an actual shopping-cart package/order symbol, broken connection, no fabricated metrics, no people.",
+      "seoTitle": "المنتج ترند فعلًا ولا مجرد فيديو عامل مشاهدات؟",
+      "canonicalImage": "blog/images/viral-vs-evergreen-product-demand.png",
+      "canonicalSVG": "blog/images/viral-vs-evergreen-product-demand.svg",
+      "alt": "هاتف يعرض رمز فيديو رائج بجوار سلة تسوق وطرد يوضح الفرق بين المشاهدات والشراء"
+    },
+    {
+      "slug": "product-demand-validation-guide",
+      "hook": "فيه طلب حقيقي ولا لأ؟",
+      "subline": "ما تعتمدش على الإحساس",
+      "art": "Visual product sample underneath magnifying glass; subtle search trends, cart and verification check as cues.",
+      "seoTitle": "كيف تتحقق من وجود طلب حقيقي على منتج قبل شرائه؟",
+      "canonicalImage": "blog/images/product-demand-validation-guide.png",
+      "canonicalSVG": "blog/images/product-demand-validation-guide.svg",
+      "alt": "عدسة مكبرة فوق عينة منتج وسلة شراء لتوضيح التحقق من وجود طلب حقيقي"
+    },
+    {
+      "slug": "ecommerce-product-ideas-research",
+      "hook": "مش لاقي منتج تبيعه؟",
+      "subline": "10 طرق لاكتشاف فرص",
+      "art": "Glowing discovery light bulb made of product silhouettes, with one standout product emerging from organized idea cards.",
+      "seoTitle": "10 طرق لاكتشاف أفكار منتجات للتجارة الإلكترونية",
+      "canonicalImage": "blog/images/ecommerce-product-ideas-research.png",
+      "canonicalSVG": "blog/images/ecommerce-product-ideas-research.svg",
+      "alt": "بطاقات أفكار منتجات ومصباح بحث لإظهار فرص التجارة الإلكترونية"
+    },
+    {
+      "slug": "ecommerce-first-30-days-plan",
+      "hook": "أول 30 يوم… تعمل إيه؟",
+      "subline": "خطوات عملية من الصفر",
+      "art": "Three bold milestone scenes on tactile calendar tiles, one product, store launch, order package; the 30 days based on title.",
+      "seoTitle": "خطة أول 30 يوم لبدء التجارة الإلكترونية من الصفر",
+      "canonicalImage": "blog/images/ecommerce-first-30-days-plan.png",
+      "canonicalSVG": "blog/images/ecommerce-first-30-days-plan.svg",
+      "alt": "تقويم بداية المتجر وثلاث محطات من المنتج إلى افتتاح المتجر ثم استلام الطلب"
+    },
+    {
+      "slug": "is-ecommerce-right-for-you",
+      "hook": "تدخل التجارة الإلكترونية؟",
+      "subline": "اختبر قرارك الأول",
+      "art": "Dramatic decision fork featuring small home store and alternative plan panel with a clear question-mark marker, no people.",
+      "seoTitle": "هل التجارة الإلكترونية مناسبة لك؟ اختبر قرار بدء متجرك",
+      "canonicalImage": "blog/images/is-ecommerce-right-for-you.png",
+      "canonicalSVG": "blog/images/is-ecommerce-right-for-you.svg",
+      "alt": "طريقان لاتخاذ قرار بدء المتجر أحدهما بعلامة تحقق والآخر بعلامة استفهام"
+    },
+    {
+      "slug": "cod-shipping-returns-reconciliation",
+      "hook": "الفلوس رايحة فين؟",
+      "subline": "طابق الشحن والتحصيل والمرتجع",
+      "art": "Three connected tangible elements: shipped parcel, receipt, refund return box, central reconciliation stamp.",
+      "seoTitle": "الشحن والتحصيل COD والمرتجعات: مطابقة الأرقام خطوة بخطوة",
+      "canonicalImage": "blog/images/cod-shipping-returns-reconciliation.png",
+      "canonicalSVG": "blog/images/cod-shipping-returns-reconciliation.svg",
+      "alt": "طرد شحن وفاتورة تحصيل وطرد مرتجع لتوضيح تسوية الدفع عند الاستلام"
+    },
+    {
+      "slug": "inventory-barcode-bundle-tracking",
+      "hook": "مخزونك تحت السيطرة؟",
+      "subline": "باركود وباندلز ومرتجعات",
+      "art": "Detailed warehouse shelves of packages, foreground sharp barcode scanner and paired products with a label.",
+      "seoTitle": "إدارة المخزون بالباركود والباندلز: من الاستلام للمرتجع",
+      "canonicalImage": "blog/images/inventory-barcode-bundle-tracking.png",
+      "canonicalSVG": "blog/images/inventory-barcode-bundle-tracking.svg",
+      "alt": "رفوف صناديق مخزون وملصق باركود وباقة منتجات لتتبع المستودع"
+    },
+    {
+      "slug": "order-confirmation-delivery-rate",
+      "hook": "الأوردر اتأكد… اتسلّم؟",
+      "subline": "اعرف نسبة التسليم الحقيقية",
+      "art": "Order progression from mobile order card to delivery box with one stage highlighted at a glance, no fictional percentages.",
+      "seoTitle": "نسبة تأكيد وتسليم الطلبات: طريقة الحساب الصحيحة",
+      "canonicalImage": "blog/images/order-confirmation-delivery-rate.png",
+      "canonicalSVG": "blog/images/order-confirmation-delivery-rate.svg",
+      "alt": "تسلسل بطاقة طلب ثم اتصال التأكيد ثم طرد التسليم"
+    },
+    {
+      "slug": "real-cost-per-delivered-order",
+      "hook": "الأوردر بيكلفك كام فعلًا؟",
+      "subline": "من الإعلان لحد التسليم",
+      "art": "Ad click token + packed order + shipping label feeding into one highlighted cost calculator, 3D visual.",
+      "seoTitle": "تكلفة الطلب الفعلية: من الإعلان إلى التسليم",
+      "canonicalImage": "blog/images/real-cost-per-delivered-order.png",
+      "canonicalSVG": "blog/images/real-cost-per-delivered-order.svg",
+      "alt": "رمز إعلان وطرد شحن وآلة حساب لتوضيح تكلفة الطلب الذي تم تسليمه"
+    },
+    {
+      "slug": "brand-vs-product-business",
+      "hook": "بتبيع منتج… ولا براند؟",
+      "subline": "الفرق بيبان في الثقة",
+      "art": "Split cinematic packaging: generic anonymous cardboard product vs premium cohesive branded box without any third-party logo.",
+      "seoTitle": "متى تبدأ بناء براند لمتجرك؟",
+      "canonicalImage": "blog/images/brand-vs-product-business.png",
+      "canonicalSVG": "blog/images/brand-vs-product-business.svg",
+      "alt": "صندوق منتج عادي بجوار عبوة علامة تجارية متناسقة"
+    },
+    {
+      "slug": "owned-vs-rented-channels",
+      "hook": "متجرك ولا منصة غيرك؟",
+      "subline": "مين المتحكم في العميل؟",
+      "art": "Two storefront windows: owned domain/shop key in handless visual vs marketplace gate, clear comparison without people.",
+      "seoTitle": "متجر إلكتروني أم منصات البيع؟ دليل الاختيار",
+      "canonicalImage": "blog/images/owned-vs-rented-channels.png",
+      "canonicalSVG": "blog/images/owned-vs-rented-channels.svg",
+      "alt": "متجر إلكتروني مستقل بجوار بوابة منصة بيع للمقارنة بين قنوات البيع"
+    },
+    {
+      "slug": "essential-ecommerce-glossary",
+      "hook": "بتفهم أرقام متجرك؟",
+      "subline": "25 مؤشر لازم تعرفه",
+      "art": "High-end miniature dashboard made of sharp metric cards, cart icon, wallet and conversion symbols, abstract no fake values.",
+      "seoTitle": "مصطلحات التجارة الإلكترونية: 25 مؤشرًا عمليًا",
+      "canonicalImage": "blog/images/essential-ecommerce-glossary.png",
+      "canonicalSVG": "blog/images/essential-ecommerce-glossary.svg",
+      "alt": "بطاقات تحتوي رموز السلة والميزانية والتحويل لتوضيح مؤشرات التجارة الإلكترونية"
+    },
+    {
+      "slug": "ecommerce-funnel-explained",
+      "hook": "الزوار بيضيعوا فين؟",
+      "subline": "افهم رحلة التحويل",
+      "art": "Oversized 3D funnel with transparent little shopping carts moving through stages and visible lost exit pathways, no people.",
+      "seoTitle": "ما هو Funnel التجارة الإلكترونية؟",
+      "canonicalImage": "blog/images/ecommerce-funnel-explained.png",
+      "canonicalSVG": "blog/images/ecommerce-funnel-explained.svg",
+      "alt": "قمع شراء تنخفض خلاله عربات التسوق من الزيارة إلى الشراء"
+    },
+    {
+      "slug": "customer-funnel-guide",
+      "hook": "العميل ساب السلة ليه؟",
+      "subline": "اكتشف نقطة التسرب",
+      "art": "A glowing checkout cart abandoned at a gap in an ecommerce path with recovery guidance, no people.",
+      "seoTitle": "تحسين تحويل المتجر: قياس تسرب رحلة العميل",
+      "canonicalImage": "blog/images/customer-funnel-guide.png",
+      "canonicalSVG": "blog/images/customer-funnel-guide.svg",
+      "alt": "سلة تسوق متروكة عند نقطة تسرب في طريق العميل"
+    },
+    {
+      "slug": "product-marketing-operations-ecommerce",
+      "hook": "المشكلة فين بالظبط؟",
+      "subline": "المنتج × التسويق × التشغيل",
+      "art": "Three interlocking 3D product box, megaphone and logistics gears; one central weak-link pin as narrative.",
+      "seoTitle": "عوامل نجاح المتجر: المنتج والتسويق والتشغيل",
+      "canonicalImage": "blog/images/product-marketing-operations-ecommerce.png",
+      "canonicalSVG": "blog/images/product-marketing-operations-ecommerce.svg",
+      "alt": "صندوق منتج ومكبر إعلان وتروس تشغيل متصلة لشرح عوامل نجاح المتجر"
+    },
+    {
+      "slug": "common-ecommerce-beginner-mistakes",
+      "hook": "10 أخطاء بتضيّع فلوسك",
+      "subline": "تجنبها قبل البداية",
+      "art": "Stack of small costly missteps represented by packaging, wrong price tag, ad ticket and red correction stamps, no figures.",
+      "seoTitle": "10 أخطاء عند بدء التجارة الإلكترونية",
+      "canonicalImage": "blog/images/common-ecommerce-beginner-mistakes.png",
+      "canonicalSVG": "blog/images/common-ecommerce-beginner-mistakes.svg",
+      "alt": "عدة أخطاء تشغيل في صناديق وتسعير وإعلانات عليها إشارات تحذير"
+    },
+    {
+      "slug": "startup-budget-egypt",
+      "hook": "تبدأ متجر بكام في مصر؟",
+      "subline": "وزّع ميزانيتك بذكاء",
+      "art": "Egyptian pounds-inspired generic budget wallet, small online store model, boxes and a well-organized budgeting sheet; avoid fake monetary claims.",
+      "seoTitle": "تكلفة بدء التجارة الإلكترونية في مصر",
+      "canonicalImage": "blog/images/startup-budget-egypt.png",
+      "canonicalSVG": "blog/images/startup-budget-egypt.svg",
+      "alt": "محفظة ميزانية ومتجر مصغر وصناديق توضح عناصر تكلفة بدء متجر في مصر"
+    },
+    {
+      "slug": "ecommerce-complete-journey-guide",
+      "hook": "من الفكرة لأول أوردر!",
+      "subline": "خريطة بداية واضحة",
+      "art": "Cinematic left-to-right sequence: lit idea lightbulb to product box to elegant shop screen to packed parcel, no people.",
+      "seoTitle": "بدء التجارة الإلكترونية: من الفكرة لأول طلب",
+      "canonicalImage": "blog/images/ecommerce-complete-journey-guide.png",
+      "canonicalSVG": "blog/images/ecommerce-complete-journey-guide.svg",
+      "alt": "تسلسل مصباح فكرة ثم منتج ثم متجر ثم طرد طلب"
+    },
+    {
+      "slug": "ecommerce-evolution-history",
+      "hook": "التجارة الإلكترونية وصلت لفين؟",
+      "subline": "من البداية لحد دلوقتي",
+      "art": "Visual time progression from early desktop monitor to modern shopping smartphone and automated parcel with perspective path.",
+      "seoTitle": "تطور التجارة الإلكترونية وفرص المتاجر",
+      "canonicalImage": "blog/images/ecommerce-evolution-history.png",
+      "canonicalSVG": "blog/images/ecommerce-evolution-history.svg",
+      "alt": "كمبيوتر قديم وهاتف تسوق حديث وصندوق توصيل على خط تطور التجارة الإلكترونية"
+    },
+    {
+      "slug": "what-is-ecommerce",
+      "hook": "يعني إيه تجارة إلكترونية؟",
+      "subline": "افهمها في صورة واحدة",
+      "art": "Premium ecommerce scene: smartphone store, floating 3D product boxes, shopping cart, secure payment and delivery parcel.",
+      "seoTitle": "ما هي التجارة الإلكترونية؟ دليل للمبتدئين",
+      "canonicalImage": "blog/images/what-is-ecommerce.png",
+      "canonicalSVG": "blog/images/what-is-ecommerce.svg",
+      "alt": "هاتف يعرض متجرًا إلكترونيًا بجوار سلة مشتريات وصندوق توصيل"
+    }
+  ]
+}
