@@ -4,11 +4,11 @@ const esc=x=>String(x).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll
 const hues={finance:'#ffcc72',checklist:'#a9e0a0',compare:'#83cefa',research:'#66e4d1',trend:'#cbb1ff',calendar:'#ffc778',shipping:'#80e7be',inventory:'#b4e6a9',brand:'#d1b7ff',dashboard:'#80cbf5',funnel:'#ffcf87',workflow:'#91e4b4',timeline:'#c4c7ff',store:'#8de1ed',repeat:'#ffd17d',cart:'#7adbf6',acquisition:'#f8c986'};
 function wrap(text){
  let size=text.length>30?54:text.length>24?57:text.length>18?62:67;
- const measure=s=>[...s].reduce((v,c)=>v+size*(c===' '?0.3:/[0-9٠-٩]/.test(c)?0.50:0.55),0);
+ const measure=s=>[...s].reduce((v,c)=>v+size*(c===' '?0.31:/[0-9٠-٩]/.test(c)?0.53:0.60),0);
  let lines=[];
- const breakText=()=>{let current='';lines=[];for(const w of text.trim().split(/\s+/)){const candidate=current?current+' '+w:w;if(current&&measure(candidate)>493){lines.push(current);current=w;}else current=candidate;}if(current)lines.push(current);};
- breakText();while(lines.length>3&&size>45){size-=3;breakText()}
- if(lines.length>3||lines.some(l=>measure(l)>515))throw Error('Hook cannot fit '+text);
+ const breakText=()=>{let current='';lines=[];for(const w of text.trim().split(/\s+/)){const candidate=current?current+' '+w:w;if(current&&measure(candidate)>435){lines.push(current);current=w;}else current=candidate;}if(current)lines.push(current);};
+ breakText();while((lines.length>3||lines.some(l=>measure(l)>470))&&size>44){size-=3;breakText()}
+ if(lines.length>3||lines.some(l=>measure(l)>470))throw Error('Hook cannot fit '+text);
  return {size,lines};
 }
 function sceneOld(spec){
@@ -62,8 +62,8 @@ export function buildMarketingCover(spec,creative){
  let artwork=special(spec.slug)||sceneOld({...spec,seoTitle:creative.seoTitle});
  const specialUsed=!!special(spec.slug);
  let draw= specialUsed?
- '<g id="topic-art" filter="url(#drop)" transform="translate(-15 0) scale(.90)">'+artwork+'</g>':
- '<g id="topic-art" filter="url(#drop)" transform="translate(40 108) scale(.75)">'+artwork+'</g>';
+ '<g id="topic-art" clip-path="url(#artStage)" filter="url(#drop)" transform="translate(-15 0) scale(.90)">'+artwork+'</g>':
+ '<g id="topic-art" filter="url(#drop)" transform="translate(-15 155) scale(.56)">'+artwork+'</g>';
  const yy=lines.length===1?334:lines.length===2?278:230,step=size*1.33;
  const hook=lines.map((line,i)=>'<text x="893" y="'+Math.round(yy+i*step)+'" direction="rtl" unicode-bidi="plaintext" text-anchor="middle" font-family="Cairo,Tajawal,Segoe UI,Arial,sans-serif" font-size="'+size+'" font-weight="900" fill="'+(i===lines.length-1?accent:'#ffffff')+'">'+esc(line)+'</text>').join('');
  let sub=String(creative.subline||'').trim();
@@ -73,9 +73,9 @@ export function buildMarketingCover(spec,creative){
  '<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061b2d"/><stop offset=".62" stop-color="#0a364b"/><stop offset="1" stop-color="#041728"/></linearGradient>'+
  '<radialGradient id="glow"><stop stop-color="'+accent+'" stop-opacity=".23"/><stop offset="1" stop-color="'+accent+'" stop-opacity="0"/></radialGradient>'+
  '<linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2b6675"/><stop offset="1" stop-color="#15384b"/></linearGradient>'+
- '<filter id="drop" x="-30%" y="-30%" width="170%" height="170%"><feDropShadow dx="0" dy="17" stdDeviation="16" flood-color="#010e19" flood-opacity=".45"/></filter></defs>'+
+ '<filter id="drop" x="-30%" y="-30%" width="170%" height="170%"><feDropShadow dx="0" dy="17" stdDeviation="16" flood-color="#010e19" flood-opacity=".45"/></filter><clipPath id="artStage"><rect x="15" y="105" width="614" height="440" rx="12"/></clipPath><radialGradient id="floor"><stop stop-color="#3a798d" stop-opacity=".45"/><stop offset="1" stop-color="#3a798d" stop-opacity="0"/></radialGradient></defs>'+
  '<rect width="1200" height="630" fill="url(#bg)"/><circle cx="290" cy="310" r="381" fill="url(#glow)"/>'+
- '<path d="M36 79H600" stroke="'+accent+'" stroke-width="3" opacity=".6"/>'+
+ '<ellipse cx="315" cy="551" rx="260" ry="50" fill="url(#floor)"/><path d="M36 79H572" stroke="'+accent+'" stroke-width="3" opacity=".46"/>'+
  draw+
  '<text x="1005" y="101" direction="rtl" text-anchor="middle" font-family="Cairo,Tajawal,Segoe UI,Arial,sans-serif" font-size="29" font-weight="700" fill="#def2f5">كن أونلاين</text>'+
  '<rect x="1036" y="122" width="85" height="7" rx="3" fill="'+accent+'"/>'+
