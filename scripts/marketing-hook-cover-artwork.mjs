@@ -62,8 +62,8 @@ export function buildMarketingCover(spec,creative){
  let artwork=special(spec.slug)||sceneOld({...spec,seoTitle:creative.seoTitle});
  const specialUsed=!!special(spec.slug);
  let draw= specialUsed?
- '<g id="topic-art" clip-path="url(#artStage)" filter="url(#drop)" transform="translate(-15 0) scale(.90)">'+artwork+'</g>':
- '<g id="topic-art" filter="url(#drop)" transform="translate(-15 155) scale(.56)">'+artwork+'</g>';
+ '<g clip-path="url(#artStage)"><g id="topic-art" filter="url(#drop)" transform="translate(-15 0) scale(.90)">'+artwork+'</g></g>':
+ '<g clip-path="url(#artStage)"><g id="topic-art" filter="url(#drop)" transform="translate(-15 155) scale(.56)">'+artwork+'</g></g>';
  const yy=lines.length===1?334:lines.length===2?278:230,step=size*1.33;
  const hook=lines.map((line,i)=>'<text x="893" y="'+Math.round(yy+i*step)+'" direction="rtl" unicode-bidi="plaintext" text-anchor="middle" font-family="Cairo,Tajawal,Segoe UI,Arial,sans-serif" font-size="'+size+'" font-weight="900" fill="'+(i===lines.length-1?accent:'#ffffff')+'">'+esc(line)+'</text>').join('');
  let sub=String(creative.subline||'').trim();
