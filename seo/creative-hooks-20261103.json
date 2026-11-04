@@ -34,8 +34,8 @@
     },
     {
       "slug": "ecommerce-product-price-strategy",
-      "hook": "سعّرت صح… ولا خسرت؟",
-      "subline": "التكلفة × المنافسة × القيمة",
+      "hook": "سعّرت صح ولا خسرت؟",
+      "subline": "التكلفة والمنافسة والقيمة",
       "art": "Hero 3D studio depiction of a product on a pedestal with three contrasting price cards, visible margins, floating tags; no numbers implying real data.",
       "seoTitle": "تسعير المنتجات أونلاين: 3 طرق لتحديد سعر مربح ومنافس",
       "canonicalImage": "blog/images/ecommerce-product-price-strategy.png",
@@ -44,8 +44,8 @@
     },
     {
       "slug": "sales-price-vs-real-ecommerce-profit",
-      "hook": "بتبيع… بتكسب كام؟",
-      "subline": "الربح غير سعر البيع",
+      "hook": "بتبيع بكام؟ وبتكسب كام؟",
+      "subline": "احسب صافي الربح",
       "art": "Large realistic product box and a single bill dissolving into expense receipts and tiny remaining profit coins; the 500 figure comes from the actual article title.",
       "seoTitle": "بتبيع بـ500 جنيه؟ احسب الربح الحقيقي بعد الشحن والإعلانات والمرتجعات",
       "canonicalImage": "blog/images/sales-price-vs-real-ecommerce-profit.png",
@@ -84,7 +84,7 @@
     },
     {
       "slug": "product-profitability-before-launch",
-      "hook": "هتكسب منه… ولا لأ؟",
+      "hook": "هتكسب منه ولا لأ؟",
       "subline": "احسبها قبل الإطلاق",
       "art": "3D calculator, shipping box, advertising ticket and a highlighted net margin ledger with no made-up numbers.",
       "seoTitle": "هل المنتج مربح قبل ما تبدأ؟ احسب التكلفة الحقيقية وهامش المساهمة",
@@ -125,7 +125,7 @@
     {
       "slug": "viral-vs-evergreen-product-demand",
       "hook": "مش كل ترند بيبيع!",
-      "subline": "المشاهدات ≠ طلب حقيقي",
+      "subline": "المشاهدات مش مبيعات",
       "art": "Hero smartphone showing an abstract exploding play icon and reaction shapes, contrasted against an actual shopping-cart package/order symbol, broken connection, no fabricated metrics, no people.",
       "seoTitle": "المنتج ترند فعلًا ولا مجرد فيديو عامل مشاهدات؟",
       "canonicalImage": "blog/images/viral-vs-evergreen-product-demand.png",
@@ -154,7 +154,7 @@
     },
     {
       "slug": "ecommerce-first-30-days-plan",
-      "hook": "أول 30 يوم… تعمل إيه؟",
+      "hook": "أول 30 يوم تعمل إيه؟",
       "subline": "خطوات عملية من الصفر",
       "art": "Three bold milestone scenes on tactile calendar tiles, one product, store launch, order package; the 30 days based on title.",
       "seoTitle": "خطة أول 30 يوم لبدء التجارة الإلكترونية من الصفر",
@@ -194,8 +194,8 @@
     },
     {
       "slug": "order-confirmation-delivery-rate",
-      "hook": "الأوردر اتأكد… اتسلّم؟",
-      "subline": "اعرف نسبة التسليم الحقيقية",
+      "hook": "الأوردر اتأكد واتسلّم؟",
+      "subline": "تابع التسليم الحقيقي",
       "art": "Order progression from mobile order card to delivery box with one stage highlighted at a glance, no fictional percentages.",
       "seoTitle": "نسبة تأكيد وتسليم الطلبات: طريقة الحساب الصحيحة",
       "canonicalImage": "blog/images/order-confirmation-delivery-rate.png",
@@ -214,7 +214,7 @@
     },
     {
       "slug": "brand-vs-product-business",
-      "hook": "بتبيع منتج… ولا براند؟",
+      "hook": "بتبيع منتج ولا براند؟",
       "subline": "الفرق بيبان في الثقة",
       "art": "Split cinematic packaging: generic anonymous cardboard product vs premium cohesive branded box without any third-party logo.",
       "seoTitle": "متى تبدأ بناء براند لمتجرك؟",
@@ -265,7 +265,7 @@
     {
       "slug": "product-marketing-operations-ecommerce",
       "hook": "المشكلة فين بالظبط؟",
-      "subline": "المنتج × التسويق × التشغيل",
+      "subline": "المنتج والتسويق والتشغيل",
       "art": "Three interlocking 3D product box, megaphone and logistics gears; one central weak-link pin as narrative.",
       "seoTitle": "عوامل نجاح المتجر: المنتج والتسويق والتشغيل",
       "canonicalImage": "blog/images/product-marketing-operations-ecommerce.png",
