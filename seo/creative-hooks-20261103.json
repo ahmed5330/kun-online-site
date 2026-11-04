@@ -44,8 +44,8 @@
     },
     {
       "slug": "sales-price-vs-real-ecommerce-profit",
-      "hook": "بتبيع بـ500… بتكسب كام؟",
-      "subline": "المهم اللي بيفضل في جيبك",
+      "hook": "بتبيع… بتكسب كام؟",
+      "subline": "الربح غير سعر البيع",
       "art": "Large realistic product box and a single bill dissolving into expense receipts and tiny remaining profit coins; the 500 figure comes from the actual article title.",
       "seoTitle": "بتبيع بـ500 جنيه؟ احسب الربح الحقيقي بعد الشحن والإعلانات والمرتجعات",
       "canonicalImage": "blog/images/sales-price-vs-real-ecommerce-profit.png",
@@ -75,7 +75,7 @@
     {
       "slug": "cheap-vs-expensive-products-online",
       "hook": "الرخيص ولا الغالي يكسب؟",
-      "subline": "مش السعر وحده اللي بيحكم",
+      "subline": "الفرق في الهامش بعد التكلفة",
       "art": "Two products at different price tiers on contrasting pedestals; one small price tag and one premium tag; comparative composition.",
       "seoTitle": "المنتج الرخيص ولا الغالي: أيهما أسهل في البيع أونلاين وأكثر ربحية؟",
       "canonicalImage": "blog/images/cheap-vs-expensive-products-online.png",
