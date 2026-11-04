@@ -4,6 +4,9 @@ on:
     branches: [feature/editorial-hook-covers-20261103]
     paths:
       - '.github/workflows/branch-marketing-raster-build.yml'
+      - 'blog/images/*.svg'
+      - 'scripts/marketing-hook-cover-artwork.mjs'
+      - 'seo/creative-hooks-20261103.json'
   workflow_dispatch:
 permissions:
   contents: write
