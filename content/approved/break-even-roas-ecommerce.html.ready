@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نقطة التعادل في الإعلانات: احسب أقل ROAS وCPA يمنع خسارة متجرك | مدونة كن أونلاين</title>
+<meta name="description" content="دليل عملي لحساب ROAS التعادل وCPA التعادل من هامش المساهمة، مع أمثلة افتراضية للشحن والمرتجعات والدفع عند الاستلام.">
+<meta name="author" content="كن أونلاين">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kun-online.com/blog/break-even-roas-ecommerce">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kun-online.com/blog/break-even-roas-ecommerce">
+<meta property="og:title" content="نقطة التعادل في الإعلانات: احسب أقل ROAS وCPA يمنع خسارة متجرك">
+<meta property="og:description" content="دليل عملي لحساب ROAS التعادل وCPA التعادل من هامش المساهمة، مع أمثلة افتراضية للشحن والمرتجعات والدفع عند الاستلام.">
+<meta property="og:image" content="https://kun-online.com/blog/images/break-even-roas-ecommerce.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="رسم هندسي لميزان نقطة التعادل بين تكلفة الإعلان وهامش مساهمة الطلب مع مؤشري ROAS وCPA">
+<meta name="twitter:image" content="https://kun-online.com/blog/images/break-even-roas-ecommerce.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="رسم هندسي لميزان نقطة التعادل بين تكلفة الإعلان وهامش مساهمة الطلب مع مؤشري ROAS وCPA">
+<meta property="article:published_time" content="__PUBLICATION_DATE_ISO__">
+<meta property="article:author" content="كن أونلاين">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "نقطة التعادل في الإعلانات: احسب أقل ROAS وCPA يمنع خسارة متجرك",
+  "description": "دليل عملي لحساب ROAS التعادل وCPA التعادل من هامش المساهمة، مع أمثلة افتراضية للشحن والمرتجعات والدفع عند الاستلام.",
+  "datePublished": "__PUBLICATION_DATE_ISO__",
+  "dateModified": "__PUBLICATION_DATE_ISO__",
+  "author": {"@type": "Organization","name": "كن أونلاين","url": "https://kun-online.com"},
+  "publisher": {"@type": "Organization","name": "كن أونلاين","url": "https://kun-online.com"},
+  "url": "https://kun-online.com/blog/break-even-roas-ecommerce",
+  "mainEntityOfPage": "https://kun-online.com/blog/break-even-roas-ecommerce",
+  "keywords": "ROAS التعادل، CPA التعادل، هامش المساهمة، تكلفة الطلب المسلّم، ربح الإعلانات",
+  "articleSection": "finance",
+  "inLanguage": "ar-EG",
+  "wordCount": 1805,
+  "timeRequired": "PT11M",
+  "image": "https://kun-online.com/blog/images/break-even-roas-ecommerce.png"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@700;900&display=optional" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@700;900&display=optional" rel="stylesheet"></noscript>
+<style>
+:root{--blue:#1B3A8F;--lime:#7DC242;--dark:#0a0f1e;--dark2:#111827;--dark3:#1a2540;--muted:rgba(255,255,255,.55);--body-c:rgba(255,255,255,.85);--pad:20px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;direction:rtl;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+nav{position:sticky;top:0;z-index:200;height:60px;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;background:rgba(10,15,30,.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(125,194,66,.12)}
+.logo{font-family:'Tajawal',sans-serif;font-weight:900;font-size:22px;text-decoration:none}
+.logo em{color:var(--lime);font-style:normal}
+.nav-back{color:var(--lime);font-size:13px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px}
+/* ARTICLE */
+.art-header{padding:48px var(--pad) 36px;max-width:760px;margin:0 auto}
+@media(min-width:820px){.art-header{padding:64px 5vw 48px}}
+.art-cat-badge{display:inline-block;background:rgba(125,194,66,.12);border:1px solid rgba(125,194,66,.3);color:var(--lime);font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;margin-bottom:16px;letter-spacing:1px}
+.art-header h1{font-family:'Tajawal',sans-serif;font-weight:900;font-size:clamp(24px,5vw,40px);line-height:1.25;margin-bottom:16px}
+.art-meta{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--muted);margin-bottom:24px;align-items:center}
+.art-meta span{display:flex;align-items:center;gap:5px}
+.art-description{font-size:16px;color:var(--muted);line-height:1.9;padding:20px 24px;background:var(--dark2);border-right:3px solid var(--lime);border-radius:0 12px 12px 0;margin-bottom:32px}
+/* CONTENT */
+.art-featured{max-width:760px;margin:0 auto 32px;padding:0 var(--pad)}
+@media(min-width:820px){.art-featured{padding:0 5vw}}
+.art-featured img{width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.08);display:block}
+.art-content{max-width:760px;margin:0 auto;padding:0 var(--pad) 64px}
+@media(min-width:820px){.art-content{padding:0 5vw 80px}}
+.art-content h2{font-family:'Tajawal',sans-serif;font-weight:900;font-size:clamp(20px,4vw,28px);color:#fff;margin:36px 0 16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.art-content h3{font-size:18px;font-weight:700;color:var(--lime);margin:28px 0 12px}
+.art-content p{font-size:15px;color:var(--body-c);line-height:2;margin-bottom:18px}
+.art-content ul,.art-content ol{margin:16px 0 20px 0;padding-right:20px}
+.art-content li{font-size:15px;color:var(--body-c);line-height:1.9;margin-bottom:8px}
+.art-content strong{color:#fff;font-weight:700}
+.art-content a{color:var(--lime);text-decoration:underline}
+.art-content blockquote{background:var(--dark2);border-right:3px solid var(--lime);padding:16px 20px;border-radius:0 12px 12px 0;margin:24px 0;font-size:15px;color:var(--muted);font-style:italic;line-height:1.9}
+.art-content .highlight-box{background:rgba(27,58,143,.2);border:1px solid rgba(125,194,66,.2);border-radius:12px;padding:20px 24px;margin:24px 0}
+.art-content .highlight-box h4{color:var(--lime);font-size:15px;font-weight:700;margin-bottom:8px}
+.art-content .highlight-box p{font-size:14px;margin:0}
+/* CTA */
+.art-cta{background:linear-gradient(135deg,var(--blue),#0f2660);border-radius:16px;padding:32px 28px;text-align:center;margin:48px 0}
+.art-cta h3{font-family:'Tajawal',sans-serif;font-weight:900;font-size:22px;margin-bottom:10px}
+.art-cta p{font-size:14px;color:rgba(255,255,255,.7);margin-bottom:20px}
+.art-cta a{background:var(--lime);color:#0a0f1e;padding:13px 28px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;display:inline-block}
+/* RELATED */
+.related{background:var(--dark2);padding:48px var(--pad);border-top:1px solid rgba(255,255,255,.06)}
+@media(min-width:820px){.related{padding:48px 5vw}}
+.related h2{font-family:'Tajawal',sans-serif;font-weight:900;font-size:22px;margin-bottom:24px}
+.related-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.related-grid{grid-template-columns:repeat(3,1fr)}}
+.rel-card{background:var(--dark3);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px;text-decoration:none;transition:.2s;display:block}
+.rel-card:hover{border-color:rgba(125,194,66,.3);transform:translateY(-2px)}
+.rel-cat{font-size:10px;color:var(--lime);font-weight:700;letter-spacing:1px;margin-bottom:8px}
+.rel-title{font-size:14px;font-weight:700;color:#fff;line-height:1.5}
+footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);padding:24px var(--pad);text-align:center}
+footer p{font-size:12px;color:var(--muted)}
+footer a{color:var(--lime)}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:rgba(125,194,66,.35);border-radius:3px}
+</style>
+<link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://kun-online.com/#organization","name":"كن أونلاين","alternateName":"Kun Online","url":"https://kun-online.com/","address":{"@type":"PostalAddress","addressCountry":"EG","addressRegion":"أسيوط","addressLocality":"أسيوط","streetAddress":"ميدان الأزهر"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/201021231619","description":"WhatsApp messages only; no voice calls."},"sameAs":["https://www.facebook.com/KunOnlineAgency","https://www.instagram.com/kunonlin/"]}</script></head>
+<body>
+
+<nav>
+  <a href="/" class="logo">كن <em>أونلاين</em></a>
+  <a href="/blog/" class="nav-back">← المدونة</a>
+</nav>
+
+<main id="main-content">
+<div class="art-header">
+  <span class="art-cat-badge">الأرقام والربحية</span>
+  <h1>نقطة التعادل في الإعلانات: احسب أقل ROAS وCPA يمنع خسارة متجرك</h1>
+  <div class="art-meta">
+    <span>📅 __PUBLICATION_DATE_AR__</span>
+    <span>⏱️ 11 دقيقة قراءة</span>
+    <span>✍️ كن أونلاين</span>
+  </div>
+  <p class="art-description">دليل عملي لحساب ROAS التعادل وCPA التعادل من هامش المساهمة، مع أمثلة افتراضية للشحن والمرتجعات والدفع عند الاستلام.</p>
+</div>
+
+<div class="art-featured">
+  <img src="/blog/images/break-even-roas-ecommerce.png" alt="رسم هندسي لميزان نقطة التعادل بين تكلفة الإعلان وهامش مساهمة الطلب مع مؤشري ROAS وCPA" loading="eager" width="1200" height="630"
+       onerror="this.parentElement.style.display='none'">
+</div>
+
+<div class="art-content">
+  <article class="editorial-guide" lang="ar">
+<p>لو الإعلانات بتجيب طلبات كتير لكن رصيد المتجر مش بيزيد، فأنت محتاج تحسب نقطة التعادل قبل ما تزود الميزانية. الدليل ده بيشرح ROAS التعادل وCPA التعادل بأمثلة مصرية افتراضية، ويفصل بين الطلب المسجل والطلب المسلّم والربح التشغيلي.</p>
+<h2>ليه نقطة التعادل أهم من رقم ROAS كبير؟</h2>
+<p>لما صاحب متجر يقول إن الحملة حققت عائدًا إعلانيًا يساوي أربعة، فالرقم وحده لا يوضح هل كسب أم خسر. كل جنيه مبيعات مرتبط بتكلفة منتج وتغليف وشحن ورسوم ومخاطر إلغاء. نقطة التعادل هي الحد الذي تتساوى عنده الإيرادات مع التكاليف المحددة في نطاق الحساب. قبلها أنت تدفع من رأس مالك؛ وبعدها تبدأ تغطية تكاليف أخرى أو تحقيق ربح بحسب ما أدخلته في المعادلة. مهم جدًا تحدد: هل تقصد تعادل الحملة بعد التكاليف المتغيرة والإعلان، أم تعادل المشروع كله بعد الإيجار والرواتب والاشتراكات؟ الفرق كبير. المقال ده هيفصل النوعين ويخليك تستخدم أرقام الطلبات المسلّمة بدل الانبهار بأرقام الطلبات المسجلة. ومش هنعتمد على متوسطات سوق أو نسب نجاح عامة؛ كل الأمثلة التالية افتراضية للتعليم، ولا تمثل نتائج متجر حقيقي.</p>
+<h2>افهم هامش المساهمة قبل أي معادلة</h2>
+<p>ابدأ بسعر البيع الذي تحتفظ به فعلًا بعد الخصومات والاستردادات ذات الصلة. اطرح منه تكلفة شراء أو تصنيع المنتج، والتغليف، ورسوم الدفع، والتكلفة الصافية للشحن التي يتحملها المتجر، وأي تكلفة متغيرة مرتبطة بإتمام الطلب. الباقي اسمه هامش المساهمة قبل الإعلان. لو السعر المحصل 500 جنيه، وتكلفة المنتج 260، والتغليف 15، والشحن الصافي 45، والرسوم 10، فالمساهمة قبل الإعلان = 500 − 260 − 15 − 45 − 10 = 170 جنيهًا. نسبة المساهمة = 170 ÷ 500 = 34%. لاحظ أن تكلفة الشحن التي يدفعها العميل لا تخصم مرتين: لو أضفتها إلى الإيراد، سجّل تكلفة شركة الشحن كاملة في جانب المصروفات؛ ولو استخدمت سعر المنتج فقط، استخدم تكلفة الشحن الصافية بعد ما يدفعه العميل. ثبات التعريف يمنع أخطاء شائعة في تقارير المتجر. هامش المساهمة ليس صافي الربح؛ لأنه لم يخصم الإعلان ولا المصروفات الثابتة.</p>
+<h2>معادلة ROAS التعادل خطوة بخطوة</h2>
+<p>ROAS هو الإيراد المنسوب للإعلانات مقسومًا على تكلفة الإعلانات في نفس الفترة والتعريف. لو افترضنا أن كل المبيعات المحتسبة جاءت من الحملة وأن الإيراد قابل للمقارنة مع تكاليف الطلبات، فإن ROAS التعادل = 1 ÷ نسبة المساهمة قبل الإعلان. في مثالنا: 1 ÷ 0.34 = نحو 2.94. يعني إنفاق 1000 جنيه يحتاج مبيعات محصلة بنحو 2941 جنيهًا لتغطية الإعلان والتكاليف المتغيرة فقط، في ظل نفس خليط المنتجات والنسب. لو ROAS الفعلي 2.5، فأنت أقل من هذا الحد؛ ولو 3.5، فيه فائض مساهمة بعد الإعلان لكنه مش بالضرورة صافي ربح للمشروع. استخدم النسبة في صورة عشرية: 34% تعني 0.34، وليس 34. المعادلة تفترض نسبة مساهمة مستقرة وعدم وجود فروق إسناد كبيرة بين المنصة والمتجر. لو المبيعات تضم مصادر عضوية، لا تنسبها كلها لحملة واحدة لمجرد أنها ظهرت في لوحة الإعلانات.</p>
+<h2>CPA التعادل: كام أقصى تكلفة لطلب مسلّم؟</h2>
+<p>في متجر يبيع منتجًا واحدًا، CPA التعادل للطلب المسلّم يساوي هامش مساهمة الطلب قبل الإعلان. من المثال السابق، الحد النظري 170 جنيهًا لكل طلب مسلّم. لو تكلفة الإعلان 120 جنيهًا لكل طلب مسلّم، يتبقى 50 جنيهًا مساهمة بعد الإعلان وقبل المصروفات الثابتة. لكن لو تقرير الإعلان يحسب طلبات مسجلة، فالحد يتغير. افترض أن 100 طلب مسجل نتج عنها 70 طلبًا مسلّمًا ومحصلًا، وكل طلب مسلّم يساهم بـ170 جنيهًا. إجمالي المساهمة = 70 × 170 = 11900 جنيه. أقصى إعلان لكل طلب مسجل عند التعادل = 11900 ÷ 100 = 119 جنيهًا، وليس 170. لذلك لا تخلط تكلفة الطلب المسجل بتكلفة الطلب المسلّم، ولا تخلط CPA للشراء مع CAC للعميل الجديد. الطلب المتكرر ليس بالضرورة اكتساب عميل جديد. اقرأ <a href="/blog/customer-acquisition-cost-cac-ecommerce">شرح CAC وتكلفة اكتساب العميل</a> لتحديد المقام الصحيح لكل مؤشر.</p>
+<h2>الطلبات الملغاة والمرتجعة تغيّر الحساب</h2>
+<p>الدفع عند الاستلام يجعل الصورة أكثر تعقيدًا لأن تسجيل الطلب لا يعني تحصيل قيمته. افترض 100 طلب مسجل، منها 70 تم تسليمها، و20 ألغيت قبل الشحن، و10 فشلت بعد محاولة توصيل. لنفترض أيضًا تكلفة إضافية غير مستردة قدرها 30 جنيهًا لكل واحدة من المحاولات العشر الفاشلة، ولا تكلفة إضافية للطلبات الملغاة قبل الشحن في هذا المثال فقط. مساهمة الطلبات المسلّمة = 70 × 170 = 11900 جنيه، وتكلفة الفشل الإضافية = 10 × 30 = 300 جنيه. المتاح للإعلان عند التعادل = 11600 جنيه. إذن CPA التعادل لكل طلب مسجل = 116 جنيهًا، ولكل طلب مسلّم = 11600 ÷ 70 = نحو 165.71 جنيهًا. لا تفترض أن كل مرتجع خسارته متساوية؛ بعض المنتجات يمكن إعادة بيعها، وبعضها يحتاج إعادة تغليف أو يفقد قيمته. راجع البيانات الفعلية حسب المنتج وشركة الشحن والمحافظة، واحسب الخصومات والاستردادات بصورة متسقة مع الإيراد.</p>
+<h2>احسب التعادل لو بتبيع أكثر من منتج</h2>
+<p>المتجر متعدد المنتجات لا يمتلك هامشًا واحدًا ثابتًا. مثال افتراضي: منتج أول يحقق إيرادًا محصلًا 30000 جنيه بمساهمة 30%، ومنتج ثانٍ يحقق 20000 جنيه بمساهمة 45%. المساهمة الأولى 9000 جنيه والثانية 9000 جنيه، وإجمالي الإيراد 50000 جنيه وإجمالي المساهمة 18000 جنيه. نسبة المساهمة الموزونة = 18000 ÷ 50000 = 36%، وبالتالي ROAS التعادل الموزون = 1 ÷ 0.36 = نحو 2.78. لا تأخذ متوسط 30% و45% ببساطة، لأن أحجام الإيرادات مختلفة. لو زادت حصة المنتج الأقل هامشًا أثناء التوسع، سيتغير الحد حتى لو ظلت الأسعار ثابتة. الأفضل استخراج المساهمة الفعلية من الطلبات بعد التسليم، وتقسيم التقرير إلى فئات منتجات وحملات عندما تكون البيانات كافية. راجع <a href="/blog/average-order-value-aov-ecommerce">دليل متوسط قيمة الطلب AOV</a> لفهم أثر الباقات على قيمة السلة وتكاليفها.</p>
+<h2>نقطة تعادل الحملة ليست نقطة تعادل الشركة</h2>
+<p>الحد السابق يغطي التكاليف المتغيرة والإعلان، لكنه لا يغطي تلقائيًا الإيجار والرواتب والبرامج والتصوير والمحاسبة. لنفترض أن المتجر حقق إيرادًا محصلًا 50000 جنيه بمساهمة قبل الإعلان 36%، أي 18000 جنيه، وأن الإعلان كلف 14000 جنيه. يتبقى 4000 جنيه. لو المصروفات الثابتة المخصصة للفترة 6000 جنيه، تكون النتيجة التشغيلية قبل بنود أخرى خسارة 2000 جنيه. إذا أردت تعادل المشروع في نفس مستوى الإيراد، فأنت تحتاج إعلانًا لا يتجاوز 12000 جنيه، أو زيادة المساهمة، أو خفض الثابت، مع مراعاة أن تغيير الإنفاق قد يغير المبيعات. ويمكنك كتابة معادلة هدف أكثر دقة: الإنفاق الإعلاني المسموح = المساهمة قبل الإعلان − المصروفات الثابتة المخصصة − الربح المستهدف. لا تحول المصروفات الثابتة إلى تكلفة متغيرة لكل طلب إلا إذا أوضحت طريقة التوزيع وفترتها. هذه أداة تخطيط وليست بديلًا عن قائمة دخل محاسبية.</p>
+<h2>إزاي تحدد ROAS مستهدف فوق التعادل؟</h2>
+<p>ROAS التعادل هو أرضية حسابية، مش هدف نمو كافٍ. لو نسبة المساهمة 34% وتريد الاحتفاظ بنسبة 10% من الإيراد لتغطية الثابت والربح المستهدف معًا، تصبح النسبة المتاحة للإعلان 34% − 10% = 24%. إذن ROAS المستهدف النظري = 1 ÷ 0.24 = نحو 4.17. لكن النسبة المحجوزة 10% هنا افتراض تخطيطي، وليست توصية تصلح لكل متجر. لو طلباتك تتأخر في التسليم أو التحصيل، تحتاج احتياطي سيولة إضافيًا. ولو تبيع منتجات متفاوتة الهامش، استخدم هدفًا موزونًا وراجعه دوريًا. توضح <a href="https://www.shopify.com/blog/target-roas" target="_blank" rel="noopener noreferrer">إرشادات Shopify المحدثة في أغسطس 2026</a> الفرق بين ROAS المستهدف وROAS المحقق، وتؤكد أهمية بناء الهدف على اقتصاديات النشاط لا على رقم رائج بين المعلنين.</p>
+<h2>ما الذي تعرضه Google Ads فعلًا؟</h2>
+<p>توضح <a href="https://support.google.com/google-ads/answer/13064207" target="_blank" rel="noopener noreferrer">وثائق Google Ads لقيم التحويل</a> أن المنصة تستطيع تحسين المزايدات على أساس قيم تحويل مختلفة، وأن قيمة التحويل قد تمثل إيرادًا أو قيمة أعمال محددة بحسب الإعداد. لكن المنصة لا تعرف تلقائيًا كل تكاليف منتجك أو فشل التوصيل ما لم تضبط البيانات وتغذيها بصورة صحيحة. وفي <a href="https://support.google.com/google-ads/answer/6167148?hl=en" target="_blank" rel="noopener noreferrer">دليل اختيار استراتيجية المزايدة</a> توضح Google استخدام Target ROAS عندما يكون الهدف عائدًا محددًا من قيمة التحويل. لا تساوِ بين قيمة التحويل المسجلة وبين النقد المحصل في البنك. كذلك راجع فترات الإسناد والتأخر في التحويل، وألغِ الازدواج بين مصادر التتبع قبل مقارنة النتائج. تغيير إعداد المزايدة وحده لا يصلح نموذج تسعير خاسرًا أو تجربة شحن ضعيفة.</p>
+<h2>مثال عملي كامل: من 100 طلب إلى قرار إعلان</h2>
+<p>افترض متجرًا تلقى 100 طلب مسجل بقيمة 500 جنيه للطلب. تم تسليم 70 طلبًا وتحصيل 35000 جنيه، وكانت تكلفة المنتجات والتغليف والشحن والرسوم للطلبات المسلّمة مجتمعة 23100 جنيه. المساهمة قبل الإعلان = 35000 − 23100 = 11900 جنيه. وحدثت محاولات توصيل فاشلة بتكلفة إضافية 300 جنيه. تصبح المساهمة المتاحة للإعلان 11600 جنيه. إذا أنفق المتجر 10000 جنيه إعلانات، يتبقى 1600 جنيه قبل المصروفات الثابتة. ROAS المحصل = 35000 ÷ 10000 = 3.5، ونسبة المساهمة المعدلة = 11600 ÷ 35000 = نحو 33.14%، وROAS التعادل المعدل = 35000 ÷ 11600 = نحو 3.02. لو الثابت المخصص 2500 جنيه، فالنتيجة التشغيلية التقريبية = 1600 − 2500 = خسارة 900 جنيه. كل هذه الأرقام افتراضية ومتسقة داخل المثال، ولا تمثل متوسط أداء السوق المصري. الفكرة إنك تقرأ ثلاثة مستويات: أداء الإعلان، مساهمة الطلبات، ونتيجة التشغيل.</p>
+<h2>جدول متابعة أسبوعي يمنع القرارات المتسرعة</h2>
+<p>أنشئ جدولًا فيه تاريخ الفترة، الإنفاق الإعلاني، الطلبات المسجلة، الطلبات المسلّمة، الإيراد المحصل، تكلفة المنتجات، التغليف، الشحن الصافي، الرسوم، تكلفة المحاولات الفاشلة، المصروفات الثابتة، وملاحظات الاسترداد. احسب نسبة التسليم = الطلبات المسلّمة ÷ الطلبات المسجلة، بشرط أن تقارن مجموعة طلبات اكتملت فرص تسليمها ولا تخلط الطلبات الحديثة التي ما زالت في الطريق. ثم احسب المساهمة وROAS التعادل وCPA التعادل على نفس المجموعة الزمنية. افصل المبيعات العضوية عن المبيعات المنسوبة للإعلانات قدر الإمكان، واحتفظ بنسخة من تعريف كل مؤشر. إذا زاد ROAS بينما انخفضت المساهمة، فتش عن خصومات أعلى أو منتجات أقل هامشًا أو زيادة في تكلفة الشحن. وإذا تحسن التسليم دون زيادة الإيراد، افحص تغير عدد الطلبات وقيمتها بدل الاستنتاج السريع.</p>
+<h2>أخطاء شائعة في حساب التعادل</h2>
+<p>أول خطأ استخدام مجمل الربح بعد تكلفة المنتج فقط ثم تجاهل التغليف والرسوم والشحن. الثاني وضع 30 بدل 0.30 في مقام المعادلة، فيخرج رقم غير منطقي. الثالث احتساب الطلبات الملغاة إيرادًا نهائيًا. الرابع تجاهل تكلفة إعادة الشحن ومحاولات التسليم الفاشلة. الخامس مقارنة ROAS من مدير الإعلانات بإيراد محصل دون شرح اختلاف تعريف الإسناد. السادس جمع إيرادات حملتين قد تنسبان نفس الطلب مرتين. السابع تعميم هامش منتج مرتفع الربح على كل المتجر. الثامن اعتبار الوصول إلى التعادل المتغير دليلًا على تغطية المصروفات الثابتة. التاسع تحديد CPA واحد لكل المنتجات رغم اختلاف المساهمة. والعاشر تغيير الميزانية يوميًا استجابةً لتذبذب مؤقت في بيانات لم تكتمل بعد. علاج الأخطاء يبدأ من تعريف واضح لكل رقم ومصدره وتاريخه، وليس من إضافة أعمدة كثيرة بلا مراجعة.</p>
+<h2>خطة تطبيق خلال سبعة أيام</h2>
+<p>في اليوم الأول استخرج قائمة المنتجات وأسعار البيع الفعلية بعد الخصومات. اليوم الثاني اجمع تكاليف المنتج والتغليف والشحن والرسوم. اليوم الثالث راجع الطلبات المسلّمة والمرتجعة في مجموعة مكتملة، وأضف تكلفة الفشل غير المستردة. اليوم الرابع احسب مساهمة كل منتج ونسبتها ثم المتوسط الموزون. اليوم الخامس احسب ROAS التعادل وCPA التعادل لكل فئة، وقارنها بتكلفة الإعلان الفعلية. اليوم السادس أضف المصروفات الثابتة والربح المستهدف، واختبر ثلاثة سيناريوهات: تسليم أقل، وشحن أعلى، وخصم أكبر. اليوم السابع راجع القرارات: هل تحسن وصف المنتج يقلل المرتجعات؟ هل باقة مختلفة ترفع المساهمة؟ هل تعديل الاستهداف يقلل الطلبات غير الجادة؟ ابدأ بتجربة محدودة، واحتفظ بنسخة من الأرقام قبل التعديل. يمكنك الرجوع إلى <a href="/blog/roas-vs-profit-ecommerce">دليل ROAS وربحية المتجر</a> وإلى <a href="/blog/sales-price-vs-real-ecommerce-profit">حساب الربح الحقيقي بعد البيع</a> لاستكمال الصورة.</p>
+<h2>أسئلة سريعة ومصادر التحقق</h2>
+<p><strong>هل ROAS التعادل ثابت؟</strong> لا؛ يتغير مع السعر والهامش ومزيج المنتجات والتسليم. <strong>هل CPA التعادل يساوي CAC؟</strong> ليس دائمًا؛ الأول قد يكون لكل طلب، والثاني لكل عميل جديد. <strong>هل ROAS أعلى من التعادل يعني صافي ربح؟</strong> يعني فقط أن تعريف التكاليف الداخلة في الحساب قد تم تغطيته؛ راجع الثابت والضرائب والبنود الأخرى. <strong>هل أستخدم رقم المنصة أم التحصيل؟</strong> احتفظ بالاثنين ووضح الاختلاف، وراجع المصدر الأساسي لكل قرار. للمزيد من التوثيق راجع <a href="https://www.shopify.com/uk/blog/break-even-roas-calculator" target="_blank" rel="noopener noreferrer">دليل Shopify لعام 2026 لحساب ROAS التعادل</a>، و<a href="https://www.shopify.com/blog/target-roas" target="_blank" rel="noopener noreferrer">شرح ROAS المستهدف</a>، و<a href="https://support.google.com/google-ads/answer/13064207" target="_blank" rel="noopener noreferrer">Google Ads حول قيم التحويل</a>. المعادلات الواردة هنا أدوات تحليل تشغيلي وليست فتوى ضريبية أو بديلًا عن محاسب مختص.</p>
+</article>
+<section class="related-static"><h2>أدلة وخدمات تساعدك</h2><ul><li><a href="/blog/ecommerce-complete-journey-guide">دليل بدء التجارة الإلكترونية</a></li><li><a href="/blog/essential-ecommerce-glossary">مصطلحات ومؤشرات المتجر</a></li><li><a href="/blog/startup-budget-egypt">تخطيط ميزانية المتجر</a></li></ul><p><a href="/services/">خدمات بناء وإدارة المتاجر</a> · <a href="/pricing/">طريقة التسعير</a></p></section>
+
+  <div class="art-cta">
+    <h3>هل محتاج مساعدة في متجرك؟</h3>
+    <p>تواصل معنا واحصل على استشارة مجانية — بدون أي التزام.</p>
+    <a href="https://wa.me/201021231619" target="_blank" rel="noopener">💬 تواصل على واتساب</a>
+  </div>
+</div>
+
+</main>
+<div class="related" id="relatedSection" style="display:none">
+  <h2>مقالات ذات صلة</h2>
+  <div class="related-grid" id="relatedGrid"></div>
+</div>
+
+<footer class="site-footer"><p>كن أونلاين — بناء وإدارة المتاجر الإلكترونية في مصر والخليج.</p><p>مصر — أسيوط — ميدان الأزهر</p><p><a href="https://wa.me/201021231619" target="_blank" rel="noopener">تواصل عبر واتساب</a></p><p><a href="/services/">الخدمات</a> · <a href="/system/">السيستم</a> · <a href="/about/">من نحن</a> · <a href="/contact/">تواصل معنا</a></p><p>© 2026 كن أونلاين — جميع الحقوق محفوظة</p><p class="social-links" aria-label="حسابات كن أونلاين الرسمية">تابع كن أونلاين: <a href="https://www.facebook.com/KunOnlineAgency" target="_blank" rel="noopener noreferrer">فيسبوك</a> · <a href="https://www.instagram.com/kunonlin/" target="_blank" rel="noopener noreferrer">إنستجرام</a></p></footer>
+
+<script>
+// Load related articles
+fetch('/blog/articles.json').then(function(r){return r.json()}).then(function(arts){
+  var slug = 'break-even-roas-ecommerce';
+  var cat = 'finance';
+  var related = arts.filter(function(a){return a.slug !== slug && a.category === cat}).slice(0,3);
+  if(related.length > 0){
+    document.getElementById('relatedSection').style.display = 'block';
+    document.getElementById('relatedGrid').innerHTML = related.map(function(a){
+      return '<a href="/blog/'+a.slug+'" class="rel-card"><div class="rel-cat">'+a.category+'</div><div class="rel-title">'+a.title+'</div></a>';
+    }).join('');
+  }
+}).catch(function(){});
+</script>
+<script src="/assets/site.js?v=5a700dfc0ebe" defer></script></body>
+</html>
+
