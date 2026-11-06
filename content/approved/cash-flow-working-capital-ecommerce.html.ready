@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عندك مبيعات ومفيش سيولة؟ إدارة التدفق النقدي للمتجر الإلكتروني | مدونة كن أونلاين</title>
+<meta name="description" content="افهم التدفق النقدي ورأس المال العامل ودورة تحويل النقد في متجرك، مع مثال افتراضي للدفع عند الاستلام وخطة متابعة أسبوعية.">
+<meta name="author" content="كن أونلاين">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kun-online.com/blog/cash-flow-working-capital-ecommerce">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kun-online.com/blog/cash-flow-working-capital-ecommerce">
+<meta property="og:title" content="عندك مبيعات ومفيش سيولة؟ إدارة التدفق النقدي للمتجر الإلكتروني">
+<meta property="og:description" content="افهم التدفق النقدي ورأس المال العامل ودورة تحويل النقد في متجرك، مع مثال افتراضي للدفع عند الاستلام وخطة متابعة أسبوعية.">
+<meta property="og:image" content="https://kun-online.com/blog/images/cash-flow-working-capital-ecommerce.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="رسم هندسي لتدفق النقد بين مخزون المنتجات وشحن الطلبات وتحصيل المستحقات مع خط زمني للسيولة">
+<meta name="twitter:image" content="https://kun-online.com/blog/images/cash-flow-working-capital-ecommerce.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="رسم هندسي لتدفق النقد بين مخزون المنتجات وشحن الطلبات وتحصيل المستحقات مع خط زمني للسيولة">
+<meta property="article:published_time" content="__PUBLICATION_DATE_ISO__">
+<meta property="article:author" content="كن أونلاين">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "عندك مبيعات ومفيش سيولة؟ إدارة التدفق النقدي للمتجر الإلكتروني",
+  "description": "افهم التدفق النقدي ورأس المال العامل ودورة تحويل النقد في متجرك، مع مثال افتراضي للدفع عند الاستلام وخطة متابعة أسبوعية.",
+  "datePublished": "__PUBLICATION_DATE_ISO__",
+  "dateModified": "__PUBLICATION_DATE_ISO__",
+  "author": {"@type": "Organization","name": "كن أونلاين","url": "https://kun-online.com"},
+  "publisher": {"@type": "Organization","name": "كن أونلاين","url": "https://kun-online.com"},
+  "url": "https://kun-online.com/blog/cash-flow-working-capital-ecommerce",
+  "mainEntityOfPage": "https://kun-online.com/blog/cash-flow-working-capital-ecommerce",
+  "keywords": "التدفق النقدي، رأس المال العامل، دورة تحويل النقد، سيولة المتجر، الدفع عند الاستلام",
+  "articleSection": "finance",
+  "inLanguage": "ar-EG",
+  "wordCount": 1619,
+  "timeRequired": "PT10M",
+  "image": "https://kun-online.com/blog/images/cash-flow-working-capital-ecommerce.png"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@700;900&display=optional" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@700;900&display=optional" rel="stylesheet"></noscript>
+<style>
+:root{--blue:#1B3A8F;--lime:#7DC242;--dark:#0a0f1e;--dark2:#111827;--dark3:#1a2540;--muted:rgba(255,255,255,.55);--body-c:rgba(255,255,255,.85);--pad:20px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;direction:rtl;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+nav{position:sticky;top:0;z-index:200;height:60px;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;background:rgba(10,15,30,.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(125,194,66,.12)}
+.logo{font-family:'Tajawal',sans-serif;font-weight:900;font-size:22px;text-decoration:none}
+.logo em{color:var(--lime);font-style:normal}
+.nav-back{color:var(--lime);font-size:13px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px}
+/* ARTICLE */
+.art-header{padding:48px var(--pad) 36px;max-width:760px;margin:0 auto}
+@media(min-width:820px){.art-header{padding:64px 5vw 48px}}
+.art-cat-badge{display:inline-block;background:rgba(125,194,66,.12);border:1px solid rgba(125,194,66,.3);color:var(--lime);font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;margin-bottom:16px;letter-spacing:1px}
+.art-header h1{font-family:'Tajawal',sans-serif;font-weight:900;font-size:clamp(24px,5vw,40px);line-height:1.25;margin-bottom:16px}
+.art-meta{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--muted);margin-bottom:24px;align-items:center}
+.art-meta span{display:flex;align-items:center;gap:5px}
+.art-description{font-size:16px;color:var(--muted);line-height:1.9;padding:20px 24px;background:var(--dark2);border-right:3px solid var(--lime);border-radius:0 12px 12px 0;margin-bottom:32px}
+/* CONTENT */
+.art-featured{max-width:760px;margin:0 auto 32px;padding:0 var(--pad)}
+@media(min-width:820px){.art-featured{padding:0 5vw}}
+.art-featured img{width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.08);display:block}
+.art-content{max-width:760px;margin:0 auto;padding:0 var(--pad) 64px}
+@media(min-width:820px){.art-content{padding:0 5vw 80px}}
+.art-content h2{font-family:'Tajawal',sans-serif;font-weight:900;font-size:clamp(20px,4vw,28px);color:#fff;margin:36px 0 16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.art-content h3{font-size:18px;font-weight:700;color:var(--lime);margin:28px 0 12px}
+.art-content p{font-size:15px;color:var(--body-c);line-height:2;margin-bottom:18px}
+.art-content ul,.art-content ol{margin:16px 0 20px 0;padding-right:20px}
+.art-content li{font-size:15px;color:var(--body-c);line-height:1.9;margin-bottom:8px}
+.art-content strong{color:#fff;font-weight:700}
+.art-content a{color:var(--lime);text-decoration:underline}
+.art-content blockquote{background:var(--dark2);border-right:3px solid var(--lime);padding:16px 20px;border-radius:0 12px 12px 0;margin:24px 0;font-size:15px;color:var(--muted);font-style:italic;line-height:1.9}
+.art-content .highlight-box{background:rgba(27,58,143,.2);border:1px solid rgba(125,194,66,.2);border-radius:12px;padding:20px 24px;margin:24px 0}
+.art-content .highlight-box h4{color:var(--lime);font-size:15px;font-weight:700;margin-bottom:8px}
+.art-content .highlight-box p{font-size:14px;margin:0}
+/* CTA */
+.art-cta{background:linear-gradient(135deg,var(--blue),#0f2660);border-radius:16px;padding:32px 28px;text-align:center;margin:48px 0}
+.art-cta h3{font-family:'Tajawal',sans-serif;font-weight:900;font-size:22px;margin-bottom:10px}
+.art-cta p{font-size:14px;color:rgba(255,255,255,.7);margin-bottom:20px}
+.art-cta a{background:var(--lime);color:#0a0f1e;padding:13px 28px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;display:inline-block}
+/* RELATED */
+.related{background:var(--dark2);padding:48px var(--pad);border-top:1px solid rgba(255,255,255,.06)}
+@media(min-width:820px){.related{padding:48px 5vw}}
+.related h2{font-family:'Tajawal',sans-serif;font-weight:900;font-size:22px;margin-bottom:24px}
+.related-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.related-grid{grid-template-columns:repeat(3,1fr)}}
+.rel-card{background:var(--dark3);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px;text-decoration:none;transition:.2s;display:block}
+.rel-card:hover{border-color:rgba(125,194,66,.3);transform:translateY(-2px)}
+.rel-cat{font-size:10px;color:var(--lime);font-weight:700;letter-spacing:1px;margin-bottom:8px}
+.rel-title{font-size:14px;font-weight:700;color:#fff;line-height:1.5}
+footer{background:var(--dark3);border-top:1px solid rgba(255,255,255,.06);padding:24px var(--pad);text-align:center}
+footer p{font-size:12px;color:var(--muted)}
+footer a{color:var(--lime)}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:rgba(125,194,66,.35);border-radius:3px}
+</style>
+<link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://kun-online.com/#organization","name":"كن أونلاين","alternateName":"Kun Online","url":"https://kun-online.com/","address":{"@type":"PostalAddress","addressCountry":"EG","addressRegion":"أسيوط","addressLocality":"أسيوط","streetAddress":"ميدان الأزهر"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/201021231619","description":"WhatsApp messages only; no voice calls."},"sameAs":["https://www.facebook.com/KunOnlineAgency","https://www.instagram.com/kunonlin/"]}</script></head>
+<body>
+
+<nav>
+  <a href="/" class="logo">كن <em>أونلاين</em></a>
+  <a href="/blog/" class="nav-back">← المدونة</a>
+</nav>
+
+<main id="main-content">
+<div class="art-header">
+  <span class="art-cat-badge">الأرقام والربحية</span>
+  <h1>عندك مبيعات ومفيش سيولة؟ إدارة التدفق النقدي للمتجر الإلكتروني</h1>
+  <div class="art-meta">
+    <span>📅 __PUBLICATION_DATE_AR__</span>
+    <span>⏱️ 10 دقيقة قراءة</span>
+    <span>✍️ كن أونلاين</span>
+  </div>
+  <p class="art-description">افهم التدفق النقدي ورأس المال العامل ودورة تحويل النقد في متجرك، مع مثال افتراضي للدفع عند الاستلام وخطة متابعة أسبوعية.</p>
+</div>
+
+<div class="art-featured">
+  <img src="/blog/images/cash-flow-working-capital-ecommerce.png" alt="رسم هندسي لتدفق النقد بين مخزون المنتجات وشحن الطلبات وتحصيل المستحقات مع خط زمني للسيولة" loading="eager" width="1200" height="630"
+       onerror="this.parentElement.style.display='none'">
+</div>
+
+<div class="art-content">
+  <article class="editorial-guide" lang="ar">
+<p>مبيعاتك بتزيد لكن السيولة مش مكفية؟ الدليل ده يشرح إزاي تدير النقد ورأس المال العامل ودورة التحصيل في متجر إلكتروني، خصوصًا مع الدفع عند الاستلام.</p>
+<h2>ليه المبيعات العالية ممكن تسيب خزنتك فاضية؟</h2><p>تخيّل إنك فتحت لوحة المتجر ولقيت طلبات بقيمة كبيرة، لكن لما جه موعد دفع المورد أو مرتبات الفريق اكتشفت إن الرصيد المتاح مش كفاية. ده مش تناقض بالضرورة؛ لأن المبيعات المسجلة، والمبيعات المسلّمة، والأموال التي دخلت الحساب بالفعل ثلاث مراحل مختلفة. المتجر قد يكون مربحًا على الورق ويواجه أزمة سيولة في نفس الأسبوع. والعكس صحيح: ممكن يدخل حسابك مبلغ كبير بسبب تحصيل متأخر، رغم إن أداء الأسبوع الحالي ضعيف. عشان كده لازم تتابع توقيت الفلوس، مش مجموعها فقط.</p>
+<p>الخطأ الشائع هو استخدام رقم الطلبات الجديدة كأنه نقد جاهز للصرف. في الدفع عند الاستلام خصوصًا، الطلب يمر بالتأكيد والتجهيز والشحن والتسليم ثم التسوية والتحويل. أي تأخير في مرحلة من المراحل يوسّع الفجوة بين المصروف والتحصيل. الحل يبدأ بفصل تقارير المبيعات عن تقرير النقد، وتسجيل كل التزام بتاريخ استحقاقه الحقيقي بدل انتظار المفاجأة.</p>
+<h2>يعني إيه Cash Flow وإيه الفرق بينه وبين الربح؟</h2><p>التدفق النقدي Cash Flow هو حركة الأموال الداخلة والخارجة خلال فترة محددة. التدفق الداخل يشمل التحصيل الفعلي من العملاء أو شركات الشحن وأي تمويل يدخل الحساب، بينما الخارج يشمل مدفوعات الموردين والإعلانات والأجور والشحن والأدوات. صافي التدفق النقدي للفترة يساوي المقبوضات النقدية ناقص المدفوعات النقدية. لو المقبوضات أقل من المدفوعات، فالفرق سلبي حتى لو كانت بعض المبيعات مربحة.</p>
+<p>أما الربح فيعتمد على الإيرادات والتكاليف المتعلقة بالنشاط وفق طريقة المحاسبة المستخدمة، وليس بالضرورة توقيت دفع كل جنيه. شراء مخزون اليوم قد يسحب نقدًا كبيرًا، بينما تكلفة البضاعة المباعة تُحسب على الوحدات التي خرجت فعلًا. لذلك لا تخلط شراء مخزون بقيمة عشرة آلاف جنيه مع مصروف إعلاني قيمته عشرة آلاف: الأول يحوّل النقد إلى أصل مخزني، والثاني غالبًا مصروف للفترة. للمزيد راجع <a href="/blog/sales-price-vs-real-ecommerce-profit">شرح الربح الحقيقي للطلب</a>، ثم ابنِ تقرير السيولة بشكل مستقل.</p>
+<h2>رأس المال العامل: الفلوس اللي بتشغّل الدورة</h2><p>رأس المال العامل المحاسبي يساوي الأصول المتداولة ناقص الالتزامات المتداولة. الأصول المتداولة قد تشمل النقد والمخزون والمبالغ المستحقة للمتجر، والالتزامات تشمل مستحقات الموردين وغيرها من الديون القصيرة. لكن الرقم الإيجابي وحده لا يضمن وجود نقد في البنك: قد يكون معظم رأس المال العامل مخزونًا بطيء الحركة أو مبالغ لم تُحوَّل بعد.</p>
+<p>في الإدارة اليومية، اسأل عن «رأس المال العامل التشغيلي» المطلوب لتمويل الطلبات قبل التحصيل. حدّد المبلغ الذي تدفعه للمورد والتغليف والإعلان والشحن، وعدد الأيام التي يظل فيها خارج حسابك. لو عندك حملة ناجحة وبتضاعف عدد الطلبات، ممكن تحتاج تمويلًا أكبر قبل أن ترى أول تحويلات من الدفعة الجديدة. لذلك قرار زيادة الإنفاق الإعلاني يجب أن يمر باختبار السيولة، وليس اختبار ROAS فقط. اقرأ <a href="/blog/startup-budget-egypt">دليل ميزانية المتجر</a> لفهم الفرق بين التأسيس والتشغيل.</p>
+<h2>دورة تحويل النقد CCC: مقياس الوقت مش حجم المبيعات</h2><p>دورة تحويل النقد Cash Conversion Cycle تقيس، بصورة مبسطة، الفترة بين ربط الأموال في المخزون واستعادتها من البيع، مع مراعاة مدة الائتمان التي يمنحها المورد. الصيغة التقليدية: CCC = أيام بقاء المخزون DIO + أيام تحصيل المستحقات DSO − أيام سداد الموردين DPO. وكل مكوّن يحتاج بيانات متسقة من نفس الفترة، مع فهم أن المتوسطات المحاسبية لا تلتقط كل تقلب يومي.</p>
+<p>مثلًا إذا ظل المخزون 25 يومًا، واستغرق التحصيل 8 أيام، وسمح المورد بالسداد بعد 15 يومًا، تكون الدورة 25 + 8 − 15 = 18 يومًا. الأرقام افتراضية للتوضيح، وليست متوسطات في مصر. في متاجر الدفع عند الاستلام، قد تحتاج تعريفًا تشغيليًا دقيقًا لأيام التحصيل يبدأ من تاريخ التسليم أو تسوية شركة الشحن؛ لا تخلط هذا التعريف مع DSO المحاسبي من دون توضيح. كل يوم تقلله من الدورة قد يحرر جزءًا من السيولة، لكن لا تضغط المورد أو شركة الشحن بطريقة تضر الجودة أو العلاقة التجارية.</p>
+<h2>مثال واقعي في منطقه لكنه افتراضي بالكامل</h2><p>افترض متجرًا بدأ الأسبوع برصيد نقدي 30,000 جنيه. دفع للمورد 18,000 جنيه مقابل دفعة منتجات، وأنفق 6,000 جنيه إعلانات، ودفع 2,000 جنيه تغليف وتشغيل، ثم استلم تحويلًا من شركة الشحن بقيمة 10,000 جنيه عن طلبات سابقة. الرصيد النقدي في نهاية الأسبوع = 30,000 − 18,000 − 6,000 − 2,000 + 10,000 = 14,000 جنيه. هذا حساب حركة نقد فقط، ولا يساوي صافي ربح الأسبوع.</p>
+<p>لو كانت هناك طلبات جديدة بقيمة 40,000 جنيه، لا تضفها إلى الرصيد إلا عند التحصيل الفعلي. وقد تحتاج إلى خصم رسوم التسوية أو الشحن أو المرتجعات حسب العقد، وتسجيل الفرق بين إجمالي التحصيل والمبلغ المحوّل. لو مطلوب منك دفع 16,000 جنيه الأسبوع القادم، فهناك عجز متوقع 2,000 جنيه حتى لو لوحة المبيعات تعرض نموًا. لا تعالج العجز تلقائيًا بقرض أو حملة جديدة؛ راجع مواعيد التسوية، والمخزون القابل للبيع، والالتزامات التي يمكن إعادة جدولتها باتفاق واضح.</p>
+<h2>الدفع عند الاستلام: فين الفلوس بتتأخر؟</h2><p>في نموذج COD، التاجر يدفع عادة جزءًا من التكلفة قبل أن يحصل قيمة البيع. وقد توجد مراحل منفصلة: طلب مسجل، طلب مؤكد، بوليصة منشأة، شحنة خرجت، تسليم ناجح، مبلغ محصّل، تسوية معتمدة، ثم تحويل وصل البنك. كل مرحلة تحتاج تاريخًا وحالة واضحة. ليس كل طلب مؤكد سيتحوّل إلى طلب مسلّم، وليس كل مبلغ تم تحصيله وصل حساب المتجر في اللحظة نفسها.</p>
+<p>أنشئ تقريرًا يوضح إجمالي المبالغ «قيد الشحن»، و«مسلّمة بانتظار التسوية»، و«تمت تسويتها بانتظار التحويل»، و«محصّلة في البنك». طابق أرقام البوالص مع كشوف شركة الشحن وتواريخ التحويل، وسجّل أي خصومات أو فروقات أو شحنات راجعة. ولا تعتبر مبلغًا متنازعًا عليه سيولة مضمونة. لمزيد من التفاصيل العملية راجع <a href="/blog/cod-shipping-returns-reconciliation">دليل مطابقة تحصيلات الدفع عند الاستلام والمرتجعات</a>. السيولة تتحسن عندما تعرف بالضبط من عليه مبلغ ومتى يتوقع وصوله، وليس عندما تتوقع أن «الشحن هيحوّل قريب».</p>
+<h2>إزاي تعمل توقع سيولة لمدة 13 أسبوع؟</h2><p>ابدأ بجدول أسبوعي بسيط، حتى لو بتدير المتجر وحدك. الصف الأول هو الرصيد النقدي المتاح في بداية الأسبوع، ثم صفوف للمقبوضات المتوقعة حسب مصدرها: تحويلات شركات الشحن، المدفوعات الإلكترونية التي ستُسوّى، وأي مصادر أخرى مؤكدة. بعدها اكتب المدفوعات حسب تاريخ استحقاقها: موردين، إعلانات، رواتب، شحن، إيجار، اشتراكات، وضرائب أو التزامات نظامية بحسب وضعك. الرصيد الختامي = الرصيد الافتتاحي + المقبوضات المتوقعة − المدفوعات المتوقعة؛ وهو نفسه رصيد بداية الأسبوع التالي.</p>
+<p>استخدم ثلاثة سيناريوهات للتحصيل: متحفظ وأساسي ومتفائل. لا تجعل السيناريو المتفائل أساس قرارات الإنفاق الثابت. فرّق بين «متوقع» و«مؤكد» و«متأخر»، وحدّث الجدول من كشف البنك والتسويات الفعلية كل أسبوع. لو ظهرت فجوة بعد ثلاثة أسابيع، عندك وقت لتقليل شراء بضاعة بطيئة أو التفاوض على موعد سداد، بدل اكتشاف المشكلة يوم الدفع. التوقع ليس وعدًا بأن الفلوس ستصل، لكنه إنذار مبكر يساعدك تختار.</p>
+<h2>المخزون ممكن يبلع السيولة من غير ما تحس</h2><p>أكبر خطر مش دايمًا ضعف الطلب؛ أحيانًا تشتري كمية كبيرة لأن سعر الوحدة أرخص، ثم تكتشف أن البيع أبطأ من المتوقع. الخصم الذي حصلت عليه من المورد لا يفيدك إذا جمّد معظم النقد في صنف راكد. راقب سرعة بيع كل SKU، وعمر المخزون، ومعدل إعادة الطلب، واحسب التكلفة الكاملة للتخزين والتلف واحتمال تغير الطلب. صنف سريع الدوران قد يستحق إعادة طلب متكررة بكميات صغيرة، بينما الصنف البطيء يحتاج اختبارًا قبل أي توسع.</p>
+<p>حدّد حدًا أدنى آمنًا للمخزون مبنيًا على زمن توريد المورد وتذبذب الطلب، ولا تستخدم رقمًا ثابتًا لكل المنتجات. اجمع تقارير الطلبات مع حركة المخزون الفعلية؛ فمبيعات غير مسلّمة أو حجوزات مكررة قد تعطي انطباعًا خاطئًا عن الاستهلاك. راجع <a href="/blog/inventory-barcode-bundle-tracking">إدارة المخزون والباركود</a> و<a href="/blog/product-profitability-before-launch">اختبار ربحية المنتج</a> قبل تخصيص ميزانية كبيرة لصنف واحد.</p>
+<h2>الإعلانات الناجحة ممكن تزود أزمة السيولة</h2><p>لو كل طلب جديد يحتاج شراء بضاعة وشحنًا وإعلانًا اليوم، لكن التحصيل بعد أسبوعين، فمضاعفة الطلبات قد تضاعف الأموال المعلقة أيضًا. لذلك لا تعتمد على ROAS أو تكلفة الطلب المسجل وحدهما. احسب مساهمة الطلب المسلّم بعد تكلفة المنتج والتغليف ورسوم الدفع والشحن ومخاطر الإلغاء، ثم قارنها بمواعيد التدفق النقدي. قد تكون الحملة مربحة اقتصاديًا لكنها تتطلب تمويلًا مؤقتًا لا تملكه حاليًا.</p>
+<p>قسّم قرار زيادة الميزانية إلى مرحلتين: هل اقتصاديات الطلب جيدة؟ وهل الرصيد المتاح يغطي أسوأ فجوة نقدية متوقعة؟ لو الإجابة الثانية لا، يمكنك رفع الإنفاق تدريجيًا، أو تقليل المنتجات التي تحتاج دفعة مقدمة كبيرة، أو تحسين سرعة التسليم والتحصيل. لا تجعل أي رقم إعلاني تصريحًا مفتوحًا بالصرف. راجع <a href="/blog/roas-vs-profit-ecommerce">الفرق بين ROAS والربح</a> و<a href="/blog/customer-acquisition-cost-cac-ecommerce">تكلفة اكتساب العميل</a> لفصل مؤشرات النمو عن النقد المتاح.</p>
+<h2>خطة عملية لتقليل دورة النقد من غير مغامرة</h2><p>ابدأ بتقليل الزمن الضائع بين تأكيد الطلب وتسليمه، من خلال بيانات عنوان صحيحة ومتابعة واضحة وتجهيز سريع. بعد ذلك راجع مواعيد تسوية شركات الشحن بالأرقام لا بالانطباع؛ اسأل عن دورية التحويل والخصومات وآلية الاعتراض على الفروقات. حاول الاتفاق مع المورد على دفعات أصغر أو مواعيد سداد أكثر ملاءمة إذا كانت العلاقة تسمح، من دون إخفاء التزاماتك أو تأخير السداد من طرف واحد.</p>
+<p>من جهة المخزون، اعتمد مشتريات مبنية على حركة فعلية بدل التخمين. ومن جهة التسويق، افصل الميزانية المخصصة لاكتساب العملاء عن احتياطي التشغيل. احتفظ بهامش أمان يراعي المرتجعات وتأخر التحويلات، لكن حدده بناءً على بيانات متجرك لا قاعدة عامة غير موثقة. لا تُموّل فجوة قصيرة متكررة من مصروفات أساسية أو مستحقات عملاء. إذا تكرر العجز رغم مبيعات مربحة، راجع نموذج العمل والتسعير والتزامات الموردين مع مختص مالي.</p>
+<h2>لوحة متابعة يومية وأسبوعية واضحة</h2><p>يوميًا، تابع الرصيد النقدي الفعلي، المدفوعات المستحقة خلال سبعة أيام، والتحصيلات المؤكدة المنتظرة، والطلبات المسلّمة غير المسوّاة. أسبوعيًا، راجع أعمار المبالغ المعلقة لدى كل شركة شحن، والفروقات بين التحويلات المتوقعة والواصلة، وقيمة المخزون البطيء، وصافي التدفق النقدي للأسبوع. شهريًا، راجع اتجاه دورة تحويل النقد ومتوسط مدة التحصيل والسداد، ووازن بين الربحية والسيولة والتوسع.</p>
+<p>خلي كل رقم مرتبطًا بمصدر: كشف بنك، كشف شركة شحن، فاتورة مورد، أو سجل طلبات. لو ظهر اختلاف بين لوحة المتجر والبنك، لا تمسحه بتعديل يدوي غير موثق؛ أنشئ بند تسوية له سبب ومسؤول وتاريخ. في النهاية أنت لا تحتاج لوحة فيها عشرات المؤشرات بقدر ما تحتاج أرقامًا موثوقة تؤدي إلى قرار. أفضل نظام هو الذي يمنعك من صرف فلوس لم تدخل بعد، ويكشف مبكرًا متى يصبح النمو عبئًا بدل فرصة.</p>
+<h2>مصادر موثوقة وخلاصة القرار</h2><p>المنهج المستخدم هنا يتوافق مع شرح <a href="https://www.shopify.com/ng/blog/cash-conversion-cycle" target="_blank" rel="noopener noreferrer">Shopify لدورة تحويل النقد</a>، و<a href="https://www.shopify.com/blog/order-to-cash-process" target="_blank" rel="noopener noreferrer">دليل دورة الطلب حتى التحصيل لعام 2026</a>، و<a href="https://www.shopify.com/blog/ecommerce-inventory-management" target="_blank" rel="noopener noreferrer">دليل إدارة مخزون التجارة الإلكترونية لعام 2026</a>. المصادر تشرح المفاهيم العامة؛ مواعيد تسوية الشحن ورسومه تختلف حسب العقد والسوق، لذلك لا تنقل افتراضات الأمثلة إلى متجرك كأنها بيانات حقيقية.</p>
+<p>الخلاصة: اسأل كل أسبوع ثلاثة أسئلة. كم فلوس موجودة الآن؟ كم فلوس متوقع تدخل فعلًا ومتى؟ وكم فلوس لازم تخرج قبل وصولها؟ لو جاوبت بأرقام متطابقة مع المستندات، تقدر تحدد هل المشكلة في الربحية، أو سرعة دوران المخزون، أو تأخر التحصيل، أو توقيت الالتزامات. ومعرفة السبب الصحيح أهم من مجرد زيادة الطلبات.</p>
+</article>
+<section class="related-static"><h2>أدلة وخدمات تساعدك</h2><ul><li><a href="/blog/ecommerce-complete-journey-guide">دليل بدء التجارة الإلكترونية</a></li><li><a href="/blog/essential-ecommerce-glossary">مصطلحات ومؤشرات المتجر</a></li><li><a href="/blog/startup-budget-egypt">تخطيط ميزانية المتجر</a></li></ul><p><a href="/services/">خدمات بناء وإدارة المتاجر</a> · <a href="/pricing/">طريقة التسعير</a></p></section>
+
+  <div class="art-cta">
+    <h3>هل محتاج مساعدة في متجرك؟</h3>
+    <p>تواصل معنا واحصل على استشارة مجانية — بدون أي التزام.</p>
+    <a href="https://wa.me/201021231619" target="_blank" rel="noopener">💬 تواصل على واتساب</a>
+  </div>
+</div>
+
+</main>
+<div class="related" id="relatedSection" style="display:none">
+  <h2>مقالات ذات صلة</h2>
+  <div class="related-grid" id="relatedGrid"></div>
+</div>
+
+<footer class="site-footer"><p>كن أونلاين — بناء وإدارة المتاجر الإلكترونية في مصر والخليج.</p><p>مصر — أسيوط — ميدان الأزهر</p><p><a href="https://wa.me/201021231619" target="_blank" rel="noopener">تواصل عبر واتساب</a></p><p><a href="/services/">الخدمات</a> · <a href="/system/">السيستم</a> · <a href="/about/">من نحن</a> · <a href="/contact/">تواصل معنا</a></p><p>© 2026 كن أونلاين — جميع الحقوق محفوظة</p><p class="social-links" aria-label="حسابات كن أونلاين الرسمية">تابع كن أونلاين: <a href="https://www.facebook.com/KunOnlineAgency" target="_blank" rel="noopener noreferrer">فيسبوك</a> · <a href="https://www.instagram.com/kunonlin/" target="_blank" rel="noopener noreferrer">إنستجرام</a></p></footer>
+
+<script>
+// Load related articles
+fetch('/blog/articles.json').then(function(r){return r.json()}).then(function(arts){
+  var slug = 'cash-flow-working-capital-ecommerce';
+  var cat = 'finance';
+  var related = arts.filter(function(a){return a.slug !== slug && a.category === cat}).slice(0,3);
+  if(related.length > 0){
+    document.getElementById('relatedSection').style.display = 'block';
+    document.getElementById('relatedGrid').innerHTML = related.map(function(a){
+      return '<a href="/blog/'+a.slug+'" class="rel-card"><div class="rel-cat">'+a.category+'</div><div class="rel-title">'+a.title+'</div></a>';
+    }).join('');
+  }
+}).catch(function(){});
+</script>
+<script src="/assets/site.js?v=5a700dfc0ebe" defer></script></body>
+</html>
+

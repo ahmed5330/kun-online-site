@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 26,
-    "articles_remaining": 74,
+    "articles_published": 27,
+    "articles_remaining": 73,
     "current_article": null,
-    "next_article": 26,
-    "project_completion_percentage": 26,
-    "last_published_date": "2026-11-02",
+    "next_article": 27,
+    "project_completion_percentage": 27,
+    "last_published_date": "2026-11-06",
     "last_run_date": null
   },
   "chapters": [
@@ -146,6 +146,7 @@
         "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/product-profitability-before-launch",
         "https://kun-online.com/blog/product-selection-checklist-20-points",
+        "https://kun-online.com/blog/roas-vs-profit-ecommerce",
         "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
         "https://kun-online.com/blog/test-product-before-bulk-inventory",
         "https://kun-online.com/blog/viral-vs-evergreen-product-demand",
@@ -250,6 +251,7 @@
         "https://kun-online.com/blog/product-demand-validation-guide",
         "https://kun-online.com/blog/product-profitability-before-launch",
         "https://kun-online.com/blog/product-selection-checklist-20-points",
+        "https://kun-online.com/blog/roas-vs-profit-ecommerce",
         "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
         "https://kun-online.com/blog/test-product-before-bulk-inventory",
         "https://kun-online.com/blog/viral-vs-evergreen-product-demand"
@@ -400,6 +402,7 @@
         "https://kun-online.com/blog/product-marketing-operations-ecommerce",
         "https://kun-online.com/blog/product-profitability-before-launch",
         "https://kun-online.com/blog/product-selection-checklist-20-points",
+        "https://kun-online.com/blog/roas-vs-profit-ecommerce",
         "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
         "https://kun-online.com/blog/startup-budget-egypt",
         "https://kun-online.com/blog/viral-vs-evergreen-product-demand"
@@ -1056,6 +1059,7 @@
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/product-profitability-before-launch",
         "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/roas-vs-profit-ecommerce",
         "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
@@ -1064,6 +1068,7 @@
         "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/product-profitability-before-launch",
+        "https://kun-online.com/blog/roas-vs-profit-ecommerce",
         "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit"
       ],
       "failure_reason": null,
@@ -1107,6 +1112,7 @@
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
+        "https://kun-online.com/blog/roas-vs-profit-ecommerce",
         "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit"
       ],
       "failure_reason": null,
@@ -1141,12 +1147,14 @@
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
         "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/roas-vs-profit-ecommerce",
         "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
+        "https://kun-online.com/blog/roas-vs-profit-ecommerce",
         "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit"
       ],
       "failure_reason": null,
@@ -1159,18 +1167,37 @@
       "brief": "واحد من أهم المقالات. فرّق بين ROAS وربح البزنس الحقيقي.",
       "new_concept": "ROAS، ROI، MER، Profit.",
       "research_space": "ابحث عن أحدث مقاييس Marketing Efficiency المستخدمة في E-commerce.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "queued",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
+      "final_h1": "ROAS مرتفع والمتجر خسران؟ احسب ربح الإعلانات الحقيقي",
+      "seo_title": "ROAS مرتفع والمتجر خسران؟ احسب ربح الإعلانات الحقيقي | مدونة كن أونلاين",
+      "primary_keyword": "ROAS وربحية المتجر",
+      "secondary_keywords": [
+        "ROAS التعادل",
+        "عائد الإنفاق الإعلاني",
+        "هامش المساهمة",
+        "MER",
+        "ROI",
+        "ربح الإعلانات الحقيقي"
+      ],
+      "search_intent": "informational",
+      "slug": "roas-vs-profit-ecommerce",
+      "url": "https://kun-online.com/blog/roas-vs-profit-ecommerce",
+      "status": "published",
+      "published_date": "2026-11-06",
+      "word_count": 1839,
+      "internal_links_out": [
+        "https://kun-online.com/blog/average-order-value-aov-ecommerce",
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
+        "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/order-confirmation-delivery-rate",
+        "https://kun-online.com/blog/real-cost-per-delivered-order",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
+        "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce"
+      ],
       "failure_reason": null,
       "attempts": 0
     },

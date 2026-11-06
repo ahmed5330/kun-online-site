@@ -762,6 +762,23 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/roas-vs-profit-ecommerce",
+      "primary": "ROAS وربحية المتجر",
+      "secondary": [
+        "ROAS التعادل",
+        "عائد الإنفاق الإعلاني",
+        "هامش المساهمة",
+        "MER",
+        "ROI",
+        "ربح الإعلانات الحقيقي"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }
