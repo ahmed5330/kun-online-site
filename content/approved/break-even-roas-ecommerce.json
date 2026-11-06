@@ -19,8 +19,8 @@
   "image": "break-even-roas-ecommerce.png",
   "market": "EG+GCC",
   "inboundFrom": [
-    "roas-vs-profit-ecommerce",
-    "customer-acquisition-cost-cac-ecommerce"
+    "customer-acquisition-cost-cac-ecommerce",
+    "average-order-value-aov-ecommerce"
   ],
   "qualityReview": {
     "words": 1805,
