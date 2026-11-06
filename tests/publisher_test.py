@@ -28,4 +28,18 @@ class PublisherSafety(unittest.TestCase):
    for block in blocks:json.loads(block)
    self.assertIn('href="/services/"',s)
 
+
+class PublisherWorkflowGuard(unittest.TestCase):
+ def test_refresh_only_changes_cannot_claim_article_published(self):
+  workflow=(ROOT/'.github/workflows/scheduled-blog-publisher.yml').read_text(encoding='utf-8')
+  commit_step=workflow.split('- name: Commit at most one approved and tested article',1)[1]
+  log_guard='git diff --cached --quiet -- content/publication-log.json'
+  self.assertIn(log_guard,commit_step)
+  self.assertIn('publication log unchanged; skip refresh-only direct push',commit_step)
+  self.assertLess(commit_step.index(log_guard),commit_step.index('git commit -m'))
+  self.assertLess(commit_step.index(log_guard),commit_step.index('published=true'))
+  self.assertIn('node scripts/seo-geo-general-reviewer.mjs --staged --role publisher',commit_step)
+  self.assertIn('cancel-in-progress: false',workflow)
+
+
 if __name__=='__main__':unittest.main()
