@@ -194,7 +194,7 @@ async function run() {
         vectorSitemap.includes('<image:loc>'+base+'/blog/images/'+d.png+'</image:loc>'));
       try{
         const page=await inspect('/blog/'+slug);
-        const expected='<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'?v=topic-title-20261031">';
+        const expected='<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'?v=hook-20261103">';
         check('Live article prefers SVG with original PNG fallback: '+slug,
           page.response.status===200&&page.body.includes(expected)&&
           (page.body.includes('src="/blog/images/'+d.png+'"')||
@@ -207,7 +207,7 @@ async function run() {
       let svgResponse=null,svgError='';
       for(let attempt=0;attempt<4;attempt++){
         try{
-          const r=await inspect('/blog/images/'+d.svg+'?v=topic-title-20261031');
+          const r=await inspect('/blog/images/'+d.svg+'?v=hook-20261103');
           const mime=r.response.headers.get('content-type')||'';
           if(r.response.status===200&&mime.toLowerCase().startsWith('image/svg+xml')&&
             r.body.startsWith('<svg xmlns="http://www.w3.org/2000/svg"')){
@@ -223,7 +223,7 @@ async function run() {
         (svgError?' error='+svgError:''));
       if(svgResponse?.ok){
         check('Live SVG includes visible Arabic headline and subject illustration: '+slug,
-          svgResponse.body.includes('id="article-title"')&&svgResponse.body.includes('id="topic-illustration"'));
+          svgResponse.body.includes('id="hook"')&&svgResponse.body.includes('id="topic-art"'));
       }
     }));
   }
