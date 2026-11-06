@@ -87,5 +87,7 @@ test('VISUAL-05: live Cloudflare release auditor verifies original vector HTTP a
   assert.match(live,/Live SVG HTTP 200 and correct image\/svg\+xml MIME/);
   assert.match(live,/Live SVG article ALT is descriptive/);
   assert.match(live,/Live image sitemap contains vector and PNG/);
-  assert.match(live,/topic-title-20261031/);
+  assert.match(live,/hook-20261103/);
+  assert.match(live,/id="hook"/);
+  assert.match(live,/id="topic-art"/);
 });
