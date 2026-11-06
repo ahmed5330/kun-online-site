@@ -1,0 +1,36 @@
+{
+  "slug": "cash-flow-working-capital-ecommerce",
+  "article_id": 28,
+  "approved": true,
+  "eligibleFrom": "2026-11-07",
+  "editorialApproval": "2026-11-06: Original Arabic article; editorial and hypothetical arithmetic reviewed. Independent SEO/GEO reviewer mandatory.",
+  "title": "عندك مبيعات ومفيش سيولة؟ إدارة التدفق النقدي للمتجر الإلكتروني",
+  "description": "افهم التدفق النقدي ورأس المال العامل ودورة تحويل النقد في متجرك، مع مثال افتراضي للدفع عند الاستلام وخطة متابعة أسبوعية.",
+  "primaryKeyword": "التدفق النقدي للمتجر الإلكتروني",
+  "secondaryKeywords": [
+    "إدارة السيولة",
+    "رأس المال العامل",
+    "دورة تحويل النقد",
+    "Cash Conversion Cycle",
+    "تحصيل الدفع عند الاستلام"
+  ],
+  "category": "finance",
+  "categoryLabel": "الأرقام والربحية",
+  "image": "cash-flow-working-capital-ecommerce.png",
+  "market": "EG+GCC",
+  "qualityReview": {
+    "words": 1619,
+    "sections": 12,
+    "readingMinutes": 10,
+    "checkedOn": "2026-11-06",
+    "sources": [
+      "https://www.shopify.com/ng/blog/cash-conversion-cycle",
+      "https://www.shopify.com/blog/order-to-cash-process",
+      "https://www.shopify.com/blog/ecommerce-inventory-management"
+    ],
+    "exampleNumbers": "25+8-15=18 days; 30000-18000-6000-2000+10000=14000 EGP; 16000-14000=2000 EGP deficit; all hypothetical.",
+    "originality": "Original Egyptian Arabic operational guide focused on COD settlement and working capital.",
+    "visualSeo": "Face-free first-party geometric cash flow illustration only; expected PNG 1200x630 with Arabic alt and structured image metadata.",
+    "publicationGate": "Existing publisher, one article per Cairo day; independent SEO/GEO reviewer required."
+  }
+}
