@@ -7,8 +7,8 @@ from xml.sax.saxutils import escape
 ROOT = Path(__file__).resolve().parent.parent
 BASE = 'https://kun-online.com'
 # Version static cover URLs to bypass cached malformed RTL graphics.
-COVER_REV = '?v=rtl-raqm-20261019'
-VECTOR_REV = '?v=topic-title-20261031'
+COVER_REV = '?v=hook-20261104'
+VECTOR_REV = '?v=hook-20261103'
 
 def article_cards(articles, designs=None):
     designs = designs or {}
