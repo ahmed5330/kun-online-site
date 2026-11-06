@@ -172,6 +172,18 @@ async function run() {
   // the published vectors, their content types, or matching article picture tags.
   // Check ONLY locally approved slugs; never fetch arbitrary external URLs from XML.
   const vectorDesigns=JSON.parse(await fs.readFile('seo/published-cover-designs.json','utf8')).items;
+  // The live audit must assert the exact SVG revision that refresh_site.py
+  // actually emits. A stale hard-coded query would silently check cached old art.
+  const refreshSource=await fs.readFile('scripts/refresh_site.py','utf8');
+  const vectorRevision=refreshSource.match(/^VECTOR_REV\s*=\s*['"](\?v=[a-z0-9-]+)['"]\s*$/m)?.[1];
+  const knownCoverContracts={
+    '?v=topic-title-20261031':['id="article-title"','id="topic-illustration"'],
+    '?v=hook-20261103':['id="hook"','id="topic-art"']
+  };
+  if(!vectorRevision||!knownCoverContracts[vectorRevision]){
+    throw new Error('Unknown active SVG revision; update the strict live audit contract: '+vectorRevision);
+  }
+  const requiredSVGMarkers=knownCoverContracts[vectorRevision];
   let vectorSitemap=sitemap;
   for(let attempt=0;attempt<8;attempt++){
     const absent=vectorDesigns.some(d=>!vectorSitemap.includes(
@@ -194,7 +206,7 @@ async function run() {
         vectorSitemap.includes('<image:loc>'+base+'/blog/images/'+d.png+'</image:loc>'));
       try{
         const page=await inspect('/blog/'+slug);
-        const expected='<source type="image/svg+xml" srcset="/blog/images/'+d.svg+'?v=topic-title-20261031">';
+        const expected='<source type="image/svg+xml" srcset="/blog/images/'+d.svg+vectorRevision+'">';
         check('Live article prefers SVG with original PNG fallback: '+slug,
           page.response.status===200&&page.body.includes(expected)&&
           (page.body.includes('src="/blog/images/'+d.png+'"')||
@@ -207,7 +219,7 @@ async function run() {
       let svgResponse=null,svgError='';
       for(let attempt=0;attempt<4;attempt++){
         try{
-          const r=await inspect('/blog/images/'+d.svg+'?v=topic-title-20261031');
+          const r=await inspect('/blog/images/'+d.svg+vectorRevision);
           const mime=r.response.headers.get('content-type')||'';
           if(r.response.status===200&&mime.toLowerCase().startsWith('image/svg+xml')&&
             r.body.startsWith('<svg xmlns="http://www.w3.org/2000/svg"')){
@@ -223,7 +235,7 @@ async function run() {
         (svgError?' error='+svgError:''));
       if(svgResponse?.ok){
         check('Live SVG includes visible Arabic headline and subject illustration: '+slug,
-          svgResponse.body.includes('id="article-title"')&&svgResponse.body.includes('id="topic-illustration"'));
+          requiredSVGMarkers.every(marker=>svgResponse.body.includes(marker)));
       }
     }));
   }
