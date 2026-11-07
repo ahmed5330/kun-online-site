@@ -1,0 +1,36 @@
+{
+  "slug": "discount-vs-bundle-profit-ecommerce",
+  "article_id": 29,
+  "approved": true,
+  "eligibleFrom": "2026-11-08",
+  "editorialApproval": "2026-11-07: Owner-authorized original Arabic editorial production; reviewed official Shopify Help Center discount combinations, buy-X-get-Y and amount-off rules. All numerical examples hypothetical and arithmetic checked. Independent SEO/GEO reviewer required.",
+  "title": "خصم 20% ولا عرض قطعتين؟ احسب العرض الأكثر ربحًا لمتجرك",
+  "description": "قارن خصم 20% بعروض القطعتين والباقات من خلال هامش المساهمة وتكلفة الشحن والإعلانات والمرتجعات، بأمثلة افتراضية واضحة.",
+  "primaryKeyword": "خصم 20% أم عرض قطعتين",
+  "secondaryKeywords": [
+    "ربحية عروض المتجر الإلكتروني",
+    "هامش المساهمة بعد الخصم",
+    "تسعير الباقات",
+    "خصومات التجارة الإلكترونية",
+    "حساب ربح العروض"
+  ],
+  "category": "finance",
+  "categoryLabel": "المالية والتسعير",
+  "image": "discount-vs-bundle-profit-ecommerce.png",
+  "market": "EG+GCC",
+  "qualityReview": {
+    "words": 2054,
+    "sections": 14,
+    "readingMinutes": 13,
+    "checkedOn": "2026-11-07",
+    "sources": [
+      "https://help.shopify.com/en/manual/discounts/discount-combinations",
+      "https://help.shopify.com/en/manual/discounts/discount-types/buy-x-get-y",
+      "https://help.shopify.com/en/manual/discounts/discount-types/percentage-fixed-amount"
+    ],
+    "exampleNumbers": "500-260-15-45-10=170; 400-260-15-45-10=70; 850-520-20-55-15=240; 800-520-20-55-15=190; 520+20+55+15=610; (595+200)/0.98=811.22449. All hypothetical.",
+    "originality": "Original Egyptian Arabic offer economics comparison with per-order and per-unit profitability, COD returns and promotion measurement.",
+    "visualSeo": "Geometric original cover only; no faces, people, imported imagery or customer data. Expected PNG 1200x630 with descriptive Arabic alt and OG/Twitter/BlogPosting.image.",
+    "publicationGate": "Existing publisher only, one article per Cairo day, independent SEO/GEO reviewer mandatory."
+  }
+}
