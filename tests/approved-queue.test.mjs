@@ -45,3 +45,38 @@ test('duplicate article slugs in publication log fail closed', () => {
   assert.throws(() => pendingApprovedBundles([], [published, published], [], mapping),
     /Duplicate publication log slug/);
 });
+
+import fs from 'node:fs';
+const publishedSlugs = new Set(JSON.parse(fs.readFileSync('blog/articles.json', 'utf8')).map(a => a.slug));
+for (const slug of ['choose-ecommerce-brand-name', 'branding-beyond-logo-ecommerce']) {
+  test(slug + ' has reviewed published inbound sources and truthful word counts', () => {
+    const meta = JSON.parse(fs.readFileSync('content/approved/' + slug + '.json', 'utf8'));
+    const html = fs.readFileSync('content/approved/' + slug + '.html.ready', 'utf8');
+    assert.ok(Array.isArray(meta.inboundFrom) && new Set(meta.inboundFrom).size >= 2);
+    assert.ok(meta.inboundFrom.every(source => publishedSlugs.has(source) && source !== slug));
+    const article = html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i)?.[1];
+    assert.ok(article);
+    const words = article.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '')
+      .replace(/<[^>]*>/g, ' ').replace(/&(?:[a-z]+|#\d+);/gi, ' ').trim().split(/\s+/).filter(Boolean).length;
+    assert.ok(words >= 1500 && words <= 2200);
+    assert.equal(meta.qualityReview.words, words);
+    const schema = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+      .map(m => JSON.parse(m[1])).flatMap(s => s['@graph'] || [s]).find(s => s['@type'] === 'BlogPosting');
+    assert.equal(schema.wordCount, words);
+  });
+}
+
+import {inspectEditorialMetadata} from '../scripts/editorial-bundle-readiness.mjs';
+test('readiness never counts an approved flag as proof of publishable metadata', () => {
+ const slug='choose-ecommerce-brand-name';
+ const meta=JSON.parse(fs.readFileSync('content/approved/'+slug+'.json','utf8'));
+ const html=fs.readFileSync('content/approved/'+slug+'.html.ready','utf8');
+ assert.equal(inspectEditorialMetadata(meta,html,publishedSlugs).metadataReady,true);
+ for(const invalid of [{...meta,inboundFrom:undefined},{...meta,inboundFrom:['unpublished-one','unpublished-two']},
+   {...meta,qualityReview:{...meta.qualityReview,words:1}}]) {
+   assert.equal(inspectEditorialMetadata(invalid,html,publishedSlugs).metadataReady,false);
+ }
+ assert.equal(inspectEditorialMetadata(meta,html.replace(/("wordCount"\s*:\s*)\d+/,'$1'+'1'),publishedSlugs).metadataReady,false);
+ assert.equal(inspectEditorialMetadata(meta,html.replace(/href="\/blog\/[^"#]+"/g,'href="/not-a-guide"'),publishedSlugs).metadataReady,false);
+ assert.equal(inspectEditorialMetadata(meta,'<article>short</article>',publishedSlugs).metadataReady,false);
+});
