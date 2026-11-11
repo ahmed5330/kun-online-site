@@ -20,7 +20,7 @@
   "image": "ecommerce-dashboard-profit-kpis.png",
   "market": "EG+GCC",
   "qualityReview": {
-    "words": 1654,
+    "words": 1738,
     "sections": 16,
     "readingMinutes": 10,
     "checkedOn": "2026-11-08",
@@ -33,5 +33,9 @@
     "originality": "Original Arabic ecommerce KPI dashboard guide with distinct fulfillment, marketing and cash-flow definitions.",
     "visualSeo": "Geometric original cover only; no faces, people, external images or customer data. Expected PNG 1200x630 and OG/Twitter/BlogPosting image.",
     "publicationGate": "Existing publisher only; independent SEO/GEO reviewer; one article per Cairo day."
-  }
+  },
+  "inboundFrom": [
+    "roas-vs-profit-ecommerce",
+    "customer-acquisition-cost-cac-ecommerce"
+  ]
 }
