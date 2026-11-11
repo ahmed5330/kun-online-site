@@ -1,0 +1,40 @@
+{
+  "slug": "choose-ecommerce-brand-name",
+  "article_id": 31,
+  "approved": true,
+  "eligibleFrom": "2026-11-10",
+  "editorialApproval": "2026-11-09: Owner-authorized original Arabic editorial preparation; WIPO, ICANN and Google Search Central reviewed. Independent SEO/GEO reviewer required.",
+  "title": "اختيار اسم البراند: 12 اختبارًا قبل حجز الدومين وتسجيل العلامة",
+  "description": "دليل عملي لاختيار اسم براند لمتجرك الإلكتروني، وفحص التشابه والعلامات التجارية والدومين والسوشيال والسيو قبل اعتماد الهوية.",
+  "primaryKeyword": "اختيار اسم البراند",
+  "secondaryKeywords": [
+    "اسم متجر إلكتروني",
+    "فحص العلامة التجارية",
+    "حجز دومين",
+    "تسمية البراند",
+    "SEO اسم الموقع"
+  ],
+  "category": "store",
+  "categoryLabel": "بناء المتجر",
+  "image": "choose-ecommerce-brand-name.png",
+  "market": "EG+GCC",
+  "qualityReview": {
+    "words": 1783,
+    "sections": 14,
+    "readingMinutes": 11,
+    "checkedOn": "2026-11-09",
+    "sources": [
+      "https://www.wipo.int/en/web/global-brand-database",
+      "https://www.icann.org/en/announcements/details/icann-update-launching-rdap-sunsetting-whois-27-01-2025-en",
+      "https://developers.google.com/search/docs/appearance/site-names"
+    ],
+    "exampleNumbers": "17+16+18+15+14=80; 19+18+13+18+12=80. Hypothetical scoring only.",
+    "originality": "Original Arabic brand naming checklist and testing matrix, differentiated from product and brand strategy articles.",
+    "visualSeo": "Face-free geometric cover motif: brand-name cards, domain and search symbols; 1200x630 PNG with OG/Twitter/BlogPosting references.",
+    "publicationGate": "Existing publisher only; independent SEO/GEO review; one article per Cairo day."
+  },
+  "inboundFrom": [
+    "brand-vs-product-business",
+    "one-product-vs-multi-product-store"
+  ]
+}
