@@ -77,6 +77,12 @@ jobs:
             echo 'Nothing approved and eligible today; no publication.'
             exit 0
           fi
+          # A refresh-only HTML/sitemap change is NOT evidence of a new article.
+          # Only a newly recorded publication may use this publication commit path.
+          if git diff --cached --quiet -- content/publication-log.json; then
+            echo 'NO PUBLICATION: publication log unchanged; skip refresh-only direct push.'
+            exit 0
+          fi
           node scripts/seo-geo-general-reviewer.mjs --staged --role publisher
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

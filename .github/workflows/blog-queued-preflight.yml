@@ -7,6 +7,18 @@ on:
       - 'scripts/publish-approved-article.mjs'
       - 'scripts/generate-approved-covers.py'
       - '.github/workflows/blog-queued-preflight.yml'
+  # Run this gate on proposed approved content BEFORE it reaches main.
+  pull_request:
+    paths:
+      - 'content/approved/**'
+      - 'scripts/publish-approved-article.mjs'
+      - 'scripts/approved-queue.mjs'
+      - 'scripts/generate-approved-covers.py'
+      - '.github/workflows/blog-queued-preflight.yml'
+  # Check the real Cairo-day queue before the 09:17 publisher schedule.
+  schedule:
+    - cron: '25 8 * * *'
+      timezone: 'Africa/Cairo'
   workflow_dispatch:
 permissions:
   contents: read
@@ -31,16 +43,49 @@ jobs:
         run: |
           node - <<'NODE'
           const fs=require('fs');
-          const done=new Set(JSON.parse(fs.readFileSync('content/publication-log.json','utf8')).map(x=>x.slug));
+          const log=JSON.parse(fs.readFileSync('content/publication-log.json','utf8'));
+          const done=new Set(log.map(x=>x.slug));
           const pending=fs.readdirSync('content/approved').filter(x=>x.endsWith('.json'))
             .map(x=>JSON.parse(fs.readFileSync('content/approved/'+x,'utf8')))
             .filter(x=>x.approved&&!done.has(x.slug)).sort((a,b)=>a.eligibleFrom.localeCompare(b.eligibleFrom));
           if (pending.length) {
-            const date=pending.at(-1).eligibleFrom;
+            // --check must not short-circuit on a Cairo day already in the log.
+            // This is a preview-only date; the real publisher guard is unchanged.
+            const lastRecorded=log.map(x=>x.date).sort().at(-1);
+            const afterLastRecorded=lastRecorded
+              ? new Date(Date.parse(lastRecorded+'T00:00:00Z')+86400000).toISOString().slice(0,10)
+              : '0000-01-01';
+            const date=[pending.at(-1).eligibleFrom,afterLastRecorded].sort().at(-1);
             fs.appendFileSync(process.env.GITHUB_ENV,'EDITORIAL_PREVIEW_CAIRO_DATE='+date+'\n');
             fs.appendFileSync(process.env.GITHUB_ENV,'EDITORIAL_CAIRO_DATE='+date+'\n');
             console.log('Previewing all approved articles through:',date,'count:',pending.length);
           } else console.log('No unpublished approved bundle to preview');
+          NODE
+      - name: Fail early if today's approved editorial queue is empty
+        if: github.event_name == 'schedule'
+        run: |
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const parts=new Intl.DateTimeFormat('en-US',{
+            timeZone:'Africa/Cairo',year:'numeric',month:'2-digit',day:'2-digit'
+          }).formatToParts(new Date());
+          const part=t=>parts.find(p=>p.type===t)?.value;
+          const today=[part('year'),part('month'),part('day')].join('-');
+          const log=JSON.parse(fs.readFileSync('content/publication-log.json','utf8'));
+          if(log.some(item=>item.date===today)) {
+            console.log('Already published on '+today+'; no duplicate required.');
+            process.exit(0);
+          }
+          const done=new Set(log.map(item=>item.slug));
+          const eligible=fs.readdirSync('content/approved').filter(n=>n.endsWith('.json'))
+            .map(n=>JSON.parse(fs.readFileSync('content/approved/'+n,'utf8')))
+            .filter(item=>item.approved===true&&!done.has(item.slug)&&item.eligibleFrom<=today);
+          if(eligible.length===0){
+            console.error('::error::No approved eligible blog article for '+today+
+              ' before the scheduled publisher. Editorial production must replenish the queue; this preflight never writes to main.');
+            process.exit(1);
+          }
+          console.log('Eligible approved articles before publishing: '+eligible.length);
           NODE
       - name: Render 1200x630 Arabic covers and check queue
         run: |
