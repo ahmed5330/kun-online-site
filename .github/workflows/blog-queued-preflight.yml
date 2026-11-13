@@ -43,12 +43,19 @@ jobs:
         run: |
           node - <<'NODE'
           const fs=require('fs');
-          const done=new Set(JSON.parse(fs.readFileSync('content/publication-log.json','utf8')).map(x=>x.slug));
+          const log=JSON.parse(fs.readFileSync('content/publication-log.json','utf8'));
+          const done=new Set(log.map(x=>x.slug));
           const pending=fs.readdirSync('content/approved').filter(x=>x.endsWith('.json'))
             .map(x=>JSON.parse(fs.readFileSync('content/approved/'+x,'utf8')))
             .filter(x=>x.approved&&!done.has(x.slug)).sort((a,b)=>a.eligibleFrom.localeCompare(b.eligibleFrom));
           if (pending.length) {
-            const date=pending.at(-1).eligibleFrom;
+            // --check must not short-circuit on a Cairo day already in the log.
+            // This is a preview-only date; the real publisher guard is unchanged.
+            const lastRecorded=log.map(x=>x.date).sort().at(-1);
+            const afterLastRecorded=lastRecorded
+              ? new Date(Date.parse(lastRecorded+'T00:00:00Z')+86400000).toISOString().slice(0,10)
+              : '0000-01-01';
+            const date=[pending.at(-1).eligibleFrom,afterLastRecorded].sort().at(-1);
             fs.appendFileSync(process.env.GITHUB_ENV,'EDITORIAL_PREVIEW_CAIRO_DATE='+date+'\n');
             fs.appendFileSync(process.env.GITHUB_ENV,'EDITORIAL_CAIRO_DATE='+date+'\n');
             console.log('Previewing all approved articles through:',date,'count:',pending.length);

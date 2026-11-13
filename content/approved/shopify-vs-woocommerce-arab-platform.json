@@ -33,5 +33,9 @@
     "originality": "Original platform decision framework comparing managed hosting, open-source operation and locally integrated platforms.",
     "visualSeo": "Geometric three-platform comparison, no people, faces, customer data or external image assets; existing cover generator only.",
     "publicationGate": "Independent SEO/GEO reviewer and one-publication-per-Cairo-day lock; existing publisher only."
-  }
+  },
+  "inboundFrom": [
+    "ecommerce-first-30-days-plan",
+    "ecommerce-product-price-strategy"
+  ]
 }

@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 27,
-    "articles_remaining": 73,
+    "articles_published": 28,
+    "articles_remaining": 72,
     "current_article": null,
-    "next_article": 27,
-    "project_completion_percentage": 27,
-    "last_published_date": "2026-11-06",
+    "next_article": 28,
+    "project_completion_percentage": 28,
+    "last_published_date": "2026-11-14",
     "last_run_date": null
   },
   "chapters": [
@@ -131,6 +131,7 @@
       "internal_links_in": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
         "https://kun-online.com/blog/brand-vs-product-business",
+        "https://kun-online.com/blog/break-even-roas-ecommerce",
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
@@ -234,6 +235,7 @@
       "internal_links_in": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
         "https://kun-online.com/blog/brand-vs-product-business",
+        "https://kun-online.com/blog/break-even-roas-ecommerce",
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
@@ -385,6 +387,7 @@
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
+        "https://kun-online.com/blog/break-even-roas-ecommerce",
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
@@ -974,6 +977,7 @@
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
+        "https://kun-online.com/blog/break-even-roas-ecommerce",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
@@ -1053,6 +1057,7 @@
       "word_count": 1917,
       "internal_links_out": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
+        "https://kun-online.com/blog/break-even-roas-ecommerce",
         "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
@@ -1065,6 +1070,7 @@
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
+        "https://kun-online.com/blog/break-even-roas-ecommerce",
         "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/product-profitability-before-launch",
@@ -1099,6 +1105,7 @@
       "published_date": "2026-11-01",
       "word_count": 1935,
       "internal_links_out": [
+        "https://kun-online.com/blog/break-even-roas-ecommerce",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
@@ -1109,6 +1116,7 @@
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
       "internal_links_in": [
+        "https://kun-online.com/blog/break-even-roas-ecommerce",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
@@ -1195,6 +1203,7 @@
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
       "internal_links_in": [
+        "https://kun-online.com/blog/break-even-roas-ecommerce",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce"
       ],
@@ -1208,18 +1217,35 @@
       "brief": "استخدم أمثلة رقمية سهلة.",
       "new_concept": "Break-even ROAS وBreak-even CPA.",
       "research_space": "ابحث عن الصيغ المختلفة واعمل Calculator بسيط إن أمكن.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "queued",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
+      "final_h1": "نقطة التعادل في الإعلانات: احسب أقل ROAS وCPA يمنع خسارة متجرك",
+      "seo_title": "نقطة التعادل في الإعلانات: احسب أقل ROAS وCPA يمنع خسارة متجرك | مدونة كن أونلاين",
+      "primary_keyword": "ROAS التعادل",
+      "secondary_keywords": [
+        "حساب ROAS التعادل",
+        "CPA التعادل",
+        "هامش المساهمة",
+        "تكلفة الطلب المسلّم",
+        "نقطة تعادل الإعلانات"
+      ],
+      "search_intent": "informational",
+      "slug": "break-even-roas-ecommerce",
+      "url": "https://kun-online.com/blog/break-even-roas-ecommerce",
+      "status": "published",
+      "published_date": "2026-11-14",
+      "word_count": 1805,
+      "internal_links_out": [
+        "https://kun-online.com/blog/average-order-value-aov-ecommerce",
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/roas-vs-profit-ecommerce",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/average-order-value-aov-ecommerce",
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce"
+      ],
       "failure_reason": null,
       "attempts": 0
     },

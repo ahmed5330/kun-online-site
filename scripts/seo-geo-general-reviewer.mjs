@@ -31,8 +31,10 @@ const INFRA=/^(?:\.github\/|package\.json$|assets\/|scripts\/refresh_site\.py$|s
 // SOLO policy is scoped to this one marketing-site repository; never other projects.
 const SOLO_REPOSITORY='ahmed5330/kun-online-site';
 const SOLO_OWNER='ahmed5330';
-const OWNER_COMMENT=/^KUN-SOLO-(APPROVE|REVOKE) ([a-f0-9]{40})$/;
-// These directives and infrastructural controls ALWAYS require an independent human.
+const OWNER_COMMENT=/^KUN-SOLO-(?:(CRITICAL)-)?(APPROVE|REVOKE) ([a-f0-9]{40})$/;
+const SOLO_CRITICAL_PATHS=new Set(['.github/workflows/blog-queued-preflight.yml','.github/workflows/scheduled-blog-publisher.yml','scripts/seo-geo-general-reviewer.mjs','tests/seo-geo-general-reviewer.test.mjs']);
+const REVIEW_CONTROL=/^(?:scripts\/(?:seo-geo-general-reviewer|routine-article-policy)\.mjs|tests\/seo-geo-general-reviewer\.test\.mjs)$/;
+// Critical changes require either independent review or explicit, exact-head critical owner consent.
 const CRITICAL_DIRECTIVE=/^[+-](?![+-])[^\r\n]*?(?:<link[^>]*rel=[\"']canonical|<meta[^>]*name=[\"'](?:robots|googlebot)|noindex|nofollow|Content-Signal:|Disallow:|Allow:|http-equiv=[\"']refresh)/im;
 function policyDirectiveChanged(patch){
  if(!CRITICAL_DIRECTIVE.test(patch||''))return false;
@@ -109,13 +111,27 @@ function matchesApproval(reviews,author,headSha){
  return decisions.some(r=>r.state==='APPROVED'&&r.commit_id===headSha);
 }
 function ownerConsent(comments,repository,author,headSha){
- if(repository!==SOLO_REPOSITORY||author!==SOLO_OWNER||!/^[a-f0-9]{40}$/.test(headSha))return false;
+ const consent={ordinary:false,critical:false};
+ if(repository!==SOLO_REPOSITORY||author!==SOLO_OWNER||!/^[a-f0-9]{40}$/.test(headSha))return consent;
  const decisions=comments.filter(c=>c.user?.login===SOLO_OWNER&&c.user?.type==='User'&&
    c.body&&OWNER_COMMENT.test(c.body.trim())&&
    c.created_at&&c.updated_at&&c.created_at===c.updated_at&&Number.isSafeInteger(c.id))
   .map(c=>({id:c.id,parts:OWNER_COMMENT.exec(c.body.trim())}))
-  .filter(c=>c.parts?.[2]===headSha).sort((a,b)=>a.id-b.id);
- return decisions.length>0&&decisions.at(-1).parts[1]==='APPROVE';
+  .filter(c=>c.parts?.[3]===headSha).sort((a,b)=>a.id-b.id);
+ for(const {parts} of decisions){
+  // Either revocation withdraws both delegated owner approval routes.
+  if(parts[2]==='REVOKE'){consent.ordinary=false;consent.critical=false;}
+  else {consent.ordinary=true;if(parts[1]==='CRITICAL')consent.critical=true;}
+ }
+ return consent;
+}
+function ownerRiskDocumented(body){
+ const detail=label=>{
+  const line=String(body||'').split(/\r?\n/).find(s=>s.startsWith(label+':'));
+  const text=line?.slice(label.length+1).trim()||'';
+  return text.length>=20&&!/^(?:TODO|TBD|N\/A|Placeholder|Describe\b)/i.test(text);
+ };
+ return detail('Risk review')&&detail('Validation');
 }
 export function reviewPr({number,files,otherPrFiles=[],body='',author='',headSha='',reviews=[],comments=[],repository=''}){
  const list=files.map(f=>typeof f==='string'?{filename:f,patch:''}:f);
@@ -137,22 +153,30 @@ export function reviewPr({number,files,otherPrFiles=[],body='',author='',headSha
  const routine=routineArticleBundle(list);
  if(routine.length&&latestHumanReviews(reviews,author).some(r=>r.state==='CHANGES_REQUESTED'))
   issues.push('CHANGES_REQUESTED: resolve outstanding human review before routine publication');
- const sensitive=list.filter(f=>(HIGH_RISK.test(f.filename)&&!(f.filename==='.github/CODEOWNERS'&&f.status==='added'))||f.filename.startsWith('.github/workflows/')||
+ const sensitive=list.filter(f=>(HIGH_RISK.test(f.filename)&&!(f.filename==='.github/CODEOWNERS'&&f.status==='added'))||f.filename.startsWith('.github/workflows/')||REVIEW_CONTROL.test(f.filename)||
   ((CONTENT.test(f.filename)&&SENSITIVE_ADD.test(f.patch||'')||/^content\/approved\/[^/]+\.html\.ready$/.test(f.filename))&&!routine.includes(f.filename)))
   .map(f=>f.filename);
  const approved=matchesApproval(reviews,author,headSha);
- const solo=ownerConsent(comments,repository,author,headSha);
- const critical=sensitive.filter(name=>HIGH_RISK.test(name)||name.startsWith('.github/workflows/')||
+ const ownerConsentState=ownerConsent(comments,repository,author,headSha);
+ const solo=ownerConsentState.ordinary,soloCritical=ownerConsentState.critical;
+ const critical=sensitive.filter(name=>HIGH_RISK.test(name)||name.startsWith('.github/workflows/')||REVIEW_CONTROL.test(name)||
    policyDirectiveChanged(list.find(f=>f.filename===name)?.patch));
- // A solo owner may attest *ordinary* editorial and image-schema updates, never critical directives.
- // Existing independent changes-requested vetoes either approval route.
+ // The owner explicitly chose a documented single-maintainer policy on 2026-11-13.
+ // This is owner acceptance of risk, never independent human scrutiny.
  const outstanding=latestHumanReviews(reviews,author).some(r=>r.state==='CHANGES_REQUESTED');
  if(sensitive.length&&!approved){
-  if(critical.length||!solo||outstanding)
-   issues.push('SENSITIVE_CHANGE_APPROVAL: '+(critical.length?'independent reviewer required for critical changes: '+critical.join(', '):
+  const ownerCriticalEligible=critical.every(name=>SOLO_CRITICAL_PATHS.has(name));
+  const permitted=critical.length?(soloCritical&&ownerCriticalEligible):solo;
+  if(!permitted||outstanding)
+   issues.push('SENSITIVE_CHANGE_APPROVAL: '+(critical.length?
+     'independent review required, or explicit CRITICAL owner consent for allowlisted publication/reviewer files only: '+critical.join(', '):
      'latest head needs independent review or owner SHA-pinned GitHub comment for '+sensitive.join(', ')));
+  if(critical.length&&soloCritical&&!ownerRiskDocumented(body))
+   issues.push('OWNER_CRITICAL_RISK_REVIEW: explicit Risk review: and Validation: details are required');
  }
  if(solo&&outstanding)issues.push('CHANGES_REQUESTED: owner attestation cannot override independent changes requested');
+ if(critical.length&&soloCritical&&!approved&&critical.every(name=>SOLO_CRITICAL_PATHS.has(name)))
+  warnings.push('Owner explicitly accepts this exact critical change; this is not an independent human review. All required QA and branch rules still apply.');
  if(names.some(n=>n.startsWith('.github/workflows/')))
   warnings.push('Workflow modifications need repository CODEOWNERS/branch rules to guarantee human review and prevent bypass.');
  if(names.some(n=>n.includes('seo-geo-general-reviewer')))
@@ -160,7 +184,7 @@ export function reviewPr({number,files,otherPrFiles=[],body='',author='',headSha
  return {
   decision:issues.length?'BLOCKED':'APPROVED',scope,changedFiles:names,
   overlapCount:issues.filter(v=>v.startsWith('OPEN_PR_OVERLAP')).length,
-  sensitiveFiles:sensitive,routineArticleFiles:routine,hasIndependentApproval:approved,hasSoloOwnerConsent:solo,criticalFiles:critical,
+  sensitiveFiles:sensitive,routineArticleFiles:routine,hasIndependentApproval:approved,hasSoloOwnerConsent:solo,hasSoloOwnerCriticalConsent:soloCritical,criticalFiles:critical,
   violations:issues,warnings
  };
 }
