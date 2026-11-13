@@ -4,6 +4,7 @@
  * Emits deterministic JSON suitable for a recurring GitHub Actions issue.
  */
 import fs from 'node:fs';
+import {inspectEditorialMetadata} from './editorial-bundle-readiness.mjs';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const plan=read('seo-content-map.json');
 const articles=read('blog/articles.json');
@@ -12,6 +13,13 @@ const entries=fs.readdirSync('content/approved').filter(x=>x.endsWith('.json')).
 const published=new Set(articles.map(x=>x.slug));
 const logged=new Set(log.map(x=>x.slug));
 const pending=entries.filter(x=>!published.has(x.slug)&&!logged.has(x.slug));
+const assessed=pending.map(meta=>{
+  let result;
+  try { result=inspectEditorialMetadata(meta,fs.readFileSync('content/approved/'+meta.slug+'.html.ready','utf8'),published); }
+  catch { result={metadataReady:false,blockers:['Approved article HTML missing or unreadable']}; }
+  return {article_id:meta.article_id,slug:meta.slug,...result};
+});
+const metadataReady=assessed.filter(item=>item.metadataReady);
 const done=new Set((read('seo/published-series-mapping.json').seriesMatches||[]).map(x=>x.article_id));
 const preparedIds=new Set(pending.map(x=>x.article_id));
 const next=plan.queue.find(x=>!done.has(x.article_id)&&!preparedIds.has(x.article_id)&&x.status!=='published');
@@ -22,7 +30,10 @@ const result={
     research_space:next.research_space,chapter:next.chapter,
     currentStatus:next.status,draft_file:next.draft_file||null
   }:null,
-  approvedReady:pending.length,approvedSlugs:pending.map(x=>x.slug),approvedUpcoming:pending.map(x=>({article_id:x.article_id,slug:x.slug,eligibleFrom:x.eligibleFrom})).sort((a,b)=>a.article_id-b.article_id),
+  // Keep the existing workflow's low-buffer signal, but never count broken metadata as ready.
+  approvedReady:metadataReady.length,approvedUnpublished:pending.length,
+  readinessScope:'metadata_only; covers, eligibility and full publisher/site/browser QA are separate gates',
+  blockedBundles:assessed.filter(item=>!item.metadataReady),approvedSlugs:pending.map(x=>x.slug),approvedUpcoming:pending.map(x=>({article_id:x.article_id,slug:x.slug,eligibleFrom:x.eligibleFrom})).sort((a,b)=>a.article_id-b.article_id),
   totalPublicArticles:articles.length,totalSeriesPublished:done.size,
   checklist:[
     'Fresh research and primary sources; avoid unsupported claims or fabricated numbers',
@@ -37,6 +48,7 @@ const result={
 const output=JSON.stringify(result,null,2)+'\n';
 if(process.argv.includes('--json'))process.stdout.write(output);
 else {
- console.log('Approved unpublished bundles: '+pending.length);
+ console.log('Approved unpublished bundles: '+pending.length+'; metadata ready: '+metadataReady.length);
+ console.log('Blocked metadata bundles: '+assessed.filter(item=>!item.metadataReady).map(item=>item.slug).join(', '));
  console.log('Next series topic: '+(next ? next.article_id+' - '+next.original_title : 'none'));
 }
