@@ -18,8 +18,12 @@
   "categoryLabel": "الأرقام والربحية",
   "image": "cash-flow-working-capital-ecommerce.png",
   "market": "EG+GCC",
+  "inboundFrom": [
+    "sales-price-vs-real-ecommerce-profit",
+    "product-profitability-before-launch"
+  ],
   "qualityReview": {
-    "words": 1619,
+    "words": 1644,
     "sections": 12,
     "readingMinutes": 10,
     "checkedOn": "2026-11-06",

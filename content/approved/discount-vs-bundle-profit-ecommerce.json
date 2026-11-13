@@ -32,5 +32,9 @@
     "originality": "Original Egyptian Arabic offer economics comparison with per-order and per-unit profitability, COD returns and promotion measurement.",
     "visualSeo": "Geometric original cover only; no faces, people, imported imagery or customer data. Expected PNG 1200x630 with descriptive Arabic alt and OG/Twitter/BlogPosting.image.",
     "publicationGate": "Existing publisher only, one article per Cairo day, independent SEO/GEO reviewer mandatory."
-  }
+  },
+  "inboundFrom": [
+    "average-order-value-aov-ecommerce",
+    "sales-price-vs-real-ecommerce-profit"
+  ]
 }

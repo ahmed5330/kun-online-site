@@ -19,7 +19,7 @@
   "image": "choose-ecommerce-brand-name.png",
   "market": "EG+GCC",
   "qualityReview": {
-    "words": 1766,
+    "words": 1783,
     "sections": 14,
     "readingMinutes": 11,
     "checkedOn": "2026-11-09",
@@ -32,5 +32,9 @@
     "originality": "Original Arabic brand naming checklist and testing matrix, differentiated from product and brand strategy articles.",
     "visualSeo": "Face-free geometric cover motif: brand-name cards, domain and search symbols; 1200x630 PNG with OG/Twitter/BlogPosting references.",
     "publicationGate": "Existing publisher only; independent SEO/GEO review; one article per Cairo day."
-  }
+  },
+  "inboundFrom": [
+    "brand-vs-product-business",
+    "one-product-vs-multi-product-store"
+  ]
 }

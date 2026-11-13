@@ -79,3 +79,29 @@ test('GEO scorecard: native Bing AI cited URLs must be the same site',()=>{
  assert.throws(()=>summarizeBing({from:'2026-10-01',to:'2026-10-27',totalCitations:4,
   citedPages:[{url:'https://kun-online.com.evil.test/',citations:4}]}),/Invalid Bing/);
 });
+
+import {compareSearchPeriods} from '../scripts/geo-search-period-comparison.mjs';
+const comparableSearch = () => ({property:'sc-domain:kun-online.com',searchType:'web',includeFreshData:false,aggregation:'property_daily',
+ previous:{from:'2026-11-01',to:'2026-11-02'},current:{from:'2026-11-03',to:'2026-11-04'},
+ rows:[{date:'2026-11-01',search_type:'web',clicks:1,impressions:2,position:2},
+ {date:'2026-11-02',search_type:'web',clicks:0,impressions:8,position:7},
+ {date:'2026-11-03',search_type:'web',clicks:0,impressions:1,position:3},
+ {date:'2026-11-04',search_type:'web',clicks:2,impressions:3,position:5}]});
+test('GSC reporting: weighted position and total CTR use equal complete periods',()=>{
+ const r=compareSearchPeriods(comparableSearch());
+ assert.equal(r.previous.ctr,.1); assert.equal(r.previous.position,6);
+ assert.equal(r.current.ctr,.5); assert.equal(r.current.position,4.5);
+});
+test('GSC reporting: absent recent day is incomplete, never an inferred zero',()=>{
+ const d=comparableSearch(); d.rows.pop(); assert.throws(()=>compareSearchPeriods(d),/Incomplete period/);
+});
+test('GSC reporting: unequal periods and overlapping days are rejected',()=>{
+ const d=comparableSearch(); d.current.to='2026-11-05'; assert.throws(()=>compareSearchPeriods(d),/equal duration/);
+ d.current={from:'2026-11-02',to:'2026-11-03'}; assert.throws(()=>compareSearchPeriods(d),/not overlap/);
+});
+test('GSC reporting: property totals cannot be replaced by page/query or mixed types',()=>{
+ for(const mutation of [r=>r.rows[0].page='/',r=>r.rows[0].query='brand',r=>r.rows[0].search_type='image',
+ r=>r.includeFreshData=true,r=>r.property='https://www.kun-online.com/',r=>r.rows.push(r.rows[0])]){
+  const d=comparableSearch(); mutation(d); assert.throws(()=>compareSearchPeriods(d));
+ }
+});
