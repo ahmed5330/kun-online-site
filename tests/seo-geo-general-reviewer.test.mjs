@@ -181,7 +181,7 @@ test('Solo-maintainer: last authentic decision for SHA is authoritative and revo
  assert.equal(solo(visualChange,{comments:[ownerComment(),ownerComment(pinnedSha,'REVOKE',25),ownerComment(pinnedSha,'APPROVE',30)]}).decision,'APPROVED');
 });
 
-test('Solo-maintainer: no bypass for critical crawl directives or infrastructure',()=>{
+test('Solo-maintainer: ordinary owner consent cannot authorize critical directives or infrastructure',()=>{
  for(const files of [
   [{filename:'robots.txt',patch:'+Disallow: /blog'}],
   [{filename:'_headers',patch:'+/*\n+  Content-Signal: noindex'}],
@@ -219,4 +219,89 @@ test('Solo-maintainer: minified pages with unchanged crawl directives can be ima
    '+<!doctype html><head><link rel="canonical" href="https://kun-online.com/blog/">',
    '+<!doctype html><head><link rel="canonical" href="https://wrong.example/blog/">')};
  assert.equal(solo([danger],{comments:[ownerComment()]}).decision,'BLOCKED');
+});
+
+
+const criticalImpact=impact+'\nRisk review: The owner accepts the specific documented release risk after reviewing its scope.\nValidation: All exact-head release tests must pass before merge; no automatic publication.';
+const criticalComment=(sha=pinnedSha,action='APPROVE',id=40,user={login:owner,type:'User'})=>
+ ({...ownerComment(sha,action,id,user),body:'KUN-SOLO-CRITICAL-'+action+' '+sha});
+const criticalFiles=[
+ {filename:'.github/workflows/scheduled-blog-publisher.yml',status:'modified',patch:'+name: revised publisher'},
+ {filename:'scripts/seo-geo-general-reviewer.mjs',status:'modified',patch:'+// explicit owner policy'}
+];
+test('Solo critical: explicit exact-head consent permits critical controls without claiming independent review',()=>{
+ for(const f of criticalFiles){
+  const result=solo([f],{body:criticalImpact,comments:[criticalComment()]});
+  assert.equal(result.decision,'APPROVED',f.filename);
+  assert.equal(result.hasSoloOwnerCriticalConsent,true);
+  assert.equal(result.hasIndependentApproval,false);
+  assert.ok(result.warnings.some(s=>s.includes('not an independent human review')));
+ }
+});
+test('Solo critical: reviewer implementation and tests require critical consent themselves',()=>{
+ for(const filename of ['scripts/seo-geo-general-reviewer.mjs','scripts/routine-article-policy.mjs','tests/seo-geo-general-reviewer.test.mjs']){
+  assert.equal(solo([{filename,patch:'+// policy'}]).decision,'BLOCKED');
+  assert.equal(solo([{filename,patch:'+// policy'}],{comments:[ownerComment()],body:criticalImpact}).decision,'BLOCKED');
+ }
+});
+test('Solo critical: revocation withdraws consent and ordinary reapproval cannot restore critical consent',()=>{
+ for(const revoke of [ownerComment(pinnedSha,'REVOKE',50),criticalComment(pinnedSha,'REVOKE',50)]){
+  assert.equal(solo(criticalFiles,{body:criticalImpact,comments:[criticalComment(),revoke]}).decision,'BLOCKED');
+  assert.equal(solo(criticalFiles,{body:criticalImpact,comments:[criticalComment(),revoke,ownerComment(pinnedSha,'APPROVE',60)]}).decision,'BLOCKED');
+  assert.equal(solo(criticalFiles,{body:criticalImpact,comments:[criticalComment(),revoke,criticalComment(pinnedSha,'APPROVE',60)]}).decision,'APPROVED');
+ }
+});
+test('Solo critical: stale, forged, bot, edited and malformed markers fail closed',()=>{
+ for(const comments of [[criticalComment('b'.repeat(40))],
+  [criticalComment(pinnedSha,'APPROVE',40,{login:'attacker',type:'User'})],
+  [criticalComment(pinnedSha,'APPROVE',40,{login:owner,type:'Bot'})],
+  [{...criticalComment(),updated_at:'2026-10-30T14:00:00Z'}],
+  [{...criticalComment(),body:criticalComment().body+' extra'}],
+  [{...criticalComment(),body:criticalComment().body.toLowerCase()}]]){
+  assert.equal(solo(criticalFiles,{comments,body:criticalImpact}).decision,'BLOCKED');
+ }
+ assert.equal(solo(criticalFiles,{body:criticalImpact,comments:[criticalComment()],headSha:'b'.repeat(40)}).decision,'BLOCKED');
+});
+test('Solo critical: repository and PR-author isolation remain mandatory',()=>{
+ for(const extra of [{repository:'ahmed5330/kunonline'},{repository:'another/repo'},{author:'another-owner'}])
+  assert.equal(solo(criticalFiles,{body:criticalImpact,comments:[criticalComment()],...extra}).decision,'BLOCKED');
+});
+test('Solo critical: owner consent cannot waive impacts, overlaps or changes requested',()=>{
+ const extra={body:criticalImpact,comments:[criticalComment()]};
+ const files=[...criticalFiles,{filename:'robots.txt',patch:'+Disallow: /private'}];
+ assert.equal(solo(files,{...extra,body:'Risk review: This specific risk has been reviewed and understood.\nValidation: All release tests remain mandatory and no merge is automatic.'}).decision,'BLOCKED');
+ assert.equal(solo(criticalFiles,{...extra,otherPrFiles:[{number:120,files:[criticalFiles[0].filename]}]}).decision,'BLOCKED');
+ assert.equal(solo(criticalFiles,{...extra,reviews:[{state:'CHANGES_REQUESTED',commit_id:pinnedSha,user:{login:'human-reviewer',type:'User'},submitted_at:'2026-11-13T04:00:00Z'}]}).decision,'BLOCKED');
+});
+test('Solo critical: missing or placeholder risk and validation sections block owner route',()=>{
+ for(const body of [impact,impact+'\nRisk review: TODO describe risk\nValidation: All required tests must pass before release',
+  impact+'\nRisk review: Specific workflow change accepted after reading its diff',
+  impact+'\nRisk review: Specific workflow change accepted after reading its diff\nValidation: TBD explain checks']){
+  const result=solo(criticalFiles,{body,comments:[criticalComment()]});
+  assert.equal(result.decision,'BLOCKED');
+  assert.ok(result.violations.some(s=>s.includes('OWNER_CRITICAL_RISK_REVIEW')));
+ }
+});
+test('Solo critical: independent current-head approval remains an alternative',()=>{
+ const reviews=[{state:'APPROVED',commit_id:pinnedSha,user:{login:'independent-human',type:'User'},submitted_at:'2026-11-13T04:00:00Z'}];
+ const result=solo(criticalFiles,{reviews});
+ assert.equal(result.decision,'APPROVED');
+ assert.equal(result.hasIndependentApproval,true);
+ assert.equal(result.hasSoloOwnerCriticalConsent,false);
+});
+
+test('Solo critical: limited publication consent cannot authorize crawl, security, routine policy or unrelated workflow changes',()=>{
+ for(const file of [
+  {filename:'robots.txt',patch:'+Disallow: /blog'},
+  {filename:'_headers',patch:'+/*\n+ Content-Signal: noindex'},
+  {filename:'_redirects',patch:'+/blog /elsewhere 301'},
+  {filename:'wrangler.toml',patch:'+workers_dev=true'},
+  {filename:'.github/CODEOWNERS',status:'modified',patch:'+* @owner'},
+  {filename:'.github/workflows/site-quality.yml',patch:'+permissions: write'},
+  {filename:'scripts/routine-article-policy.mjs',patch:'+// broaden routine exemption'},
+  {filename:'index.html',patch:'+<link rel="canonical" href="https://wrong.example/">'},
+  {filename:'blog/guide.html',patch:'+<meta name="robots" content="noindex">'}]){
+  const result=solo([...criticalFiles,file],{body:criticalImpact,comments:[criticalComment()]});
+  assert.equal(result.decision,'BLOCKED',file.filename);
+ }
 });

@@ -1,4 +1,10 @@
-# SEO & GEO General Reviewer — control design and limits (29 Oct 2026)
+# SEO & GEO General Reviewer — control design and limits
+
+## Limited owner-authorized publication policy — 14 Nov 2026
+
+The owner explicitly approved the tested limited sole-maintainer proposal. KUN-SOLO-CRITICAL-APPROVE, pinned to the current head, may replace the separate-human requirement only for the two publisher/preflight workflows and the reviewer implementation/test files listed in [the governance policy](../governance/kun-site-solo-maintainer.md). It also requires concrete Risk review: and Validation: notes. This is owner acceptance of risk, not independent scrutiny.
+
+Other critical crawl/security controls, CODEOWNERS, routine-article-policy code and unrelated workflows remain independently gated. Required QA, overlap/impact checks, human changes-requested vetoes, branch rules, read-only behavior and the 08:33 Cairo schedule remain unchanged. Historical statements below are read with this explicit, limited revision.
 
 ## Owner-authorized routine editorial exception (29 Oct 2026)
 
@@ -6,7 +12,7 @@ The owner explicitly requested adapting the policy for a solo maintainer, then a
 
 The exception verifies a single exact self-canonical, `index, follow`, matching BlogPosting URL/headline/description, unchanged known Organization schema, and existing template JavaScript only. Off-site/encoded/duplicate directives, noindex/crawler overrides, redirects, unfamiliar executable code, changed schema/entity, existing-file edits, mixed-file PRs and malformed/missing data remain sensitive. Human changes-requested reviews still veto ordinary content; overlap and separate SEO/GEO impact checks remain mandatory. The normal editorial/publisher/site/browser checks and Cairo-day lock are still required.
 
-All sensitive cases outside this narrow exception retain the independent current-head human approval requirement. This is a policy revision approved by the owner, not a bot submitting a human review. Administrative branch protection is unchanged; Issue #105 remains open until publisher migration and enforcement are verified.
+Outside the routine-article exception, sensitive changes need independent current-head approval or the applicable exact-head owner route. The critical owner route is restricted to the four explicit publication/reviewer paths in the governance policy; other critical changes still require independent review. This is a policy revision approved by the owner, not a bot submitting a human review. Administrative branch protection is unchanged; Issue #105 remains open until publisher migration and enforcement are verified.
 
 **Scope:** public marketing repository `ahmed5330/kun-online-site`. No access to the customer app, live D1, customer records or Cloudflare WAF. This reviewer does not rewrite articles, force sitemap resubmission, or invent search/AI indexing evidence.
 
@@ -25,7 +31,7 @@ The classifications are based on actual changed file paths; filename labels and 
 ## 2. Active checks
 
 - **PR general-review:** `.github/workflows/seo-geo-general-reviewer.yml` is a separate, read-only job. It fetches the PR file list and all other open PR file lists (up to 500) through GitHub REST. A shared-content change requires **SEO impact:** and **GEO impact:** sections. Any overlapping filenames in other open PRs blocks approval even when the changes are individually valid.
-- **Sensitive policies:** changes to robots, redirects, Cloudflare config and added canonical / noindex / structured-data or crawler directives require an **APPROVED review from a human other than the PR author on the current head commit**. Stale approvals, self-approvals and bots are not accepted. CODEOWNERS file changes after initial installation also require independent review.
+- **Sensitive policies:** ordinary owner consent remains limited to noncritical content. The two publisher/preflight workflows and reviewer implementation/test changes may use explicit critical-owner consent with risk/validation notes. Robots, redirects, headers, Cloudflare config, actual crawl directives, CODEOWNERS, routine-article-policy and unrelated workflows remain independently gated. Stale/edited/bot/wrong-account markers fail closed. No owner route overrides changes requested, overlaps, required QA or branch rules.
 - **Publisher preflight:** the daily `scheduled-blog-publisher.yml` and the `site-quality.yml` optimized-asset commit both run `node scripts/seo-geo-general-reviewer.mjs --staged --role publisher` *after staging and before committing/pushing*. Unexpected files fail the job.
 - **Post-push audit:** an audit on main checks whether the head commit came from a merged PR or one of the recognized publisher jobs. Unauthorized direct writes are reported as a failure **after the fact**, not automatically reverted.
 - **Daily scheduled review:** re-evaluates all currently open PRs, conflicting paths and approvals and saves an artifact. No redundant changes are made when nothing needs remediation.
