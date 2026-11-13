@@ -779,6 +779,22 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/break-even-roas-ecommerce",
+      "primary": "ROAS التعادل",
+      "secondary": [
+        "حساب ROAS التعادل",
+        "CPA التعادل",
+        "هامش المساهمة",
+        "تكلفة الطلب المسلّم",
+        "نقطة تعادل الإعلانات"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }
