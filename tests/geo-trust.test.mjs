@@ -152,7 +152,7 @@ test('GEO accuracy: beginner and channel guides do not publish fabricated fixed 
  const registry=JSON.parse(read('blog/articles.json'));
  const map=JSON.parse(read('seo-content-map.json'));
  const cases=[
-  {slug:'ecommerce-complete-journey-guide',original:'2026-08-26',count:1684,minutes:10,lastmod:'2026-10-27'},
+  {slug:'ecommerce-complete-journey-guide',original:'2026-08-26',count:1747,minutes:11,lastmod:'2026-10-27'},
   {slug:'owned-vs-rented-channels',original:'2026-09-01',count:1805,minutes:11,lastmod:'2026-10-28'}
  ];
  for(const entry of cases){

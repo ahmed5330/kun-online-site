@@ -110,12 +110,14 @@
       "url": "https://kun-online.com/blog/ecommerce-complete-journey-guide",
       "status": "published",
       "published_date": "2026-08-26",
-      "word_count": 1684,
+      "word_count": 1747,
       "internal_links_out": [
         "https://kun-online.com/blog/brand-vs-product-business",
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/ecommerce-competitor-analysis-sheet",
+        "https://kun-online.com/blog/ecommerce-evolution-history",
         "https://kun-online.com/blog/ecommerce-first-30-days-plan",
+        "https://kun-online.com/blog/ecommerce-funnel-explained",
         "https://kun-online.com/blog/ecommerce-product-ideas-research",
         "https://kun-online.com/blog/is-ecommerce-right-for-you",
         "https://kun-online.com/blog/one-product-vs-multi-product-store",
@@ -280,10 +282,11 @@
       "url": "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
       "status": "published",
       "published_date": "2026-08-28",
-      "word_count": 1785,
+      "word_count": 1795,
       "internal_links_out": [
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
         "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/product-marketing-operations-ecommerce",
         "https://kun-online.com/blog/real-cost-per-delivered-order",
         "https://kun-online.com/blog/startup-budget-egypt"
       ],
@@ -327,6 +330,7 @@
         "https://kun-online.com/blog/real-cost-per-delivered-order"
       ],
       "internal_links_in": [
+        "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/essential-ecommerce-glossary"
       ],
       "failure_reason": null,
@@ -356,7 +360,8 @@
         "https://kun-online.com/blog/what-is-ecommerce"
       ],
       "internal_links_in": [
-        "https://kun-online.com/blog/customer-funnel-guide"
+        "https://kun-online.com/blog/customer-funnel-guide",
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide"
       ],
       "failure_reason": null,
       "attempts": 0
