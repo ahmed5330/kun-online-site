@@ -7,7 +7,7 @@ import {createHash} from 'node:crypto';
 const root = path.resolve(import.meta.dirname, '..');
 function all(dir) {return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.name==='.git'?[]:e.isDirectory()?all(path.join(dir,e.name)):[path.join(dir,e.name)]);}
 const pages = all(root).filter(p=>p.endsWith('.html')&&!p.endsWith('article-template.html'));
-const indexablePages = pages.filter(p=>!p.endsWith('404.html')&&!p.endsWith(path.join('reviews','index.html')));
+const indexablePages = pages.filter(p=>!p.endsWith('404.html')&&!p.endsWith(path.join('reviews','index.html'))&&!/<meta name="robots" content="noindex/i.test(fs.readFileSync(p,'utf8')));
 test('all intended pages have one self canonical, title, description and H1',()=>{
   for(const p of pages){
     const s=fs.readFileSync(p,'utf8');
@@ -792,4 +792,23 @@ test('all published guides explicitly load the readable editorial UI (including 
   assert.match(publisher,/editorial-20261019\.css/,'Publisher must normalize newly approved articles');
   assert.ok(refresher.indexOf("for article in (ROOT/'blog').glob('*.html')")<
     refresher.indexOf("    entries=[]"),'Article normalization must not depend on image optimization');
+});
+
+// Product pages follow the same sitemap/canonical policy; legal drafts remain noindex.
+test('KUN CASHIERAK subsite is linked and technically indexable only where intended',()=>{
+ const rootPage=fs.readFileSync(path.join(root,'kun-cashierak/index.html'),'utf8');
+ const xml=fs.readFileSync(path.join(root,'sitemap.xml'),'utf8');
+ const keyword=JSON.parse(fs.readFileSync(path.join(root,'seo/keyword-map.json'),'utf8'));
+ for(const route of ['/kun-cashierak/','/kun-cashierak/features/','/kun-cashierak/offline/','/kun-cashierak/accessories/','/kun-cashierak/trial/']){
+  assert.ok(xml.includes('<loc>https://kun-online.com'+route+'</loc>'),route);
+  assert.ok(keyword.pages.some(p=>p.path===route),route);
+ }
+ for(const route of ['privacy','terms']){
+  const s=fs.readFileSync(path.join(root,'kun-cashierak',route,'index.html'),'utf8');
+  assert.match(s,/<meta name="robots" content="noindex,follow">/);
+  assert.ok(!xml.includes('<loc>https://kun-online.com/kun-cashierak/'+route+'/</loc>'));
+ }
+ assert.ok(rootPage.includes('KUN CASHIERAK'));
+ assert.ok(fs.readFileSync(path.join(root,'system/index.html'),'utf8').includes('href="/kun-cashierak/"'));
+ assert.equal(canonicalLocation('https://kun-online.com/kun-cashierak'),'https://kun-online.com/kun-cashierak/');
 });

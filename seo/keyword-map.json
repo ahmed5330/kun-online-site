@@ -795,6 +795,76 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/kun-cashierak/",
+      "primary": "برنامج كاشير للمحلات",
+      "secondary": [
+        "برنامج كاشير للكمبيوتر",
+        "برنامج كاشير بدون إنترنت",
+        "برنامج إدارة المحلات"
+      ],
+      "market": "EG",
+      "pillar": "software",
+      "intent": "commercial",
+      "priority": "P0",
+      "notes": "Windows v1.8.0 Pilot; local-first; staging-only cloud. No verified search volume, prices, or tax integration."
+    },
+    {
+      "path": "/kun-cashierak/features/",
+      "primary": "برنامج مبيعات ومخازن للمحلات",
+      "secondary": [
+        "برنامج كاشير بالباركود",
+        "نظام مخزون للمحلات",
+        "برنامج حسابات المحلات"
+      ],
+      "market": "EG",
+      "pillar": "software",
+      "intent": "commercial",
+      "priority": "P1",
+      "notes": "Windows v1.8.0 Pilot; local-first; staging-only cloud. No verified search volume, prices, or tax integration."
+    },
+    {
+      "path": "/kun-cashierak/offline/",
+      "primary": "برنامج كاشير يعمل بدون إنترنت",
+      "secondary": [
+        "كاشير بدون نت",
+        "برنامج POS أوفلاين",
+        "مزامنة بيانات الفروع"
+      ],
+      "market": "EG",
+      "pillar": "software",
+      "intent": "commercial",
+      "priority": "P1",
+      "notes": "Windows v1.8.0 Pilot; local-first; staging-only cloud. No verified search volume, prices, or tax integration."
+    },
+    {
+      "path": "/kun-cashierak/accessories/",
+      "primary": "برنامج كاشير لمحل إكسسوارات",
+      "secondary": [
+        "مخزون محل اكسسوارات",
+        "باركود مجموعات الأسعار",
+        "إدارة أصناف الإكسسوارات"
+      ],
+      "market": "EG",
+      "pillar": "software",
+      "intent": "commercial",
+      "priority": "P1",
+      "notes": "Windows v1.8.0 Pilot; local-first; staging-only cloud. No verified search volume, prices, or tax integration."
+    },
+    {
+      "path": "/kun-cashierak/trial/",
+      "primary": "تجربة برنامج كن كاشيرك",
+      "secondary": [
+        "برنامج كاشير Windows تجريبي",
+        "طلب تجربة كاشير للمحلات",
+        "كن كاشيرك"
+      ],
+      "market": "EG",
+      "pillar": "software",
+      "intent": "transactional",
+      "priority": "P1",
+      "notes": "Windows v1.8.0 Pilot; local-first; staging-only cloud. No verified search volume, prices, or tax integration."
     }
   ]
 }
