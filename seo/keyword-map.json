@@ -865,6 +865,22 @@
       "intent": "transactional",
       "priority": "P1",
       "notes": "Windows v1.8.0 Pilot; local-first; staging-only cloud. No verified search volume, prices, or tax integration."
+    },
+    {
+      "path": "/blog/cash-flow-working-capital-ecommerce",
+      "primary": "التدفق النقدي للمتجر الإلكتروني",
+      "secondary": [
+        "إدارة السيولة",
+        "رأس المال العامل",
+        "دورة تحويل النقد",
+        "Cash Conversion Cycle",
+        "تحصيل الدفع عند الاستلام"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }

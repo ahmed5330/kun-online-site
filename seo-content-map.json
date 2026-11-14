@@ -9,12 +9,12 @@
     "version": 2
   },
   "progress": {
-    "articles_published": 28,
-    "articles_remaining": 72,
+    "articles_published": 29,
+    "articles_remaining": 71,
     "current_article": null,
-    "next_article": 28,
-    "project_completion_percentage": 28,
-    "last_published_date": "2026-11-14",
+    "next_article": 29,
+    "project_completion_percentage": 29,
+    "last_published_date": "2026-11-15",
     "last_run_date": null
   },
   "chapters": [
@@ -134,6 +134,7 @@
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
         "https://kun-online.com/blog/brand-vs-product-business",
         "https://kun-online.com/blog/break-even-roas-ecommerce",
+        "https://kun-online.com/blog/cash-flow-working-capital-ecommerce",
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
@@ -238,6 +239,7 @@
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
         "https://kun-online.com/blog/brand-vs-product-business",
         "https://kun-online.com/blog/break-even-roas-ecommerce",
+        "https://kun-online.com/blog/cash-flow-working-capital-ecommerce",
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
@@ -393,6 +395,7 @@
       "internal_links_in": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
         "https://kun-online.com/blog/break-even-roas-ecommerce",
+        "https://kun-online.com/blog/cash-flow-working-capital-ecommerce",
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/common-ecommerce-beginner-mistakes",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
@@ -784,6 +787,7 @@
       "published_date": "2026-10-25",
       "word_count": 2115,
       "internal_links_out": [
+        "https://kun-online.com/blog/cash-flow-working-capital-ecommerce",
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/cod-shipping-returns-reconciliation",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
@@ -801,6 +805,7 @@
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
+        "https://kun-online.com/blog/cash-flow-working-capital-ecommerce",
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
@@ -968,6 +973,7 @@
       "word_count": 2006,
       "internal_links_out": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
+        "https://kun-online.com/blog/cash-flow-working-capital-ecommerce",
         "https://kun-online.com/blog/cheap-vs-expensive-products-online",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
@@ -983,6 +989,7 @@
       "internal_links_in": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
         "https://kun-online.com/blog/break-even-roas-ecommerce",
+        "https://kun-online.com/blog/cash-flow-working-capital-ecommerce",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-complete-journey-guide",
@@ -1076,6 +1083,7 @@
       "internal_links_in": [
         "https://kun-online.com/blog/average-order-value-aov-ecommerce",
         "https://kun-online.com/blog/break-even-roas-ecommerce",
+        "https://kun-online.com/blog/cash-flow-working-capital-ecommerce",
         "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce",
         "https://kun-online.com/blog/ecommerce-product-price-strategy",
         "https://kun-online.com/blog/product-profitability-before-launch",
@@ -1209,6 +1217,7 @@
       ],
       "internal_links_in": [
         "https://kun-online.com/blog/break-even-roas-ecommerce",
+        "https://kun-online.com/blog/cash-flow-working-capital-ecommerce",
         "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
         "https://kun-online.com/blog/customer-lifetime-value-ltv-ecommerce"
       ],
@@ -1261,18 +1270,37 @@
       "brief": "اشرح مشكلة دفع المورد اليوم، والإعلانات اليوم، بينما شركة الشحن تحول الأموال لاحقًا.",
       "new_concept": "Cash Conversion Cycle وWorking Capital.",
       "research_space": "ابحث عن إدارة التدفقات النقدية خصوصًا في COD.",
-      "final_h1": null,
-      "seo_title": null,
-      "primary_keyword": null,
-      "secondary_keywords": [],
-      "search_intent": null,
-      "slug": null,
-      "url": null,
-      "status": "queued",
-      "published_date": null,
-      "word_count": null,
-      "internal_links_out": [],
-      "internal_links_in": [],
+      "final_h1": "عندك مبيعات ومفيش سيولة؟ إدارة التدفق النقدي للمتجر الإلكتروني",
+      "seo_title": "عندك مبيعات ومفيش سيولة؟ إدارة التدفق النقدي للمتجر الإلكتروني | مدونة كن أونلاين",
+      "primary_keyword": "التدفق النقدي للمتجر الإلكتروني",
+      "secondary_keywords": [
+        "إدارة السيولة",
+        "رأس المال العامل",
+        "دورة تحويل النقد",
+        "Cash Conversion Cycle",
+        "تحصيل الدفع عند الاستلام"
+      ],
+      "search_intent": "informational",
+      "slug": "cash-flow-working-capital-ecommerce",
+      "url": "https://kun-online.com/blog/cash-flow-working-capital-ecommerce",
+      "status": "published",
+      "published_date": "2026-11-15",
+      "word_count": 1644,
+      "internal_links_out": [
+        "https://kun-online.com/blog/cod-shipping-returns-reconciliation",
+        "https://kun-online.com/blog/customer-acquisition-cost-cac-ecommerce",
+        "https://kun-online.com/blog/ecommerce-complete-journey-guide",
+        "https://kun-online.com/blog/essential-ecommerce-glossary",
+        "https://kun-online.com/blog/inventory-barcode-bundle-tracking",
+        "https://kun-online.com/blog/product-profitability-before-launch",
+        "https://kun-online.com/blog/roas-vs-profit-ecommerce",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit",
+        "https://kun-online.com/blog/startup-budget-egypt"
+      ],
+      "internal_links_in": [
+        "https://kun-online.com/blog/product-profitability-before-launch",
+        "https://kun-online.com/blog/sales-price-vs-real-ecommerce-profit"
+      ],
       "failure_reason": null,
       "attempts": 0
     },
