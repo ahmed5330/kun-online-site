@@ -22,7 +22,8 @@ const LEGACY = new Set([
 ]);
 const DIRECTORIES = new Set(['/blog', '/en', '/gulf', '/services', '/reviews', '/pricing', '/about', '/methodology', '/contact', '/system',
   '/services/ecommerce-management', '/services/ecommerce-store-development',
-  '/services/ecommerce-ads', '/services/order-management', '/services/ecommerce-consulting', '/consultations', '/system/order-management', '/system/inventory', '/system/shipping', '/system/easy-orders']);
+  '/services/ecommerce-ads', '/services/order-management', '/services/ecommerce-consulting', '/consultations', '/system/order-management', '/system/inventory', '/system/shipping', '/system/easy-orders',
+  '/kun-cashierak', '/kun-cashierak/features', '/kun-cashierak/offline', '/kun-cashierak/accessories', '/kun-cashierak/trial', '/kun-cashierak/privacy', '/kun-cashierak/terms']);
 export function canonicalLocation(requestUrl) {
   const url = new URL(requestUrl);
   // Only rewrite the two public marketing hosts. Preview/custom Pages domains
