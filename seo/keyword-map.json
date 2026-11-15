@@ -881,6 +881,22 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/blog/discount-vs-bundle-profit-ecommerce",
+      "primary": "خصم 20% أم عرض قطعتين",
+      "secondary": [
+        "ربحية عروض المتجر الإلكتروني",
+        "هامش المساهمة بعد الخصم",
+        "تسعير الباقات",
+        "خصومات التجارة الإلكترونية",
+        "حساب ربح العروض"
+      ],
+      "market": "EG+GCC",
+      "pillar": "editorial",
+      "intent": "informational",
+      "priority": "P1",
+      "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
     }
   ]
 }
