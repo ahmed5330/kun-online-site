@@ -897,6 +897,19 @@
       "intent": "informational",
       "priority": "P1",
       "notes": "Article approved editorially; search volume and keyword difficulty are unverified."
+    },
+    {
+      "path": "/portfolio/",
+      "primary": "معرض أعمال التجارة الإلكترونية",
+      "secondary": [
+        "نماذج متاجر إلكترونية",
+        "دراسة حالة متجر إلكتروني",
+        "مشاريع وكالة تجارة إلكترونية"
+      ],
+      "market": "EG+GCC",
+      "pillar": "agency",
+      "intent": "commercial",
+      "priority": "P1"
     }
   ]
 }
