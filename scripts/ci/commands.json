@@ -1,0 +1,63 @@
+{
+  "install": [
+    [
+      "npm",
+      "install",
+      "--ignore-scripts",
+      "--no-package-lock"
+    ]
+  ],
+  "quick": [
+    [
+      "node",
+      "--test",
+      "scripts/ci/verify.test.mjs"
+    ],
+    [
+      "node",
+      "--test",
+      "tests/approved-queue.test.mjs",
+      "tests/seo-geo-general-reviewer.test.mjs"
+    ]
+  ],
+  "full": [
+    [
+      "node",
+      "--test",
+      "scripts/ci/verify.test.mjs"
+    ],
+    [
+      "python",
+      "scripts/generate-approved-covers.py"
+    ],
+    [
+      "python",
+      "scripts/refresh_site.py",
+      "--optimize-images"
+    ],
+    [
+      "npm",
+      "test"
+    ],
+    [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "*_test.py"
+    ],
+    [
+      "node",
+      "node_modules/playwright/cli.js",
+      "install",
+      "chromium"
+    ],
+    [
+      "node",
+      "scripts/browser-qa.mjs"
+    ]
+  ]
+}

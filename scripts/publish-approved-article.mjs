@@ -12,6 +12,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
+import { synchronizeArticleMetrics } from './article-metrics.mjs';
 import { pendingApprovedBundles } from './approved-queue.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
@@ -141,6 +142,7 @@ function validateBundle({ meta, source }) {
       '<link rel="stylesheet" href="/assets/editorial-20261019.css?v=2">\n</head>');
   }
   assert.equal([...html.matchAll(googleFontLink)].length, 1, 'Exactly one Google Fonts stylesheet is required: ' + slug);
+  html = synchronizeArticleMetrics(html, words);
   html = html.replaceAll('__PUBLICATION_DATE_ISO__', cairoDate).replaceAll('__PUBLICATION_DATE_AR__', dateLabel);
   for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(match[1]);
   return { html, words, canonical, outgoing };

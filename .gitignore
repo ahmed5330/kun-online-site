@@ -3,3 +3,6 @@
 node_modules/
 test-results/
 __pycache__/
+
+# Local CI evidence; never upload credentials or generated reports.
+.ci-status/

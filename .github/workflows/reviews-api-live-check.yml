@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 jobs:
   check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Verify public API and real CORS headers
         run: |

@@ -13,7 +13,7 @@ permissions:
   contents: write
 jobs:
   rebuild:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: github.ref_name == 'fix/editorial-arabic-cover-article-ui-20261019'
     steps:
       - uses: actions/checkout@v5
